@@ -1,22 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
-import { ContentLayoutsComponent } from './layouts/content-layouts/content-layouts.component';
+import {CoreModule} from './core/core.module';
+import {SharedModule} from './shared/shared.module';
+import {AppRoutingModule} from './app-routing.module';
+import {HomeComponent} from './modules/home/pages/home.component';
+import {KepInputComponent} from './modules/kep-input/pages/kep-input/kep-input.component';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ContentLayoutsComponent,
+    HomeComponent,
+    KepInputComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CoreModule,
+    SharedModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
