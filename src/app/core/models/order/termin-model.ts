@@ -1,4 +1,4 @@
-export interface Termin {
+export class Termin {
     datum?: Date;
     termin: string;
 }

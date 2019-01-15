@@ -1,5 +1,5 @@
-export interface AbsEmpf {
-    name: string;
+export class AbsEmpf {
+    firma: string;
     zusatz?: string;
     ansprechpartner?: string;
     addresse: string;

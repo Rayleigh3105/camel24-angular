@@ -1,387 +1,424 @@
 <!--FÜR GROß KUNDEN -->
-<form #form="ngForm" (ngSubmit)="createModal(form.value)" id="form">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <!--<div class="jumbotron">-->
-                <fieldset ngModelGroup="absender">
-                    <h4 class="mv_heading">Absender</h4>
-                    <div class="form-group">
-                        <label for="absender_name">Firma / Name</label>
-                        <input type="text" class="form-control" id="absender_name" name="absender_name"
-                               placeholder="Name" ngModel required>
-                    </div>
-                    <div class="form-group">
-                        <label for="absender_zusatz">Zusatz</label>
-                        <input type="password" class="form-control" id="absender_zusatz" name="absender_zusatz" ngModel>
-                    </div>
-                    <div class="form-group">
-                        <label for="absender_ansprechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="absender_ansprechpartner"
-                               name="absender_ansprechpartner" ngModel>
-                    </div>
-                    <div class="form-group">
-                        <label for="absender_adresse">Adresse</label>
-                        <input type="text" class="form-control" id="absender_adresse" name="absender_adresse" ngModel required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="absender_land">Land</label>
-                            <select id="absender_land" class="form-control"name="absender_land" required>
-                                <option selected>Deutschland</option>
-                                <option>Österreich</option>
-                                <option>Schweiz</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="absender_plz">PLZ</label>
-                            <input type="text" class="form-control" id="absender_plz" name="absender_plz" ngModel required>
-                        </div>
+<form #f="ngForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <!--<div class="jumbotron">-->
+        <fieldset>
+          <h4 class="mv_heading">Absender</h4>
+          <div class="form-group">
+            <label for="absFirma">Firma / Name</label>
+            <input type="text" class="form-control" id="absFirma" name="absFirma"
+                   (ngModel)="order.absender.firma"
+                   #absFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absFirma.invalid }"
+                   maxlength="255"
+                   required>
 
-                        <div class="form-group col-md-5">
-                            <label for="absender_ort">Ort</label>
-                            <input type="text" class="form-control" id="absender_ort" name="absender_ort" ngModel required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="absender_telefon">Telefon</label>
-                        <input type="text" class="form-control" id="absender_telefon" name="absender_telefon" ngModel required>
-                    </div>
-                </fieldset>
-                <!--</div>-->
-            </div>
-            <div class="col-sm">
-                <fieldset ngModelGroup="empfaenger">
-
-                    <h4 class="mv_heading">Empfänger</h4>
-                    <div class="form-group">
-                        <label for="empfaenger_name">Firma / Name</label>
-                        <input type="text" class="form-control" id="empfaenger_name" name="empfaenger_name"
-                               placeholder="Name" ngModel required>
-                    </div>
-                    <div class="form-group">
-                        <label for="empfaenger_zusatz">Zusatz</label>
-                        <input type="password" class="form-control" id="empfaenger_zusatz"
-                               name="empfaenger_ansprechpartner" ngModel>
-                    </div>
-                    <div class="form-group">
-                        <label for="empfaenger_ansprechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="empfaenger_ansprechpartner"
-                               name="empfaenger_ansprechpartner" ngModel>
-                    </div>
-                    <div class="form-group">
-                        <label for="empfaenger_adresse">Adresse</label>
-                        <input type="text" class="form-control" id="empfaenger_adresse" name="empfaenger_adresse"
-                               ngModel required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="empfaenger_land">Land</label>
-                            <select id="empfaenger_land" class="form-control" name="empfaenger_land" required>
-                                <option selected>Deutschland</option>
-                                <option>Österreich</option>
-                                <option>Schweiz</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="empfaenger_plz">PLZ</label>
-                            <input type="text" class="form-control" id="empfaenger_plz" name="empfaenger_plz" ngModel required>
-                        </div>
-
-                        <div class="form-group col-md-5">
-                            <label for="empfaenger_ort">Ort</label>
-                            <input type="text" class="form-control" id="empfaenger_ort" name="empfaenger_ort" ngModel required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="empfaenger_telefon">Telefon</label>
-                        <input type="text" class="form-control" id="empfaenger_telefon" name="empfaenger_telefon"
-                               ngModel required>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm height">
-                <div class="row">
-                    <div class="col-sm">
-                        <fieldset class="mv-fieldset-margin">
-                            <h4 class="mv_heading">Abholzeit</h4>
-                            <div class="row ">
-                                <div class="col-sm-2 vertical-horizontal-center">
-                                    <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
-                                         width="25"><img>
-                                </div>
-                                <div class="col-sm-10">
-                                    <span class="mv-info-color margin-bottom-15">Bitte beachten Sie, dass wir im Falle einer erfolglosen Abholung eine Gebühr von 10€ berechnen müssen.</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3 vertical-center">
-                                    <label for="pcalender">Aboldatum</label>
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <div class="form-group">
-                                        <p-calendar id="pcalender" [minDate]="minDate" [maxDate]="maxDate"
-                                                    [readonlyInput]="true"
-                                                    [disabledDays]="[6,0]" [defaultDate]="minDate" [locale]="de"
-                                                    [showIcon]="true"></p-calendar>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm">
-                                    <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-sm">
-                                            <label for="warenart">Art der Ware</label>
-                                            <select id="warenart" class="form-control">
-                                                <option selected>Waffe</option>
-                                                <option>Munition</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-sm">
-                                            <label for="warenart">Gewicht</label>
-                                            <select name="mv-select-sendungsdaten-kg" id="sendungsdaten_kg"
-                                                    class="form-control">
-                                                <option value="1">1,00 kg</option>
-                                                <option value="2">2,00 kg</option>
-                                                <option value="3" selected>3,00 kg</option>
-                                                <option value="4">4,00 kg</option>
-                                                <option value="5">5,00 kg</option>
-                                                <option value="6">6,00 kg</option>
-                                                <option value="7">7,00 kg</option>
-                                                <option value="8">8,00 kg</option>
-                                                <option value="9">9,00 kg</option>
-                                                <option value="10">10,00 kg</option>
-                                                <option value="11">11,00 kg</option>
-                                                <option value="12">12,00 kg</option>
-                                                <option value="13">13,00 kg</option>
-                                                <option value="14">14,00 kg</option>
-                                                <option value="15">15,00 kg</option>
-                                                <option value="16">16,00 kg</option>
-                                                <option value="17">17,00 kg</option>
-                                                <option value="18">18,00 kg</option>
-                                                <option value="19">19,00 kg</option>
-                                                <option value="20">20,00 kg</option>
-                                                <option value="21">21,00 kg</option>
-                                                <option value="22">22,00 kg</option>
-                                                <option value="23">23,00 kg</option>
-                                                <option value="24">24,00 kg</option>
-                                                <option value="25">25,00 kg</option>
-                                                <option value="26">26,00 kg</option>
-                                                <option value="27">27,00 kg</option>
-                                                <option value="28">28,00 kg</option>
-                                                <option value="29">29,00 kg</option>
-                                                <option value="30">30,00 kg</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-sm">
-                                            <label for="warenart">Transport Vers.</label>
-                                            <select name="mv-select-sendungsdaten_transportversicherung"
-                                                    id="sendungsdaten_transportversicherung" class="form-control">
-                                                <option value="ja">Ja</option>
-                                                <option value="nein" selected>Nein</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="absender_name">Wert in EUR</label>
-                                        <input type="text" class="form-control" name="sendungsdaten_wert"
-                                               id="sendungsdaten_wert"
-                                               placeholder="0,00" pattern="[0-9]{1,12}"
-                                               title="Bitte geben Sie den Wert ihrer Sendung in nummern an.">
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-sm height">
-                <fieldset>
-                    <h4 class="mv_heading">Zustelltermin</h4>
-                    <div class="row margin-bottom-25">
-                        <div class="col-sm-2 vertical-horizontal-center">
-                            <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
-                                 width="25"><img>
-                        </div>
-                        <div class="col-sm-10">
-                            <span class="mv-info-color">Standardzustelltermin = Ihre Sendung wird in der Regel am nächsten Werktag (Werktage bei uns Mo-Fr) bis 17 Uhr zugestellt.</span>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-3">
-                            <label for="zustelltermin_standard">Termin</label>
-                        </div>
-                        <div class="col-sm-9 ">
-                            <!--STANDARD-->
-                            <div class="row ">
-                                <div class="col-sm-1 vertical-center">
-                                    <input type="radio" id="zustelltermin_standard" name="zustelltermin_radio"
-                                           checked="checked">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_standard">
-                                        Standardzustelltermin
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 09:00-->
-                                    <input type="radio" id="zustelltermin_termin_9" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_9">
-                                        Termin bis 09:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-
-                                </div>
-                                <div class="col-sm vertical-center">
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 10:00-->
-                                    <input type="radio" id="zustelltermin_termin_10" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_10">
-                                        Termin bis 10:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 12:00-->
-                                    <input type="radio" id="zustelltermin_termin_12" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_12">
-                                        Termin bis 12:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--FIXTERMIN-->
-                                    <input type="radio" id="zustelltermin_fix">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_fix">
-                                        Fixtermin
-                                    </label>
-                                </div>
-                                <div id="select-fixtermin" *ngIf="displayTimeSelectVar">
-                                    <br>
-                                    <select name="mv-zustelltermin-fixtermin" id="zustelltermin_fix_select">
-                                        <option value="09:00">09:00 Uhr</option>
-                                        <option value="09:30">09:30 Uhr</option>
-                                        <option value="10:00">10:00 Uhr</option>
-                                        <option value="10:30">10:30 Uhr</option>
-                                        <option value="11:00">11:00 Uhr</option>
-                                        <option value="11:30">11:30 Uhr</option>
-                                        <option value="12:00">12:00 Uhr</option>
-                                        <option value="12:30">12:30 Uhr</option>
-                                        <option value="13:00">13:00 Uhr</option>
-                                        <option value="13:30">13:30 Uhr</option>
-                                        <option value="14:00">14:00 Uhr</option>
-                                        <option value="14:30">14:30 Uhr</option>
-                                        <option value="15:00">15:00 Uhr</option>
-                                        <option value="15:30">15:30 Uhr</option>
-                                        <option value="16:00">16:00 Uhr</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label for="sonderdienst_termin">Sonderdienst</label>
-                        </div>
-
-                        <div class="col-sm">
-                            <div class="form-group">
-                                <select id="sonderdienst_termin" class="form-control">
-                                    <option selected>Standardzustellung</option>
-                                    <option>Persönliche Zustellung</option>
-                                    <option>Persönliche Zustellung mit Ident</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <fieldset>
-                    <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
-                    <div class="form-group">
-                        <label for="auftragsbest_email">E-Mail Adresse</label>
-                        <input type="email" class="form-control" id="auftragsbest_email">
-                    </div>
-                    <div class="form-group">
-                        <label for="absender_zusatz">Telefon</label>
-                        <input type="password" class="form-control" id="auftragsbest_tel">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="auftragsbest_rechnungsadresse">Rechnungsadresse</label>
-                        <select id="auftragsbest_rechnungsadresse" class="form-control">
-                            <option>Wie Absender</option>
-                            <option>Wie Empfänger</option>
-                        </select>
-                    </div>
-
-                </fieldset>
-            </div>
-            <div class="col-sm-3"></div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <div id="mv-submit-container" class="vertical-horizontal-center ">
-                    <div class="vertical-horizontal-center">
-                        <button type="submit" id="mv-submit-button">Weiter</button>
-                    </div>
-                </div>
+            <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
+              <div *ngIf="absFirma.errors.required">Firma / Name wird benötigt</div>
             </div>
 
-        </div>
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="absZusatz">Zusatz</label>
+            <input type="password" class="form-control" id="absZusatz" name="absZusatz"
+                   (ngModel)="order.absender.zusatz"
+                   [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
+                   maxlength="255"
+                   #absZusatz="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="absAnpsrechpartner">Ansprechpartner</label>
+            <input type="text" class="form-control" id="absAnpsrechpartner" name="absAnpsrechpartner"
+                   (ngModel)="order.absender.ansprechpartner"
+                   [ngClass]="{ 'is-invalid': f.submitted && absAnpsrechpartner.invalid }"
+                   maxlength="255"
+                   #absAnpsrechpartner="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="absAdresse">Adresse</label>
+            <input type="text" class="form-control" id="absAdresse" name="absAdresse"
+                   (ngModel)="order.absender.addresse"
+                   #absAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absAdresse.invalid }"
+                   maxlength="255"
+                   required>
+            <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
+              <div *ngIf="absAdresse.errors.required">Absender wird benötigt</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="absender_land">Land</label>
+              <select id="absender_land" class="form-control" name="absender_land" required>
+                <option selected>Deutschland</option>
+                <option>Österreich</option>
+                <option>Schweiz</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="absPlz">PLZ</label>
+              <input type="text" class="form-control" id="absPlz" name="absPlz"
+                     (ngModel)="order.absender.plz"
+                     #absPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absPlz.invalid }"
+                     minlength="5"
+                     maxlength="5"
+                     pattern="[0-9]{5}"
+                     required>
+              <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
+                <div *ngIf="absPlz.errors.required">PLZ wird benötigt</div>
+                <div *ngIf="absPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-5">
+              <label for="absender_ort">Ort</label>
+              <input type="text" class="form-control" id="absender_ort" name="absender_ort" ngModel required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="absender_telefon">Telefon</label>
+            <input type="text" class="form-control" id="absender_telefon" name="absender_telefon" ngModel required>
+          </div>
+        </fieldset>
+        <!--</div>-->
+      </div>
+      <div class="col-sm">
+        <fieldset>
+
+          <h4 class="mv_heading">Empfänger</h4>
+          <div class="form-group">
+            <label for="empfaenger_name">Firma / Name</label>
+            <input type="text" class="form-control" id="empfaenger_name" name="empfaenger_name"
+                   placeholder="Name" ngModel required>
+          </div>
+          <div class="form-group">
+            <label for="empfaenger_zusatz">Zusatz</label>
+            <input type="password" class="form-control" id="empfaenger_zusatz"
+                   name="empfaenger_ansprechpartner" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="empfaenger_ansprechpartner">Ansprechpartner</label>
+            <input type="text" class="form-control" id="empfaenger_ansprechpartner"
+                   name="empfaenger_ansprechpartner" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="empfaenger_adresse">Adresse</label>
+            <input type="text" class="form-control" id="empfaenger_adresse" name="empfaenger_adresse"
+                   ngModel required>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="empfaenger_land">Land</label>
+              <select id="empfaenger_land" class="form-control" name="empfaenger_land" required>
+                <option selected>Deutschland</option>
+                <option>Österreich</option>
+                <option>Schweiz</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="empfaenger_plz">PLZ</label>
+              <input type="text" class="form-control" id="empfaenger_plz" name="empfaenger_plz" ngModel required>
+            </div>
+
+            <div class="form-group col-md-5">
+              <label for="empfaenger_ort">Ort</label>
+              <input type="text" class="form-control" id="empfaenger_ort" name="empfaenger_ort" ngModel required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="empfaenger_telefon">Telefon</label>
+            <input type="text" class="form-control" id="empfaenger_telefon" name="empfaenger_telefon"
+                   ngModel required>
+          </div>
+        </fieldset>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm height">
+        <div class="row">
+          <div class="col-sm">
+            <fieldset class="mv-fieldset-margin">
+              <h4 class="mv_heading">Abholzeit</h4>
+              <div class="row ">
+                <div class="col-sm-2 vertical-horizontal-center">
+                  <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
+                       width="25"><img>
+                </div>
+                <div class="col-sm-10">
+                  <span class="mv-info-color margin-bottom-15">Bitte beachten Sie, dass wir im Falle einer erfolglosen Abholung eine Gebühr von 10€ berechnen müssen.</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 vertical-center">
+                  <label for="pcalender">Aboldatum</label>
+                </div>
+                <div class="col-sm vertical-center">
+                  <div class="form-group">
+                    <p-calendar id="pcalender" [minDate]="minDate" [maxDate]="maxDate"
+                                [readonlyInput]="true"
+                                [disabledDays]="[6,0]" [defaultDate]="minDate" [locale]="de"
+                                [showIcon]="true"></p-calendar>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm">
+                  <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
+
+                  <div class="form-row">
+                    <div class="form-group col-sm">
+                      <label for="warenart">Art der Ware</label>
+                      <select id="warenart" class="form-control">
+                        <option selected>Waffe</option>
+                        <option>Munition</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-sm">
+                      <label for="warenart">Gewicht</label>
+                      <select name="mv-select-sendungsdaten-kg" id="sendungsdaten_kg"
+                              class="form-control">
+                        <option value="1">1,00 kg</option>
+                        <option value="2">2,00 kg</option>
+                        <option value="3" selected>3,00 kg</option>
+                        <option value="4">4,00 kg</option>
+                        <option value="5">5,00 kg</option>
+                        <option value="6">6,00 kg</option>
+                        <option value="7">7,00 kg</option>
+                        <option value="8">8,00 kg</option>
+                        <option value="9">9,00 kg</option>
+                        <option value="10">10,00 kg</option>
+                        <option value="11">11,00 kg</option>
+                        <option value="12">12,00 kg</option>
+                        <option value="13">13,00 kg</option>
+                        <option value="14">14,00 kg</option>
+                        <option value="15">15,00 kg</option>
+                        <option value="16">16,00 kg</option>
+                        <option value="17">17,00 kg</option>
+                        <option value="18">18,00 kg</option>
+                        <option value="19">19,00 kg</option>
+                        <option value="20">20,00 kg</option>
+                        <option value="21">21,00 kg</option>
+                        <option value="22">22,00 kg</option>
+                        <option value="23">23,00 kg</option>
+                        <option value="24">24,00 kg</option>
+                        <option value="25">25,00 kg</option>
+                        <option value="26">26,00 kg</option>
+                        <option value="27">27,00 kg</option>
+                        <option value="28">28,00 kg</option>
+                        <option value="29">29,00 kg</option>
+                        <option value="30">30,00 kg</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-sm">
+                      <label for="warenart">Transport Vers.</label>
+                      <select name="mv-select-sendungsdaten_transportversicherung"
+                              id="sendungsdaten_transportversicherung" class="form-control">
+                        <option value="ja">Ja</option>
+                        <option value="nein" selected>Nein</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="absender_name">Wert in EUR</label>
+                    <input type="text" class="form-control" name="sendungsdaten_wert"
+                           id="sendungsdaten_wert"
+                           placeholder="0,00" pattern="[0-9]{1,12}"
+                           title="Bitte geben Sie den Wert ihrer Sendung in nummern an.">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-sm height">
+        <fieldset>
+          <h4 class="mv_heading">Zustelltermin</h4>
+          <div class="row margin-bottom-25">
+            <div class="col-sm-2 vertical-horizontal-center">
+              <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
+                   width="25"><img>
+            </div>
+            <div class="col-sm-10">
+              <span class="mv-info-color">Standardzustelltermin = Ihre Sendung wird in der Regel am nächsten Werktag (Werktage bei uns Mo-Fr) bis 17 Uhr zugestellt.</span>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-3">
+              <label for="zustelltermin_standard">Termin</label>
+            </div>
+            <div class="col-sm-9 ">
+              <!--STANDARD-->
+              <div class="row ">
+                <div class="col-sm-1 vertical-center">
+                  <input type="radio" id="zustelltermin_standard" name="zustelltermin_radio"
+                         checked="checked">
+                </div>
+                <div class="col-sm vertical-center">
+                  <label for="zustelltermin_standard">
+                    Standardzustelltermin
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-1 vertical-center">
+                  <!--Termin - 09:00-->
+                  <input type="radio" id="zustelltermin_termin_9" name="zustelltermin_radio">
+                </div>
+                <div class="col-sm vertical-center">
+                  <label for="zustelltermin_termin_9">
+                    Termin bis 09:00 Uhr
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-sm-1 vertical-center">
+
+                </div>
+                <div class="col-sm vertical-center">
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-1 vertical-center">
+                  <!--Termin - 10:00-->
+                  <input type="radio" id="zustelltermin_termin_10" name="zustelltermin_radio">
+                </div>
+                <div class="col-sm vertical-center">
+                  <label for="zustelltermin_termin_10">
+                    Termin bis 10:00 Uhr
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-1 vertical-center">
+                  <!--Termin - 12:00-->
+                  <input type="radio" id="zustelltermin_termin_12" name="zustelltermin_radio">
+                </div>
+                <div class="col-sm vertical-center">
+                  <label for="zustelltermin_termin_12">
+                    Termin bis 12:00 Uhr
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-sm-1 vertical-center">
+                  <!--FIXTERMIN-->
+                  <input type="radio" id="zustelltermin_fix">
+                </div>
+                <div class="col-sm vertical-center">
+                  <label for="zustelltermin_fix">
+                    Fixtermin
+                  </label>
+                </div>
+                <div id="select-fixtermin" *ngIf="displayTimeSelectVar">
+                  <br>
+                  <select name="mv-zustelltermin-fixtermin" id="zustelltermin_fix_select">
+                    <option value="09:00">09:00 Uhr</option>
+                    <option value="09:30">09:30 Uhr</option>
+                    <option value="10:00">10:00 Uhr</option>
+                    <option value="10:30">10:30 Uhr</option>
+                    <option value="11:00">11:00 Uhr</option>
+                    <option value="11:30">11:30 Uhr</option>
+                    <option value="12:00">12:00 Uhr</option>
+                    <option value="12:30">12:30 Uhr</option>
+                    <option value="13:00">13:00 Uhr</option>
+                    <option value="13:30">13:30 Uhr</option>
+                    <option value="14:00">14:00 Uhr</option>
+                    <option value="14:30">14:30 Uhr</option>
+                    <option value="15:00">15:00 Uhr</option>
+                    <option value="15:30">15:30 Uhr</option>
+                    <option value="16:00">16:00 Uhr</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label for="sonderdienst_termin">Sonderdienst</label>
+            </div>
+
+            <div class="col-sm">
+              <div class="form-group">
+                <select id="sonderdienst_termin" class="form-control">
+                  <option selected>Standardzustellung</option>
+                  <option>Persönliche Zustellung</option>
+                  <option>Persönliche Zustellung mit Ident</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <fieldset>
+          <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
+          <div class="form-group">
+            <label for="auftragsbest_email">E-Mail Adresse</label>
+            <input type="email" class="form-control" id="auftragsbest_email">
+          </div>
+          <div class="form-group">
+            <label for="absender_zusatz">Telefon</label>
+            <input type="password" class="form-control" id="auftragsbest_tel">
+          </div>
+
+          <div class="form-group">
+            <label for="auftragsbest_rechnungsadresse">Rechnungsadresse</label>
+            <select id="auftragsbest_rechnungsadresse" class="form-control">
+              <option>Wie Absender</option>
+              <option>Wie Empfänger</option>
+            </select>
+          </div>
+
+        </fieldset>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div id="mv-submit-container" class="vertical-horizontal-center ">
+          <div class="vertical-horizontal-center">
+            <button type="submit" id="mv-submit-button">Weiter</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 </form>

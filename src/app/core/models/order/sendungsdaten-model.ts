@@ -1,4 +1,4 @@
-export interface SendungsDaten {
+export class SendungsDaten {
     gewicht: string;
     art: string;
     wert: string;

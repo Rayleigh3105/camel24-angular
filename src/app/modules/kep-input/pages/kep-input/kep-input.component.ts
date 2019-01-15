@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Order} from '../../../../core/models/order/order-model';
 
 @Component({
   selector: 'camel-kep-input',
@@ -14,6 +15,7 @@ export class KepInputComponent implements OnInit {
     minDate: Date = new Date();
     maxDate: Date = new Date();
     de: any;
+    order: Order = new Order();
 
 
     constructor() {
@@ -43,7 +45,8 @@ export class KepInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  createModal(value) {
-console.log(value)
+
+  onSubmit() {
+
   }
 }
