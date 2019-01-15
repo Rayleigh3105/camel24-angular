@@ -8,5 +8,4 @@ export class Order {
     abholTermin: Termin;
     zustellTermin: Termin;
     sendungsdaten : SendungsDaten;
-
 }
