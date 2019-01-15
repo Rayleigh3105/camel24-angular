@@ -1,11 +1,29 @@
 //@import '~bootstrap/scss/bootstrap-reboot';
 //@import '~bootstrap/scss/bootstrap-grid';
 //
+#form {
+  margin-top: 40px;
+}
 
+//input .ng-dirty {
+//  border-left: 4px solid green;
+//}
+//
+//input .ng-untouched {
+//  border-left: 4px solid red;
+//}
+.ui-inputtext {
+  height: 30px !important;
+}
 fieldset {
-  padding: 15px!important;
+  border: 2px solid #ffc107;
+  padding: 20px!important;
   margin-bottom: 25px;
-  border: 2px solid darkorange;
+
+
+}
+.mv-fieldset-margin {
+  padding-bottom: 28px !important;
 }
 
 .jumbotron {
@@ -17,6 +35,13 @@ label {
 }
 .margin-bottom-15 {
   margin-bottom: 15px;
+}
+.margin-bottom-25 {
+  margin-bottom: 25px;
+}
+
+p-calendar {
+  height: 30px;
 }
 ///*OUTER - FLEXBOX*/
 //.flexbox {
@@ -70,20 +95,27 @@ label {
 .mv_heading{
   color: black;
 }
-input {
+
+.sendungsdaten_h {
+  margin-top: 15px;
+}
+input[type="text"] {
   outline: none;
   height: 30px;
 }
 label {
   font-size: 15px;
 }
-input:focus{
-  border: 1px solid darkorange;
-  box-shadow: 0 0 3px 1px darkorange !important;
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="select"]:focus{
+  border: 1px solid #ffc107;
+  box-shadow: 0 0 3px 1px #ffc107 !important;
 }
 
 select {
   height: 30px;
+}
+.height {
+  height: 40%;
 }
 
 .form-group {
@@ -156,18 +188,19 @@ select {
 //  cursor: not-allowed;
 //}
 //
-//#mv-submit-container {
-//  background-color: rgba(190, 192, 175, 0.21);
-//  height: 250px;
-//  margin-top: 30px;
-//}
+#mv-submit-container {
+  background-color: rgba(190, 192, 175, 0.21);
+  height: 200px;
+  margin-top: 30px;
+
+}
 //
 #mv-submit-button {
   width: 200px;
   height: 50px;
-  background: -moz-linear-gradient(left,  darkorange 0%, #e8a363 100%, #e8c998 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  darkorange 0%,#e8a363 100%,#e8c998 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  darkorange 0%,#e8a363 100%,#e8c998 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(left,  #ffc107 0%, #e8a363 100%, #e8c998 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #ffc107 0%,#e8a363 100%,#e8c998 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #ffc107 0%,#e8a363 100%,#e8c998 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585dc9', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
   color: black;
   border: 0;
@@ -191,9 +224,9 @@ select {
 //  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
 //}
 //
-//#mv-submit-button:hover {
-//  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-//}
+#mv-submit-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 //
 //.mv-dialogSubmit-button{
 //  width: 150px;
