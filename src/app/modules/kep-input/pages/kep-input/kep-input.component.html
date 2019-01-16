@@ -23,7 +23,7 @@
                     <div class="form-group">
 
                         <label for="absZusatz">Zusatz</label>
-                        <input type="password" class="form-control" id="absZusatz" name="absZusatz"
+                        <input type="text" class="form-control" id="absZusatz" name="absZusatz"
                                (ngModel)="order.absender.zusatz"
                                [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
                                maxlength="255"
@@ -52,12 +52,20 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm">
-                            <label for="absender_land">Land</label>
-                            <select id="absender_land" class="form-control" name="absender_land" required>
+                            <label for="absLand">Land</label>
+                            <select id="absLand" class="form-control" name="absLand"
+                                    ngModel
+                                    #absLand="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && absLand.invalid }"
+                                    required>
                                 <option selected>Deutschland</option>
                                 <option>Österreich</option>
                                 <option>Schweiz</option>
                             </select>
+                            <div *ngIf="f.submitted && absLand.invalid" class="invalid-feedback">
+                                <div *ngIf="absLand.errors.required">Land wird benötigt</div>
+                            </div>
+
                         </div>
                         <div class="form-group col-sm">
                             <label for="absPlz">PLZ</label>
@@ -126,7 +134,7 @@
                     <div class="form-group">
 
                         <label for="empfZusatz">Zusatz</label>
-                        <input type="password" class="form-control" id="empfZusatz" name="empfZusatz"
+                        <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
                                (ngModel)="order.empfaenger.zusatz"
                                [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
                                maxlength="255"
@@ -155,12 +163,19 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm">
-                            <label for="absender_land">Land</label>
-                            <select id="absender_land" class="form-control" name="absender_land" required>
-                                <option selected>Deutschland</option>
+                            <label for="empfLand">Land</label>
+                            <select id="empfLand" class="form-control" name="empfLand"
+                                    ngModel
+                                    #empfLand="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
+                                    required>
+                                <option>Deutschland</option>
                                 <option>Österreich</option>
                                 <option>Schweiz</option>
                             </select>
+                            <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
+                                <div *ngIf="empfLand.errors.required">Land wird benötigt</div>
+                            </div>
                         </div>
                         <div class="form-group col-sm">
                             <label for="empfPlz">PLZ</label>
@@ -194,9 +209,12 @@
 
                     <div class="form-group">
                         <label for="empfTel">Telefon</label>
-                        <input type="text" class="form-control" id="empfTel" name="empfTel"
+                        <input type="text" class="form-control"
+                               id="empfTel"
+                               name="empfTel"
                                (ngModel)="order.empfaenger.telefon"
-                               #empfTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
+                               #empfTel="ngModel"
+                               [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
                                maxlength="255"
                                required>
 
@@ -214,7 +232,7 @@
                     <div class="col-sm">
                         <fieldset class="mv-fieldset-margin">
                             <h4 class="mv_heading">Abholzeit</h4>
-                            <div class="row ">
+                            <div class="row margin-bottom-15">
                                 <div class="col-sm-2 vertical-horizontal-center">
                                     <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
                                          width="25"><img>
@@ -225,14 +243,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-3 vertical-center">
-                                    <label for="pcalender">Aboldatum</label>
+                                    <label for="abholDatum">Aboldatum</label>
                                 </div>
                                 <div class="col-sm vertical-center">
                                     <div class="form-group">
-                                        <p-calendar id="pcalender" [minDate]="minDate" [maxDate]="maxDate"
+                                        <p-calendar id="abholDatum"
+                                                    [minDate]="minDate" [maxDate]="maxDate"
                                                     [readonlyInput]="true"
-                                                    [disabledDays]="[6,0]" [defaultDate]="minDate" [locale]="de"
-                                                    [showIcon]="true"></p-calendar>
+                                                    [disabledDays]="[6,0]"
+                                                    [defaultDate]="minDate"
+                                                    [locale]="de"
+                                                    [showIcon]="true"
+                                                    name="abholDatum"
+                                                    (ngModel)="order.abholTermin.datum"
+                                                    #abholDatum="ngModel"
+                                                    required
+                                                    dateFormat="dd.mm.yy"></p-calendar>
+
+                                        <div *ngIf="f.submitted && abholDatum.invalid" class="invalid-feedback-calender">
+                                            <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -243,17 +273,31 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-sm">
-                                            <label for="warenart">Art der Ware</label>
-                                            <select id="warenart" class="form-control">
-                                                <option selected>Waffe</option>
+                                            <label for="sendungsdatenArt">Art der Ware</label>
+                                            <select id="sendungsdatenArt" class="form-control"
+                                                    name="sendungsdatenArt"
+                                                    ngModel
+                                                    #sendungsdatenArt="ngModel"
+                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenArt.invalid }"
+                                                    required>
+                                                <option>Waffe</option>
                                                 <option>Munition</option>
                                             </select>
+
+                                            <div *ngIf="f.submitted && sendungsdatenArt.invalid"
+                                                 class="invalid-feedback">
+                                                <div *ngIf="sendungsdatenArt.errors.required">Art wird benötigt</div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group col-sm">
-                                            <label for="warenart">Gewicht</label>
-                                            <select name="mv-select-sendungsdaten-kg" id="sendungsdaten_kg"
-                                                    class="form-control">
+                                            <label for="sendungsdatenGewicht">Gewicht</label>
+                                            <select name="sendungsdatenGewicht" id="sendungsdatenGewicht"
+                                                    class="form-control"
+                                                    ngModel
+                                                    #sendungsdatenGewicht="ngModel"
+                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenGewicht.invalid }"
+                                                    required>
                                                 <option value="1">1,00 kg</option>
                                                 <option value="2">2,00 kg</option>
                                                 <option value="3" selected>3,00 kg</option>
@@ -285,25 +329,57 @@
                                                 <option value="29">29,00 kg</option>
                                                 <option value="30">30,00 kg</option>
                                             </select>
+
+                                            <div *ngIf="f.submitted && sendungsdatenGewicht.invalid"
+                                                 class="invalid-feedback">
+                                                <div *ngIf="sendungsdatenGewicht.errors.required">Gewicht wird benötigt
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group col-sm">
-                                            <label for="warenart">Transport Vers.</label>
-                                            <select name="mv-select-sendungsdaten_transportversicherung"
-                                                    id="sendungsdaten_transportversicherung" class="form-control">
+                                            <label for="sendungsdatenVers">Transport Vers.</label>
+                                            <select name="sendungsdatenVers"
+                                                    id="sendungsdatenVers"
+                                                    class="form-control"
+                                                    ngModel
+                                                    #sendungsdatenVers="ngModel"
+                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenVers.invalid }"
+                                                    required>
                                                 <option value="ja">Ja</option>
-                                                <option value="nein" selected>Nein</option>
+                                                <option value="nein">Nein</option>
                                             </select>
+
+                                            <div *ngIf="f.submitted && sendungsdatenVers.invalid"
+                                                 class="invalid-feedback">
+                                                <div *ngIf="sendungsdatenVers.errors.required">Transport Vers. wird
+                                                    benötigt
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="absender_name">Wert in EUR</label>
-                                        <input type="text" class="form-control" name="sendungsdaten_wert"
-                                               id="sendungsdaten_wert"
-                                               placeholder="0,00" pattern="[0-9]{1,12}"
-                                               title="Bitte geben Sie den Wert ihrer Sendung in nummern an.">
+                                        <label for="sendungsdatenWert">Wert in EUR</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="sendungsdatenWert"
+                                               id="sendungsdatenWert"
+                                               placeholder="0,00"
+                                               pattern="[0-9]{1,12}"
+                                               (ngModel)="order.sendungsdaten.wert"
+                                               #sendungsdatenWert="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }"
+                                               required>
+
+                                        <div *ngIf="f.submitted && sendungsdatenWert.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt</div>
+                                            <div *ngIf="sendungsdatenWert.errors.pattern">Wert darf nur aus Ziffern
+                                                bestehen
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -326,127 +402,103 @@
                             <span class="mv-info-color">Standardzustelltermin = Ihre Sendung wird in der Regel am nächsten Werktag (Werktage bei uns Mo-Fr) bis 17 Uhr zugestellt.</span>
                         </div>
                     </div>
+
                     <div class="row">
-
-                        <div class="col-sm-3">
-                            <label for="zustelltermin_standard">Termin</label>
-                        </div>
-                        <div class="col-sm-9 ">
-                            <!--STANDARD-->
-                            <div class="row ">
-                                <div class="col-sm-1 vertical-center">
-                                    <input type="radio" id="zustelltermin_standard" name="zustelltermin_radio"
-                                           checked="checked">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_standard">
-                                        Standardzustelltermin
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 09:00-->
-                                    <input type="radio" id="zustelltermin_termin_9" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_9">
-                                        Termin bis 09:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-
-                                </div>
-                                <div class="col-sm vertical-center">
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 10:00-->
-                                    <input type="radio" id="zustelltermin_termin_10" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_10">
-                                        Termin bis 10:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--Termin - 12:00-->
-                                    <input type="radio" id="zustelltermin_termin_12" name="zustelltermin_radio">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_termin_12">
-                                        Termin bis 12:00 Uhr
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-1 vertical-center">
-                                    <!--FIXTERMIN-->
-                                    <input type="radio" id="zustelltermin_fix">
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <label for="zustelltermin_fix">
-                                        Fixtermin
-                                    </label>
-                                </div>
-                                <div id="select-fixtermin" *ngIf="displayTimeSelectVar">
-                                    <br>
-                                    <select name="mv-zustelltermin-fixtermin" id="zustelltermin_fix_select">
-                                        <option value="09:00">09:00 Uhr</option>
-                                        <option value="09:30">09:30 Uhr</option>
-                                        <option value="10:00">10:00 Uhr</option>
-                                        <option value="10:30">10:30 Uhr</option>
-                                        <option value="11:00">11:00 Uhr</option>
-                                        <option value="11:30">11:30 Uhr</option>
-                                        <option value="12:00">12:00 Uhr</option>
-                                        <option value="12:30">12:30 Uhr</option>
-                                        <option value="13:00">13:00 Uhr</option>
-                                        <option value="13:30">13:30 Uhr</option>
-                                        <option value="14:00">14:00 Uhr</option>
-                                        <option value="14:30">14:30 Uhr</option>
-                                        <option value="15:00">15:00 Uhr</option>
-                                        <option value="15:30">15:30 Uhr</option>
-                                        <option value="16:00">16:00 Uhr</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label for="sonderdienst_termin">Sonderdienst</label>
-                        </div>
-
                         <div class="col-sm">
                             <div class="form-group">
-                                <select id="sonderdienst_termin" class="form-control">
-                                    <option selected>Standardzustellung</option>
-                                    <option>Persönliche Zustellung</option>
-                                    <option>Persönliche Zustellung mit Ident</option>
+                                <label for="zustellungTermin">Zustellungstermin</label>
+                                <select name="zustellungTermin"
+                                        id="zustellungTermin"
+                                        class="form-control"
+                                        (ngModel)="order.zustellTermin.termin"
+                                        #zustellungTermin="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && zustellungTermin.invalid }"
+                                        (change)="onOptionChange($event.target.value)"
+                                        required>
+                                    <option value="standard">Standardzustellungtermin</option>
+                                    <option value="9">Termin bis 09:00 Uhr</option>
+                                    <option value="10">Termin bis 10:00 Uhr</option>
+                                    <option value="12">Termin bis 12:00 Uhr</option>
+                                    <option value="fixtermin">Fixtermin</option>
                                 </select>
+
+                                <div *ngIf="f.submitted && zustellungTermin.invalid"
+                                     class="invalid-feedback">
+                                    <div *ngIf="zustellungTermin.errors.required">Transport Vers. wird benötigt</div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-sm">
 
+                            <div class="form-group"
+                                 *ngIf="shouldDisplayed">
+                                <label for="fixtermin">Fixtermin Uhrzeit</label>
+                                <select name="fixtermin"
+                                        id="fixtermin"
+                                        class="form-control"
+                                        (ngModel)="fixtermin"
+                                        #fixtermin="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && fixtermin.invalid }"
+                                        [required]="shouldDisplayed">
+                                    <option value="09:00">09:00 Uhr</option>
+                                    <option value="09:30">09:30 Uhr</option>
+                                    <option value="10:00">10:00 Uhr</option>
+                                    <option value="10:30">10:30 Uhr</option>
+                                    <option value="11:00">11:00 Uhr</option>
+                                    <option value="11:30">11:30 Uhr</option>
+                                    <option value="12:00">12:00 Uhr</option>
+                                    <option value="12:30">12:30 Uhr</option>
+                                    <option value="13:00">13:00 Uhr</option>
+                                    <option value="13:30">13:30 Uhr</option>
+                                    <option value="14:00">14:00 Uhr</option>
+                                    <option value="14:30">14:30 Uhr</option>
+                                    <option value="15:00">15:00 Uhr</option>
+                                    <option value="15:30">15:30 Uhr</option>
+                                    <option value="16:00">16:00 Uhr</option>
+                                </select>
+
+                                <div *ngIf="f.submitted && fixtermin.invalid"
+                                     class="invalid-feedback">
+                                    <div *ngIf="fixtermin.errors.required">Uhrzeit wird benötigt</div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
+                        </div>
+                    </div>
+
+
+
+                    <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
+
+                    <label for="sonderdienst">Sonderdienst</label>
+
+                    <div class="form-group">
+                        <select id="sonderdienst"
+                                class="form-control"
+                                ngModel
+                                name="sonderdienst"
+                                #sonderdienst="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
+                                required>
+                            <option value="standard">Standardzustellung</option>
+                            <option value="persoenlich">Persönliche Zustellung</option>
+                            <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
+                        </select>
+
+
+                        <div *ngIf="f.submitted && sonderdienst.invalid"
+                             class="invalid-feedback">
+                            <div *ngIf="sonderdienst.errors.required">Sonderdienst wird benötigt</div>
+                        </div>
+                    </div>
+
                 </fieldset>
             </div>
         </div>
@@ -457,20 +509,59 @@
                 <fieldset>
                     <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
                     <div class="form-group">
-                        <label for="auftragsbest_email">E-Mail Adresse</label>
-                        <input type="email" class="form-control" id="auftragsbest_email">
+                        <label for="auftragbestEmail">E-Mail Adresse</label>
+                        <input type="email"
+                               class="form-control"
+                               id="auftragbestEmail"
+                               name="auftragbestEmail"
+                               (ngModel)="order.rechnungsdaten.email"
+                               #auftragbestEmail="ngModel"
+                               [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
+                               required email>
+
+                        <div *ngIf="f.submitted && auftragbestEmail.invalid"
+                             class="invalid-feedback">
+                            <div *ngIf="auftragbestEmail.errors.required">E-Mail wird benötigt</div>
+                            <div *ngIf="auftragbestEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="absender_zusatz">Telefon</label>
-                        <input type="password" class="form-control" id="auftragsbest_tel">
+                        <label for="auftragbestTelefon">Telefon</label>
+                        <input type="text"
+                               class="form-control"
+                               id="auftragbestTelefon"
+                               name="auftragbestTelefon"
+                               (ngModel)="order.rechnungsdaten.telefon"
+                               #auftragbestTelefon="ngModel"
+                               [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
+                               required>
+
+                        <div *ngIf="f.submitted && auftragbestTelefon.invalid"
+                             class="invalid-feedback">
+                            <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt</div>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="auftragsbest_rechnungsadresse">Rechnungsadresse</label>
-                        <select id="auftragsbest_rechnungsadresse" class="form-control">
-                            <option>Wie Absender</option>
-                            <option>Wie Empfänger</option>
+                        <label for="auftragsbestRechnungsadresse">Rechnungsadresse</label>
+                        <select id="auftragsbestRechnungsadresse"
+                                class="form-control"
+                                name="auftragsbestRechnungsadresse"
+                                ngModel
+                                #auftragsbestRechnungsadresse="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && auftragsbestRechnungsadresse.invalid }"
+                                required>
+                            <option value="absender">Wie Absender</option>
+                            <option value="empfeanger">Wie Empfänger</option>
                         </select>
+
+
+                        <div *ngIf="f.submitted && auftragsbestRechnungsadresse.invalid"
+                             class="invalid-feedback">
+                            <div *ngIf="auftragsbestRechnungsadresse.errors.required">Rechnungsadresse wird benötigt
+                            </div>
+                        </div>
                     </div>
 
                 </fieldset>

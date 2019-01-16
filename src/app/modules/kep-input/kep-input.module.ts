@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KepInputComponent } from './pages/kep-input/kep-input.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CalendarModule} from 'primeng/primeng';
 
 
@@ -9,7 +9,8 @@ import {CalendarModule} from 'primeng/primeng';
   imports: [
     CommonModule,
     FormsModule,
-    CalendarModule
+    CalendarModule,
+    ReactiveFormsModule
   ],
   declarations: [KepInputComponent]
 })

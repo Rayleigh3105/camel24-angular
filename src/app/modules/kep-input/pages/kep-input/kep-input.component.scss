@@ -12,6 +12,10 @@
 //input .ng-untouched {
 //  border-left: 4px solid red;
 //}
+
+#absZusatz{
+  padding:0px;
+}
 .ui-inputtext {
   height: 30px !important;
 }
@@ -40,8 +44,8 @@ label {
   margin-bottom: 25px;
 }
 
-p-calendar {
-  height: 30px;
+.ui-inputtext{
+  margin:-7px -12px;
 }
 ///*OUTER - FLEXBOX*/
 //.flexbox {
@@ -120,6 +124,13 @@ select {
 
 .form-group {
   margin-bottom: 8px;
+}
+
+.invalid-feedback-calender {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
 }
 //
 //.invalidInputs {

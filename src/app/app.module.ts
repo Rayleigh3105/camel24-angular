@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -9,12 +8,15 @@ import {SharedModule} from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './modules/home/pages/home.component';
 import {KepInputComponent} from './modules/kep-input/pages/kep-input/kep-input.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {OrderService} from './shared/services/order.service';
 import {CalendarModule} from 'primeng/primeng';
+import {NgModule} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {CalendarModule} from 'primeng/primeng';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CalendarModule
+    CalendarModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [AuthService, OrderService],
   bootstrap: [AppComponent]

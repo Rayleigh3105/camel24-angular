@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../../../core/models/order/order-model';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'camel-kep-input',
@@ -11,15 +12,17 @@ export class KepInputComponent implements OnInit {
     /**
      * VARIABLES
      */
-    displayTimeSelectVar: boolean;
     minDate: Date = new Date();
     maxDate: Date = new Date();
+    shouldDisplayed: boolean = false;
     de: any;
-    order: Order = new Order();
+    // order: Order;
+
 
 
     constructor() {
-      this.setupDatePicker()
+      this.setupDatePicker();
+      // this.order = new Order();
     }
 
     /**
@@ -52,6 +55,13 @@ export class KepInputComponent implements OnInit {
     ngOnInit() {
     }
 
+    onOptionChange(terminValue : string) {
+        if(terminValue==='fixtermin') {
+            this.shouldDisplayed = true;
+        } else {
+            this.shouldDisplayed = false;
+        }
+    }
 
     onSubmit(value) {
         console.log(value)
