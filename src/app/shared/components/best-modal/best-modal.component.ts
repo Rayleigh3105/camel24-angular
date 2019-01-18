@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'camel-best-modal',
-  templateUrl: './best-modal.component.html',
-  styleUrls: ['./best-modal.component.scss']
+    selector: 'camel-best-modal',
+    templateUrl: './best-modal.component.html',
+    styleUrls: ['./best-modal.component.scss']
 })
 export class BestModalComponent implements OnInit {
 
-  constructor() { }
+    constructor(public activeModal: NgbActiveModal) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    /**
+     * Sends data to backend and waits for response and handle it
+     * @param value - data from the form
+     */
+    protected sendData(value){
+        console.log(value)
+    }
 
 }

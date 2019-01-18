@@ -16,6 +16,8 @@ import {OrderService} from './shared/services/order.service';
 import {CalendarModule} from 'primeng/primeng';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
+import {CsvExportService} from './shared/services/csv-export.service';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [AuthService, OrderService],
+  entryComponents: [BestModalComponent],
+  providers: [AuthService, OrderService, CsvExportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../../../core/models/order/order-model';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'camel-kep-input',
@@ -16,13 +19,11 @@ export class KepInputComponent implements OnInit {
     maxDate: Date = new Date();
     shouldDisplayed: boolean = false;
     de: any;
-    // order: Order;
 
 
 
-    constructor() {
+    constructor(private modalService: NgbModal) {
       this.setupDatePicker();
-      // this.order = new Order();
     }
 
     /**
@@ -55,16 +56,26 @@ export class KepInputComponent implements OnInit {
     ngOnInit() {
     }
 
-    onOptionChange(terminValue : string) {
-        if(terminValue==='fixtermin') {
-            this.shouldDisplayed = true;
-        } else {
-            this.shouldDisplayed = false;
-        }
+    /**
+     * Checks if given string matches 'fixtermin' if yes a new selection is displayed
+     * @param terminValue
+     */
+    protected onOptionChange(terminValue : string) {
+        this.shouldDisplayed = terminValue === 'fixtermin';
     }
 
-    onSubmit(value) {
-        console.log(value)
+    /**
+     * When Form is valid it opens the Confirmation Modal
+     * @param value
+     */
+    protected onSubmit(form : NgForm) {
+        // if(form.form.valid) {
+            const modalref = this.modalService.open(BestModalComponent,{
+                size: 'lg'
+            });
+            modalref.componentInstance.data = form.value ;
+        // }
+
     }
 
 }
