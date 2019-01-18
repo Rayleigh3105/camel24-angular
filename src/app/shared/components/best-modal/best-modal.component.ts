@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CsvExportService} from '../../services/csv-export.service';
+import {Order} from '../../../core/models/order/order-model';
 
 @Component({
     selector: 'camel-best-modal',
@@ -8,7 +10,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class BestModalComponent implements OnInit {
 
-    constructor(public activeModal: NgbActiveModal) {
+    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService) {
     }
 
     ngOnInit() {
@@ -19,7 +21,9 @@ export class BestModalComponent implements OnInit {
      * @param value - data from the form
      */
     protected sendData(value){
-        console.log(value)
+        this.csvService.createCSVOnServer(this.csvService.map(value))
     }
+
+
 
 }
