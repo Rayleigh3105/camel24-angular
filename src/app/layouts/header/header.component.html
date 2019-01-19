@@ -1,27 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <a href="#" class="navbar-brand">Logo</a>
-    <button class="navbar-toggler" type="button" data-target="#navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Camel 24</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
+    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a href="#" class="nav-link">Waffen- und Wertversand</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navdrop" role="button" data-toggle="dropdown"
-                   data-hover="dropdown">AGB´s</a>
-                <div class="dropdown-menu" aria-labelledby="navdrop">
-                    <a href="#" class="dropdown-item">AGB - National</a>
-                    <a href="#" class="dropdown-item">AGB - International</a>
-                </div>
-
+                <a class="nav-link" routerLink="">Startseite <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Impressum</a>
+                <a class="nav-link" routerLink="/auftrag">Auftrag</a>
             </li>
 
         </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/register">Einloggen / Registrieren</a>
+            </li>
+        </ul>
     </div>
-
 </nav>
+
+<div class="height">
+
+</div>

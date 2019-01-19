@@ -18,7 +18,8 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
 import {CsvExportService} from './shared/services/csv-export.service';
-
+import {LoginRegisterComponent} from './modules/login-register/pages/login-register/login-register.component';
+import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {CsvExportService} from './shared/services/csv-export.service';
     FooterComponent,
     HomeComponent,
     KepInputComponent,
-
+    LoginRegisterComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import {CsvExportService} from './shared/services/csv-export.service';
     HttpClientModule,
     CalendarModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   entryComponents: [BestModalComponent],
   providers: [AuthService, OrderService, CsvExportService],

@@ -69,13 +69,12 @@ export class KepInputComponent implements OnInit {
      * @param value
      */
     protected onSubmit(form : NgForm) {
-        // if(form.form.valid) {
+        if(form.form.valid) {
             const modalref = this.modalService.open(BestModalComponent,{
                 size: 'lg'
             });
             modalref.componentInstance.data = form.value ;
-        // }
-
+        }
     }
 
 }
