@@ -6,120 +6,134 @@
             <p>Nach dem Einloggen/Registrieren können Sie unseren vollen Service nutzen</p>
         </div>
         <div class="col-md-9 register-right">
-            <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" [mustMatch]="['passwort', 'passwortbest']" novalidate>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Bei Camel-24 registrieren</h3>
-                    <div class="row register-form">
-                        <div class="col-sm">
-                            <div class="form-row">
-                                <div class="form-group col-sm">
-                                    <label for="vorname">Vorname</label>
-                                    <input type="text" class="form-control" id="vorname" name="vorname"
-                                           ngModel
-                                           #vorname="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
-                                           maxlength="255"
-                                           required>
-                                    <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
-                                        <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
+            <form #f="ngForm" name="form" (ngSubmit)="onRegister(f)" [mustMatch]="['passwort', 'passwortbest']"
+                  novalidate>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Bei Camel-24 registrieren</h3>
+                        <div class="row register-form">
+                            <div class="col-sm">
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="vorname">Vorname</label>
+                                        <input type="text" class="form-control" id="vorname" name="vorname"
+                                               ngModel
+                                               #vorname="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
+                                               maxlength="255"
+                                               required>
+                                        <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
+                                            <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm">
+                                        <label for="nachname">Nachname</label>
+                                        <input type="text" class="form-control" id="nachname" name="nachname"
+                                               ngModel
+                                               #nachname="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && nachname.invalid }"
+                                               maxlength="255"
+                                               required>
+                                        <div *ngIf="f.submitted && nachname.invalid" class="invalid-feedback">
+                                            <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm">
-                                    <label for="nachname">Nachname</label>
-                                    <input type="text" class="form-control" id="nachname" name="nachname"
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="firmenname">Firmenname</label>
+                                        <input type="text" class="form-control" id="firmenname" name="firmenname"
+                                               ngModel
+                                               #firmenname="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
+                                               maxlength="255"
+                                               required>
+                                        <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
+                                            <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm">
+                                        <label for="kundennummer">Kundennummer</label>
+                                        <input type="text" class="form-control" id="kundennummer" name="kundennummer"
+                                               ngModel
+                                               #kundennummer="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
+                                               pattern="[0-9]{5}"
+                                               maxlength="5"
+                                               required>
+                                        <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
+                                            <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
+                                            <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
+                                                Kundennummer ein.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="vorname">E-Mail</label>
+                                    <input type="text" class="form-control" id="email" name="email"
                                            ngModel
-                                           #nachname="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && nachname.invalid }"
+                                           #email="ngModel"
+                                           [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                                            maxlength="255"
                                            required>
-                                    <div *ngIf="f.submitted && nachname.invalid" class="invalid-feedback">
-                                        <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
+                                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                        <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
+                                        <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="passwort">Passwort</label>
+                                        <input type="password" class="form-control" id="passwort" name="passwort"
+                                               ngModel
+                                               #passwort="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
+                                               maxlength="255"
+                                               required>
+                                        <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
+                                            <div *ngIf="passwort.errors.required">Passwort wird benötigt</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm">
+                                        <label for="passwortbest">Passwort bestätigen</label>
+                                        <input type="password" class="form-control" id="passwortbest"
+                                               name="passwortbest"
+                                               ngModel
+                                               #passwortbest="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && passwortbest.invalid }"
+                                               maxlength="255"
+                                               required>
+                                        <div *ngIf="f.submitted && passwortbest.invalid" class="invalid-feedback">
+                                            <div *ngIf="passwortbest.errors.required">Bestätigungs Passwort wird
+                                                benötigt.
+                                            </div>
+                                            <div *ngIf="passwortbest.errors.mustMatch">Passwörter stimmen nicht
+                                                überein
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm">
-                                    <label for="firmenname">Firmenname</label>
-                                    <input type="text" class="form-control" id="firmenname" name="firmenname"
-                                           ngModel
-                                           #firmenname="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
-                                           maxlength="255"
-                                           required>
-                                    <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
-                                        <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-sm">
-                                    <label for="kundennummer">Kundennummer</label>
-                                    <input type="text" class="form-control" id="kundennummer" name="kundennummer"
-                                           ngModel
-                                           #kundennummer="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
-                                           pattern="[0-9]{5}"
-                                           maxlength="5"
-                                           required>
-                                    <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
-                                        <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
-                                        <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige Kundennummer ein.</div>
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="mv-submit-container" class="vertical-horizontal-center ">
+                                <div class="vertical-horizontal-center">
+                                    <span class="invalid-feedback"
+                                          *ngIf="errorMessageSignup">{{ errorMessageSignup }}</span>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="vorname">E-Mail</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                       ngModel
-                                       #email="ngModel"
-                                       [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
-                                       maxlength="255"
-                                       required>
-                                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-                                    <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
-                                    <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm">
-                                    <label for="passwort">Passwort</label>
-                                    <input type="password" class="form-control" id="passwort" name="passwort"
-                                           ngModel
-                                           #passwort="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
-                                           maxlength="255"
-                                           required>
-                                    <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
-                                        <div *ngIf="passwort.errors.required">Passwort wird benötigt</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-sm">
-                                    <label for="passwortbest">Passwort bestätigen</label>
-                                    <input type="password" class="form-control" id="passwortbest" name="passwortbest"
-                                           ngModel
-                                           #passwortbest="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && passwortbest.invalid }"
-                                           maxlength="255"
-                                           required>
-                                    <div *ngIf="f.submitted && passwortbest.invalid" class="invalid-feedback">
-                                        <div *ngIf="passwortbest.errors.required">Bestätigungs Passwort wird benötigt.</div>
-                                        <div *ngIf="passwortbest.errors.mustMatch">Passwörter stimmen nicht überein</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
-            </div>
 
-                <div id="mv-submit-container" class="vertical-horizontal-center ">
+                <div class="mv-submit-container" class="vertical-horizontal-center ">
                     <div class="vertical-horizontal-center">
                         <button type="submit" id="mv-submit-button">Registrieren</button>
                     </div>
@@ -129,5 +143,4 @@
 
         </div>
     </div>
-
 </div>

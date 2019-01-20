@@ -16,10 +16,10 @@ export class AuthService {
      * @param user - user to create
      */
   createUser( user: User )  {
-      return this.$http.post<User>( environment.endpoint + "user", user , {observe: 'response'})
+      return this.$http.post( environment.endpoint + "user", user , {observe: 'response'})
           .pipe(
-              map( ( response: HttpResponse<User> ) => {
-                  sessionStorage.setItem('x-auth', response.headers.get('x-auth'));
+              map( ( response: any ) => {
+                  sessionStorage.setItem('x-auth', response.body);
               })
           ).toPromise();
   }

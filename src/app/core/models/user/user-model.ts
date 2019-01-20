@@ -4,7 +4,8 @@ export interface User {
     _id? : number,
     firstName: string;
     lastName: string;
-    kndNumber: number;
+    firmenName: string;
+    kundenNummer: number;
     email: string;
     password: string;
     tokens? : [Token],
