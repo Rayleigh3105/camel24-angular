@@ -16,7 +16,7 @@ export class AuthService {
      * @param user - user to create
      */
   createUser( user: User )  {
-      return this.$http.post( environment.endpoint + "user", user , {observe: 'response', responseType: 'text'})
+      return this.$http.post( environment.endpoint + "user", user , {observe: 'response', responseType: 'json'})
           .pipe(
               map(  response => response.body)
           )

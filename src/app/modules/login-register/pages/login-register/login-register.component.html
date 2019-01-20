@@ -102,10 +102,12 @@
                                                ngModel
                                                #passwort="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
+                                               minlength="6"
                                                maxlength="255"
                                                required>
                                         <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
-                                            <div *ngIf="passwort.errors.required">Passwort wird benötigt</div>
+                                            <div *ngIf="passwort.errors.required">Passwort wird benötigt.</div>
+                                            <div *ngIf="passwort.errors.minlength">Passwort muss mindestens aus 6 Zeichen bestehen.</div>
                                         </div>
                                     </div>
 
@@ -116,11 +118,14 @@
                                                ngModel
                                                #passwortbest="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && passwortbest.invalid }"
+                                               minlength="6"
                                                maxlength="255"
                                                required>
                                         <div *ngIf="f.submitted && passwortbest.invalid" class="invalid-feedback">
                                             <div *ngIf="passwortbest.errors.required">Bestätigungs Passwort wird
                                                 benötigt.
+                                            </div>
+                                            <div *ngIf="passwortbest.errors.minlength">Bestätigungs Passwort muss mindestens aus 6 Zeichen bestehen.
                                             </div>
                                             <div *ngIf="passwortbest.errors.mustMatch">Passwörter stimmen nicht
                                                 überein
