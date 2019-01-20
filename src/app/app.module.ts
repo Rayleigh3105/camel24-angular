@@ -21,6 +21,9 @@ import {CsvExportService} from './shared/services/csv-export.service';
 import {LoginRegisterComponent} from './modules/login-register/pages/login-register/login-register.component';
 import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +45,8 @@ import {MustMatchDirective} from './shared/directive/mustmatch.directive';
     CalendarModule,
     ReactiveFormsModule,
     NgbModule,
+    MessageModule,
+    MessagesModule
   ],
   entryComponents: [BestModalComponent],
   providers: [AuthService, OrderService, CsvExportService],
