@@ -1,16 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'camel-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'camel-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+    /**
+     * VARIABLEN
+     */
+    protected boolCheckIfLoggedIn: boolean = false;
+    protected firmenName: String;
+    protected kundenNummer: String;
 
-  ngOnInit() {
-  }
+    constructor(private modalService: NgbModal) {
+    }
 
+    ngOnInit() {
+        this.checkIfLoggedIn()
+    }
+
+    protected checkIfLoggedIn() {
+        if (sessionStorage.getItem('x-auth') !== null) {
+            this.firmenName = sessionStorage.getItem('firmenName');
+            this.kundenNummer = sessionStorage.getItem('kundenNummer');
+
+            this.boolCheckIfLoggedIn = true;
+        }
+    }
 }
