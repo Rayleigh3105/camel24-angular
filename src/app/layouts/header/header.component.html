@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="">Camel 24</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" routerLink="" *ngIf="boolCheckIfLoggedIn === false">Camel 24</a>
+    <a class="navbar-brand" routerLink="" *ngIf="boolCheckIfLoggedIn">{{ firmenName }} - {{ kundenNummer }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" routerLink="">Startseite <span class="sr-only">(current)</span></a>
@@ -21,13 +22,8 @@
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
                 <a class="nav-link" (click)="onLogin()">Einloggen</a>
             </li>
-            <li class="nav-item" *ngIf="boolCheckIfLoggedIn">
-                <a class="nav-link" >{{ firmenName }} - {{ kundenNummer }}</a>
-            </li>
         </ul>
     </div>
 </nav>
 
-<div class="height">
 
-</div>
