@@ -577,13 +577,13 @@
                 <div class="row ">
                     <div class="col-sm mv-submit-container vertical-horizontal-center">
                         <div class="form-group">
-                            <label for="kundenNummer">Kundennummer</label>
                             <input type="text"
                                    class="form-control"
                                    id="kundenNummer"
                                    name="kundenNummer"
                                    [(ngModel)]="sessionKundenNummer"
                                    #kundenNummer="ngModel"
+                                   placeholder="Kundennummer"
                                    [ngClass]="{ 'is-invalid': f.submitted && kundenNummer.invalid }"
                                    [disabled]="sessionKundenNummer !== null"
                                    required>
@@ -601,8 +601,6 @@
 
             </div>
             <div class="col-md-2"></div>
-
-
         </div>
     </div>
 </form>

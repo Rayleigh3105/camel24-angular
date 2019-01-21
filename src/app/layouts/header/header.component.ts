@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginRegisterComponent} from '../../shared/components/register/login-register.component';
 import {LoginComponent} from '../../shared/components/login/login.component';
+import {modelGroupProvider} from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
     selector: 'camel-header',
@@ -45,6 +46,7 @@ export class HeaderComponent implements OnInit {
             centered: true,
             keyboard: false
         });
+
     }
     /**
      * Opens the Login user Modal
@@ -56,6 +58,7 @@ export class HeaderComponent implements OnInit {
             centered: true,
             keyboard: false
         });
+
     }
 
 }

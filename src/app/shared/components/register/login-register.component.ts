@@ -53,6 +53,8 @@ export class LoginRegisterComponent implements OnInit {
 
                         form.resetForm();
                         this.showSuccess(body);
+                        // Todo : Timeout for closing Modal and reload page with Loading new header
+
                     }
                 }, error => {
                     this.showError()

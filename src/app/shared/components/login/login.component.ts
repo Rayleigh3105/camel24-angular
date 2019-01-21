@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit {
 
                     form.resetForm();
                     this.showSuccess(body);
+
+                    // Todo : Timeout for closing Modal and reload page with Loading new header
                 }
             }, error => {
                 this.showError();
@@ -75,6 +77,13 @@ export class LoginComponent implements OnInit {
     private showSuccess(value) {
         this.msgs = [];
         this.msgs.push({severity: 'success', summary: 'Erfolgreich', detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`});
+    }
+
+    /**
+     * Dertermines what happens after Modal has been closed
+     */
+    protected onClose() {
+        this.activeModal.close(true);
     }
 
 }
