@@ -67,14 +67,25 @@ export class KepInputComponent implements OnInit {
     }
 
     /**
-     * When Form is valid it opens the Confirmation Modal
-     * @param value
+     * When Form is valid it and KundeNummer is given opens the Confirmation Modal
+     * @param form - form which is submitted
      */
     protected onSubmit(form : NgForm) {
-        if(form.form.valid) {
+        if(form.form.valid && form.value.kundenNummer || this.sessionKundenNummer) {
             const modalref = this.modalService.open(BestModalComponent,{
-                size: 'lg'
+                size: 'lg',
+                backdrop: 'static',
+                centered: true,
+                keyboard: false
             });
+
+            // Set SessionStorage Variable for Modal use
+            if (form.value.kundenNummer) {
+                sessionStorage.removeItem('kundenNummer');
+                sessionStorage.setItem('kundenNummer', form.value.kundenNummer);
+            }
+            // Delete KundenNummer from request body because it going to be sent with headers
+            delete form.value.kundenNummer;
             modalref.componentInstance.data = form.value ;
         }
     }

@@ -104,10 +104,13 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .mv-submit-container {
-  background-color: rgba(190, 192, 175, 0.21);
+  //background-color: rgba(190, 192, 175, 0.21);
   height: 250px;
   margin-top: 30px;
+}
 
+.background-color {
+  background-color: rgba(190, 192, 175, 0.21);
 }
 
 //

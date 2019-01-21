@@ -8,19 +8,27 @@ import {CsvExportService} from '../../services/csv-export.service';
     styleUrls: ['./best-modal.component.scss']
 })
 export class BestModalComponent implements OnInit {
+    /**
+     * VARIABLEN
+     */
+    protected kundenNummer: string;
 
     constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService) {
     }
 
     ngOnInit() {
+        this.kundenNummer = sessionStorage.getItem('kundenNummer');
     }
+
 
     /**
      * Sends data to backend and waits for response and handle it
      * @param value - data from the form
      */
     protected sendData(value){
-        this.csvService.createCSVOnServer(this.csvService.map(value))
+        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(test => {
+            console.log(test)
+        })
     }
 
 
