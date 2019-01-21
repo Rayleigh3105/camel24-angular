@@ -1,8 +1,9 @@
 <!--FÜR GROß KUNDEN -->
-<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" novalidate>
-    <div class="container">
+<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f) novalidate>
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-sm">
                 <fieldset>
                     <h4 class="mv_heading">Absender</h4>
                     <div class="form-group">
@@ -112,8 +113,7 @@
                 </fieldset>
                 <!--</div>-->
             </div>
-            <div class="col-sm">
-
+            <div class="col-md-4 col-sm">
                 <fieldset>
                     <h4 class="mv_heading">Empfänger</h4>
                     <div class="form-group">
@@ -224,10 +224,12 @@
                     </div>
                 </fieldset>
             </div>
+            <div class="col-md-2"></div>
         </div>
 
         <div class="row">
-            <div class="col-sm height">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-sm height">
                 <div class="row">
                     <div class="col-sm">
                         <fieldset class="mv-fieldset-margin">
@@ -260,7 +262,8 @@
                                                     required
                                                     dateFormat="dd.mm.yy"></p-calendar>
 
-                                        <div *ngIf="f.submitted && abholDatum.invalid" class="invalid-feedback-calender">
+                                        <div *ngIf="f.submitted && abholDatum.invalid"
+                                             class="invalid-feedback-calender">
                                             <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt</div>
                                         </div>
                                     </div>
@@ -390,7 +393,7 @@
 
 
             </div>
-            <div class="col-sm height">
+            <div class="col-md-4 col-sm height">
                 <fieldset>
                     <h4 class="mv_heading">Zustelltermin</h4>
                     <div class="row margin-bottom-25">
@@ -474,7 +477,6 @@
                     </div>
 
 
-
                     <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
 
                     <label for="sonderdienst">Sonderdienst</label>
@@ -501,11 +503,12 @@
 
                 </fieldset>
             </div>
+            <div class="col-md-2"></div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm">
                 <fieldset>
                     <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
                     <div class="form-group">
@@ -566,16 +569,19 @@
 
                 </fieldset>
             </div>
-            <div class="col-sm-3"></div>
+            <div class="col-md-4"></div>
         </div>
         <div class="row">
-            <div class="col-sm">
-                <div id="mv-submit-container" class="vertical-horizontal-center ">
+            <div class="col-md-2"></div>
+            <div class="col-sm col-md-8">
+                <div class="vertical-horizontal-center mv-submit-container">
                     <div class="vertical-horizontal-center">
                         <button type="submit" id="mv-submit-button">Weiter</button>
                     </div>
                 </div>
             </div>
+            <div class="col-md-2"></div>
+
 
         </div>
     </div>
