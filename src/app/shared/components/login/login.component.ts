@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Message} from 'primeng/api';
 import {AuthService} from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
@@ -6,9 +6,9 @@ import {User} from '../../../core/models/user/user-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'camel-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+    selector: 'camel-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
 
 })
 export class LoginComponent implements OnInit {
@@ -50,25 +50,24 @@ export class LoginComponent implements OnInit {
 
                     form.resetForm();
                     this.showSuccess(body);
-
-                    // Todo : Timeout for closing Modal and reload page with Loading new header
                 }
             }, error => {
                 this.showError();
-                console.log(error)
+                console.log(error);
             });
-
-
         }
     }
-
 
     /**
      * Shows p-message component after error has been thrown
      */
     private showError() {
         this.msgs = [];
-        this.msgs.push({severity: 'error', summary: 'Registrierung Fehlgeschlagen', detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'});
+        this.msgs.push({
+            severity: 'error',
+            summary: 'Registrierung Fehlgeschlagen',
+            detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'
+        });
     }
 
     /**
@@ -76,7 +75,11 @@ export class LoginComponent implements OnInit {
      */
     private showSuccess(value) {
         this.msgs = [];
-        this.msgs.push({severity: 'success', summary: 'Erfolgreich', detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`});
+        this.msgs.push({
+            severity: 'success',
+            summary: 'Erfolgreich',
+            detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`
+        });
     }
 
     /**

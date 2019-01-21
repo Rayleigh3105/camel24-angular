@@ -44,17 +44,21 @@ export class LoginRegisterComponent implements OnInit {
                     if (body !== null) {
                         window.scroll(0, 0);
 
+                        sessionStorage.removeItem('x-auth');
                         // @ts-ignore
                         sessionStorage.setItem('x-auth', body.tokens[0].token);
+
+
+                        sessionStorage.removeItem('kundenNummer');
                         // @ts-ignore
                         sessionStorage.setItem('kundenNummer', body.kundenNummer);
+
+                        sessionStorage.removeItem('firmenName');
                         // @ts-ignore
                         sessionStorage.setItem('firmenName', body.firmenName);
 
                         form.resetForm();
                         this.showSuccess(body);
-                        // Todo : Timeout for closing Modal and reload page with Loading new header
-
                     }
                 }, error => {
                     this.showError()
@@ -80,6 +84,13 @@ export class LoginRegisterComponent implements OnInit {
     private showSuccess(value) {
         this.msgs = [];
         this.msgs.push({severity: 'success', summary: 'Erfolgreich', detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`});
+    }
+
+    /**
+     * Dertermines what happens after Modal has been closed
+     */
+    protected onClose() {
+        this.activeModal.close(true);
     }
 
 }

@@ -13,7 +13,7 @@
                 <p>Nach dem Registrieren können Sie unseren vollen Service nutzen</p>
             </div>
             <div class="col-md-9 register-right">
-                <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <button type="button" class="close" aria-label="Close" (click)="onClose()">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 <form #f="ngForm" name="form" (ngSubmit)="onRegister(f)" [mustMatch]="['passwort', 'passwortbest']"

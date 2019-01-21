@@ -47,6 +47,12 @@ export class HeaderComponent implements OnInit {
             keyboard: false
         });
 
+        modalRef.result.then(reloadHeader => {
+            if(reloadHeader) {
+                this.checkIfLoggedIn();
+            }
+        })
+
     }
     /**
      * Opens the Login user Modal
@@ -59,6 +65,10 @@ export class HeaderComponent implements OnInit {
             keyboard: false
         });
 
+        modalRef.result.then(reloadHeader => {
+            if(reloadHeader) {
+                this.checkIfLoggedIn();
+            }
+        })
     }
-
 }
