@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../../shared/services/auth.service';
 import {User} from '../../../../core/models/user/user-model';
 import {Message} from 'primeng/api';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'camel-login-register',
@@ -18,7 +19,7 @@ export class LoginRegisterComponent implements OnInit {
     msgs: Message[] = [];
 
 
-    constructor(private $authService: AuthService) {
+    constructor(private $authService: AuthService, public activeModal: NgbActiveModal) {
     }
 
     ngOnInit() {

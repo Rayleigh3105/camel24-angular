@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoginRegisterComponent} from '../../modules/register/pages/login-register/login-register.component';
 
 @Component({
     selector: 'camel-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.checkIfLoggedIn()
+        this.checkIfLoggedIn();
     }
 
     protected checkIfLoggedIn() {
@@ -29,5 +30,11 @@ export class HeaderComponent implements OnInit {
 
             this.boolCheckIfLoggedIn = true;
         }
+    }
+
+    onRegister() {
+        const modalRef = this.modalService.open(LoginRegisterComponent,{
+            size: 'lg'
+        });
     }
 }

@@ -50,7 +50,7 @@ import {LoginComponent} from './modules/login/pages/login/login.component';
     MessageModule,
     MessagesModule
   ],
-  entryComponents: [BestModalComponent],
+  entryComponents: [BestModalComponent,LoginRegisterComponent],
   providers: [AuthService, OrderService, CsvExportService],
   bootstrap: [AppComponent]
 })

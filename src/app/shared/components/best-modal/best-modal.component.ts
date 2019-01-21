@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
-import {Order} from '../../../core/models/order/order-model';
 
 @Component({
     selector: 'camel-best-modal',
