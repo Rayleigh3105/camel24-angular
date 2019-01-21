@@ -2,15 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../../shared/services/auth.service';
 import {User} from '../../../../core/models/user/user-model';
-import {Router} from '@angular/router';
-import {Message, MessageService} from 'primeng/api';
+import {Message} from 'primeng/api';
 
 @Component({
     selector: 'camel-login-register',
     templateUrl: './login-register.component.html',
     styleUrls: ['./login-register.component.scss'],
-    providers: [MessageService]
-
 })
 export class LoginRegisterComponent implements OnInit {
 
@@ -21,7 +18,7 @@ export class LoginRegisterComponent implements OnInit {
     msgs: Message[] = [];
 
 
-    constructor(private $authService: AuthService, private router: Router, private $messageService: MessageService) {
+    constructor(private $authService: AuthService) {
     }
 
     ngOnInit() {

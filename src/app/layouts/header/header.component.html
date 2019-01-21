@@ -16,7 +16,10 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
-                <a class="nav-link" routerLink="/register">Einloggen / Registrieren</a>
+                <a class="nav-link" routerLink="/register">Registrieren</a>
+            </li>
+            <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
+                <a class="nav-link" routerLink="/login">Einloggen</a>
             </li>
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn">
                 <a class="nav-link" routerLink="/register">{{ firmenName }} - {{ kundenNummer }}</a>

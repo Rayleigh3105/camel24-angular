@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <p-messages [(value)]="msgs"></p-messages>
+        </div>
+    </div>
+</div>
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <h3>Herzlich Willkommen</h3>
+            <p>Nach dem Einloggen können Sie unseren vollen Service nutzen</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <form #f="ngForm" name="form" (ngSubmit)="onLogin(f)" novalidate>
+                <h3 class="register-heading">Bei Camel-24 einloggen</h3>
+                <div class="row register-form">
+                    <div class="col-sm">
+                        <div class="form-group col-sm">
+                            <label for="kundennummer">Kundennummer</label>
+                            <input type="text" class="form-control" id="kundennummer" name="kundennummer"
+                                   ngModel
+                                   #kundennummer="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
+                                   pattern="[0-9]{5}"
+                                   maxlength="5"
+                                   required>
+                            <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
+                                <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
+                                <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
+                                    Kundennummer ein.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm">
+                            <label for="passwort">Passwort</label>
+                            <input type="password" class="form-control" id="passwort" name="passwort"
+                                   ngModel
+                                   #passwort="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
+                                   minlength="6"
+                                   maxlength="255"
+                                   required>
+                            <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
+                                <div *ngIf="passwort.errors.required">Passwort wird benötigt.</div>
+                                <div *ngIf="passwort.errors.minlength">Passwort muss mindestens aus 6 Zeichen
+                                    bestehen.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mv-submit-container" class="vertical-horizontal-center ">
+                        <div class="vertical-horizontal-center">
+                                    <span class="invalid-feedback"
+                                          *ngIf="errorMessageSignup">{{ errorMessageSignup }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mv-submit-container" class="vertical-horizontal-center ">
+                    <div class="vertical-horizontal-center">
+                        <button type="submit" id="mv-submit-button">Einloggen</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

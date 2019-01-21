@@ -27,13 +27,10 @@ export class AuthService {
      * @param user - user to login
      */
   loginUser( user: User ) {
-      return this.$http.post<User>( environment.endpoint + "user/login", user , {observe: 'response'})
+      return this.$http.post<User>( environment.endpoint + "user/login", user , {observe: 'response', responseType: 'json'})
           .pipe(
-              map( ( response: HttpResponse<User> ) => {
-                  sessionStorage.removeItem('x-auth');
-                  sessionStorage.setItem('x-auth', response.headers.get('x-auth'));
-              })
-          ).toPromise();
+              map(  response => response.body)
+          );
   }
 
     /**
