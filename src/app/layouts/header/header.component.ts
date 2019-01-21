@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {LoginRegisterComponent} from '../../shared/components/login-register/login-register.component';
+import {LoginRegisterComponent} from '../../shared/components/register/login-register.component';
+import {LoginComponent} from '../../shared/components/login/login.component';
 
 @Component({
     selector: 'camel-header',
@@ -39,7 +40,22 @@ export class HeaderComponent implements OnInit {
      */
     onRegister() {
         const modalRef = this.modalService.open(LoginRegisterComponent,{
-            size: 'lg'
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+            keyboard: false
         });
     }
+    /**
+     * Opens the Login user Modal
+     */
+    onLogin() {
+        const modalRef = this.modalService.open(LoginComponent,{
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+            keyboard: false
+        });
+    }
+
 }

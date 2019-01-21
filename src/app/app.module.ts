@@ -18,7 +18,7 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
 import {CsvExportService} from './shared/services/csv-export.service';
-import {LoginRegisterComponent} from './shared/components/login-register/login-register.component';
+import {LoginRegisterComponent} from './shared/components/register/login-register.component';
 import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 
 import {MessagesModule} from 'primeng/messages';

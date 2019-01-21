@@ -1,14 +1,8 @@
 <div class="modal-body">
-
-
-
     <div class="container register">
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+
         <div class="row">
             <div class="col-sm">
-
                 <p-messages [(value)]="msgs"></p-messages>
             </div>
         </div>
@@ -19,6 +13,9 @@
                 <p>Nach dem Registrieren können Sie unseren vollen Service nutzen</p>
             </div>
             <div class="col-md-9 register-right">
+                <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+                </button>
                 <form #f="ngForm" name="form" (ngSubmit)="onRegister(f)" [mustMatch]="['passwort', 'passwortbest']"
                       novalidate>
                     <h3 class="register-heading">Bei Camel-24 registrieren</h3>

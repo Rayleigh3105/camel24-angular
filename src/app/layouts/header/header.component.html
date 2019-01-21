@@ -19,7 +19,7 @@
                 <a class="nav-link" (click)="onRegister()">Registrieren</a>
             </li>
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
-                <a class="nav-link" routerLink="/login">Einloggen</a>
+                <a class="nav-link" (click)="onLogin()">Einloggen</a>
             </li>
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn">
                 <a class="nav-link" >{{ firmenName }} - {{ kundenNummer }}</a>
