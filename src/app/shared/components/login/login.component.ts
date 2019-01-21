@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Message} from 'primeng/api';
-import {AuthService} from '../../../../shared/services/auth.service';
+import {AuthService} from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
-import {User} from '../../../../core/models/user/user-model';
+import {User} from '../../../core/models/user/user-model';
 
 @Component({
   selector: 'camel-login',

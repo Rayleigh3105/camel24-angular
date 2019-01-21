@@ -18,12 +18,12 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
 import {CsvExportService} from './shared/services/csv-export.service';
-import {LoginRegisterComponent} from './modules/register/pages/login-register/login-register.component';
+import {LoginRegisterComponent} from './shared/components/login-register/login-register.component';
 import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-import {LoginComponent} from './modules/login/pages/login/login.component';
+import {LoginComponent} from './shared/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import {LoginComponent} from './modules/login/pages/login/login.component';
     MessageModule,
     MessagesModule
   ],
-  entryComponents: [BestModalComponent,LoginRegisterComponent],
+  entryComponents: [BestModalComponent,LoginRegisterComponent, LoginComponent],
   providers: [AuthService, OrderService, CsvExportService],
   bootstrap: [AppComponent]
 })
