@@ -1,5 +1,5 @@
 <!--FÜR GROß KUNDEN -->
-<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" novalidate>
+<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" class="my-5" novalidate>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
@@ -477,7 +477,7 @@
                     </div>
 
 
-                    <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
+                    <h4 class="mv_heading sendungsdaten_h pt-3">Sendungsdaten</h4>
 
                     <label for="sonderdienst">Sonderdienst</label>
 
@@ -574,11 +574,31 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-sm col-md-8">
-                <div class="vertical-horizontal-center mv-submit-container">
-                    <div class="vertical-horizontal-center">
+                <div class="row ">
+                    <div class="col-sm mv-submit-container vertical-horizontal-center">
+                        <div class="form-group">
+                            <label for="kundenNummer">Kundennummer</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="kundenNummer"
+                                   name="kundenNummer"
+                                   [(ngModel)]="sessionKundenNummer"
+                                   #kundenNummer="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && kundenNummer.invalid }"
+                                   [disabled]="sessionKundenNummer !== null"
+                                   required>
+
+                            <div *ngIf="f.submitted && kundenNummer.invalid"
+                                 class="invalid-feedback">
+                                <div *ngIf="kundenNummer.errors.required">Kundennummer wird benötigt</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm vertical-horizontal-center mv-submit-container">
                         <button type="submit" id="mv-submit-button">Weiter</button>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-2"></div>
 

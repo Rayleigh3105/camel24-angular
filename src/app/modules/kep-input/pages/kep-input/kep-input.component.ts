@@ -18,6 +18,7 @@ export class KepInputComponent implements OnInit {
     minDate: Date = new Date();
     maxDate: Date = new Date();
     shouldDisplayed: boolean = false;
+    sessionKundenNummer : string;
     de: any;
 
 
@@ -54,6 +55,7 @@ export class KepInputComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.sessionKundenNummer = sessionStorage.getItem('kundenNummer');
     }
 
     /**
