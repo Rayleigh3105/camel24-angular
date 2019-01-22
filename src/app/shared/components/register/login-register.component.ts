@@ -6,91 +6,95 @@ import {Message} from 'primeng/api';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'camel-login-register',
-    templateUrl: './login-register.component.html',
-    styleUrls: ['./login-register.component.scss'],
+  selector: 'camel-login-register',
+  templateUrl: './login-register.component.html',
+  styleUrls: ['./login-register.component.scss'],
 })
 export class LoginRegisterComponent implements OnInit {
 
-    /**
-     * VARIABLEN
-     */
-    protected errorMessageSignup: string;
-    msgs: Message[] = [];
+  /**
+   * VARIABLEN
+   */
+  protected errorMessageSignup: string;
+  msgs: Message[] = [];
 
 
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal) {
-    }
+  constructor(private $authService: AuthService, public activeModal: NgbActiveModal) {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    /**
-     * Register User in Database
-     * @param form - register form
-     */
-    protected onRegister(form: NgForm) {
-        if (form.valid) {
-            let user: User = {
-                firstName: form.value.vorname,
-                lastName: form.value.nachname,
-                firmenName: form.value.firmenname,
-                kundenNummer: parseInt(form.value.kundennummer),
-                email: form.value.email,
-                password: form.value.passwort
-            };
+  /**
+   * Register User in Database
+   * @param form - register form
+   */
+  protected onRegister(form: NgForm) {
+    if (form.valid) {
+      let user: User = {
+        firstName: form.value.vorname,
+        lastName: form.value.nachname,
+        firmenName: form.value.firmenname,
+        kundenNummer: parseInt(form.value.kundennummer),
+        email: form.value.email,
+        password: form.value.passwort
+      };
 
-                this.$authService.createUser(user).subscribe(body => {
-                    if (body !== null) {
-                        window.scroll(0, 0);
+      this.$authService.createUser(user).subscribe(body => {
+        if (body !== null) {
+          window.scroll(0, 0);
 
-                        sessionStorage.removeItem('x-auth');
-                        // @ts-ignore
-                        sessionStorage.setItem('x-auth', body.tokens[0].token);
+          // @ts-ignore
+          sessionStorage.setItem('x-auth', body.tokens[0].token);
+          // @ts-ignore
+          sessionStorage.setItem('kundenNummer', body.kundenNummer);
+          // @ts-ignore
+          sessionStorage.setItem('firmenName', body.firmenName);
+          // @ts-ignore
+          sessionStorage.setItem('email', body.email);
 
-
-                        sessionStorage.removeItem('kundenNummer');
-                        // @ts-ignore
-                        sessionStorage.setItem('kundenNummer', body.kundenNummer);
-
-                        sessionStorage.removeItem('firmenName');
-                        // @ts-ignore
-                        sessionStorage.setItem('firmenName', body.firmenName);
-
-                        form.resetForm();
-                        this.showSuccess(body);
-                    }
-                }, error => {
-                    this.showError()
-                    console.log(error)
-                });
-
-
+          form.resetForm();
+          this.showSuccess(body);
         }
-    }
+      }, error => {
+        this.showError();
+        console.log(error);
+      });
 
 
-    /**
-     * Shows p-message component after error has been thrown
-     */
-    private showError() {
-        this.msgs = [];
-        this.msgs.push({severity: 'error', summary: 'Registrierung Fehlgeschlagen', detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'});
     }
+  }
 
-    /**
-     * Shows p-message component after succes of registration
-     */
-    private showSuccess(value) {
-        this.msgs = [];
-        this.msgs.push({severity: 'success', summary: 'Erfolgreich', detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`});
-    }
 
-    /**
-     * Dertermines what happens after Modal has been closed
-     */
-    protected onClose() {
-        this.activeModal.close(true);
-    }
+  /**
+   * Shows p-message component after error has been thrown
+   */
+  private showError() {
+    this.msgs = [];
+    this.msgs.push({
+      severity: 'error',
+      summary: 'Registrierung Fehlgeschlagen',
+      detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'
+    });
+  }
+
+  /**
+   * Shows p-message component after succes of registration
+   */
+  private showSuccess(value) {
+    this.msgs = [];
+    this.msgs.push({
+      severity: 'success',
+      summary: 'Erfolgreich',
+      detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`
+    });
+  }
+
+  /**
+   * Dertermines what happens after Modal has been closed
+   */
+  protected onClose() {
+    this.activeModal.close(true);
+  }
 
 }

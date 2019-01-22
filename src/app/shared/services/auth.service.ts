@@ -44,7 +44,7 @@ export class AuthService {
      * Logs out User and removes token on Server
      */
   logoutUser() {
-        return this.$http.delete(environment.endpoint + "users/me/token", this.updatexAuthHeader() )
+        return this.$http.delete(environment.endpoint + "user/me/token", this.updatexAuthHeader() )
   }
 
     /**

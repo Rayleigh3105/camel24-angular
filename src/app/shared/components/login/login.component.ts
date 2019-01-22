@@ -47,8 +47,11 @@ export class LoginComponent implements OnInit {
                     sessionStorage.setItem('kundenNummer', body.kundenNummer);
                     // @ts-ignore
                     sessionStorage.setItem('firmenName', body.firmenName);
+                  // @ts-ignore
+                  sessionStorage.setItem('email', body.email);
 
-                    form.resetForm();
+
+                  form.resetForm();
                     this.showSuccess(body);
                 }
             }, error => {

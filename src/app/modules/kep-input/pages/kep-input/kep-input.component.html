@@ -25,7 +25,7 @@
 
             <label for="absZusatz">Zusatz</label>
             <input type="text" class="form-control" id="absZusatz" name="absZusatz"
-                   (ngModel)="order.absender.zusatz"
+                   [(ngModel)]="sessionZusatz"
                    [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
                    maxlength="255"
                    #absZusatz="ngModel">
@@ -33,7 +33,7 @@
           <div class="form-group">
             <label for="absAnpsrechpartner">Ansprechpartner</label>
             <input type="text" class="form-control" id="absAnpsrechpartner" name="absAnpsrechpartner"
-                   (ngModel)="order.absender.ansprechpartner"
+                   [(ngModel)]="sessionAnsprechpartner"
                    [ngClass]="{ 'is-invalid': f.submitted && absAnpsrechpartner.invalid }"
                    maxlength="255"
                    #absAnpsrechpartner="ngModel">
@@ -42,7 +42,7 @@
           <div class="form-group">
             <label for="absAdresse">Adresse</label>
             <input type="text" class="form-control" id="absAdresse" name="absAdresse"
-                   (ngModel)="order.absender.addresse"
+                   [(ngModel)]="sessionAdresse"
                    #absAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absAdresse.invalid }"
                    maxlength="255"
                    required>
@@ -71,7 +71,7 @@
             <div class="form-group col-sm">
               <label for="absPlz">PLZ</label>
               <input type="text" class="form-control" id="absPlz" name="absPlz"
-                     (ngModel)="order.absender.plz"
+                     [(ngModel)]="sessionPlz"
                      #absPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absPlz.invalid }"
                      minlength="5"
                      maxlength="5"
@@ -87,7 +87,7 @@
           <div class="form-group ">
             <label for="absOrt">Ort</label>
             <input type="text" class="form-control" id="absOrt" name="absOrt"
-                   (ngModel)="order.absender.ort"
+                   [(ngModel)]="sessionOrt"
                    #absOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absOrt.invalid }"
                    maxlength="255"
                    required>
@@ -101,7 +101,7 @@
           <div class="form-group">
             <label for="absTel">Telefon</label>
             <input type="text" class="form-control" id="absTel" name="absTel"
-                   (ngModel)="order.absender.telefon"
+                   [(ngModel)]="sessionTelefon"
                    #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
                    maxlength="255"
                    required>
@@ -517,7 +517,7 @@
                    class="form-control"
                    id="auftragbestEmail"
                    name="auftragbestEmail"
-                   (ngModel)="order.rechnungsdaten.email"
+                   [(ngModel)]="sessionEmail"
                    #auftragbestEmail="ngModel"
                    [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                    required email>
@@ -535,7 +535,7 @@
                    class="form-control"
                    id="auftragbestTelefon"
                    name="auftragbestTelefon"
-                   (ngModel)="order.rechnungsdaten.telefon"
+                   [(ngModel)]="sessionTelefon"
                    #auftragbestTelefon="ngModel"
                    [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                    required>
@@ -555,7 +555,7 @@
                     #auftragsbestRechnungsadresse="ngModel"
                     [ngClass]="{ 'is-invalid': f.submitted && auftragsbestRechnungsadresse.invalid }"
                     required>
-              <option value="absender">Wie Absender</option>
+              <option value="absender" selected>Wie Absender</option>
               <option value="empfeanger">Wie Empfänger</option>
             </select>
 

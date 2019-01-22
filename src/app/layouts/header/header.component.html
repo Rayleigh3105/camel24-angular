@@ -18,7 +18,7 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{ firmenName }} - {{ kundenNummer}}</strong></a>
             <div class="dropdown-menu">
               <!--<div role="separator" class="dropdown-divider"></div>-->
-              <a class="dropdown-item" href="#three">Ausloggen</a>
+              <a class="dropdown-item" (click)="logoutUser()">Ausloggen</a>
             </div>
           </li>
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">

@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Order} from '../../../../core/models/order/order-model';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
 import {NgForm} from '@angular/forms';
+import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
 
 @Component({
   selector: 'camel-kep-input',
   templateUrl: './kep-input.component.html',
   styleUrls: ['./kep-input.component.scss']
 })
-export class KepInputComponent implements OnInit {
+export class KepInputComponent extends SessionStorageComponent implements OnInit {
 
   /**
    * VARIABLES
@@ -18,13 +17,28 @@ export class KepInputComponent implements OnInit {
   minDate: Date = new Date();
   maxDate: Date = new Date();
   shouldDisplayed: boolean = false;
-  sessionKundenNummer: string;
-  sessionFirmenName: string;
   de: any;
+
+  // NGMODEL
+  sessionFirmenName: string;
+  sessionKundenNummer: string;
+  sessionZusatz : string;
+  sessionAnsprechpartner : string;
+  sessionAdresse : string;
+  sessionLand : string;
+  sessionPlz : string;
+  sessionOrt : string;
+  sessionTelefon : string;
+  sessionEmail : string;
+
 
 
   constructor(private modalService: NgbModal) {
+    super();
     this.setupDatePicker();
+    setInterval(() => {
+
+    })
   }
 
   /**
@@ -56,7 +70,8 @@ export class KepInputComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateSessionVariablesWithSesseionStorage();
+    // Updates NgModel Variables
+    this.updateNgModelVariablesWithSessionStorage();
   }
 
   /**
@@ -94,10 +109,16 @@ export class KepInputComponent implements OnInit {
   /**
    * Updated ngModel Attributes in Template with data given in Sessionstorage
    */
-  protected updateSessionVariablesWithSesseionStorage() {
-    this.sessionKundenNummer = sessionStorage.getItem('kundenNummer');
-    this.sessionFirmenName = sessionStorage.getItem('firmenName');
+  protected updateNgModelVariablesWithSessionStorage() {
+    this.sessionKundenNummer = this.getKundennummer();
+    this.sessionFirmenName = this.getFirmenname();
+    this.sessionZusatz = this.getZusatz();
+    this.sessionAnsprechpartner = this.getAnsprechpartner();
+    this.sessionAdresse = this.getAdresse();
+    this.sessionLand = this.getLand();
+    this.sessionPlz = this.getPlz();
+    this.sessionOrt = this.getOrt();
+    this.sessionTelefon = this.getTelefon();
+    this.sessionEmail = this.getEmail();
   }
-
-
 }
