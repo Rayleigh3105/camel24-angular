@@ -23,7 +23,9 @@ export class CsvExportService {
         };
         return this.$http.post(environment.endpoint + 'csv', order, {observe: 'response', responseType: 'json', headers: new HttpHeaders(headers)})
             .pipe(
-                map(response => response.body)
+                map(response => {
+                    console.log("service" + response)
+                })
             );
     }
 

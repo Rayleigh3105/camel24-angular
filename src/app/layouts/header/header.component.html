@@ -1,6 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light header-color">
-    <a class="navbar-brand" routerLink="" *ngIf="boolCheckIfLoggedIn === false">Camel 24</a>
-    <a class="navbar-brand" routerLink="" *ngIf="boolCheckIfLoggedIn">{{ firmenName }} - {{ kundenNummer }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,6 +14,18 @@
 
         </ul>
         <ul class="navbar-nav">
+            <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
+                <a class="navbar-brand" routerLink="">Camel 24</a>
+            </li>
+            <li class="nav-item dropdown" *ngIf="boolCheckIfLoggedIn">
+                <a class="navbar-brand dropdown-toggle" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ firmenName }} - {{ kundenNummer
+                    }}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a href="#" class="dropdown-item">Logout</a>
+                    <a href="#" class="dropdown-item">Logout</a>
+                </div>
+            </li>
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
                 <a class="nav-link" (click)="onRegister()">Registrieren</a>
             </li>
