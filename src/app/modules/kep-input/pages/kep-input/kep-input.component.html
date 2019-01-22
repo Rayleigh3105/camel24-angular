@@ -1,621 +1,621 @@
 <!--FÜR GROß KUNDEN -->
 <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" class="my-5" novalidate>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-sm">
-                <fieldset>
-                    <h4 class="mv_heading">Absender</h4>
-                    <div class="form-group">
-                        <label for="absFirma">Firma / Name</label>
-                        <input type="text" class="form-control" id="absFirma" name="absFirma"
-                               (ngModel)="order.absender.firma"
-                               #absFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absFirma.invalid }"
-                               maxlength="255"
-                               required>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4 col-sm">
+        <fieldset>
+          <h4 class="mv_heading">Absender</h4>
+          <div class="form-group">
+            <label for="absFirma">Firma / Name</label>
+            <input type="text" class="form-control" id="absFirma" name="absFirma"
+                   [(ngModel)]="sessionFirmenName"
+                   #absFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absFirma.invalid }"
+                   maxlength="255"
+                   required>
 
-                        <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
-                            <div *ngIf="absFirma.errors.required">Firma / Name wird benötigt</div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="absZusatz">Zusatz</label>
-                        <input type="text" class="form-control" id="absZusatz" name="absZusatz"
-                               (ngModel)="order.absender.zusatz"
-                               [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
-                               maxlength="255"
-                               #absZusatz="ngModel">
-                    </div>
-                    <div class="form-group">
-                        <label for="absAnpsrechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="absAnpsrechpartner" name="absAnpsrechpartner"
-                               (ngModel)="order.absender.ansprechpartner"
-                               [ngClass]="{ 'is-invalid': f.submitted && absAnpsrechpartner.invalid }"
-                               maxlength="255"
-                               #absAnpsrechpartner="ngModel">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="absAdresse">Adresse</label>
-                        <input type="text" class="form-control" id="absAdresse" name="absAdresse"
-                               (ngModel)="order.absender.addresse"
-                               #absAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absAdresse.invalid }"
-                               maxlength="255"
-                               required>
-                        <div *ngIf="f.submitted && absAdresse.invalid" class="invalid-feedback">
-                            <div *ngIf="absAdresse.errors.required">Adresse wird benötigt</div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-sm">
-                            <label for="absLand">Land</label>
-                            <select id="absLand" class="form-control" name="absLand"
-                                    ngModel
-                                    #absLand="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && absLand.invalid }"
-                                    required>
-                                <option selected>Deutschland</option>
-                                <option>Österreich</option>
-                                <option>Schweiz</option>
-                            </select>
-                            <div *ngIf="f.submitted && absLand.invalid" class="invalid-feedback">
-                                <div *ngIf="absLand.errors.required">Land wird benötigt</div>
-                            </div>
-
-                        </div>
-                        <div class="form-group col-sm">
-                            <label for="absPlz">PLZ</label>
-                            <input type="text" class="form-control" id="absPlz" name="absPlz"
-                                   (ngModel)="order.absender.plz"
-                                   #absPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absPlz.invalid }"
-                                   minlength="5"
-                                   maxlength="5"
-                                   pattern="[0-9]{5}"
-                                   required>
-                            <div *ngIf="f.submitted && absPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="absPlz.errors.required">PLZ wird benötigt</div>
-                                <div *ngIf="absPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="absOrt">Ort</label>
-                        <input type="text" class="form-control" id="absOrt" name="absOrt"
-                               (ngModel)="order.absender.ort"
-                               #absOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absOrt.invalid }"
-                               maxlength="255"
-                               required>
-
-                        <div *ngIf="f.submitted && absOrt.invalid" class="invalid-feedback">
-                            <div *ngIf="absOrt.errors.required">Ort wird benötigt</div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="absTel">Telefon</label>
-                        <input type="text" class="form-control" id="absTel" name="absTel"
-                               (ngModel)="order.absender.telefon"
-                               #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
-                               maxlength="255"
-                               required>
-
-                        <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
-                            <div *ngIf="absTel.errors.required">Telefonnummer wird benötigt</div>
-                        </div>
-                    </div>
-                </fieldset>
-                <!--</div>-->
+            <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
+              <div *ngIf="absFirma.errors.required">Firma / Name wird benötigt</div>
             </div>
-            <div class="col-md-4 col-sm">
-                <fieldset>
-                    <h4 class="mv_heading">Empfänger</h4>
-                    <div class="form-group">
-                        <label for="empfFirma">Firma / Name</label>
-                        <input type="text" class="form-control" id="empfFirma" name="empfFirma"
-                               (ngModel)="order.empfaenger.firma"
-                               #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
-                               maxlength="255"
-                               required>
 
-                        <div *ngIf="f.submitted && empfFirma.invalid" class="invalid-feedback">
-                            <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt</div>
-                        </div>
-
-                    </div>
+          </div>
 
 
-                    <div class="form-group">
+          <div class="form-group">
 
-                        <label for="empfZusatz">Zusatz</label>
-                        <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
-                               (ngModel)="order.empfaenger.zusatz"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
-                               maxlength="255"
-                               #empfZusatz="ngModel">
-                    </div>
-                    <div class="form-group">
-                        <label for="empfAnpsrechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
-                               (ngModel)="order.empfaenger.ansprechpartner"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
-                               maxlength="255"
-                               #empfAnpsrechpartner="ngModel">
-                    </div>
+            <label for="absZusatz">Zusatz</label>
+            <input type="text" class="form-control" id="absZusatz" name="absZusatz"
+                   (ngModel)="order.absender.zusatz"
+                   [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
+                   maxlength="255"
+                   #absZusatz="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="absAnpsrechpartner">Ansprechpartner</label>
+            <input type="text" class="form-control" id="absAnpsrechpartner" name="absAnpsrechpartner"
+                   (ngModel)="order.absender.ansprechpartner"
+                   [ngClass]="{ 'is-invalid': f.submitted && absAnpsrechpartner.invalid }"
+                   maxlength="255"
+                   #absAnpsrechpartner="ngModel">
+          </div>
 
-                    <div class="form-group">
-                        <label for="empfAdresse">Adresse</label>
-                        <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
-                               (ngModel)="order.empfaenger.addresse"
-                               #empfAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
-                               maxlength="255"
-                               required>
-                        <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
-                            <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt</div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-sm">
-                            <label for="empfLand">Land</label>
-                            <select id="empfLand" class="form-control" name="empfLand"
-                                    ngModel
-                                    #empfLand="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
-                                    required>
-                                <option>Deutschland</option>
-                                <option>Österreich</option>
-                                <option>Schweiz</option>
-                            </select>
-                            <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
-                                <div *ngIf="empfLand.errors.required">Land wird benötigt</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-sm">
-                            <label for="empfPlz">PLZ</label>
-                            <input type="text" class="form-control" id="empfPlz" name="empfPlz"
-                                   (ngModel)="order.empfaenger.plz"
-                                   #empfPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
-                                   minlength="5"
-                                   maxlength="5"
-                                   pattern="[0-9]{5}"
-                                   required>
-                            <div *ngIf="f.submitted && empfPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="empfPlz.errors.required">PLZ wird benötigt</div>
-                                <div *ngIf="empfPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="empfOrt">Ort</label>
-                        <input type="text" class="form-control" id="empfOrt" name="empfOrt"
-                               (ngModel)="order.empfaenger.ort"
-                               #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
-                               maxlength="255"
-                               required>
-
-                        <div *ngIf="f.submitted && empfOrt.invalid" class="invalid-feedback">
-                            <div *ngIf="empfOrt.errors.required">Ort wird benötigt</div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="empfTel">Telefon</label>
-                        <input type="text" class="form-control"
-                               id="empfTel"
-                               name="empfTel"
-                               (ngModel)="order.empfaenger.telefon"
-                               #empfTel="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
-                               maxlength="255"
-                               required>
-
-                        <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
-                            <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt</div>
-                        </div>
-                    </div>
-                </fieldset>
+          <div class="form-group">
+            <label for="absAdresse">Adresse</label>
+            <input type="text" class="form-control" id="absAdresse" name="absAdresse"
+                   (ngModel)="order.absender.addresse"
+                   #absAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absAdresse.invalid }"
+                   maxlength="255"
+                   required>
+            <div *ngIf="f.submitted && absAdresse.invalid" class="invalid-feedback">
+              <div *ngIf="absAdresse.errors.required">Adresse wird benötigt</div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
+          </div>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-sm height">
-                <div class="row">
-                    <div class="col-sm">
-                        <fieldset class="mv-fieldset-margin">
-                            <h4 class="mv_heading">Abholzeit</h4>
-                            <div class="row margin-bottom-15">
-                                <div class="col-sm-2 vertical-horizontal-center">
-                                    <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
-                                         width="25"><img>
-                                </div>
-                                <div class="col-sm-10">
-                                    <span class="mv-info-color margin-bottom-15">Bitte beachten Sie, dass wir im Falle einer erfolglosen Abholung eine Gebühr von 10€ berechnen müssen.</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3 vertical-center">
-                                    <label for="abholDatum">Aboldatum</label>
-                                </div>
-                                <div class="col-sm vertical-center">
-                                    <div class="form-group">
-                                        <p-calendar id="abholDatum"
-                                                    [minDate]="minDate" [maxDate]="maxDate"
-                                                    [readonlyInput]="true"
-                                                    [disabledDays]="[6,0]"
-                                                    [defaultDate]="minDate"
-                                                    [locale]="de"
-                                                    [showIcon]="true"
-                                                    name="abholDatum"
-                                                    (ngModel)="order.abholTermin.datum"
-                                                    #abholDatum="ngModel"
-                                                    required
-                                                    dateFormat="dd.mm.yy"></p-calendar>
-
-                                        <div *ngIf="f.submitted && abholDatum.invalid"
-                                             class="invalid-feedback-calender">
-                                            <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm">
-                                    <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-sm">
-                                            <label for="sendungsdatenArt">Art der Ware</label>
-                                            <select id="sendungsdatenArt" class="form-control"
-                                                    name="sendungsdatenArt"
-                                                    ngModel
-                                                    #sendungsdatenArt="ngModel"
-                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenArt.invalid }"
-                                                    required>
-                                                <option>Waffe</option>
-                                                <option>Munition</option>
-                                            </select>
-
-                                            <div *ngIf="f.submitted && sendungsdatenArt.invalid"
-                                                 class="invalid-feedback">
-                                                <div *ngIf="sendungsdatenArt.errors.required">Art wird benötigt</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-sm">
-                                            <label for="sendungsdatenGewicht">Gewicht</label>
-                                            <select name="sendungsdatenGewicht" id="sendungsdatenGewicht"
-                                                    class="form-control"
-                                                    ngModel
-                                                    #sendungsdatenGewicht="ngModel"
-                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenGewicht.invalid }"
-                                                    required>
-                                                <option value="1">1,00 kg</option>
-                                                <option value="2">2,00 kg</option>
-                                                <option value="3" selected>3,00 kg</option>
-                                                <option value="4">4,00 kg</option>
-                                                <option value="5">5,00 kg</option>
-                                                <option value="6">6,00 kg</option>
-                                                <option value="7">7,00 kg</option>
-                                                <option value="8">8,00 kg</option>
-                                                <option value="9">9,00 kg</option>
-                                                <option value="10">10,00 kg</option>
-                                                <option value="11">11,00 kg</option>
-                                                <option value="12">12,00 kg</option>
-                                                <option value="13">13,00 kg</option>
-                                                <option value="14">14,00 kg</option>
-                                                <option value="15">15,00 kg</option>
-                                                <option value="16">16,00 kg</option>
-                                                <option value="17">17,00 kg</option>
-                                                <option value="18">18,00 kg</option>
-                                                <option value="19">19,00 kg</option>
-                                                <option value="20">20,00 kg</option>
-                                                <option value="21">21,00 kg</option>
-                                                <option value="22">22,00 kg</option>
-                                                <option value="23">23,00 kg</option>
-                                                <option value="24">24,00 kg</option>
-                                                <option value="25">25,00 kg</option>
-                                                <option value="26">26,00 kg</option>
-                                                <option value="27">27,00 kg</option>
-                                                <option value="28">28,00 kg</option>
-                                                <option value="29">29,00 kg</option>
-                                                <option value="30">30,00 kg</option>
-                                            </select>
-
-                                            <div *ngIf="f.submitted && sendungsdatenGewicht.invalid"
-                                                 class="invalid-feedback">
-                                                <div *ngIf="sendungsdatenGewicht.errors.required">Gewicht wird benötigt
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-sm">
-                                            <label for="sendungsdatenVers">Transport Vers.</label>
-                                            <select name="sendungsdatenVers"
-                                                    id="sendungsdatenVers"
-                                                    class="form-control"
-                                                    ngModel
-                                                    #sendungsdatenVers="ngModel"
-                                                    [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenVers.invalid }"
-                                                    required>
-                                                <option value="ja">Ja</option>
-                                                <option value="nein">Nein</option>
-                                            </select>
-
-                                            <div *ngIf="f.submitted && sendungsdatenVers.invalid"
-                                                 class="invalid-feedback">
-                                                <div *ngIf="sendungsdatenVers.errors.required">Transport Vers. wird
-                                                    benötigt
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="sendungsdatenWert">Wert in EUR</label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="sendungsdatenWert"
-                                               id="sendungsdatenWert"
-                                               placeholder="0,00"
-                                               pattern="[0-9]{1,12}"
-                                               (ngModel)="order.sendungsdaten.wert"
-                                               #sendungsdatenWert="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }"
-                                               required>
-
-                                        <div *ngIf="f.submitted && sendungsdatenWert.invalid"
-                                             class="invalid-feedback">
-                                            <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt</div>
-                                            <div *ngIf="sendungsdatenWert.errors.pattern">Wert darf nur aus Ziffern
-                                                bestehen
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                    </div>
-                </div>
-
+          <div class="form-row">
+            <div class="form-group col-sm">
+              <label for="absLand">Land</label>
+              <select id="absLand" class="form-control" name="absLand"
+                      ngModel
+                      #absLand="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && absLand.invalid }"
+                      required>
+                <option selected>Deutschland</option>
+                <option>Österreich</option>
+                <option>Schweiz</option>
+              </select>
+              <div *ngIf="f.submitted && absLand.invalid" class="invalid-feedback">
+                <div *ngIf="absLand.errors.required">Land wird benötigt</div>
+              </div>
 
             </div>
-            <div class="col-md-4 col-sm height">
-                <fieldset>
-                    <h4 class="mv_heading">Zustelltermin</h4>
-                    <div class="row margin-bottom-25">
-                        <div class="col-sm-2 vertical-horizontal-center">
-                            <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
-                                 width="25"><img>
-                        </div>
-                        <div class="col-sm-10">
-                            <span class="mv-info-color">Standardzustelltermin = Ihre Sendung wird in der Regel am nächsten Werktag (Werktage bei uns Mo-Fr) bis 17 Uhr zugestellt.</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="form-group">
-                                <label for="zustellTermin">Zustellungstermin</label>
-                                <select name="zustellTermin"
-                                        id="zustellTermin"
-                                        class="form-control"
-                                        (ngModel)="order.zustellTermin.termin"
-                                        #zustellTermin="ngModel"
-                                        [ngClass]="{ 'is-invalid': f.submitted && zustellTermin.invalid }"
-                                        (change)="onOptionChange($event.target.value)"
-                                        required>
-                                    <option value="standard">Standardzustellungtermin</option>
-                                    <option value="9">Termin bis 09:00 Uhr</option>
-                                    <option value="10">Termin bis 10:00 Uhr</option>
-                                    <option value="12">Termin bis 12:00 Uhr</option>
-                                    <option value="fixtermin">Fixtermin</option>
-                                </select>
-
-                                <div *ngIf="f.submitted && zustellTermin.invalid"
-                                     class="invalid-feedback">
-                                    <div *ngIf="zustellTermin.errors.required">Zustellungstermin wird benötigt</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-
-                            <div class="form-group"
-                                 *ngIf="shouldDisplayed">
-                                <label for="fixtermin">Fixtermin Uhrzeit</label>
-                                <select name="fixtermin"
-                                        id="fixtermin"
-                                        class="form-control"
-                                        (ngModel)="fixtermin"
-                                        #fixtermin="ngModel"
-                                        [ngClass]="{ 'is-invalid': f.submitted && fixtermin.invalid }"
-                                        [required]="shouldDisplayed">
-                                    <option value="09:00">09:00 Uhr</option>
-                                    <option value="09:30">09:30 Uhr</option>
-                                    <option value="10:00">10:00 Uhr</option>
-                                    <option value="10:30">10:30 Uhr</option>
-                                    <option value="11:00">11:00 Uhr</option>
-                                    <option value="11:30">11:30 Uhr</option>
-                                    <option value="12:00">12:00 Uhr</option>
-                                    <option value="12:30">12:30 Uhr</option>
-                                    <option value="13:00">13:00 Uhr</option>
-                                    <option value="13:30">13:30 Uhr</option>
-                                    <option value="14:00">14:00 Uhr</option>
-                                    <option value="14:30">14:30 Uhr</option>
-                                    <option value="15:00">15:00 Uhr</option>
-                                    <option value="15:30">15:30 Uhr</option>
-                                    <option value="16:00">16:00 Uhr</option>
-                                </select>
-
-                                <div *ngIf="f.submitted && fixtermin.invalid"
-                                     class="invalid-feedback">
-                                    <div *ngIf="fixtermin.errors.required">Uhrzeit wird benötigt</div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
-                        </div>
-                    </div>
-
-
-                    <h4 class="mv_heading sendungsdaten_h pt-3">Sendungsdaten</h4>
-
-                    <label for="sonderdienst">Sonderdienst</label>
-
-                    <div class="form-group">
-                        <select id="sonderdienst"
-                                class="form-control"
-                                ngModel
-                                name="sonderdienst"
-                                #sonderdienst="ngModel"
-                                [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
-                                required>
-                            <option value="standard">Standardzustellung</option>
-                            <option value="persoenlich">Persönliche Zustellung</option>
-                            <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
-                        </select>
-
-
-                        <div *ngIf="f.submitted && sonderdienst.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="sonderdienst.errors.required">Sonderdienst wird benötigt</div>
-                        </div>
-                    </div>
-
-                </fieldset>
+            <div class="form-group col-sm">
+              <label for="absPlz">PLZ</label>
+              <input type="text" class="form-control" id="absPlz" name="absPlz"
+                     (ngModel)="order.absender.plz"
+                     #absPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absPlz.invalid }"
+                     minlength="5"
+                     maxlength="5"
+                     pattern="[0-9]{5}"
+                     required>
+              <div *ngIf="f.submitted && absPlz.invalid" class="invalid-feedback">
+                <div *ngIf="absPlz.errors.required">PLZ wird benötigt</div>
+                <div *ngIf="absPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+              </div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
+          </div>
 
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 col-sm">
-                <fieldset>
-                    <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
-                    <div class="form-group">
-                        <label for="auftragbestEmail">E-Mail Adresse</label>
-                        <input type="email"
-                               class="form-control"
-                               id="auftragbestEmail"
-                               name="auftragbestEmail"
-                               (ngModel)="order.rechnungsdaten.email"
-                               #auftragbestEmail="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
-                               required email>
+          <div class="form-group ">
+            <label for="absOrt">Ort</label>
+            <input type="text" class="form-control" id="absOrt" name="absOrt"
+                   (ngModel)="order.absender.ort"
+                   #absOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absOrt.invalid }"
+                   maxlength="255"
+                   required>
 
-                        <div *ngIf="f.submitted && auftragbestEmail.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="auftragbestEmail.errors.required">E-Mail wird benötigt</div>
-                            <div *ngIf="auftragbestEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="auftragbestTelefon">Telefon</label>
-                        <input type="text"
-                               class="form-control"
-                               id="auftragbestTelefon"
-                               name="auftragbestTelefon"
-                               (ngModel)="order.rechnungsdaten.telefon"
-                               #auftragbestTelefon="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
-                               required>
-
-                        <div *ngIf="f.submitted && auftragbestTelefon.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="auftragsbestRechnungsadresse">Rechnungsadresse</label>
-                        <select id="auftragsbestRechnungsadresse"
-                                class="form-control"
-                                name="auftragsbestRechnungsadresse"
-                                ngModel
-                                #auftragsbestRechnungsadresse="ngModel"
-                                [ngClass]="{ 'is-invalid': f.submitted && auftragsbestRechnungsadresse.invalid }"
-                                required>
-                            <option value="absender">Wie Absender</option>
-                            <option value="empfeanger">Wie Empfänger</option>
-                        </select>
-
-
-                        <div *ngIf="f.submitted && auftragsbestRechnungsadresse.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="auftragsbestRechnungsadresse.errors.required">Rechnungsadresse wird benötigt
-                            </div>
-                        </div>
-                    </div>
-
-                </fieldset>
+            <div *ngIf="f.submitted && absOrt.invalid" class="invalid-feedback">
+              <div *ngIf="absOrt.errors.required">Ort wird benötigt</div>
             </div>
-            <div class="col-md-4"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-sm col-md-8">
-                <div class="row background-color ">
-                    <div class="col-sm mv-submit-container vertical-horizontal-center">
-                        <div class="form-group" *ngIf="sessionKundenNummer">
-                            <input type="text"
-                                   class="form-control"
-                                   id="sessionTemplateKundenNummer"
-                                   name="sessionTemplateKundenNummer"
-                                   ngModel
-                                   [(ngModel)]="sessionKundenNummer"
-                                   #sessionTemplateKundenNummer="ngModel"
-                                   [ngClass]="{ 'is-invalid': f.submitted && sessionTemplateKundenNummer.invalid }"
-                                   disabled
-                                   required
-                                    >
-                        </div>
+          </div>
 
-                        <div class="form-group" *ngIf="!sessionKundenNummer">
-                            <input type="text"
-                                   class="form-control"
-                                   id="kundenNummer"
-                                   name="kundenNummer"
-                                   ngModel
-                                   #kundenNummer="ngModel"
-                                   placeholder="Kundennummer"
-                                   [ngClass]="{ 'is-invalid': f.submitted && kundenNummer.invalid }"
-                                   maxlength="5"
-                                   required>
 
-                            <div *ngIf="f.submitted && kundenNummer.invalid"
-                                 class="invalid-feedback">
-                                <div *ngIf="kundenNummer.errors.required">Kundennummer wird benötigt</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm vertical-horizontal-center mv-submit-container">
-                        <button type="submit" id="mv-submit-button">Weiter</button>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="absTel">Telefon</label>
+            <input type="text" class="form-control" id="absTel" name="absTel"
+                   (ngModel)="order.absender.telefon"
+                   #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
+                   maxlength="255"
+                   required>
 
+            <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
+              <div *ngIf="absTel.errors.required">Telefonnummer wird benötigt</div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
+          </div>
+        </fieldset>
+        <!--</div>-->
+      </div>
+      <div class="col-md-4 col-sm">
+        <fieldset>
+          <h4 class="mv_heading">Empfänger</h4>
+          <div class="form-group">
+            <label for="empfFirma">Firma / Name</label>
+            <input type="text" class="form-control" id="empfFirma" name="empfFirma"
+                   (ngModel)="order.empfaenger.firma"
+                   #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
+                   maxlength="255"
+                   required>
+
+            <div *ngIf="f.submitted && empfFirma.invalid" class="invalid-feedback">
+              <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt</div>
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="empfZusatz">Zusatz</label>
+            <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
+                   (ngModel)="order.empfaenger.zusatz"
+                   [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
+                   maxlength="255"
+                   #empfZusatz="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="empfAnpsrechpartner">Ansprechpartner</label>
+            <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
+                   (ngModel)="order.empfaenger.ansprechpartner"
+                   [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
+                   maxlength="255"
+                   #empfAnpsrechpartner="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="empfAdresse">Adresse</label>
+            <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
+                   (ngModel)="order.empfaenger.addresse"
+                   #empfAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
+                   maxlength="255"
+                   required>
+            <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
+              <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-sm">
+              <label for="empfLand">Land</label>
+              <select id="empfLand" class="form-control" name="empfLand"
+                      ngModel
+                      #empfLand="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
+                      required>
+                <option>Deutschland</option>
+                <option>Österreich</option>
+                <option>Schweiz</option>
+              </select>
+              <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
+                <div *ngIf="empfLand.errors.required">Land wird benötigt</div>
+              </div>
+            </div>
+            <div class="form-group col-sm">
+              <label for="empfPlz">PLZ</label>
+              <input type="text" class="form-control" id="empfPlz" name="empfPlz"
+                     (ngModel)="order.empfaenger.plz"
+                     #empfPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
+                     minlength="5"
+                     maxlength="5"
+                     pattern="[0-9]{5}"
+                     required>
+              <div *ngIf="f.submitted && empfPlz.invalid" class="invalid-feedback">
+                <div *ngIf="empfPlz.errors.required">PLZ wird benötigt</div>
+                <div *ngIf="empfPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="empfOrt">Ort</label>
+            <input type="text" class="form-control" id="empfOrt" name="empfOrt"
+                   (ngModel)="order.empfaenger.ort"
+                   #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
+                   maxlength="255"
+                   required>
+
+            <div *ngIf="f.submitted && empfOrt.invalid" class="invalid-feedback">
+              <div *ngIf="empfOrt.errors.required">Ort wird benötigt</div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="empfTel">Telefon</label>
+            <input type="text" class="form-control"
+                   id="empfTel"
+                   name="empfTel"
+                   (ngModel)="order.empfaenger.telefon"
+                   #empfTel="ngModel"
+                   [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
+                   maxlength="255"
+                   required>
+
+            <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
+              <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt</div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-md-2"></div>
     </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4 col-sm height">
+        <div class="row">
+          <div class="col-sm">
+            <fieldset class="mv-fieldset-margin">
+              <h4 class="mv_heading">Abholzeit</h4>
+              <div class="row margin-bottom-15">
+                <div class="col-sm-2 vertical-horizontal-center">
+                  <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
+                       width="25"><img>
+                </div>
+                <div class="col-sm-10">
+                  <span class="mv-info-color margin-bottom-15">Bitte beachten Sie, dass wir im Falle einer erfolglosen Abholung eine Gebühr von 10€ berechnen müssen.</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 vertical-center">
+                  <label for="abholDatum">Aboldatum</label>
+                </div>
+                <div class="col-sm vertical-center">
+                  <div class="form-group">
+                    <p-calendar id="abholDatum"
+                                [minDate]="minDate" [maxDate]="maxDate"
+                                [readonlyInput]="true"
+                                [disabledDays]="[6,0]"
+                                [defaultDate]="minDate"
+                                [locale]="de"
+                                [showIcon]="true"
+                                name="abholDatum"
+                                (ngModel)="order.abholTermin.datum"
+                                #abholDatum="ngModel"
+                                required
+                                dateFormat="dd.mm.yy"></p-calendar>
+
+                    <div *ngIf="f.submitted && abholDatum.invalid"
+                         class="invalid-feedback-calender">
+                      <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm">
+                  <h4 class="mv_heading sendungsdaten_h">Sendungsdaten</h4>
+
+                  <div class="form-row">
+                    <div class="form-group col-sm">
+                      <label for="sendungsdatenArt">Art der Ware</label>
+                      <select id="sendungsdatenArt" class="form-control"
+                              name="sendungsdatenArt"
+                              ngModel
+                              #sendungsdatenArt="ngModel"
+                              [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenArt.invalid }"
+                              required>
+                        <option>Waffe</option>
+                        <option>Munition</option>
+                      </select>
+
+                      <div *ngIf="f.submitted && sendungsdatenArt.invalid"
+                           class="invalid-feedback">
+                        <div *ngIf="sendungsdatenArt.errors.required">Art wird benötigt</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-sm">
+                      <label for="sendungsdatenGewicht">Gewicht</label>
+                      <select name="sendungsdatenGewicht" id="sendungsdatenGewicht"
+                              class="form-control"
+                              ngModel
+                              #sendungsdatenGewicht="ngModel"
+                              [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenGewicht.invalid }"
+                              required>
+                        <option value="1">1,00 kg</option>
+                        <option value="2">2,00 kg</option>
+                        <option value="3" selected>3,00 kg</option>
+                        <option value="4">4,00 kg</option>
+                        <option value="5">5,00 kg</option>
+                        <option value="6">6,00 kg</option>
+                        <option value="7">7,00 kg</option>
+                        <option value="8">8,00 kg</option>
+                        <option value="9">9,00 kg</option>
+                        <option value="10">10,00 kg</option>
+                        <option value="11">11,00 kg</option>
+                        <option value="12">12,00 kg</option>
+                        <option value="13">13,00 kg</option>
+                        <option value="14">14,00 kg</option>
+                        <option value="15">15,00 kg</option>
+                        <option value="16">16,00 kg</option>
+                        <option value="17">17,00 kg</option>
+                        <option value="18">18,00 kg</option>
+                        <option value="19">19,00 kg</option>
+                        <option value="20">20,00 kg</option>
+                        <option value="21">21,00 kg</option>
+                        <option value="22">22,00 kg</option>
+                        <option value="23">23,00 kg</option>
+                        <option value="24">24,00 kg</option>
+                        <option value="25">25,00 kg</option>
+                        <option value="26">26,00 kg</option>
+                        <option value="27">27,00 kg</option>
+                        <option value="28">28,00 kg</option>
+                        <option value="29">29,00 kg</option>
+                        <option value="30">30,00 kg</option>
+                      </select>
+
+                      <div *ngIf="f.submitted && sendungsdatenGewicht.invalid"
+                           class="invalid-feedback">
+                        <div *ngIf="sendungsdatenGewicht.errors.required">Gewicht wird benötigt
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-sm">
+                      <label for="sendungsdatenVers">Transport Vers.</label>
+                      <select name="sendungsdatenVers"
+                              id="sendungsdatenVers"
+                              class="form-control"
+                              ngModel
+                              #sendungsdatenVers="ngModel"
+                              [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenVers.invalid }"
+                              required>
+                        <option value="ja">Ja</option>
+                        <option value="nein">Nein</option>
+                      </select>
+
+                      <div *ngIf="f.submitted && sendungsdatenVers.invalid"
+                           class="invalid-feedback">
+                        <div *ngIf="sendungsdatenVers.errors.required">Transport Vers. wird
+                          benötigt
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="sendungsdatenWert">Wert in EUR</label>
+                    <input type="text"
+                           class="form-control"
+                           name="sendungsdatenWert"
+                           id="sendungsdatenWert"
+                           placeholder="0,00"
+                           pattern="[0-9]{1,12}"
+                           (ngModel)="order.sendungsdaten.wert"
+                           #sendungsdatenWert="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }"
+                           required>
+
+                    <div *ngIf="f.submitted && sendungsdatenWert.invalid"
+                         class="invalid-feedback">
+                      <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt</div>
+                      <div *ngIf="sendungsdatenWert.errors.pattern">Wert darf nur aus Ziffern
+                        bestehen
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-4 col-sm height">
+        <fieldset>
+          <h4 class="mv_heading">Zustelltermin</h4>
+          <div class="row margin-bottom-25">
+            <div class="col-sm-2 vertical-horizontal-center">
+              <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
+                   width="25"><img>
+            </div>
+            <div class="col-sm-10">
+              <span class="mv-info-color">Standardzustelltermin = Ihre Sendung wird in der Regel am nächsten Werktag (Werktage bei uns Mo-Fr) bis 17 Uhr zugestellt.</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="zustellTermin">Zustellungstermin</label>
+                <select name="zustellTermin"
+                        id="zustellTermin"
+                        class="form-control"
+                        (ngModel)="order.zustellTermin.termin"
+                        #zustellTermin="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && zustellTermin.invalid }"
+                        (change)="onOptionChange($event.target.value)"
+                        required>
+                  <option value="standard">Standardzustellungtermin</option>
+                  <option value="9">Termin bis 09:00 Uhr</option>
+                  <option value="10">Termin bis 10:00 Uhr</option>
+                  <option value="12">Termin bis 12:00 Uhr</option>
+                  <option value="fixtermin">Fixtermin</option>
+                </select>
+
+                <div *ngIf="f.submitted && zustellTermin.invalid"
+                     class="invalid-feedback">
+                  <div *ngIf="zustellTermin.errors.required">Zustellungstermin wird benötigt</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+
+              <div class="form-group"
+                   *ngIf="shouldDisplayed">
+                <label for="fixtermin">Fixtermin Uhrzeit</label>
+                <select name="fixtermin"
+                        id="fixtermin"
+                        class="form-control"
+                        (ngModel)="fixtermin"
+                        #fixtermin="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && fixtermin.invalid }"
+                        [required]="shouldDisplayed">
+                  <option value="09:00">09:00 Uhr</option>
+                  <option value="09:30">09:30 Uhr</option>
+                  <option value="10:00">10:00 Uhr</option>
+                  <option value="10:30">10:30 Uhr</option>
+                  <option value="11:00">11:00 Uhr</option>
+                  <option value="11:30">11:30 Uhr</option>
+                  <option value="12:00">12:00 Uhr</option>
+                  <option value="12:30">12:30 Uhr</option>
+                  <option value="13:00">13:00 Uhr</option>
+                  <option value="13:30">13:30 Uhr</option>
+                  <option value="14:00">14:00 Uhr</option>
+                  <option value="14:30">14:30 Uhr</option>
+                  <option value="15:00">15:00 Uhr</option>
+                  <option value="15:30">15:30 Uhr</option>
+                  <option value="16:00">16:00 Uhr</option>
+                </select>
+
+                <div *ngIf="f.submitted && fixtermin.invalid"
+                     class="invalid-feedback">
+                  <div *ngIf="fixtermin.errors.required">Uhrzeit wird benötigt</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm">
+              <span class="mv-info-color">Zustellung zum gewünschten Termin +/- 30 min. </span>
+            </div>
+          </div>
+
+
+          <h4 class="mv_heading sendungsdaten_h pt-3">Sendungsdaten</h4>
+
+          <label for="sonderdienst">Sonderdienst</label>
+
+          <div class="form-group">
+            <select id="sonderdienst"
+                    class="form-control"
+                    ngModel
+                    name="sonderdienst"
+                    #sonderdienst="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
+                    required>
+              <option value="standard">Standardzustellung</option>
+              <option value="persoenlich">Persönliche Zustellung</option>
+              <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
+            </select>
+
+
+            <div *ngIf="f.submitted && sonderdienst.invalid"
+                 class="invalid-feedback">
+              <div *ngIf="sonderdienst.errors.required">Sonderdienst wird benötigt</div>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 col-sm">
+        <fieldset>
+          <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
+          <div class="form-group">
+            <label for="auftragbestEmail">E-Mail Adresse</label>
+            <input type="email"
+                   class="form-control"
+                   id="auftragbestEmail"
+                   name="auftragbestEmail"
+                   (ngModel)="order.rechnungsdaten.email"
+                   #auftragbestEmail="ngModel"
+                   [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
+                   required email>
+
+            <div *ngIf="f.submitted && auftragbestEmail.invalid"
+                 class="invalid-feedback">
+              <div *ngIf="auftragbestEmail.errors.required">E-Mail wird benötigt</div>
+              <div *ngIf="auftragbestEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="auftragbestTelefon">Telefon</label>
+            <input type="text"
+                   class="form-control"
+                   id="auftragbestTelefon"
+                   name="auftragbestTelefon"
+                   (ngModel)="order.rechnungsdaten.telefon"
+                   #auftragbestTelefon="ngModel"
+                   [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
+                   required>
+
+            <div *ngIf="f.submitted && auftragbestTelefon.invalid"
+                 class="invalid-feedback">
+              <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="auftragsbestRechnungsadresse">Rechnungsadresse</label>
+            <select id="auftragsbestRechnungsadresse"
+                    class="form-control"
+                    name="auftragsbestRechnungsadresse"
+                    ngModel
+                    #auftragsbestRechnungsadresse="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && auftragsbestRechnungsadresse.invalid }"
+                    required>
+              <option value="absender">Wie Absender</option>
+              <option value="empfeanger">Wie Empfänger</option>
+            </select>
+
+
+            <div *ngIf="f.submitted && auftragsbestRechnungsadresse.invalid"
+                 class="invalid-feedback">
+              <div *ngIf="auftragsbestRechnungsadresse.errors.required">Rechnungsadresse wird benötigt
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-sm col-md-8">
+        <div class="row background-color ">
+          <div class="col-sm mv-submit-container vertical-horizontal-center">
+            <div class="form-group" *ngIf="sessionKundenNummer">
+              <input type="text"
+                     class="form-control"
+                     id="sessionTemplateKundenNummer"
+                     name="sessionTemplateKundenNummer"
+                     ngModel
+                     [(ngModel)]="sessionKundenNummer"
+                     #sessionTemplateKundenNummer="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && sessionTemplateKundenNummer.invalid }"
+                     disabled
+                     required
+              >
+            </div>
+
+            <div class="form-group" *ngIf="!sessionKundenNummer">
+              <input type="text"
+                     class="form-control"
+                     id="kundenNummer"
+                     name="kundenNummer"
+                     ngModel
+                     #kundenNummer="ngModel"
+                     placeholder="Kundennummer"
+                     [ngClass]="{ 'is-invalid': f.submitted && kundenNummer.invalid }"
+                     maxlength="5"
+                     required>
+
+              <div *ngIf="f.submitted && kundenNummer.invalid"
+                   class="invalid-feedback">
+                <div *ngIf="kundenNummer.errors.required">Kundennummer wird benötigt</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm vertical-horizontal-center mv-submit-container">
+            <button type="submit" id="mv-submit-button">Weiter</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
 </form>
 
