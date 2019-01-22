@@ -28,7 +28,11 @@ export class BestModalComponent implements OnInit {
      * @param value - data from the form
      */
     protected sendData(value){
-        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(test => console.log("modal" + test))
+        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(isCsvCreated => {
+            if(isCsvCreated) {
+                this.requestSuccesully = true;
+            }
+        })
     }
 
 
