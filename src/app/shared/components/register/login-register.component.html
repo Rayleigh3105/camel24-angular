@@ -134,6 +134,94 @@
                                             überein
                                         </div>
                                     </div>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Standardauftragsdaten</h5>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm">
+                                    <label for="adresse">Adresse</label>
+                                    <input type="text" class="form-control" id="adresse" name="adresse"
+                                           ngModel
+                                           #adresse="ngModel"
+                                           [ngClass]="{ 'is-invalid': f.submitted && adresse.invalid }"
+                                           maxlength="255"
+                                           required>
+                                    <div *ngIf="f.submitted && adresse.invalid" class="invalid-feedback">
+                                        <div *ngIf="adresse.errors.required">Adresse wird benötigt.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm">
+                                    <label for="ort">Ort</label>
+                                    <input type="text" class="form-control" id="ort"
+                                           name="ort"
+                                           ngModel
+                                           #ort="ngModel"
+                                           [ngClass]="{ 'is-invalid': f.submitted && ort.invalid }"
+                                           maxlength="255"
+                                           required>
+                                    <div *ngIf="f.submitted && ort.invalid" class="invalid-feedback">
+                                        <div *ngIf="ort.errors.required">Ort wird                                        benötigt.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm">
+                                    <label for="plz">Plz</label>
+                                    <input type="text" class="form-control" id="plz" name="plz"
+                                           ngModel
+                                           #plz="ngModel"
+                                           [ngClass]="{ 'is-invalid': f.submitted && plz.invalid }"
+                                           minlength="5"
+                                           maxlength="5"
+                                           pattern="[0-9]{5}"                                           required>
+                                    <div *ngIf="f.submitted && plz.invalid" class="invalid-feedback">
+                                        <div *ngIf="plz.errors.required">Postleihzahl wird benötigt.</div>
+                                        <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm">
+                                    <label for="land">Land</label>
+                                    <select id="land"
+                                            class="form-control"
+                                            ngModel
+                                            name="land"
+                                            #land="ngModel"
+                                            [ngClass]="{ 'is-invalid': f.submitted && land.invalid }"
+                                            required>
+                                        <option value="Deutschland">Deutschland</option>
+                                        <option value="Österreich">Österreich</option>
+                                        <option value="Schweiz">Schweiz</option>
+                                    </select>
+
+
+                                    <div *ngIf="f.submitted && land.invalid"
+                                         class="invalid-feedback">
+                                        <div *ngIf="land.errors.required">Land wird benötigt</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-sm">
+                                    <label for="telefon">Telefon</label>
+                                    <input type="text" class="form-control" id="telefon"
+                                           name="telefon"
+                                           ngModel
+                                           #telefon="ngModel"
+                                           [ngClass]="{ 'is-invalid': f.submitted && telefon.invalid }"
+                                           maxlength="255"
+                                           required>
+                                    <div *ngIf="f.submitted && telefon.invalid" class="invalid-feedback">
+                                        <div *ngIf="telefon.errors.required">Telefonnummer wird benötigt</div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
    * Checks if User is logged in based on the values in the session storage
    */
   protected checkIfLoggedIn() {
-    if (sessionStorage.getItem('x-auth') !== null) {
+    if (this.getXAuth() !== null) {
       this.firmenName = sessionStorage.getItem('firmenName');
       this.kundenNummer = sessionStorage.getItem('kundenNummer');
       this.boolCheckIfLoggedIn = true;
