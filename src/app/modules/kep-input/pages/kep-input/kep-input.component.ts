@@ -16,7 +16,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      */
     minDate: Date = new Date();
     maxDate: Date = new Date();
-    shouldDisplayed: boolean = false;
+    shouldUhrGetDisplayed: boolean = false;
+    shouldManuellDisplayed: boolean = false;
     de: any;
 
     // NGMODEL
@@ -58,9 +59,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             this.maxDate.setDate(this.minDate.getDate() + 16);
         } else if (this.minDate.getDay() === 4 || this.minDate.getDay() === 3 || this.minDate.getDay() === 2 || this.minDate.getDay() === 1) {
             this.maxDate.setDate(this.minDate.getDate() + 14);
-        } else if( this.minDate.getDay() === 6){
+        } else if (this.minDate.getDay() === 6) {
             this.maxDate.setDate(this.minDate.getDate() + 13);
-        } else if(this.minDate.getDay() === 0) {
+        } else if (this.minDate.getDay() === 0) {
             this.maxDate.setDate(this.minDate.getDate() + 12);
         }
     }
@@ -76,7 +77,16 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param terminValue
      */
     protected onOptionChange(terminValue: string) {
-        this.shouldDisplayed = terminValue === 'fixtermin';
+        this.shouldUhrGetDisplayed = terminValue === 'fixtermin';
+    }
+
+    /**
+     * Checks if given string matches 'manuell' if yes a new input group is displayed
+     * @param auftragsBestValue
+     */
+    protected onOptionAuftragsBestChange(auftragsBestValue: string) {
+        this.shouldManuellDisplayed = auftragsBestValue === 'manuell';
+
     }
 
     /**
@@ -84,7 +94,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param form - form which is submitted
      */
     protected onSubmit(form: NgForm) {
-        if (form.form.valid && form.value.kundenNummer || this.sessionKundenNummer) {
+        if (form.form.valid) {
             const modalref = this.modalService.open(BestModalComponent, {
                 size: 'lg',
                 backdrop: 'static',
@@ -118,4 +128,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionTelefon = this.getTelefon();
         this.sessionEmail = this.getEmail();
     }
+
+
 }

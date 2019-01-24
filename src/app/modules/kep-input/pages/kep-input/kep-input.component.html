@@ -20,7 +20,6 @@
 
           </div>
 
-
           <div class="form-group">
 
             <label for="absZusatz">Zusatz</label>
@@ -434,7 +433,7 @@
             <div class="col-sm">
 
               <div class="form-group"
-                   *ngIf="shouldDisplayed">
+                   *ngIf="shouldUhrGetDisplayed">
                 <label for="fixtermin">Fixtermin Uhrzeit</label>
                 <select name="fixtermin"
                         id="fixtermin"
@@ -442,7 +441,7 @@
                         (ngModel)="fixtermin"
                         #fixtermin="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && fixtermin.invalid }"
-                        [required]="shouldDisplayed">
+                        [required]="shouldUhrGetDisplayed">
                   <option value="09:00">09:00 Uhr</option>
                   <option value="09:30">09:30 Uhr</option>
                   <option value="10:00">10:00 Uhr</option>
@@ -507,8 +506,8 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4 col-sm">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 col-sm">
         <fieldset>
           <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
           <div class="form-group">
@@ -553,10 +552,12 @@
                     name="auftragsbestRechnungsadresse"
                     ngModel
                     #auftragsbestRechnungsadresse="ngModel"
+                    (change)="onOptionAuftragsBestChange($event.target.value)"
                     [ngClass]="{ 'is-invalid': f.submitted && auftragsbestRechnungsadresse.invalid }"
                     required>
               <option value="absender" selected>Wie Absender</option>
               <option value="empfeanger">Wie Empfänger</option>
+              <option value="manuell">Manuelle Eingabe</option>
             </select>
 
 
@@ -567,9 +568,79 @@
             </div>
           </div>
 
+            <div *ngIf="shouldManuellDisplayed">
+                <div class="form-group">
+                    <label for="rechnungName">Firma / Name</label>
+                    <input type="text" class="form-control" id="rechnungName" name="rechnungName"
+                           ngModel
+                           #rechnungName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rechnungName.invalid }"
+                           maxlength="255"
+                           required>
+
+                    <div *ngIf="f.submitted && rechnungName.invalid" class="invalid-feedback">
+                        <div *ngIf="rechnungName.errors.required">Firma / Name wird benötigt</div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="rechnungAdresse">Adresse</label>
+                    <input type="text" class="form-control" id="rechnungAdresse" name="rechnungAdresse"
+                           ngModel
+                           #rechnungAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rechnungAdresse.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && rechnungAdresse.invalid" class="invalid-feedback">
+                        <div *ngIf="rechnungAdresse.errors.required">Adresse wird benötigt</div>
+                    </div>
+                </div>
+
+
+                    <div class="form-group">
+                        <label for="absPlz">PLZ</label>
+                        <input type="text" class="form-control" id="rechnungPlz" name="rechnungPlz"
+                               #rechnungPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rechnungPlz.invalid }"
+                               ngModel
+                               minlength="5"
+                               maxlength="5"
+                               pattern="[0-9]{5}"
+                               required>
+                        <div *ngIf="f.submitted && rechnungPlz.invalid" class="invalid-feedback">
+                            <div *ngIf="rechnungPlz.errors.required">PLZ wird benötigt</div>
+                            <div *ngIf="rechnungPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+                        </div>
+                    </div>
+
+                <div class="form-group ">
+                    <label for="rechnungOrt">Ort</label>
+                    <input type="text" class="form-control" id="rechnungOrt" name="rechnungOrt"
+                           #rechnungOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rechnungOrt.invalid }"
+                           ngModel
+                           maxlength="255"
+                           required>
+
+                    <div *ngIf="f.submitted && rechnungOrt.invalid" class="invalid-feedback">
+                        <div *ngIf="rechnungOrt.errors.required">Ort wird benötigt</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="rechnungTel">Telefon</label>
+                    <input type="text" class="form-control" id="rechnungTel" name="rechnungTel"
+                           ngModel
+                           #rechnungTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rechnungTel.invalid }"
+                           maxlength="255"
+                           required>
+
+                    <div *ngIf="f.submitted && rechnungTel.invalid" class="invalid-feedback">
+                        <div *ngIf="rechnungTel.errors.required">Telefonnummer wird benötigt</div>
+                    </div>
+                </div>
+            </div>
+
         </fieldset>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
