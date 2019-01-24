@@ -3,14 +3,15 @@ import {NgForm} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {User} from '../../../core/models/user/user-model';
 import {Message} from 'primeng/api';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {KepInputComponent} from '../../../modules/kep-input/pages/kep-input/kep-input.component';
 
 @Component({
     selector: 'camel-login-register',
     templateUrl: './login-register.component.html',
     styleUrls: ['./login-register.component.scss'],
 })
-export class LoginRegisterComponent implements OnInit {
+export class LoginRegisterComponent extends KepInputComponent implements OnInit {
 
     /**
      * VARIABLEN
@@ -18,7 +19,8 @@ export class LoginRegisterComponent implements OnInit {
     protected errorMessageSignup: string;
     msgs: Message[] = [];
 
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal) {
+    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal) {
+        super($modalService);
     }
 
     ngOnInit() {
@@ -68,6 +70,7 @@ export class LoginRegisterComponent implements OnInit {
                     sessionStorage.setItem('plz', body.plz);
 
                     form.resetForm();
+                    this.updateNgModelVariablesWithSessionStorage();
                     this.showSuccess(body);
                 }
             }, error => {
