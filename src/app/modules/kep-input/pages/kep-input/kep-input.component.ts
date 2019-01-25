@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
+import {interval} from 'rxjs';
 
 @Component({
     selector: 'camel-kep-input',
@@ -21,7 +22,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     protected de: any;
 
     // NGMODEL
-    protected sessionFirmenName: string;
+    public sessionFirmenName: string;
     protected sessionKundenNummer: string;
     protected sessionZusatz: string;
     protected sessionAnsprechpartner: string;
@@ -36,7 +37,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
 
 
-    constructor(private modalService: NgbModal) {
+    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef) {
         super();
     }
 
@@ -73,6 +74,14 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         // Updates NgModel Variables
         this.updateNgModelVariablesWithSessionStorage();
         this.setupDatePicker();
+
+        let interval = setInterval(() => {
+            this.updateNgModelVariablesWithSessionStorage();
+            if (this.sessionFirmenName !== null) {
+                clearInterval(interval);
+            }
+
+        }, 1000)
     }
 
     /**
@@ -92,7 +101,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     }
 
     /**
-     * When Form is valid and KundeNummer is given opens the Confirmation Modal
+     * When Form is valid and KundenNummer is given opens the Confirmation Modal
      * @param form - form which is submitted
      */
     protected onSubmit(form: NgForm) {
@@ -129,6 +138,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionOrt = this.getOrt();
         this.sessionTelefon = this.getTelefon();
         this.sessionEmail = this.getEmail();
+        this.cdr.markForCheck();
     }
 
 

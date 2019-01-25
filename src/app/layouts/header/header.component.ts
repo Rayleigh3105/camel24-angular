@@ -1,96 +1,97 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginRegisterComponent} from '../../shared/components/register/login-register.component';
 import {LoginComponent} from '../../shared/components/login/login.component';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {SessionStorageComponent} from '../../shared/components/session-storage/session-storage.component';
+import {KepInputComponent} from '../../modules/kep-input/pages/kep-input/kep-input.component';
 
 @Component({
-  selector: 'camel-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'camel-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent extends SessionStorageComponent implements OnInit {
 
-  /**
-   * VARIABLEN
-   */
-  protected boolCheckIfLoggedIn: boolean = false;
-  protected firmenName: String;
-  protected kundenNummer: String;
+    /**
+     * VARIABLEN
+     */
+    protected boolCheckIfLoggedIn: boolean = false;
+    protected firmenName: String;
+    protected kundenNummer: String;
 
-  constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router) {
-    super();
-  }
-
-  ngOnInit() {
-    this.checkIfLoggedIn();
-  }
-
-  /**
-   * Checks if User is logged in based on the values in the session storage
-   */
-  protected checkIfLoggedIn() {
-    if (this.getXAuth() !== null) {
-      this.firmenName = sessionStorage.getItem('firmenName');
-      this.kundenNummer = sessionStorage.getItem('kundenNummer');
-      this.boolCheckIfLoggedIn = true;
-    } else {
-      this.boolCheckIfLoggedIn = false;
+    constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router) {
+        super();
     }
-  }
 
-  /**
-   * Opens the Register user Modal
-   */
-  onRegister() {
-    const modalRef = this.modalService.open(LoginRegisterComponent, {
-      size: 'lg',
-      backdrop: 'static',
-      centered: true,
-      keyboard: false
-    });
-
-    modalRef.result.then(reloadHeader => {
-      if (reloadHeader) {
+    ngOnInit() {
         this.checkIfLoggedIn();
-      }
-    });
+    }
 
-  }
+    /**
+     * Checks if User is logged in based on the values in the session storage
+     */
+    protected checkIfLoggedIn() {
+        if (this.getXAuth() !== null) {
+            this.firmenName = this.getFirmenname();
+            this.kundenNummer = this.getKundennummer();
+            this.boolCheckIfLoggedIn = true;
+        } else {
+            this.boolCheckIfLoggedIn = false;
+        }
+    }
 
-  /**
-   * Opens the Login user Modal
-   */
-  onLogin() {
-    const modalRef = this.modalService.open(LoginComponent, {
-      size: 'lg',
-      backdrop: 'static',
-      centered: true,
-      keyboard: false
-    });
+    /**
+     * Opens the Register user Modal
+     */
+    onRegister() {
+        const modalRef = this.modalService.open(LoginRegisterComponent, {
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+            keyboard: false
+        });
 
-    // On close reload header
-    modalRef.result.then(reloadHeader => {
-      if (reloadHeader) {
-        this.checkIfLoggedIn();
-      }
-    });
-  }
+        modalRef.result.then(reloadHeader => {
+            if (reloadHeader) {
+                this.checkIfLoggedIn();
+            }
+        });
 
-  /**
-   * LOGOUT USER - REMOVES TOKEN IN DATABASE
-   */
-  logoutUser() {
-    this.$authService.logoutUser().subscribe(isDeleted => {
-      if (isDeleted) {
-        // Removes Session Storage
-        this.removeSessionStorage();
-        this.checkIfLoggedIn();
-        // Navigate to Home page
-        this.router.navigate(['']);
-      }
-    });
-  }
+    }
+
+    /**
+     * Opens the Login user Modal
+     */
+    onLogin() {
+        const modalRef = this.modalService.open(LoginComponent, {
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+            keyboard: false
+        });
+
+        // On close reload header
+        modalRef.result.then(reloadHeader => {
+            if (reloadHeader) {
+                this.checkIfLoggedIn();
+            }
+        });
+    }
+
+    /**
+     * LOGOUT USER - REMOVES TOKEN IN DATABASE
+     */
+    logoutUser() {
+        this.$authService.logoutUser().subscribe(isDeleted => {
+            if (isDeleted) {
+                // Removes Session Storage
+                this.removeSessionStorage();
+                this.checkIfLoggedIn();
+                // Navigate to Home page
+                this.router.navigate(['']);
+            }
+        });
+    }
 }
