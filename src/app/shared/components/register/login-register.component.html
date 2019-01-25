@@ -88,6 +88,7 @@
                                        #email="ngModel"
                                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                                        maxlength="255"
+                                       email
                                        required>
                                 <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
                                     <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
@@ -194,9 +195,10 @@
                                             ngModel
                                             name="land"
                                             #land="ngModel"
+                                            [(ngModel)]="landSelected"
                                             [ngClass]="{ 'is-invalid': f.submitted && land.invalid }"
                                             required>
-                                        <option value="Deutschland">Deutschland</option>
+                                        <option value="Deutschland" selected>Deutschland</option>
                                         <option value="Österreich">Österreich</option>
                                         <option value="Schweiz">Schweiz</option>
                                     </select>

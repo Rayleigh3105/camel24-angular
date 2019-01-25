@@ -18,6 +18,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      */
     protected errorMessageSignup: string;
     msgs: Message[] = [];
+    protected landSelected: string = 'Deutschland';
 
     constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal) {
         super($modalService);

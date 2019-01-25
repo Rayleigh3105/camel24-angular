@@ -81,17 +81,17 @@
                 <h6>Sendungsinformationen</h6>
                 <div class="row padding-left">
                     <div class="col-4">Wert der Sendung:</div>
-                    <div class="col-8 "><span class="padding-left">{{ data.sendungsdatenWert }} €</span></div>
+                    <div class="col-8 ">{{ data.sendungsdatenWert }} €</div>
                 </div>
 
                 <div class="row padding-left">
                     <div class="col-4">Gewicht der Sendung:</div>
-                    <div class="col-8"><span class="padding-left">{{ data.sendungsdatenGewicht }}kg</span></div>
+                    <div class="col-8">{{ data.sendungsdatenGewicht }}kg</div>
                 </div>
 
                 <div class="row padding-left">
                     <div class="col-4">Art der Ware:</div>
-                    <div class="col-8"><span class="padding-left">{{ data.sendungsdatenArt }}</span></div>
+                    <div class="col-8">{{ data.sendungsdatenArt }}</div>
                 </div>
 
             </div>
@@ -170,6 +170,11 @@
                             }})
                         </div>
                         <div *ngIf="data.auftragsbestRechnungsadresse === 'empfeanger'">Wie Empfänger ({{ data.empfFirma
+                            }})
+                        </div>
+
+                        <!--TODO - build popover for data of manuell rechnung-->
+                        <div *ngIf="data.auftragsbestRechnungsadresse === 'manuell'">Wie Empfänger ({{ data.rechnungName
                             }})
                         </div>
 

@@ -14,23 +14,26 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     /**
      * VARIABLES
      */
-    minDate: Date = new Date();
-    maxDate: Date = new Date();
-    shouldUhrGetDisplayed: boolean = false;
-    shouldManuellDisplayed: boolean = false;
-    de: any;
+    protected minDate: Date = new Date();
+    protected maxDate: Date = new Date();
+    protected shouldUhrGetDisplayed: boolean = false;
+    protected shouldManuellDisplayed: boolean = false;
+    protected de: any;
 
     // NGMODEL
-    sessionFirmenName: string;
-    sessionKundenNummer: string;
-    sessionZusatz: string;
-    sessionAnsprechpartner: string;
-    sessionAdresse: string;
-    sessionLand: string;
-    sessionPlz: string;
-    sessionOrt: string;
-    sessionTelefon: string;
-    sessionEmail: string;
+    protected sessionFirmenName: string;
+    protected sessionKundenNummer: string;
+    protected sessionZusatz: string;
+    protected sessionAnsprechpartner: string;
+    protected sessionAdresse: string;
+    protected sessionLand: string;
+    protected sessionPlz: string;
+    protected sessionOrt: string;
+    protected sessionTelefon: string;
+    protected sessionEmail: string;
+    protected landSelected: string = 'Deutschland';
+    protected rechnungSelected: string = 'absender';
+
 
 
     constructor(private modalService: NgbModal) {
