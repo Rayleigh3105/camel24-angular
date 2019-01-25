@@ -12,9 +12,15 @@
                 <a class="nav-link" routerLink="/auftrag">Auftrag</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/impressum">Impressum - AGB</a>
-            </li>
+          <li class="nav-item dropdown" *ngIf="boolCheckIfLoggedIn">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Impressum - AGB</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/national">AGB - National</a>
+              <a class="dropdown-item" routerLink="/international">AGB - International</a>
+              <div role="separator" class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/impressum">Impressum</a>
+            </div>
+          </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item dropdown" *ngIf="boolCheckIfLoggedIn">
