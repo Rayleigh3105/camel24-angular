@@ -37,7 +37,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
 
 
-    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef) {
+    constructor(private modalService: NgbModal) {
         super();
     }
 
@@ -138,7 +138,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionOrt = this.getOrt();
         this.sessionTelefon = this.getTelefon();
         this.sessionEmail = this.getEmail();
-        this.cdr.markForCheck();
     }
 
 
