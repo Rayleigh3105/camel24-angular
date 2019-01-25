@@ -89,7 +89,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      */
     protected onOptionAuftragsBestChange(auftragsBestValue: string) {
         this.shouldManuellDisplayed = auftragsBestValue === 'manuell';
-
     }
 
     /**
