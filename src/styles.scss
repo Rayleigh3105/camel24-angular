@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "styles-variables";
-
-
+html body {
+  padding: 0!important;
+  margin: 0 !important;
+  top: 0 !important;
+}
+.no-p {
+  padding: 0!important;
+  margin: 0 !important;
+}
+.h3_agb_impressum {
+  color: darkorange;
+}
 
 .modal-body {
   padding: 0 !important;
@@ -20,7 +30,7 @@
 .register-left {
   text-align: center;
   color: #fff;
-  padding-top: 11%;
+  padding-top: 20%;
 }
 
 .login-left {

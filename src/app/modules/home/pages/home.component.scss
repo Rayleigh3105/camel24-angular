@@ -76,3 +76,45 @@
     transform: translate(0%,-100%);
   }
 }
+
+#section1overlay {
+  height: 70vh;
+  width: 100%;
+  background: -webkit-linear-gradient(left, darkorange, #ffc107);
+  font-family: 'Raleway', sans-serif;
+}
+
+.text-align {
+  text-align: center;
+}
+#section1underlay {
+  height: 70vh;
+  width: 100%;
+  background-color: white;
+  border-bottom-right-radius: 40%;
+}
+
+#section2overlay {
+  height: 80vh;
+  width: 100%;
+  background-color: white;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+
+}
+
+#section2underlay {
+  height: 80vh;
+  width: 100%;
+  background: -webkit-linear-gradient(left, darkorange, #ffc107);
+  border-top-left-radius: 40%;
+}
+
+.section2heading {
+  color: white;
+}
+
+.mv-tst {
+  padding-top: 20%;
+}
+
