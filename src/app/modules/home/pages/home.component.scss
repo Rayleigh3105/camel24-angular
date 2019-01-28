@@ -15,7 +15,7 @@
   position: absolute;
   left: 50%;
   top: 0;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
 }
 
 #loader:after {
@@ -26,7 +26,7 @@
   bottom: -170px;
   width: 3px;
   background: #fff;
-  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
   height: 200px;
 }
 
@@ -38,7 +38,7 @@
   bottom: -190px;
   width: 3px;
   background: #000;
-  background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.2) 50%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, 0) 100%);
   height: 200px;
 }
 
@@ -47,7 +47,7 @@
   position: absolute;
   left: 50%;
   width: 100px;
-  transform: translate(-50%,100%);
+  transform: translate(-50%, 100%);
   animation: loader 4s linear;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
@@ -55,38 +55,39 @@
 
 @keyframes loader {
   0% {
-    transform: translate(-50%,110%);
+    transform: translate(-50%, 110%);
   }
   30% {
-    transform: translate(-50%,50%);
+    transform: translate(-50%, 50%);
   }
   100% {
-    transform: translate(-50%,0%);
+    transform: translate(-50%, 0%);
   }
 }
 
 @keyframes splash {
   0% {
-    transform: translate(0%,0%);
+    transform: translate(0%, 0%);
   }
   50% {
-    transform: translate(0%,0%);
+    transform: translate(0%, 0%);
   }
   100% {
-    transform: translate(0%,-100%);
+    transform: translate(0%, -100%);
   }
 }
 
 #section1overlay {
   height: 70vh;
   width: 100%;
-  background: -webkit-linear-gradient(left, darkorange, #ffc107);
+  background: #ffc107;
   font-family: 'Raleway', sans-serif;
 }
 
 .text-align {
   text-align: center;
 }
+
 #section1underlay {
   height: 70vh;
   width: 100%;
@@ -102,12 +103,26 @@
   color: white;
 
 }
-
+.font {
+  font-family: 'Raleway', sans-serif;
+}
 #section2underlay {
   height: 80vh;
   width: 100%;
   background: -webkit-linear-gradient(left, darkorange, #ffc107);
   border-top-left-radius: 40%;
+}
+
+#section2underlay1 {
+  height: 80vh;
+  width: 100%;
+  background: #ffc107;
+}
+
+#section2underlay2 {
+  height: 80vh;
+  width: 100%;
+  background: #ffc107;
 }
 
 .section2heading {
@@ -118,3 +133,6 @@
   padding-top: 20%;
 }
 
+.pt-6 {
+  padding-top: 5em !important;
+}
