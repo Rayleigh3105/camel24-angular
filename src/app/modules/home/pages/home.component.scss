@@ -96,7 +96,7 @@
 }
 
 #section2overlay {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
   background-color: white;
   font-family: 'Raleway', sans-serif;
@@ -107,20 +107,20 @@
   font-family: 'Raleway', sans-serif;
 }
 #section2underlay {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
-  background: -webkit-linear-gradient(left, darkorange, #ffc107);
+  background: #ffc107;
   border-top-left-radius: 40%;
 }
 
 #section2underlay1 {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
   background: #ffc107;
 }
 
 #section2underlay2 {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
   background: #ffc107;
 }
@@ -135,4 +135,82 @@
 
 .pt-6 {
   padding-top: 5em !important;
+}
+
+#mv-submit-button {
+  width: 250px !important;
+  height: 50px !important;
+  background: -moz-linear-gradient(right, #ffc107 0%, darkorange 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(right, #ffc107 0%, darkorange 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to left, #ffc107 0%, darkorange 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#585dc9', endColorstr='#7db9e8', GradientType=1); /* IE6-9 */
+  color: black;
+  cursor: pointer;
+  border: 0;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+#mv-submit-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.padding-top-bottom {
+  padding-top: 10% !important;
+  padding-bottom: 10% !important;
+}
+.padding-h2 {
+  padding-top: 25% !important;
+}
+.padding-h {
+  padding-top: 30% !important;
+}
+
+.section3 {
+  height: 80px !important;
+  background:  #ffc107;/* FF3.6-15 */
+  background:  #ffc107;/* Chrome10-25,Safari5.1-6 */
+  background: #ffc107; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border-bottom-left-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+}
+
+/* Arrow & Hover Animation */
+#more-arrows {
+  width: 75px;
+  height: 65px;
+  margin-bottom: 50px;
+
+  &:hover {
+
+    polygon {
+      fill: #FFF;
+      transition: all .2s ease-out;
+
+      &.arrow-bottom {
+        transform: translateY(-18px);
+      }
+
+      &.arrow-top {
+        transform: translateY(18px);
+      }
+
+    }
+
+  }
+
+}
+
+polygon {
+  fill: #FFF;
+  transition: all .2s ease-out;
+
+  &.arrow-middle {
+    opacity: 0.75;
+  }
+
+  &.arrow-top {
+    opacity: 0.5
+  }
+
 }

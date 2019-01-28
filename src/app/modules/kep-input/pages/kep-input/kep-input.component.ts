@@ -74,6 +74,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         // Updates NgModel Variables
         this.updateNgModelVariablesWithSessionStorage();
         this.setupDatePicker();
+        window.scroll(0,0);
 
         let interval = setInterval(() => {
             this.updateNgModelVariablesWithSessionStorage();
