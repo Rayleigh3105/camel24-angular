@@ -1,0 +1,32 @@
+.background-wrap {
+  background-color: #d8dfe9;
+}
+
+
+a {
+  position: relative;
+  display: inline-block;
+  padding: .4em;
+  margin-right: 10px;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    visibility: hidden;
+    transform: scaleX(0);
+    background-color: #ffc107;
+    transition: all .3s ease;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+      visibility: visible;
+    }
+  }
+}
