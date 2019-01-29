@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     /**
      * VARIABLEN
      */
-    protected errorMessageSignup: string;
+    errorMessageSignup: string;
     msgs: Message[] = [];
 
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
      * Register User in Database
      * @param form - register form
      */
-    protected onLogin(form: NgForm) {
+    onLogin(form: NgForm) {
         if (form.valid) {
             let user: User = {
                 kundenNummer: parseInt(form.value.kundennummer),
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     /**
      * Shows p-message component after error has been thrown
      */
-    private showError() {
+    showError() {
         this.msgs = [];
         this.msgs.push({
             severity: 'error',
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
     /**
      * Shows p-message component after succes of registration
      */
-    private showSuccess(value) {
+    showSuccess(value) {
         this.msgs = [];
         this.msgs.push({
             severity: 'success',
@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
     /**
      * Dertermines what happens after Modal has been closed
      */
-    protected onClose() {
+    onClose() {
         this.activeModal.close(true);
     }
 

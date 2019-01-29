@@ -7,7 +7,6 @@ import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './modules/home/pages/home.component';
-import {KepInputComponent} from './modules/kep-input/pages/kep-input/kep-input.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
@@ -25,6 +24,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {LoginComponent} from './shared/components/login/login.component';
 import {InfoComponent} from './modules/kep-input/pages/info/info.component';
+import {KepInputModule} from './modules/kep-input/kep-input.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import {InfoComponent} from './modules/kep-input/pages/info/info.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    KepInputComponent,
     LoginRegisterComponent,
     MustMatchDirective,
     LoginComponent,
@@ -49,6 +48,7 @@ import {InfoComponent} from './modules/kep-input/pages/info/info.component';
     CalendarModule,
     ReactiveFormsModule,
     NgbModule,
+      KepInputModule,
     MessageModule,
     MessagesModule
   ],

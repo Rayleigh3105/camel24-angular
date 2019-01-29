@@ -12,8 +12,8 @@ export class BestModalComponent implements OnInit {
     /**
      * VARIABLEN
      */
-    protected kundenNummer: string;
-    protected requestSuccesully: boolean = false;
+    public kundenNummer: string;
+     requestSuccesully: boolean = false;
 
     constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService) {
     }

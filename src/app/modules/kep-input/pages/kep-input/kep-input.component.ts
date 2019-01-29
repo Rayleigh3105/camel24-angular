@@ -16,25 +16,25 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     /**
      * VARIABLES
      */
-    protected minDate: Date = new Date();
-    protected maxDate: Date = new Date();
-    protected shouldUhrGetDisplayed: boolean = false;
-    protected shouldManuellDisplayed: boolean = false;
-    protected de: any;
+    public minDate: Date = new Date();
+    public maxDate: Date = new Date();
+    public shouldUhrGetDisplayed: boolean = false;
+    public shouldManuellDisplayed: boolean = false;
+    public de: any;
 
     // NGMODEL
     public sessionFirmenName: string;
-    protected sessionKundenNummer: string;
-    protected sessionZusatz: string;
-    protected sessionAnsprechpartner: string;
-    protected sessionAdresse: string;
-    protected sessionLand: string;
-    protected sessionPlz: string;
-    protected sessionOrt: string;
-    protected sessionTelefon: string;
-    protected sessionEmail: string;
-    protected landSelected: string = 'Deutschland';
-    protected rechnungSelected: string = 'absender';
+    public sessionKundenNummer: string;
+    public sessionZusatz: string;
+    public sessionAnsprechpartner: string;
+    public sessionAdresse: string;
+    public sessionLand: string;
+    public sessionPlz: string;
+    public sessionOrt: string;
+    public sessionTelefon: string;
+    public sessionEmail: string;
+    public landSelected: string = 'Deutschland';
+    public rechnungSelected: string = 'absender';
 
     constructor(private modalService: NgbModal) {
         super();
@@ -87,7 +87,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Checks if given string matches 'fixtermin' if yes a new selection is displayed
      * @param terminValue
      */
-    protected onOptionChange(terminValue: string) {
+    onOptionChange(terminValue: string) {
         this.shouldUhrGetDisplayed = terminValue === 'fixtermin';
     }
 
@@ -95,7 +95,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Checks if given string matches 'manuell' if yes a new input group is displayed
      * @param auftragsBestValue
      */
-    protected onOptionAuftragsBestChange(auftragsBestValue: string) {
+    onOptionAuftragsBestChange(auftragsBestValue: string) {
         this.shouldManuellDisplayed = auftragsBestValue === 'manuell';
     }
 
@@ -103,7 +103,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * When Form is valid and KundenNummer is given opens the Confirmation Modal
      * @param form - form which is submitted
      */
-    protected onSubmit(form: NgForm) {
+    onSubmit(form: NgForm) {
         if (form.form.valid) {
             const modalref = this.modalService.open(BestModalComponent, {
                 size: 'lg',
@@ -126,7 +126,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     /**
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      */
-    public updateNgModelVariablesWithSessionStorage() {
+    updateNgModelVariablesWithSessionStorage() {
         this.sessionKundenNummer = this.getKundennummer();
         this.sessionFirmenName = this.getFirmenname();
         this.sessionZusatz = this.getZusatz();
@@ -139,7 +139,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionEmail = this.getEmail();
     }
 
-    protected openInfoModal() {
+    openInfoModal() {
         const modalRef = this.modalService.open(InfoComponent, {
             size: 'lg',
             backdrop: 'static',

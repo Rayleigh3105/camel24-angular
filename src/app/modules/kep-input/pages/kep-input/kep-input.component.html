@@ -4,8 +4,8 @@
         <div class="row ">
             <div class="col-sm section3 vertical-horizontal-center">
                 <a (click)="openInfoModal()" class="modalOpen-a">Wie funktioniert die Auftrags erstellung ?
-                <img src="../../../../../assets/images/info.png" alt="Info" height="40"
-                     width="40" style="margin-left: 10px"><img></a>
+                    <img src="../../../../../assets/images/info.png" alt="Info" height="40"
+                         width="40" style="margin-left: 10px"><img></a>
             </div>
         </div>
         <div class="row mt-5">
@@ -127,7 +127,7 @@
                     <div class="form-group">
                         <label for="empfFirma">Firma / Name</label>
                         <input type="text" class="form-control" id="empfFirma" name="empfFirma"
-                               (ngModel)="order.empfaenger.firma"
+                               ngModel
                                #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
                                maxlength="255"
                                required>
@@ -143,16 +143,14 @@
 
                         <label for="empfZusatz">Zusatz</label>
                         <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
-                               (ngModel)="order.empfaenger.zusatz"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
+                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
                                maxlength="255"
                                #empfZusatz="ngModel">
                     </div>
                     <div class="form-group">
                         <label for="empfAnpsrechpartner">Ansprechpartner</label>
                         <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
-                               (ngModel)="order.empfaenger.ansprechpartner"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
+                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
                                maxlength="255"
                                #empfAnpsrechpartner="ngModel">
                     </div>
@@ -160,8 +158,8 @@
                     <div class="form-group">
                         <label for="empfAdresse">Adresse</label>
                         <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
-                               (ngModel)="order.empfaenger.addresse"
-                               #empfAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
+                               ngModel #empfAdresse="ngModel"
+                               [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
                                maxlength="255"
                                required>
                         <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
@@ -189,8 +187,8 @@
                         <div class="form-group col-sm">
                             <label for="empfPlz">PLZ</label>
                             <input type="text" class="form-control" id="empfPlz" name="empfPlz"
-                                   (ngModel)="order.empfaenger.plz"
-                                   #empfPlz="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
+                                   ngModel #empfPlz="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
                                    minlength="5"
                                    maxlength="5"
                                    pattern="[0-9]{5}"
@@ -205,8 +203,7 @@
                     <div class="form-group ">
                         <label for="empfOrt">Ort</label>
                         <input type="text" class="form-control" id="empfOrt" name="empfOrt"
-                               (ngModel)="order.empfaenger.ort"
-                               #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
+                               ngModel #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
                                maxlength="255"
                                required>
 
@@ -221,8 +218,7 @@
                         <input type="text" class="form-control"
                                id="empfTel"
                                name="empfTel"
-                               (ngModel)="order.empfaenger.telefon"
-                               #empfTel="ngModel"
+                               ngModel #empfTel="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
                                maxlength="255"
                                required>
@@ -266,8 +262,7 @@
                                                     [locale]="de"
                                                     [showIcon]="true"
                                                     name="abholDatum"
-                                                    (ngModel)="order.abholTermin.datum"
-                                                    #abholDatum="ngModel"
+                                                    ngModel #abholDatum="ngModel"
                                                     required
                                                     dateFormat="dd.mm.yy"></p-calendar>
 
@@ -380,8 +375,7 @@
                                                id="sendungsdatenWert"
                                                placeholder="0,00"
                                                pattern="[0-9]{1,12}"
-                                               (ngModel)="order.sendungsdaten.wert"
-                                               #sendungsdatenWert="ngModel"
+                                               ngModel #sendungsdatenWert="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }"
                                                required>
 
@@ -422,8 +416,7 @@
                                 <select name="zustellTermin"
                                         id="zustellTermin"
                                         class="form-control"
-                                        (ngModel)="order.zustellTermin.termin"
-                                        #zustellTermin="ngModel"
+                                        ngModel #zustellTermin="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && zustellTermin.invalid }"
                                         (change)="onOptionChange($event.target.value)"
                                         required>

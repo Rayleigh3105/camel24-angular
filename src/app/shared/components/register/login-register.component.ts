@@ -16,9 +16,9 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * VARIABLEN
      */
-    protected errorMessageSignup: string;
+    errorMessageSignup: string;
     msgs: Message[] = [];
-    protected landSelected: string = 'Deutschland';
+    landSelected: string = 'Deutschland';
 
     constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal) {
         super($modalService);
@@ -31,7 +31,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      * Register User in Database
      * @param form - register form
      */
-    protected onRegister(form: NgForm) {
+    onRegister(form: NgForm) {
         if (form.valid) {
             let user: User = {
                 firstName: form.value.vorname,
@@ -87,7 +87,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * Shows p-message component after error has been thrown
      */
-    private showError() {
+    showError() {
         this.msgs = [];
         this.msgs.push({
             severity: 'error',
@@ -99,7 +99,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * Shows p-message component after succes of registration
      */
-    private showSuccess(value) {
+    showSuccess(value) {
         this.msgs = [];
         this.msgs.push({
             severity: 'success',
@@ -111,7 +111,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * Dertermines what happens after Modal has been closed
      */
-    protected onClose() {
+    onClose() {
         this.activeModal.close(true);
     }
 

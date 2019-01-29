@@ -17,9 +17,9 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
     /**
      * VARIABLEN
      */
-    protected boolCheckIfLoggedIn: boolean = false;
-    protected firmenName: String;
-    protected kundenNummer: String;
+    public boolCheckIfLoggedIn: boolean = false;
+    public firmenName: String;
+    public kundenNummer: String;
 
     constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router) {
         super();
