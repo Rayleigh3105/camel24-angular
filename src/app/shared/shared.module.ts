@@ -5,6 +5,7 @@ import { SessionStorageComponent } from './components/session-storage/session-st
 import { ImpressumAgbComponent } from './components/impressum-agb/impressum-agb.component';
 import { AgbnationalComponent } from './components/agbnational/agbnational.component';
 import { AgbinternationalComponent } from './components/agbinternational/agbinternational.component';
+import { InfoComponent } from '../modules/kep-input/pages/info/info.component';
 
 @NgModule({
   imports: [

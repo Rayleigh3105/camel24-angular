@@ -682,20 +682,15 @@
             <div class="col-sm">
                 <div class="row">
                     <div class="col-sm vertical-horizontal-center">
-                        <div class="form-group">
+                        <div class="form-check">
 
                             <input type="checkbox"
                                    id="check"
-                                   ngModel
-                                   #check="ngModel"
-                                   [ngClass]="{ 'is-invalid': f.submitted && check.invalid }"
+                                   class="form-check-input"
                                    maxlength="255"
                                    required>
-                            <label for="check" class="pl-3"><a routerLink="/national">AGB´s</a> und<a
+                            <label for="check" class="form-check-label"><a routerLink="/national">AGB´s</a> und<a
                                     routerLink="/impressum"> Datenschutz</a> gelesen ?</label>
-                            <div *ngIf="f.submitted && check.invalid" class="invalid-feedback">
-                                <div *ngIf="check.errors.required">Information wird benötigt</div>
-                            </div>
                         </div>
                     </div>
                 </div>

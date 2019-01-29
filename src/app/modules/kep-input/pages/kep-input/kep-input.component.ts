@@ -35,8 +35,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     protected landSelected: string = 'Deutschland';
     protected rechnungSelected: string = 'absender';
 
-
-
     constructor(private modalService: NgbModal) {
         super();
     }
@@ -58,7 +56,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         };
 
         // Logic for calculating date
-        this.minDate.setDate(this.minDate.getDate() + 3);
+        this.minDate.setDate(this.minDate.getDate() + 1);
         if (this.minDate.getDay() === 5) {
             this.maxDate.setDate(this.minDate.getDate() + 16);
         } else if (this.minDate.getDay() === 4 || this.minDate.getDay() === 3 || this.minDate.getDay() === 2 || this.minDate.getDay() === 1) {
@@ -81,7 +79,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             if (this.sessionFirmenName !== null) {
                 clearInterval(interval);
             }
-
         }, 1000)
     }
 
@@ -140,6 +137,4 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionTelefon = this.getTelefon();
         this.sessionEmail = this.getEmail();
     }
-
-
 }

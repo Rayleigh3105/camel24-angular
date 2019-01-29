@@ -24,6 +24,7 @@ import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {LoginComponent} from './shared/components/login/login.component';
+import {InfoComponent} from './modules/kep-input/pages/info/info.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {LoginComponent} from './shared/components/login/login.component';
     KepInputComponent,
     LoginRegisterComponent,
     MustMatchDirective,
-    LoginComponent
+    LoginComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import {LoginComponent} from './shared/components/login/login.component';
     MessageModule,
     MessagesModule
   ],
-  entryComponents: [BestModalComponent,LoginRegisterComponent, LoginComponent],
+  entryComponents: [BestModalComponent,LoginRegisterComponent, LoginComponent, InfoComponent],
   providers: [AuthService, OrderService, CsvExportService],
   bootstrap: [AppComponent]
 })
