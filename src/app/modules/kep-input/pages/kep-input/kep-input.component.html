@@ -1,7 +1,15 @@
 <!--FÜR GROß KUNDEN -->
-<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" class="my-5" novalidate>
+<form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" novalidate>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row ">
+            <!--TODO - implement popver for info -->
+            <div class="col-sm section3 vertical-horizontal-center">
+                Wie funktioniert die Auftrags erstellung ?
+                <img src="../../../../../assets/images/info.png" alt="Info" height="40"
+                     width="40" style="margin-left: 10px"><img>
+            </div>
+        </div>
+        <div class="row mt-5">
             <div class="col-md-2"></div>
             <div class="col-md-4 col-sm">
                 <fieldset>
@@ -670,13 +678,39 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-        <div class="row">
+        <div class="row pb-5">
             <div class="col-sm">
-                <div class="ro ">
+                <div class="row">
                     <div class="col-sm vertical-horizontal-center">
-                        <button type="submit" id="mv-submit-button">Weiter</button>
+                        <div class="form-group">
+
+                            <input type="checkbox"
+                                   id="check"
+                                   ngModel
+                                   #check="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && check.invalid }"
+                                   maxlength="255"
+                                   required>
+                            <label for="check" class="pl-3"><a routerLink="/national">AGB´s</a> und<a
+                                    routerLink="/impressum"> Datenschutz</a> gelesen ?</label>
+                            <div *ngIf="f.submitted && check.invalid" class="invalid-feedback">
+                                <div *ngIf="check.errors.required">Information wird benötigt</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="row  ">
+                    <div class="col-sm vertical-horizontal-center">
+                        <button type="submit" id="mv-submit-button">Weiter <i class="fa fa-file"></i></button>
+                    </div>
+                </div>
+
+                <div class="row  ">
+                    <div class="col-sm vertical-horizontal-center">
+                        <span class="mv-info-color">*Eine Zusammenfassung wird erstellt.</span>
+                    </div>
+                </div>
+
 
             </div>
         </div>

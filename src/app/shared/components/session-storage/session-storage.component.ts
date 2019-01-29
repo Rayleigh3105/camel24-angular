@@ -18,6 +18,7 @@ export class SessionStorageComponent implements OnInit {
    */
   public removeSessionStorage() {
     sessionStorage.removeItem('firmenName');
+    sessionStorage.removeItem('email');
     sessionStorage.removeItem('kundenNummer');
     sessionStorage.removeItem('x-auth');
     sessionStorage.removeItem('zusatz');

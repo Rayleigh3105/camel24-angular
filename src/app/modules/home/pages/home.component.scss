@@ -78,7 +78,7 @@
 }
 
 #section1overlay {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background: #ffc107;
   font-family: 'Raleway', sans-serif;
@@ -89,14 +89,14 @@
 }
 
 #section1underlay {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background-color: white;
   border-bottom-right-radius: 40%;
 }
 
 #section2overlay {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background-color: white;
   font-family: 'Raleway', sans-serif;
@@ -107,20 +107,20 @@
   font-family: 'Raleway', sans-serif;
 }
 #section2underlay {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background: #ffc107;
   border-top-left-radius: 40%;
 }
 
 #section2underlay1 {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background: #ffc107;
 }
 
 #section2underlay2 {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background: #ffc107;
 }
@@ -167,10 +167,8 @@
 }
 
 .section3 {
-  height: 80px !important;
+  height: 100px !important;
   background:  #ffc107;/* FF3.6-15 */
-  background:  #ffc107;/* Chrome10-25,Safari5.1-6 */
-  background: #ffc107; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   border-bottom-left-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
 }
@@ -179,7 +177,7 @@
 #more-arrows {
   width: 75px;
   height: 65px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 
   &:hover {
 

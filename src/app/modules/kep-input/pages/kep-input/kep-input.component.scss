@@ -117,6 +117,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 #mv-submit-button {
   width: 300px;
   height: calc(2.85rem + 2px) !important;
+  margin-top: 20px;
   background: -moz-linear-gradient(left, #ffc107 0%, #e8a363 100%, #e8c998 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #ffc107 0%, #e8a363 100%, #e8c998 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #ffc107 0%, #e8a363 100%, #e8c998 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -446,4 +447,11 @@ hr {
   background: linear-gradient(to right,  darkorange 0%,#e8a363 100%,#e8c998 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585dc9', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
   cursor: pointer;
+}
+
+.section3 {
+  height: 100px !important;
+  background:  #ffc107;/* FF3.6-15 */
+  border-bottom-left-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
 }
