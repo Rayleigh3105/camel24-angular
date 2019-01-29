@@ -1,9 +1,8 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
-import {interval} from 'rxjs';
 import {InfoComponent} from '../info/info.component';
 
 @Component({
@@ -73,14 +72,17 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         // Updates NgModel Variables
         this.updateNgModelVariablesWithSessionStorage();
         this.setupDatePicker();
-        window.scroll(0,0);
+        window.scroll(0, 0);
 
         let interval = setInterval(() => {
-            this.updateNgModelVariablesWithSessionStorage();
-            if (this.sessionFirmenName !== null) {
-                clearInterval(interval);
+            if (this.getXAuth() !== null) {
+                this.updateNgModelVariablesWithSessionStorage();
+                if (this.sessionFirmenName !== null) {
+                    clearInterval(interval);
+                }
             }
-        }, 1000)
+
+        }, 1000);
     }
 
     /**
@@ -144,6 +146,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             size: 'lg',
             backdrop: 'static',
             centered: true,
-        })
+        });
     }
 }
