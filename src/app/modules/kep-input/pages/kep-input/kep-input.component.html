@@ -2,11 +2,10 @@
 <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" novalidate>
     <div class="container-fluid">
         <div class="row ">
-            <!--TODO - implement popver for info -->
             <div class="col-sm section3 vertical-horizontal-center">
-                Wie funktioniert die Auftrags erstellung ?
+                <a (click)="openInfoModal()" class="modalOpen-a">Wie funktioniert die Auftrags erstellung ?
                 <img src="../../../../../assets/images/info.png" alt="Info" height="40"
-                     width="40" style="margin-left: 10px"><img>
+                     width="40" style="margin-left: 10px"><img></a>
             </div>
         </div>
         <div class="row mt-5">

@@ -4,6 +4,7 @@ import {BestModalComponent} from '../../../../shared/components/best-modal/best-
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
 import {interval} from 'rxjs';
+import {InfoComponent} from '../info/info.component';
 
 @Component({
     selector: 'camel-kep-input',
@@ -136,5 +137,13 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionOrt = this.getOrt();
         this.sessionTelefon = this.getTelefon();
         this.sessionEmail = this.getEmail();
+    }
+
+    protected openInfoModal() {
+        const modalRef = this.modalService.open(InfoComponent, {
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+        })
     }
 }
