@@ -147,7 +147,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         const modalRef = this.modalService.open(InfoComponent, {
             size: 'lg',
             backdrop: 'static',
-            centered: true,
         });
     }
 }
