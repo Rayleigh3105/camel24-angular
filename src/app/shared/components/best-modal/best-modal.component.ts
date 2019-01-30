@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {t} from '@angular/core/src/render3';
 
 @Component({
     selector: 'camel-best-modal',
@@ -13,13 +14,16 @@ export class BestModalComponent implements OnInit {
      * VARIABLEN
      */
     public kundenNummer: string;
-     requestSuccesully: boolean = false;
+    requestSuccesully: boolean = false;
+    requestError: boolean = false;
 
     constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService) {
     }
 
     ngOnInit() {
         this.kundenNummer = sessionStorage.getItem('kundenNummer');
+        this.requestError = false;
+        this.requestSuccesully = false;
     }
 
 
@@ -29,10 +33,16 @@ export class BestModalComponent implements OnInit {
      */
     protected sendData(value){
         this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(isCsvCreated => {
-            if(isCsvCreated) {
+            if(isCsvCreated == "true") {
                 this.requestSuccesully = true;
+            } else {
+                this.requestError = true
             }
         })
+    }
+
+    onNew() {
+        location.reload();
     }
 
 

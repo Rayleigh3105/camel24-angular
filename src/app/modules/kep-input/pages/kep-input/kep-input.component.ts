@@ -124,6 +124,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             // Delete Check from request body because it isnt needed for the request
             delete form.value.check;
             modalref.componentInstance.data = form.value;
+
         }
     }
 
