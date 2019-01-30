@@ -8,7 +8,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class InfoComponent implements OnInit {
 
-  constructor(protected activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
