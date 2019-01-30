@@ -678,11 +678,17 @@
 
                             <input type="checkbox"
                                    id="check"
+                                   name="check"
+                                   #check="ngModel"
+                                   ngModel
                                    class="form-check-input"
-                                   maxlength="255"
+                                   [ngClass]="{ 'is-invalid': f.submitted && check.invalid }"
                                    required>
                             <label for="check" class="form-check-label"><a routerLink="/national">AGB´s</a> und<a
                                     routerLink="/impressum"> Datenschutz</a> gelesen ?</label>
+                            <div *ngIf="f.submitted && check.invalid" class="invalid-feedback">
+                                <div *ngIf="check.errors.required">Information wird benötigt</div>
+                            </div>
                         </div>
                     </div>
                 </div>

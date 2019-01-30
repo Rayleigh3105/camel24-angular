@@ -121,6 +121,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             }
             // Delete KundenNummer from request body because it going to be sent with headers
             delete form.value.kundenNummer;
+            // Delete Check from request body because it isnt needed for the request
+            delete form.value.check;
             modalref.componentInstance.data = form.value;
         }
     }
