@@ -55,7 +55,12 @@ import {AuthGuard} from './shared/guard/auth.guard';
         MessageModule,
         MessagesModule
     ],
-    entryComponents: [BestModalComponent, LoginRegisterComponent, LoginComponent, InfoComponent],
+    entryComponents: [
+        BestModalComponent,
+        LoginRegisterComponent,
+        LoginComponent,
+        InfoComponent
+    ],
     providers: [
         AuthService,
         OrderService,
