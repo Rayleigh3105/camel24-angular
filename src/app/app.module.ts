@@ -27,6 +27,7 @@ import {InfoComponent} from './modules/kep-input/pages/info/info.component';
 import {KepInputModule} from './modules/kep-input/kep-input.module';
 import {LoaderService} from './shared/services/loader-service.service';
 import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
+import {AuthGuard} from './shared/guard/auth.guard';
 
 @NgModule({
     declarations: [
@@ -55,12 +56,17 @@ import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
         MessagesModule
     ],
     entryComponents: [BestModalComponent, LoginRegisterComponent, LoginComponent, InfoComponent],
-    providers: [AuthService, OrderService, CsvExportService,
+    providers: [
+        AuthService,
+        OrderService,
+        CsvExportService,
         LoaderService, {
             provide: HTTP_INTERCEPTORS,
             useClass: LoaderInterceptor,
             multi: true
-        }],
+        },
+        AuthGuard
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
