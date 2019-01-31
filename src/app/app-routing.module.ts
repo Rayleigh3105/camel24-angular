@@ -5,6 +5,8 @@ import {KepInputComponent} from './modules/kep-input/pages/kep-input/kep-input.c
 import {ImpressumAgbComponent} from './shared/components/impressum-agb/impressum-agb.component';
 import {AgbnationalComponent} from './shared/components/agbnational/agbnational.component';
 import {AgbinternationalComponent} from './shared/components/agbinternational/agbinternational.component';
+import {UserDashboardComponent} from './shared/components/user-dashboard/user-dashboard.component';
+import {AuthGuard} from './shared/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +28,11 @@ const routes: Routes = [
   {
     path: 'international',
     component: AgbinternationalComponent,
+  },
+  {
+    path: 'userdashboard',
+    component: UserDashboardComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

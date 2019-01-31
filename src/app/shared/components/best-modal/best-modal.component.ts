@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
-import {HttpErrorResponse} from '@angular/common/http';
-import {t} from '@angular/core/src/render3';
+import {LoaderService} from '../../services/loader-service.service';
 
 @Component({
     selector: 'camel-best-modal',
@@ -17,7 +16,7 @@ export class BestModalComponent implements OnInit {
     requestSuccesully: boolean = false;
     requestError: boolean = false;
 
-    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService) {
+    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService, public $httpLoader: LoaderService) {
     }
 
     ngOnInit() {

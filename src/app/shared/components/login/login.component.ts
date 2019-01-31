@@ -4,6 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
 import {User} from '../../../core/models/user/user-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoaderService} from '../../services/loader-service.service';
 
 @Component({
     selector: 'camel-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     msgs: Message[] = [];
 
 
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal) {
+    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, public $httpLoader: LoaderService) {
     }
 
     ngOnInit() {
