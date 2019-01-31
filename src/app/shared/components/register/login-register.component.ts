@@ -70,6 +70,10 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                     sessionStorage.setItem('telefon', body.telefon);
                     // @ts-ignore
                     sessionStorage.setItem('plz', body.plz);
+                    // @ts-ignore
+                    sessionStorage.setItem('vorname', body.firstName);
+                    // @ts-ignore
+                    sessionStorage.setItem('nachname', body.lastName);
 
                     form.resetForm();
                     this.updateNgModelVariablesWithSessionStorage();

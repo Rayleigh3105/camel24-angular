@@ -26,7 +26,8 @@
           <li class="nav-item dropdown" *ngIf="boolCheckIfLoggedIn">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong> <i class="fa fa-user"></i> {{ firmenName }} - {{ kundenNummer}} </strong></a>
             <div class="dropdown-menu">
-              <!--<div role="separator" class="dropdown-divider"></div>-->
+                <a class="dropdown-item" routerLink="/userdashboard">Auftragsprofil</a>
+                <div role="separator" class="dropdown-divider"></div>
               <a class="dropdown-item" (click)="logoutUser()">Ausloggen</a>
             </div>
           </li>

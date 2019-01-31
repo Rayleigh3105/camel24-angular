@@ -28,6 +28,8 @@ import {KepInputModule} from './modules/kep-input/kep-input.module';
 import {LoaderService} from './shared/services/loader-service.service';
 import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
 import {AuthGuard} from './shared/guard/auth.guard';
+import {UserDashboardComponent} from './shared/components/user-dashboard/user-dashboard.component';
+import {DashboardService} from './shared/services/dashboard.service';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,8 @@ import {AuthGuard} from './shared/guard/auth.guard';
         LoginRegisterComponent,
         MustMatchDirective,
         LoginComponent,
-        InfoComponent
+        InfoComponent,
+        UserDashboardComponent
     ],
     imports: [
         BrowserModule,
@@ -70,7 +73,8 @@ import {AuthGuard} from './shared/guard/auth.guard';
             useClass: LoaderInterceptor,
             multi: true
         },
-        AuthGuard
+        AuthGuard,
+        DashboardService
     ],
     bootstrap: [AppComponent]
 })

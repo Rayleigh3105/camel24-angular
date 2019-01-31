@@ -76,6 +76,12 @@ export class SessionStorageComponent implements OnInit {
   public getEmail() {
     return sessionStorage.getItem('email');
   }
+  public getVorname() {
+      return sessionStorage.getItem('vorname');
+  }
+  public getNachname() {
+    return sessionStorage.getItem('nachname');
+  }
 
 
 }

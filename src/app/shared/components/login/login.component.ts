@@ -60,6 +60,10 @@ export class LoginComponent implements OnInit {
                     sessionStorage.setItem('ort', body.ort);
                     // @ts-ignore
                     sessionStorage.setItem('telefon', body.telefon);
+                    // @ts-ignore
+                    sessionStorage.setItem('vorname', body.firstName);
+                    // @ts-ignore
+                    sessionStorage.setItem('nachname', body.lastName);
 
 
                   form.resetForm();
