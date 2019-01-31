@@ -305,13 +305,13 @@
                                 <div class="col-sm vertical-horizontal-center">
                                     <!--<strong><p>Sie haben erfolgreich einen Auftrag erstellt.</p></strong>-->
                                     <div class="alert alert-danger" role="alert">
-                                        <strong>Fehlgeschlagen:</strong> Sie haben einen Auftrag erstellt.
+                                        <strong>Fehlgeschlagen:</strong> Der Auftrag wurde nicht erstellt.
                                     </div>
                                 </div>
                             </div>
                             <div class="row pt-3">
                                 <div class="col-sm vertical-horizontal-center">
-                                    <button class="mv-submit-button" (click)="activeModal.close()">
+                                    <button class="mv-submit-button" (click)="backToPreviosStep()">
                                        Nochmal versuchen
                                     </button>
                                 </div>

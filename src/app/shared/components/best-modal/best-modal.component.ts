@@ -41,8 +41,16 @@ export class BestModalComponent implements OnInit {
         })
     }
 
-    onNew() {
+    /**
+     * Reloads the Page when Order is successfully taken
+     */
+    protected onNew() {
         location.reload();
+    }
+
+    protected backToPreviosStep() {
+        this.requestError = false;
+        this.requestSuccesully = false;
     }
 
 
