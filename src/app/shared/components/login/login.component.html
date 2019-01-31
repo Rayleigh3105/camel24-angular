@@ -66,7 +66,12 @@
 
                     <div class="mv-submit-container" class="vertical-horizontal-center ">
                         <div class="vertical-horizontal-center">
-                            <button type="submit" id="mv-submit-button">Einloggen</button>
+                            <button type="submit" id="mv-submit-button">Einloggen
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                      *ngIf="$httpLoader.isLoading | async"></span>
+                            </button>
+
+
                         </div>
                     </div>
 

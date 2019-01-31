@@ -5,6 +5,7 @@ import {User} from '../../../core/models/user/user-model';
 import {Message} from 'primeng/api';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {KepInputComponent} from '../../../modules/kep-input/pages/kep-input/kep-input.component';
+import {LoaderService} from '../../services/loader-service.service';
 
 @Component({
     selector: 'camel-login-register',
@@ -20,7 +21,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     msgs: Message[] = [];
     landSelected: string = 'Deutschland';
 
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal) {
+    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal, public $httpLoader: LoaderService) {
         super($modalService);
     }
 

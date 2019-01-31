@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './layouts/header/header.component';
-import { FooterComponent } from './layouts/footer/footer.component';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './layouts/header/header.component';
+import {FooterComponent} from './layouts/footer/footer.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
@@ -10,7 +10,7 @@ import {HomeComponent} from './modules/home/pages/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OrderService} from './shared/services/order.service';
 import {CalendarModule} from 'primeng/primeng';
 import {NgModule} from '@angular/core';
@@ -25,35 +25,43 @@ import {MessageModule} from 'primeng/message';
 import {LoginComponent} from './shared/components/login/login.component';
 import {InfoComponent} from './modules/kep-input/pages/info/info.component';
 import {KepInputModule} from './modules/kep-input/kep-input.module';
+import {LoaderService} from './shared/services/loader-service.service';
+import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    LoginRegisterComponent,
-    MustMatchDirective,
-    LoginComponent,
-    InfoComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    SharedModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CalendarModule,
-    ReactiveFormsModule,
-    NgbModule,
-      KepInputModule,
-    MessageModule,
-    MessagesModule
-  ],
-  entryComponents: [BestModalComponent,LoginRegisterComponent, LoginComponent, InfoComponent],
-  providers: [AuthService, OrderService, CsvExportService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        HomeComponent,
+        LoginRegisterComponent,
+        MustMatchDirective,
+        LoginComponent,
+        InfoComponent
+    ],
+    imports: [
+        BrowserModule,
+        CoreModule,
+        SharedModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        CalendarModule,
+        ReactiveFormsModule,
+        NgbModule,
+        KepInputModule,
+        MessageModule,
+        MessagesModule
+    ],
+    entryComponents: [BestModalComponent, LoginRegisterComponent, LoginComponent, InfoComponent],
+    providers: [AuthService, OrderService, CsvExportService,
+        LoaderService, {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
+            multi: true
+        }],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

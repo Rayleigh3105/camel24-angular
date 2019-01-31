@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-9 register-right">
                 <button type="button" class="close" aria-label="Close" (click)="onClose()">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
                 <form #f="ngForm" name="form" (ngSubmit)="onRegister(f)" [mustMatch]="['passwort', 'passwortbest']"
                       novalidate>
@@ -128,7 +128,8 @@
                                         <div *ngIf="passwortbest.errors.required">Bestätigungs Passwort wird
                                             benötigt.
                                         </div>
-                                        <div *ngIf="passwortbest.errors.minlength">Bestätigungs Passwort muss mindestens aus
+                                        <div *ngIf="passwortbest.errors.minlength">Bestätigungs Passwort muss mindestens
+                                            aus
                                             6 Zeichen bestehen.
                                         </div>
                                         <div *ngIf="passwortbest.errors.mustMatch">Passwörter stimmen nicht
@@ -165,7 +166,7 @@
                                            maxlength="255"
                                            required>
                                     <div *ngIf="f.submitted && ort.invalid" class="invalid-feedback">
-                                        <div *ngIf="ort.errors.required">Ort wird                                        benötigt.
+                                        <div *ngIf="ort.errors.required">Ort wird benötigt.
                                         </div>
                                     </div>
 
@@ -181,7 +182,7 @@
                                            [ngClass]="{ 'is-invalid': f.submitted && plz.invalid }"
                                            minlength="5"
                                            maxlength="5"
-                                           pattern="[0-9]{5}"                                           required>
+                                           pattern="[0-9]{5}" required>
                                     <div *ngIf="f.submitted && plz.invalid" class="invalid-feedback">
                                         <div *ngIf="plz.errors.required">Postleihzahl wird benötigt.</div>
                                         <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
@@ -239,7 +240,10 @@
 
                     <div class="mv-submit-container" class="vertical-horizontal-center ">
                         <div class="vertical-horizontal-center">
-                            <button type="submit" id="mv-submit-button">Registrieren</button>
+                            <button type="submit" id="mv-submit-button">Registrieren
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                      *ngIf="$httpLoader.isLoading | async"></span>
+                            </button>
                         </div>
                     </div>
 

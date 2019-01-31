@@ -194,6 +194,8 @@
 <div class="modal-footer" *ngIf="requestSuccesully === false && requestError === false">
     <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
     <button type="button" class="btn btn-success" (click)="sendData(data)">Auftrag abschließen
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+              *ngIf="$httpLoader.isLoading | async"></span>
     </button>
 </div>
 
