@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment';
@@ -55,11 +55,9 @@ export class AuthService {
       'x-auth': sessionStorage.getItem('x-auth')
     };
 
-    let requestOptions = {
-      headers: new HttpHeaders(headers)
-    };
-
-    return requestOptions
+    return {
+        headers: new HttpHeaders(headers)
+    }
   }
 
 }

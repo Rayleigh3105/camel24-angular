@@ -33,12 +33,18 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
      * Checks if User is logged in based on the values in the session storage
      */
     protected checkIfLoggedIn() {
+        let interval;
         if (this.getXAuth() !== null) {
             this.firmenName = this.getFirmenname();
             this.kundenNummer = this.getKundennummer();
             this.boolCheckIfLoggedIn = true;
+
+            interval = setInterval(() => {
+                this.checkIfLoggedIn();
+            }, 1000);
         } else {
             this.boolCheckIfLoggedIn = false;
+            clearInterval(interval);
         }
     }
 
@@ -89,9 +95,12 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
                 // Removes Session Storage
                 this.removeSessionStorage();
                 this.checkIfLoggedIn();
+
                 // Navigate to Home page
                 this.router.navigate(['']);
             }
         });
     }
+
+
 }

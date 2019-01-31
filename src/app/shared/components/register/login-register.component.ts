@@ -83,8 +83,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 this.showError();
                 console.log(error);
             });
-
-
         }
     }
 

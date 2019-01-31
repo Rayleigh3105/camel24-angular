@@ -1,7 +1,7 @@
 import { Token } from './token-model';
 
 export interface User {
-    _id? : number,
+    _id? : any,
     firstName?: string;
     lastName?: string;
     firmenName?: string;
