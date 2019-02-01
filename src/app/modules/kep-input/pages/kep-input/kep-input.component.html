@@ -283,11 +283,11 @@
                                             <label for="sendungsdatenArt">Art der Ware</label>
                                             <select id="sendungsdatenArt" class="form-control"
                                                     name="sendungsdatenArt"
-                                                    ngModel
+                                                    [(ngModel)]="artSelected"
                                                     #sendungsdatenArt="ngModel"
                                                     [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenArt.invalid }"
                                                     required>
-                                                <option>Waffe</option>
+                                                <option selected>Waffe</option>
                                                 <option>Munition</option>
                                             </select>
 
@@ -301,13 +301,13 @@
                                             <label for="sendungsdatenGewicht">Gewicht</label>
                                             <select name="sendungsdatenGewicht" id="sendungsdatenGewicht"
                                                     class="form-control"
-                                                    ngModel
+                                                    [(ngModel)]="kiloSelected"
                                                     #sendungsdatenGewicht="ngModel"
                                                     [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenGewicht.invalid }"
                                                     required>
                                                 <option value="1">1,00 kg</option>
                                                 <option value="2">2,00 kg</option>
-                                                <option value="3" selected>3,00 kg</option>
+                                                <option>3,00 kg</option>
                                                 <option value="4">4,00 kg</option>
                                                 <option value="5">5,00 kg</option>
                                                 <option value="6">6,00 kg</option>
@@ -349,12 +349,12 @@
                                             <select name="sendungsdatenVers"
                                                     id="sendungsdatenVers"
                                                     class="form-control"
-                                                    ngModel
+                                                    [(ngModel)]="versicherungSelected"
                                                     #sendungsdatenVers="ngModel"
                                                     [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenVers.invalid }"
                                                     required>
-                                                <option value="ja">Ja</option>
-                                                <option value="nein">Nein</option>
+                                                <option>Ja</option>
+                                                <option>Nein</option>
                                             </select>
 
                                             <div *ngIf="f.submitted && sendungsdatenVers.invalid"
@@ -413,14 +413,15 @@
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="zustellTermin">Zustellungstermin</label>
-                                <select name="zustellTermin"
-                                        id="zustellTermin"
+                                <select id="zustellTermin"
                                         class="form-control"
-                                        ngModel #zustellTermin="ngModel"
+                                        [(ngModel)]="zustellungsTerminSelected"
+                                        name="zustellTermin"
+                                        #zustellTermin="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && zustellTermin.invalid }"
                                         (change)="onOptionChange($event.target.value)"
                                         required>
-                                    <option value="standard">Standardzustellungtermin</option>
+                                    <option value="Standardzustellungstermin" selected>Standardzustellungtermin</option>
                                     <option value="9">Termin bis 09:00 Uhr</option>
                                     <option value="10">Termin bis 10:00 Uhr</option>
                                     <option value="12">Termin bis 12:00 Uhr</option>
@@ -486,12 +487,12 @@
                     <div class="form-group">
                         <select id="sonderdienst"
                                 class="form-control"
-                                ngModel
+                                [(ngModel)]="sonderdienstSelected"
                                 name="sonderdienst"
                                 #sonderdienst="ngModel"
                                 [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
                                 required>
-                            <option value="standard">Standardzustellung</option>
+                            <option >Standardzustellung</option>
                             <option value="persoenlich">Persönliche Zustellung</option>
                             <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
                         </select>

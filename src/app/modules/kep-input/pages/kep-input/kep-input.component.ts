@@ -34,6 +34,13 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public sessionEmail: string;
     public landSelected: string = 'Deutschland';
     public rechnungSelected: string = 'absender';
+    public artSelected: string = 'Waffe';
+    public kiloSelected: string = '3,00 kg';
+    public versicherungSelected: string = 'Nein';
+    public zustellungsTerminSelected: string = 'Standardzustellungstermin';
+    public sonderdienstSelected: string = 'Standardzustellung';
+
+
 
     constructor(private modalService: NgbModal) {
         super();
@@ -57,16 +64,16 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
         // TODO - IMPLEMENT LOGIC FOR CALCULATING THE DATE THE RIGHT WAY
         // Logic for calculating date
-        // this.minDate.setDate(this.minDate.getDate() + 1);
-        // if (this.minDate.getDay() === 5) {
-        //     this.maxDate.setDate(this.minDate.getDate() + 16);
-        // } else if (this.minDate.getDay() === 4 || this.minDate.getDay() === 3 || this.minDate.getDay() === 2 || this.minDate.getDay() === 1) {
-        //     this.maxDate.setDate(this.minDate.getDate() + 14);
-        // } else if (this.minDate.getDay() === 6) {
-        //     this.maxDate.setDate(this.minDate.getDate() + 13);
-        // } else if (this.minDate.getDay() === 0) {
-        //     this.maxDate.setDate(this.minDate.getDate() + 12);
-        // }
+        this.minDate.setDate(this.minDate.getDate() + 1);
+        if (this.minDate.getDay() === 5) {
+            this.maxDate.setDate(this.minDate.getDate() + 16);
+        } else if (this.minDate.getDay() === 4 || this.minDate.getDay() === 3 || this.minDate.getDay() === 2 || this.minDate.getDay() === 1) {
+            this.maxDate.setDate(this.minDate.getDate() + 14);
+        } else if (this.minDate.getDay() === 6) {
+            this.maxDate.setDate(this.minDate.getDate() + 13);
+        } else if (this.minDate.getDay() === 0) {
+            this.maxDate.setDate(this.minDate.getDate() + 12);
+        }
     }
 
     ngOnInit() {
