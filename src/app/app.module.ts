@@ -11,7 +11,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {OrderService} from './shared/services/order.service';
 import {CalendarModule} from 'primeng/primeng';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -66,7 +65,6 @@ import {DashboardService} from './shared/services/dashboard.service';
     ],
     providers: [
         AuthService,
-        OrderService,
         CsvExportService,
         LoaderService, {
             provide: HTTP_INTERCEPTORS,
