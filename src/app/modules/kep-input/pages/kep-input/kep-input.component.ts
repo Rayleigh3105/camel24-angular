@@ -126,6 +126,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             if (form.value.kundenNummer) {
                 sessionStorage.removeItem('kundenNummer');
                 sessionStorage.setItem('kundenNummer', form.value.kundenNummer);
+            } else {
+                sessionStorage.setItem('auftragEmail', form.value.auftragbestEmail);
             }
             // Delete KundenNummer from request body because it going to be sent with headers
             delete form.value.kundenNummer;

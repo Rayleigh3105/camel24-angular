@@ -480,7 +480,7 @@
                     </div>
 
 
-                    <h4 class="mv_heading sendungsdaten_h pt-3">Sendungsdaten</h4>
+                    <h4 class="mv_heading sendungsdaten_h pt-3">Zustellungsart</h4>
 
                     <label for="sonderdienst">Sonderdienst</label>
 
@@ -514,25 +514,6 @@
             <div class="col-md-8 col-sm">
                 <fieldset>
                     <h4 class="mv_heading">Auftragsbestätigung und Rechnung</h4>
-
-                    <div class="form-group" *ngIf="!sessionKundenNummer">
-                        <label for="kundenNummer">Kundennummer</label>
-
-                        <input type="text"
-                               class="form-control"
-                               id="kundenNummer"
-                               name="kundenNummer"
-                               ngModel
-                               #kundenNummer="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && kundenNummer.invalid }"
-                               maxlength="5"
-                               required>
-
-                        <div *ngIf="f.submitted && kundenNummer.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="kundenNummer.errors.required">Kundennummer wird benötigt</div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="auftragbestEmail">E-Mail Adresse</label>
                         <input type="email"
@@ -648,21 +629,6 @@
 
                             <div *ngIf="f.submitted && rechnungOrt.invalid" class="invalid-feedback">
                                 <div *ngIf="rechnungOrt.errors.required">Ort wird benötigt</div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="rechnungTel">Telefon</label>
-                            <input type="text" class="form-control" id="rechnungTel" name="rechnungTel"
-                                   ngModel
-                                   #rechnungTel="ngModel"
-                                   [ngClass]="{ 'is-invalid': f.submitted && rechnungTel.invalid }"
-                                   maxlength="255"
-                                   required>
-
-                            <div *ngIf="f.submitted && rechnungTel.invalid" class="invalid-feedback">
-                                <div *ngIf="rechnungTel.errors.required">Telefonnummer wird benötigt</div>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ export class BestModalComponent implements OnInit {
      * VARIABLEN
      */
     public kundenNummer: string;
+    public auftragEmail: string;
     requestSuccesully: boolean = false;
     requestError: boolean = false;
 
@@ -21,6 +22,7 @@ export class BestModalComponent implements OnInit {
 
     ngOnInit() {
         this.kundenNummer = sessionStorage.getItem('kundenNummer');
+        this.auftragEmail = sessionStorage.getItem('auftragEmail')
         this.requestError = false;
         this.requestSuccesully = false;
     }

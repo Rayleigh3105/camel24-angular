@@ -1,8 +1,17 @@
 <div class="modal-header" *ngIf="requestSuccesully === false && requestError === false">
+    <div *ngIf="kundenNummer; else email">
     <h5 class="modal-title">Auftrag abschließen für Kundennummer: <strong>{{ kundenNummer }}</strong></h5>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
+    </div>
+
+    <ng-template #email>
+        <h5 class="modal-title">Auftrag abschließen mit E-Mail: <strong>{{ auftragEmail }}</strong></h5>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </ng-template>
 </div>
 <div class="modal-body" *ngIf="requestSuccesully === false && requestError === false">
     <div class="container">
@@ -10,32 +19,32 @@
             <div class="col-sm">
                 <h5 class="heading_modal">Absender</h5>
                 <div class="row">
-                    <div class="col-5">Firma / Name:</div>
+                    <div class="col-5"><strong>Firma / Name:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absFirma }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Adresse:</div>
+                    <div class="col-5"><strong>Adresse:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absAdresse }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Land:</div>
+                    <div class="col-5"><strong>Land:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absLand }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Postleizahl:</div>
+                    <div class="col-5"><strong>Postleizahl:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absPlz }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Ort:</div>
+                    <div class="col-5"><strong>Ort:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absOrt }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Telefon:</div>
+                    <div class="col-5"><strong>Telefon:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absTel }}</span></div>
                 </div>
             </div>
@@ -43,32 +52,32 @@
                 <h5 class="heading_modal">Empfänger</h5>
 
                 <div class="row">
-                    <div class="col-5">Firma / Name:</div>
+                    <div class="col-5"><strong>Firma / Name:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfFirma }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Adresse:</div>
+                    <div class="col-5"><strong>Adresse:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfAdresse }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Land:</div>
+                    <div class="col-5"><strong>Land:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfLand }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Postleizahl:</div>
+                    <div class="col-5"><strong>Postleizahl:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfPlz }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Ort:</div>
+                    <div class="col-5"><strong>Ort:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfOrt }}</span></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-5">Telefon:</div>
+                    <div class="col-5"><strong>Telefon:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfTel }}</span></div>
                 </div>
 
@@ -86,7 +95,7 @@
 
                 <div class="row padding-left">
                     <div class="col-4">Gewicht der Sendung:</div>
-                    <div class="col-8">{{ data.sendungsdatenGewicht }}kg</div>
+                    <div class="col-8">{{ data.sendungsdatenGewicht }}</div>
                 </div>
 
                 <div class="row padding-left">
@@ -114,7 +123,7 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="data.zustellTermin === 'standard'">Standardtermin (zwischen 09:00 - 17:00 Uhr)</div>
+                        <div *ngIf="data.zustellTermin === 'Standardzustellungstermin'">Standardtermin (zwischen 09:00 - 17:00 Uhr)</div>
                         <div *ngIf="data.zustellTermin === '9'">Termin um 09:00 Uhr</div>
                         <div *ngIf="data.zustellTermin === '10'">Termin um 10:00 Uhr</div>
                         <div *ngIf="data.zustellTermin === '12'">Termin um 12:00 Uhr</div>
@@ -130,7 +139,7 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="data.sonderdienst === 'standard'">Standard</div>
+                        <div *ngIf="data.sonderdienst === 'Standardzustellung'">Standard</div>
                         <div *ngIf="data.sonderdienst === 'persoenlich'">Persönlich</div>
                         <div *ngIf="data.sonderdienst === 'persoenlichIdent'">Persönlich mit Identifikation</div>
 
@@ -192,7 +201,7 @@
     </div>
 </div>
 <div class="modal-footer" *ngIf="requestSuccesully === false && requestError === false">
-    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Schließen</button>
     <button type="button" class="btn btn-success" (click)="sendData(data)">Auftrag abschließen
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
               *ngIf="$httpLoader.isLoading | async"></span>

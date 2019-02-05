@@ -17,10 +17,14 @@ export class CsvExportService {
      * @param order
      * @param kundenNummer
      */
-    public createCSVOnServer(order: any, kundenNummer: string) {
-        let headers = {
-            'x-kundenNummer': kundenNummer,
-        };
+    public createCSVOnServer(order: any, kundenNummer?: string) {
+        let headers;
+        if(kundenNummer) {
+            headers = {
+                'x-kundenNummer': kundenNummer,
+            };
+        }
+
         return this.$http.post(environment.endpoint + 'csv', order, {observe: 'response', responseType: 'text', headers: new HttpHeaders(headers)})
             .pipe(
                 map(response => response.body )
