@@ -1,234 +1,234 @@
 <div class="container">
-    <div class="row pt-5">
-        <div class="col-sm">
-            <div class="card">
-                <div class="card-header">
-                    <img src="../../../../assets/images/user.png" height="24" width="24"/>
-                    <strong>Benutzer</strong>
-                </div>
-                <div class="card-body">
-                    <form #f="ngForm" name="form" (ngSubmit)="onUpdate(f)" novalidate>
-
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="form-row">
-                                    <div class="form-group col-sm">
-                                        <label for="vorname">Vorname</label>
-                                        <input type="text" class="form-control" id="vorname" name="vorname"
-                                               [(ngModel)]="sessionVorname"
-                                               #vorname="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
-                                            <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-sm">
-                                        <label for="nachname">Nachname</label>
-                                        <input type="text" class="form-control" id="nachname" name="nachname"
-                                               [(ngModel)]="sessionNachname"
-                                               #nachname="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && nachname.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && nachname.invalid" class="invalid-feedback">
-                                            <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-sm">
-                                        <label for="firmenname">Firmenname</label>
-                                        <input type="text" class="form-control" id="firmenname" name="firmenname"
-                                               [(ngModel)]="sessionFirmenName"
-                                               #firmenname="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
-                                            <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-sm">
-                                        <label for="kundennummer">Kundennummer</label>
-                                        <input type="text" class="form-control" id="kundennummer" name="kundennummer"
-                                               [(ngModel)]="sessionKundenNummer"
-                                               #kundennummer="ngModel"
-                                               disabled
-                                               [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
-                                               pattern="[0-9]{5}"
-                                               maxlength="5"
-                                               required>
-                                        <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
-                                            <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
-                                            <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
-                                                Kundennummer ein.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="vorname">E-Mail</label>
-                                    <input type="text" class="form-control" id="email" name="email"
-                                           [(ngModel)]="sessionEmail"
-                                           #email="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
-                                           maxlength="255"
-                                           email
-                                           required>
-                                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-                                        <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
-                                        <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <h5>Standardauftragsdaten</h5>
-                                <div class="form-row">
-                                    <div class="form-group col-sm">
-                                        <label for="adresse">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse" name="adresse"
-                                               [(ngModel)]="sessionAdresse"
-                                               #adresse="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && adresse.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && adresse.invalid" class="invalid-feedback">
-                                            <div *ngIf="adresse.errors.required">Adresse wird benötigt.</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-sm">
-                                        <label for="ort">Ort</label>
-                                        <input type="text" class="form-control" id="ort"
-                                               name="ort"
-                                               [(ngModel)]="sessionOrt"
-                                               #ort="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && ort.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && ort.invalid" class="invalid-feedback">
-                                            <div *ngIf="ort.errors.required">Ort wird benötigt.
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-sm">
-                                        <label for="plz">Plz</label>
-                                        <input type="text" class="form-control" id="plz" name="plz"
-                                               [(ngModel)]="sessionPlz"
-                                               #plz="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && plz.invalid }"
-                                               minlength="5"
-                                               maxlength="5"
-                                               pattern="[0-9]{5}" required>
-                                        <div *ngIf="f.submitted && plz.invalid" class="invalid-feedback">
-                                            <div *ngIf="plz.errors.required">Postleihzahl wird benötigt.</div>
-                                            <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-sm">
-                                        <label for="land">Land</label>
-                                        <select id="land"
-                                                class="form-control"
-                                                [(ngModel)]="sessionLand"
-                                                name="land"
-                                                #land="ngModel"
-                                                [ngClass]="{ 'is-invalid': f.submitted && land.invalid }"
-                                                required>
-                                            <option value="Deutschland" selected>Deutschland</option>
-                                            <option value="Österreich">Österreich</option>
-                                            <option value="Schweiz">Schweiz</option>
-                                        </select>
-
-
-                                        <div *ngIf="f.submitted && land.invalid"
-                                             class="invalid-feedback">
-                                            <div *ngIf="land.errors.required">Land wird benötigt</div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group col-sm">
-                                        <label for="telefon">Telefon</label>
-                                        <input type="text" class="form-control" id="telefon"
-                                               name="telefon"
-                                               [(ngModel)]="sessionTelefon"
-                                               #telefon="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && telefon.invalid }"
-                                               maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && telefon.invalid" class="invalid-feedback">
-                                            <div *ngIf="telefon.errors.required">Telefonnummer wird benötigt</div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm vertical-horizontal-center">
-                                <p-messages [(value)]="msgs" [closable]="true"></p-messages>
-                            </div>
-                        </div>
-                        <div class="row pt-2 pb-2">
-                            <div class="col-sm vertical-horizontal-center">
-                                <button type="submit" class="btn btn-success" [disabled]="!f.dirty">Speichern
-                                    <span class="spinner-border spinner-border-sm" role="status"
-                                          aria-hidden="true"
-                                          *ngIf="$httpLoader.isLoading | async"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="row pt-5 pb-5">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-header">
+          <strong>Erstellte Aufträge</strong>
         </div>
-    </div>
-
-    <div class="row pt-5 mb-5">
-        <div class="col-sm">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Erstellte Aufträge</strong>
-                </div>
-                <div class="card-body">
-                    <p-table [value]="$dasboardService.orders$ | async">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Rechnungs Empfänger</th>
-                                <th>Rechnungs Telefonnummer</th>
-                                <th>Warenart</th>
-                                <th>Warenwert</th>
-                                <th>Warengewicht</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-order>
-                            <tr>
-                                <td>{{order.rechnungsDaten.email}}</td>
-                                <td>{{order.rechnungsDaten.telefon}}</td>
-                                <td>{{order.sendungsdaten.art}}</td>
-                                <td>{{order.sendungsdaten.wert}}</td>
-                                <td>{{order.sendungsdaten.gewicht}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div>
+        <div class="card-body">
+          <p-table [value]="$dasboardService.orders$ | async">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Rechnungs Empfänger</th>
+                <th>Rechnungs Telefonnummer</th>
+                <th>Warenart</th>
+                <th>Warenwert</th>
+                <th>Warengewicht</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{order.rechnungsDaten.email}}</td>
+                <td>{{order.rechnungsDaten.telefon}}</td>
+                <td>{{order.sendungsdaten.art}}</td>
+                <td>{{order.sendungsdaten.wert}}</td>
+                <td>{{order.sendungsdaten.gewicht}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
+      </div>
     </div>
+  </div>
+
+  <div class="row pb-5">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-header">
+          <img src="../../../../assets/images/user.png" height="24" width="24"/>
+          <strong>Benutzer</strong>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" name="form" (ngSubmit)="onUpdate(f)" novalidate>
+
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-row">
+                  <div class="form-group col-sm">
+                    <label for="vorname">Vorname</label>
+                    <input type="text" class="form-control" id="vorname" name="vorname"
+                           [(ngModel)]="sessionVorname"
+                           #vorname="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
+                      <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm">
+                    <label for="nachname">Nachname</label>
+                    <input type="text" class="form-control" id="nachname" name="nachname"
+                           [(ngModel)]="sessionNachname"
+                           #nachname="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && nachname.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && nachname.invalid" class="invalid-feedback">
+                      <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-sm">
+                    <label for="firmenname">Firmenname</label>
+                    <input type="text" class="form-control" id="firmenname" name="firmenname"
+                           [(ngModel)]="sessionFirmenName"
+                           #firmenname="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
+                      <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm">
+                    <label for="kundennummer">Kundennummer</label>
+                    <input type="text" class="form-control" id="kundennummer" name="kundennummer"
+                           [(ngModel)]="sessionKundenNummer"
+                           #kundennummer="ngModel"
+                           disabled
+                           [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
+                           pattern="[0-9]{5}"
+                           maxlength="5"
+                           required>
+                    <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
+                      <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
+                      <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
+                        Kundennummer ein.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vorname">E-Mail</label>
+                  <input type="text" class="form-control" id="email" name="email"
+                         [(ngModel)]="sessionEmail"
+                         #email="ngModel"
+                         [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+                         maxlength="255"
+                         email
+                         required>
+                  <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                    <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
+                    <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <h5>Standardauftragsdaten</h5>
+                <div class="form-row">
+                  <div class="form-group col-sm">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse"
+                           [(ngModel)]="sessionAdresse"
+                           #adresse="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && adresse.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && adresse.invalid" class="invalid-feedback">
+                      <div *ngIf="adresse.errors.required">Adresse wird benötigt.</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm">
+                    <label for="ort">Ort</label>
+                    <input type="text" class="form-control" id="ort"
+                           name="ort"
+                           [(ngModel)]="sessionOrt"
+                           #ort="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && ort.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && ort.invalid" class="invalid-feedback">
+                      <div *ngIf="ort.errors.required">Ort wird benötigt.
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-sm">
+                    <label for="plz">Plz</label>
+                    <input type="text" class="form-control" id="plz" name="plz"
+                           [(ngModel)]="sessionPlz"
+                           #plz="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && plz.invalid }"
+                           minlength="5"
+                           maxlength="5"
+                           pattern="[0-9]{5}" required>
+                    <div *ngIf="f.submitted && plz.invalid" class="invalid-feedback">
+                      <div *ngIf="plz.errors.required">Postleihzahl wird benötigt.</div>
+                      <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm">
+                    <label for="land">Land</label>
+                    <select id="land"
+                            class="form-control"
+                            [(ngModel)]="sessionLand"
+                            name="land"
+                            #land="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && land.invalid }"
+                            required>
+                      <option value="Deutschland" selected>Deutschland</option>
+                      <option value="Österreich">Österreich</option>
+                      <option value="Schweiz">Schweiz</option>
+                    </select>
+
+
+                    <div *ngIf="f.submitted && land.invalid"
+                         class="invalid-feedback">
+                      <div *ngIf="land.errors.required">Land wird benötigt</div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group col-sm">
+                    <label for="telefon">Telefon</label>
+                    <input type="text" class="form-control" id="telefon"
+                           name="telefon"
+                           [(ngModel)]="sessionTelefon"
+                           #telefon="ngModel"
+                           [ngClass]="{ 'is-invalid': f.submitted && telefon.invalid }"
+                           maxlength="255"
+                           required>
+                    <div *ngIf="f.submitted && telefon.invalid" class="invalid-feedback">
+                      <div *ngIf="telefon.errors.required">Telefonnummer wird benötigt</div>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm vertical-horizontal-center">
+                <p-messages [(value)]="msgs" [closable]="true"></p-messages>
+              </div>
+            </div>
+            <div class="row pt-2 pb-2">
+              <div class="col-sm vertical-horizontal-center">
+                <button type="submit" class="btn btn-success" [disabled]="!f.dirty">Speichern
+                  <span class="spinner-border spinner-border-sm" role="status"
+                        aria-hidden="true"
+                        *ngIf="$httpLoader.isLoading | async"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

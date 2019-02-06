@@ -128,16 +128,16 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      */
     updateNgModelVariablesWithSessionStorage() {
-        this.sessionKundenNummer = this.getKundennummer();
-        this.sessionFirmenName = this.getFirmenname();
-        this.sessionAdresse = this.getAdresse();
-        this.sessionLand = this.getLand();
-        this.sessionPlz = this.getPlz();
-        this.sessionOrt = this.getOrt();
-        this.sessionTelefon = this.getTelefon();
-        this.sessionEmail = this.getEmail();
-        this.sessionNachname = this.getNachname();
-        this.sessionVorname = this.getVorname();
+        this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
+        this.sessionFirmenName = SessionStorageComponent.getFirmenname();
+        this.sessionAdresse = SessionStorageComponent.getAdresse();
+        this.sessionLand = SessionStorageComponent.getLand();
+        this.sessionPlz = SessionStorageComponent.getPlz();
+        this.sessionOrt = SessionStorageComponent.getOrt();
+        this.sessionTelefon = SessionStorageComponent.getTelefon();
+        this.sessionEmail = SessionStorageComponent.getEmail();
+        this.sessionNachname = SessionStorageComponent.getNachname();
+        this.sessionVorname = SessionStorageComponent.getVorname();
     }
 
 }

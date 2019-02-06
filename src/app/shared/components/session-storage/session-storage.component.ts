@@ -16,7 +16,7 @@ export class SessionStorageComponent implements OnInit {
   /**
    * Removes all existing Session Storage
    */
-  public removeSessionStorage() {
+  public static removeSessionStorage() {
     sessionStorage.removeItem('firmenName');
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('kundenNummer');
@@ -28,58 +28,60 @@ export class SessionStorageComponent implements OnInit {
     sessionStorage.removeItem('plz');
     sessionStorage.removeItem('ort');
     sessionStorage.removeItem('telefon');
+    sessionStorage.removeItem('vorname');
+    sessionStorage.removeItem('nachname');
   }
 
   /**
    * GETTER SESSION STORAGE
    */
-  public getXAuth() {
+  public static getXAuth() {
     return sessionStorage.getItem('x-auth');
   }
 
-  public getKundennummer() {
+  public static getKundennummer() {
     return sessionStorage.getItem('kundenNummer');
   }
 
-  public getFirmenname() {
+  public static getFirmenname() {
     return sessionStorage.getItem('firmenName');
   }
 
-  public getZusatz() {
+  public static getZusatz() {
     return sessionStorage.getItem('zusatz');
   }
 
-  public getAnsprechpartner() {
+  public static getAnsprechpartner() {
     return sessionStorage.getItem('anprechpartner');
   }
 
-  public getAdresse() {
+  public static getAdresse() {
     return sessionStorage.getItem('adresse');
   }
 
-  public getLand() {
+  public static getLand() {
     return sessionStorage.getItem('land');
   }
 
-  public getPlz() {
+  public static getPlz() {
     return sessionStorage.getItem('plz');
   }
 
-  public getOrt() {
+  public static getOrt() {
     return sessionStorage.getItem('ort');
   }
 
-  public getTelefon() {
+  public static getTelefon() {
     return sessionStorage.getItem('telefon');
   }
 
-  public getEmail() {
+  public static getEmail() {
     return sessionStorage.getItem('email');
   }
-  public getVorname() {
+  public static getVorname() {
       return sessionStorage.getItem('vorname');
   }
-  public getNachname() {
+  public static getNachname() {
     return sessionStorage.getItem('nachname');
   }
 

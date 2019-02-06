@@ -521,7 +521,7 @@
                                id="auftragbestEmail"
                                name="auftragbestEmail"
                                [(ngModel)]="sessionEmail"
-                               [disabled]="sessionEmail != ''"
+                               [disabled]="sessionEmail != null"
                                #auftragbestEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                                required email>
@@ -540,7 +540,6 @@
                                id="auftragbestTelefon"
                                name="auftragbestTelefon"
                                [(ngModel)]="sessionTelefon"
-                               [disabled]="sessionTelefon != ''"
                                #auftragbestTelefon="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                                required>
@@ -663,7 +662,7 @@
                 </div>
                 <div class="row  ">
                     <div class="col-sm vertical-horizontal-center">
-                        <button type="submit" id="mv-submit-button">Weiter <i class="fa fa-file"></i></button>
+                        <button type="submit" id="mv-submit-button" autofocus>Weiter <i class="fa fa-file"></i></button>
                     </div>
                 </div>
 

@@ -83,7 +83,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         window.scroll(0, 0);
 
         let interval = setInterval(() => {
-            if (this.getXAuth() !== null) {
+            if (SessionStorageComponent.getXAuth() !== null) {
                 this.updateNgModelVariablesWithSessionStorage();
                 if (this.sessionFirmenName !== null) {
                     clearInterval(interval);
@@ -126,8 +126,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             if (form.value.kundenNummer) {
                 sessionStorage.removeItem('kundenNummer');
                 sessionStorage.setItem('kundenNummer', form.value.kundenNummer);
-            } else {
-                sessionStorage.setItem('auftragEmail', form.value.auftragbestEmail);
             }
             // Delete KundenNummer from request body because it going to be sent with headers
             delete form.value.kundenNummer;
@@ -142,16 +140,16 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      */
     updateNgModelVariablesWithSessionStorage() {
-        this.sessionKundenNummer = this.getKundennummer();
-        this.sessionFirmenName = this.getFirmenname();
-        this.sessionZusatz = this.getZusatz();
-        this.sessionAnsprechpartner = this.getAnsprechpartner();
-        this.sessionAdresse = this.getAdresse();
-        this.sessionLand = this.getLand();
-        this.sessionPlz = this.getPlz();
-        this.sessionOrt = this.getOrt();
-        this.sessionTelefon = this.getTelefon();
-        this.sessionEmail = this.getEmail();
+        this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
+        this.sessionFirmenName = SessionStorageComponent.getFirmenname();
+        this.sessionZusatz = SessionStorageComponent.getZusatz();
+        this.sessionAnsprechpartner = SessionStorageComponent.getAnsprechpartner();
+        this.sessionAdresse = SessionStorageComponent.getAdresse();
+        this.sessionLand = SessionStorageComponent.getLand();
+        this.sessionPlz = SessionStorageComponent.getPlz();
+        this.sessionOrt = SessionStorageComponent.getOrt();
+        this.sessionTelefon = SessionStorageComponent.getTelefon();
+        this.sessionEmail = SessionStorageComponent.getEmail();
     }
 
     /**
