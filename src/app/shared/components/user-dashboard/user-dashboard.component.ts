@@ -71,9 +71,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
                     // @ts-ignore
                     sessionStorage.setItem('x-auth', body.tokens[0].token);
-                    // @ts-ignore
-                    sessionStorage.setItem('kundenNummer', body.kundenNummer);
-                    // @ts-ignore
                     sessionStorage.setItem('firmenName', body.firmenName);
                     // @ts-ignore
                     sessionStorage.setItem('email', body.email);

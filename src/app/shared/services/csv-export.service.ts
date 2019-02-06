@@ -18,18 +18,19 @@ export class CsvExportService {
      */
     public createCSVOnServer(order: any, kundenNummer?: string) {
         let headers;
-        if(kundenNummer && sessionStorage.getItem('x-auth')) {
+        if (kundenNummer && sessionStorage.getItem('x-auth')) {
             headers = {
                 'x-kundenNummer': kundenNummer,
                 'x-auth': sessionStorage.getItem('x-auth')
             };
         }
-
-
-        return this.$http.post(environment.endpoint + 'csv', order, {observe: 'response', responseType: 'text', headers: new HttpHeaders(headers)})
-            .pipe(
-                map(response => response.body )
-            );
+        return this.$http.post(environment.endpoint + 'csv', order, {
+            observe: 'response',
+            responseType: 'text',
+            headers: new HttpHeaders(headers)
+        }).pipe(
+            map(response => response.body)
+        );
     }
 
 }

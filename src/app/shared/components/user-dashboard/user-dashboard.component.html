@@ -58,6 +58,7 @@
                                         <input type="text" class="form-control" id="kundennummer" name="kundennummer"
                                                [(ngModel)]="sessionKundenNummer"
                                                #kundennummer="ngModel"
+                                               disabled
                                                [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
                                                pattern="[0-9]{5}"
                                                maxlength="5"

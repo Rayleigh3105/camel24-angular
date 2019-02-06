@@ -521,6 +521,7 @@
                                id="auftragbestEmail"
                                name="auftragbestEmail"
                                [(ngModel)]="sessionEmail"
+                               [disabled]="sessionEmail != ''"
                                #auftragbestEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                                required email>
@@ -539,6 +540,7 @@
                                id="auftragbestTelefon"
                                name="auftragbestTelefon"
                                [(ngModel)]="sessionTelefon"
+                               [disabled]="sessionTelefon != ''"
                                #auftragbestTelefon="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                                required>
