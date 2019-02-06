@@ -1,37 +1,5 @@
 <div class="container">
-  <div class="row pt-5 pb-5">
-    <div class="col-sm">
-      <div class="card">
-        <div class="card-header">
-          <strong>Erstellte Aufträge</strong>
-        </div>
-        <div class="card-body">
-          <p-table [value]="$dasboardService.orders$ | async">
-            <ng-template pTemplate="header">
-              <tr>
-                <th>Rechnungs Empfänger</th>
-                <th>Rechnungs Telefonnummer</th>
-                <th>Warenart</th>
-                <th>Warenwert</th>
-                <th>Warengewicht</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-order>
-              <tr>
-                <td>{{order.rechnungsDaten.email}}</td>
-                <td>{{order.rechnungsDaten.telefon}}</td>
-                <td>{{order.sendungsdaten.art}}</td>
-                <td>{{order.sendungsdaten.wert}}</td>
-                <td>{{order.sendungsdaten.gewicht}}</td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row pb-5">
+  <div class="row pt-5">
     <div class="col-sm">
       <div class="card">
         <div class="card-header">
@@ -40,7 +8,6 @@
         </div>
         <div class="card-body">
           <form #f="ngForm" name="form" (ngSubmit)="onUpdate(f)" novalidate>
-
             <div class="row">
               <div class="col-sm">
                 <div class="form-row">
@@ -56,7 +23,6 @@
                       <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
                     </div>
                   </div>
-
                   <div class="form-group col-sm">
                     <label for="nachname">Nachname</label>
                     <input type="text" class="form-control" id="nachname" name="nachname"
@@ -70,7 +36,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-row">
                   <div class="form-group col-sm">
                     <label for="firmenname">Firmenname</label>
@@ -84,7 +49,6 @@
                       <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
                     </div>
                   </div>
-
                   <div class="form-group col-sm">
                     <label for="kundennummer">Kundennummer</label>
                     <input type="text" class="form-control" id="kundennummer" name="kundennummer"
@@ -103,7 +67,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label for="vorname">E-Mail</label>
                   <input type="text" class="form-control" id="email" name="email"
@@ -118,9 +81,7 @@
                     <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
                   </div>
                 </div>
-
                 <hr>
-
                 <h5>Standardauftragsdaten</h5>
                 <div class="form-row">
                   <div class="form-group col-sm">
@@ -135,7 +96,6 @@
                       <div *ngIf="adresse.errors.required">Adresse wird benötigt.</div>
                     </div>
                   </div>
-
                   <div class="form-group col-sm">
                     <label for="ort">Ort</label>
                     <input type="text" class="form-control" id="ort"
@@ -149,10 +109,8 @@
                       <div *ngIf="ort.errors.required">Ort wird benötigt.
                       </div>
                     </div>
-
                   </div>
                 </div>
-
                 <div class="form-row">
                   <div class="form-group col-sm">
                     <label for="plz">Plz</label>
@@ -169,7 +127,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="form-group col-sm">
                     <label for="land">Land</label>
                     <select id="land"
@@ -183,15 +140,11 @@
                       <option value="Österreich">Österreich</option>
                       <option value="Schweiz">Schweiz</option>
                     </select>
-
-
                     <div *ngIf="f.submitted && land.invalid"
                          class="invalid-feedback">
                       <div *ngIf="land.errors.required">Land wird benötigt</div>
                     </div>
-
                   </div>
-
                   <div class="form-group col-sm">
                     <label for="telefon">Telefon</label>
                     <input type="text" class="form-control" id="telefon"
@@ -204,10 +157,7 @@
                     <div *ngIf="f.submitted && telefon.invalid" class="invalid-feedback">
                       <div *ngIf="telefon.errors.required">Telefonnummer wird benötigt</div>
                     </div>
-
                   </div>
-
-
                 </div>
               </div>
             </div>
@@ -226,6 +176,46 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row pt-5 pb-5">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-header">
+          <strong>Erstellte Aufträge</strong>
+        </div>
+        <div class="card-body">
+          <p-table [value]="$dasboardService.orders$ | async" sortMode="multiple" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header" let-order>
+              <tr>
+                <th>Erstellungsdatum</th>
+                <th>Rechnungs Empfänger</th>
+                <th>Absender</th>
+                <th>Empfänger</th>
+                <th>Abholdatum</th>
+                <th>WaffenArt</th>
+                <th>Warenwert</th>
+                <th>Warengewicht</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{order.createdAt}}</td>
+                <td>{{order.rechnungsDaten.email}}</td>
+                <td>{{order.absender.firma}}</td>
+                <td>{{order.empfaenger.firma}}</td>
+                <td>{{order.abholTermin.datum}}</td>
+                <td>{{order.sendungsdaten.art}}</td>
+                <td>{{order.sendungsdaten.wert}}</td>
+                <td>{{order.sendungsdaten.gewicht}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>
