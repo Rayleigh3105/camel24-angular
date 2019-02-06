@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment.prod';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
+
+    orders$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
 
     constructor(private $http: HttpClient) { }
 
@@ -22,6 +25,16 @@ export class DashboardService {
                 tap( ( userDb ) => {
                 })
             )
+    }
+
+    /**
+     * Get´s all orders for specific user
+     */
+    getOrdersForUser(): Observable<any[]> {
+        return this.$http.get<any[]>(`${environment.endpoint}orders`, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap(val => this.orders$.next(val))
+            );
     }
 
     updateXAuthfromSessionStorage() {

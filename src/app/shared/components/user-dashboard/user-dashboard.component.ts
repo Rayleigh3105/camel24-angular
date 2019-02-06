@@ -31,12 +31,13 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     public sessionTelefon: string;
     public sessionEmail: string;
 
-    constructor(public $httpLoader: LoaderService, private $dasboardService: DashboardService, private $authService: AuthService) {
+    constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService) {
         super();
     }
 
     ngOnInit() {
         this.updateNgModelVariablesWithSessionStorage()
+        this.$dasboardService.getOrdersForUser().subscribe();
     }
 
     /**

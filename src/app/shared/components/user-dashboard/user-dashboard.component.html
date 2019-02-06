@@ -197,5 +197,37 @@
             </div>
         </div>
     </div>
+
+    <div class="row pt-5 mb-5">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Erstellte Aufträge</strong>
+                </div>
+                <div class="card-body">
+                    <p-table [value]="$dasboardService.orders$ | async">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Rechnungs Empfänger</th>
+                                <th>Rechnungs Telefonnummer</th>
+                                <th>Warenart</th>
+                                <th>Warenwert</th>
+                                <th>Warengewicht</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-order>
+                            <tr>
+                                <td>{{order.rechnungsDaten.email}}</td>
+                                <td>{{order.rechnungsDaten.telefon}}</td>
+                                <td>{{order.sendungsdaten.art}}</td>
+                                <td>{{order.sendungsdaten.wert}}</td>
+                                <td>{{order.sendungsdaten.gewicht}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 

@@ -29,6 +29,7 @@ import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
 import {AuthGuard} from './shared/guard/auth.guard';
 import {UserDashboardComponent} from './shared/components/user-dashboard/user-dashboard.component';
 import {DashboardService} from './shared/services/dashboard.service';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import {DashboardService} from './shared/services/dashboard.service';
         NgbModule,
         KepInputModule,
         MessageModule,
-        MessagesModule
+        MessagesModule,
+        TableModule
     ],
     entryComponents: [
         BestModalComponent,
