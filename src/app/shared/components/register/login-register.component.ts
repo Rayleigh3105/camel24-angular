@@ -21,12 +21,14 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     msgs: Message[] = [];
     landSelected: string = 'Deutschland';
 
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, private $modalService: NgbModal, public $httpLoader: LoaderService) {
+    constructor(private $authService: AuthService,
+                public activeModal: NgbActiveModal,
+                private $modalService: NgbModal,
+                public $httpLoader: LoaderService) {
         super($modalService);
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     /**
      * Register User in Database
@@ -51,7 +53,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
             this.$authService.createUser(user).subscribe(body => {
                 if (body !== null) {
                     window.scroll(0, 0);
-
                     // @ts-ignore
                     sessionStorage.setItem('x-auth', body.tokens[0].token);
                     // @ts-ignore
@@ -75,6 +76,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                     // @ts-ignore
                     sessionStorage.setItem('nachname', body.lastName);
 
+                    // Reset Form
                     form.resetForm();
                     this.updateNgModelVariablesWithSessionStorage();
                     this.showSuccess(body);

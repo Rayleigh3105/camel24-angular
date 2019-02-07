@@ -5,7 +5,6 @@ import {LoginComponent} from '../../shared/components/login/login.component';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {SessionStorageComponent} from '../../shared/components/session-storage/session-storage.component';
-import {KepInputComponent} from '../../modules/kep-input/pages/kep-input/kep-input.component';
 
 @Component({
   selector: 'camel-header',
@@ -32,26 +31,20 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
   /**
    * Checks if User is logged in based on the values in the session storage
    */
-  protected checkIfLoggedIn() {
-    let interval;
-    if (SessionStorageComponent.getXAuth() !== null) {
-      this.firmenName = SessionStorageComponent.getFirmenname();
-      this.kundenNummer = SessionStorageComponent.getKundennummer();
-      this.boolCheckIfLoggedIn = true;
-
-      interval = setInterval(() => {
-        this.checkIfLoggedIn();
-      }, 1000);
-    } else {
-      this.boolCheckIfLoggedIn = false;
-      clearInterval(interval);
-    }
+  public checkIfLoggedIn() {
+      if (SessionStorageComponent.getXAuth() !== null) {
+          this.firmenName = SessionStorageComponent.getFirmenname();
+          this.kundenNummer = SessionStorageComponent.getKundennummer();
+          this.boolCheckIfLoggedIn = true;
+      } else {
+          this.boolCheckIfLoggedIn = false;
+      }
   }
 
   /**
    * Opens the Register user Modal
    */
-  onRegister() {
+  onRegisterOpenModal() {
     const modalRef = this.modalService.open(LoginRegisterComponent, {
       size: 'lg',
       backdrop: 'static',
@@ -93,9 +86,8 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
     this.$authService.logoutUser().subscribe(isDeleted => {
       if (isDeleted) {
         // Removes Session Storage
-        this.checkIfLoggedIn();
         SessionStorageComponent.removeSessionStorage();
-
+        this.checkIfLoggedIn();
         // Navigate to Home page
         this.router.navigate(['']);
       }

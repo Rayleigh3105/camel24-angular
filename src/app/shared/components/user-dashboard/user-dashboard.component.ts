@@ -6,6 +6,7 @@ import {DashboardService} from '../../services/dashboard.service';
 import {User} from '../../../core/models/user/user-model';
 import {Message} from 'primeng/api';
 import {AuthService} from '../../services/auth.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'camel-user-dashboard',
@@ -19,6 +20,10 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
      */
     msgs: Message[] = [];
 
+    displayDialog: boolean;
+    selectedCar: any;
+    order:any;
+
     // NGMODEL
     public sessionVorname: string;
     public sessionNachname: string;
@@ -31,12 +36,12 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     public sessionTelefon: string;
     public sessionEmail: string;
 
-    constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService) {
+    constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService, private ndbModal: NgbModal) {
         super();
     }
 
     ngOnInit() {
-        this.updateNgModelVariablesWithSessionStorage()
+        this.updateNgModelVariablesWithSessionStorage();
         this.$dasboardService.getOrdersForUser().subscribe();
     }
 
@@ -139,5 +144,30 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
         this.sessionNachname = SessionStorageComponent.getNachname();
         this.sessionVorname = SessionStorageComponent.getVorname();
     }
+
+    /**
+     * Get´s fired when row is selected
+     * - clones order
+     * - opens up info modal with values from row
+     * @param event
+     */
+    onRowSelect(event) {
+        this.order = this.cloneOrder(event.data);
+        console.log(this.order);
+        this.displayDialog = true;
+    }
+
+    /**
+     * Clones currently selected order
+     * @param cloneOrder - order to clone
+     */
+    cloneOrder(cloneOrder): any {
+        let order = {};
+        for (let prop in cloneOrder) {
+            order[prop] = cloneOrder[prop];
+        }
+        return order;
+    }
+
 
 }

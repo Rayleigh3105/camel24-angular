@@ -10,7 +10,6 @@ import {LoaderService} from '../../services/loader-service.service';
     selector: 'camel-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-
 })
 export class LoginComponent implements OnInit {
 
@@ -20,9 +19,7 @@ export class LoginComponent implements OnInit {
     errorMessageSignup: string;
     msgs: Message[] = [];
 
-
-    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, public $httpLoader: LoaderService) {
-    }
+    constructor(private $authService: AuthService, public activeModal: NgbActiveModal, public $httpLoader: LoaderService) {}
 
     ngOnInit() {
     }
@@ -64,9 +61,7 @@ export class LoginComponent implements OnInit {
                     sessionStorage.setItem('vorname', body.firstName);
                     // @ts-ignore
                     sessionStorage.setItem('nachname', body.lastName);
-
-
-                  form.resetForm();
+                    form.resetForm();
                     this.showSuccess(body);
                 }
             }, error => {

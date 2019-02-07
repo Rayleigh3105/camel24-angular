@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {CalendarModule} from 'primeng/primeng';
+import {CalendarModule, Dialog, DialogModule} from 'primeng/primeng';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
@@ -57,7 +57,8 @@ import {TableModule} from 'primeng/table';
         KepInputModule,
         MessageModule,
         MessagesModule,
-        TableModule
+        TableModule,
+        DialogModule,
     ],
     entryComponents: [
         BestModalComponent,
@@ -74,7 +75,7 @@ import {TableModule} from 'primeng/table';
             multi: true
         },
         AuthGuard,
-        DashboardService
+        DashboardService,
     ],
     bootstrap: [AppComponent]
 })
