@@ -23,6 +23,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     displayDialog: boolean;
     selectedCar: any;
     order:any;
+    multiSortMeta: any;
 
     // NGMODEL
     public sessionVorname: string;
@@ -43,6 +44,8 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     ngOnInit() {
         this.updateNgModelVariablesWithSessionStorage();
         this.$dasboardService.getOrdersForUser().subscribe();
+        this.multiSortMeta = [];
+        this.multiSortMeta.push({field: 'createdAt', order: -1});
     }
 
     /**

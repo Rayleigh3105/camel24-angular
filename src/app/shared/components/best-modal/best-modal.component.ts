@@ -22,7 +22,6 @@ export class BestModalComponent implements OnInit {
 
     ngOnInit() {
         this.kundenNummer = sessionStorage.getItem('kundenNummer');
-        this.email = sessionStorage.getItem('email');
         this.requestError = false;
         this.requestSuccesully = false;
     }

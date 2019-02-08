@@ -3,7 +3,7 @@
     <h5 class="modal-title">Auftrag abschließen für Kundennummer: <strong>{{ kundenNummer }}</strong></h5>
   </div>
   <ng-template #email>
-    <h5 class="modal-title">Auftrag abschließen mit E-Mail: <strong>{{ email }}</strong></h5>
+    <h5 class="modal-title">Auftrag abschließen mit E-Mail: <strong>{{ data.auftragbestEmail }}</strong></h5>
   </ng-template>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>

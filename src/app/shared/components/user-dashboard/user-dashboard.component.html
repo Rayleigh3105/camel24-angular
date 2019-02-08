@@ -168,7 +168,7 @@
                         </div>
                         <div class="row pt-2 pb-2">
                             <div class="col-sm vertical-horizontal-center">
-                                <button type="submit" class="btn btn-success" [disabled]="!f.dirty">Speichern
+                                <button type="submit" class="btn btn-primary" [disabled]="!f.dirty">Speichern
                                     <span class="spinner-border spinner-border-sm" role="status"
                                           aria-hidden="true"
                                           *ngIf="$httpLoader.isLoading | async"></span>
@@ -196,6 +196,8 @@
                             [rows]="15"
                             selectionMode="single"
                             [(selection)]="selectedCar"
+                            sortMode="multiple"
+                            [multiSortMeta]="multiSortMeta"
                             (onRowSelect)="onRowSelect($event)">
                         <ng-template pTemplate="header">
                             <tr style="text-align: center">

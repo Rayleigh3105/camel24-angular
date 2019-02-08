@@ -521,7 +521,6 @@
                                id="auftragbestEmail"
                                name="auftragbestEmail"
                                [(ngModel)]="sessionEmail"
-                               [disabled]="sessionEmail != null"
                                #auftragbestEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                                required email>
