@@ -24,6 +24,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     selectedCar: any;
     order:any;
     multiSortMeta: any;
+    header: string;
 
     // NGMODEL
     public sessionVorname: string;
@@ -156,6 +157,8 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
      */
     onRowSelect(event) {
         this.order = this.cloneOrder(event.data);
+        this.header = `Auftragsdetails für Paket: ${this.order.identificationNumber}`;
+
         console.log(this.order);
         this.displayDialog = true;
     }

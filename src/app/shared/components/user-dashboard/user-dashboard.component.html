@@ -251,9 +251,9 @@
 </div>
 
 
-<p-dialog header="Auftragsdetails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="800">
+<p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="800">
     <div class="container" *ngIf="order">
-        <div class="row mv-margin-top-15">
+        <div class="row">
             <div class="col-sm">
                 <h5 class="heading_modal">Absender</h5>
                 <div class="row">
