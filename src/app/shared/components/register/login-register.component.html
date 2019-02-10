@@ -62,23 +62,6 @@
                                         <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
                                     </div>
                                 </div>
-
-                                <div class="form-group col-sm">
-                                    <label for="kundennummer">Kundennummer</label>
-                                    <input type="text" class="form-control" id="kundennummer" name="kundennummer"
-                                           ngModel
-                                           #kundennummer="ngModel"
-                                           [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
-                                           pattern="[0-9]{5}"
-                                           maxlength="5"
-                                           required>
-                                    <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
-                                        <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
-                                        <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
-                                            Kundennummer ein.
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="form-group">
