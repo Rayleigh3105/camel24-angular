@@ -22,7 +22,6 @@ import {MustMatchDirective} from './shared/directive/mustmatch.directive';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {LoginComponent} from './shared/components/login/login.component';
-import {InfoComponent} from './modules/kep-input/pages/info/info.component';
 import {KepInputModule} from './modules/kep-input/kep-input.module';
 import {LoaderService} from './shared/services/loader-service.service';
 import {LoaderInterceptor} from './shared/interceptor/loader-interceptor';
@@ -40,7 +39,6 @@ import {TableModule} from 'primeng/table';
         LoginRegisterComponent,
         MustMatchDirective,
         LoginComponent,
-        InfoComponent,
         UserDashboardComponent
     ],
     imports: [
@@ -64,7 +62,6 @@ import {TableModule} from 'primeng/table';
         BestModalComponent,
         LoginRegisterComponent,
         LoginComponent,
-        InfoComponent
     ],
     providers: [
         AuthService,

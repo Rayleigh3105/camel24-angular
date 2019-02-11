@@ -3,7 +3,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
-import {InfoComponent} from '../info/info.component';
 
 @Component({
     selector: 'camel-kep-input',
@@ -20,6 +19,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public shouldUhrGetDisplayed: boolean = false;
     public shouldManuellDisplayed: boolean = false;
     public de: any;
+    public showDialog: boolean = false
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -156,9 +156,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Opens info Modal - user is now able to view how the App is working
      */
     openInfoModal() {
-        const modalRef = this.modalService.open(InfoComponent, {
-            size: 'lg',
-            backdrop: 'static',
-        });
+        this.showDialog = true
     }
 }

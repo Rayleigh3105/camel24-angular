@@ -492,7 +492,7 @@
                                 #sonderdienst="ngModel"
                                 [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
                                 required>
-                            <option >Standardzustellung</option>
+                            <option>Standardzustellung</option>
                             <option value="persoenlich">Persönliche Zustellung</option>
                             <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
                         </select>
@@ -676,4 +676,23 @@
         </div>
     </div>
 </form>
+
+<p-dialog header="Wie erstelle ich einen Online Auftrag?" [(visible)]="showDialog" [responsive]="true" showEffect="fade"
+          [modal]="true" width="800">
+    <ol>
+        <li>Form ohne Fehler ausfüllen</li>
+        <li> Auf <strong>Weiter</strong> drücken ... eine Zusammenfassung über Ihre eingegebenen Daten wird erstellt</li>
+    </ol>
+    <div class="vertical-horizontal-center pt-3">
+        <img src="../../../../../assets/images/camel_zusammenfassung.png" height="400" width="400"/>
+    </div>
+    <br>
+    Nachdem Sie auf <strong>Auftrag schließen</strong> klicken wird Ihr Auftrag generiert.
+    Sobald die Daten verarbeitet worden sind, werden Sie in kürze eine E-Mail (in Form angegeben) mit Ihrem Paketlabel
+    erhalten.
+
+    <h4 class="pt-3">Mit Benutzerkonto bei Camel-24</h4>
+    Falls Sie sich entscheiden, sich bei uns Anzumeldung, können Sie erstellte Aufträge einsehen und die generierten Paketlabel jederzeit einsehen.
+</p-dialog>
+
 
