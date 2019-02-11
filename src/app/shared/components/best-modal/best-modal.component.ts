@@ -37,9 +37,9 @@ export class BestModalComponent implements OnInit {
       }
         this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(isCsvCreated => {
             if(isCsvCreated == "true") {
-                this.requestSuccesully = true;
+                this.activeModal.close(true)
             } else {
-                this.requestError = true
+                this.activeModal.close(false)
             }
         })
     }

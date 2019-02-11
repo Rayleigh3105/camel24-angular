@@ -27,6 +27,7 @@
                                        [ngClass]="{ 'is-invalid': f.submitted && kundennummer.invalid }"
                                        pattern="[0-9]{5}"
                                        maxlength="5"
+                                       autofocus
                                        required>
                                 <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
                                     <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>

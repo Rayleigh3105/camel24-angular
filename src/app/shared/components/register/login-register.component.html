@@ -29,6 +29,7 @@
                                            #vorname="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
                                            maxlength="255"
+                                           autofocus
                                            required>
                                     <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
                                         <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from '../../../../shared/components/best-modal/best-modal.component';
 import {NgForm} from '@angular/forms';
@@ -19,7 +19,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public shouldUhrGetDisplayed: boolean = false;
     public shouldManuellDisplayed: boolean = false;
     public de: any;
-    public showDialog: boolean = false
+    public showDialog: boolean = false;
+    public requestSuccessfully: boolean = false;
+    public requestError: boolean = false;
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -42,7 +44,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
 
 
-    constructor(private modalService: NgbModal) {
+    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef) {
         super();
     }
 
@@ -132,14 +134,34 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             // Delete Check from request body because it isnt needed for the request
             delete form.value.check;
             modalref.componentInstance.data = form.value;
-
+            modalref.result.then(result => {
+                if (result) {
+                    form.resetForm();
+                    this.cdr.detectChanges();
+                    this.updateNgModelVariablesWithSessionStorage();
+                    this.requestSuccessfully = true;
+                } else {
+                    this.requestError = true;
+                }
+            })
         }
     }
 
     /**
      * Updated ngModel Attributes in Template with data given in Sessionstorage
+     * Also updates Selected Values in form with default values
      */
     updateNgModelVariablesWithSessionStorage() {
+        // SELECTED VALUES
+        this.landSelected = 'Deutschland';
+        this.rechnungSelected = 'absender';
+        this.artSelected = 'Waffe';
+        this.kiloSelected = '3,00 kg';
+        this.versicherungSelected = 'Nein';
+        this.zustellungsTerminSelected = 'Standardzustellungstermin';
+        this.sonderdienstSelected ='Standardzustellung';
+
+        //  SESSION VALUES
         this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
         this.sessionFirmenName = SessionStorageComponent.getFirmenname();
         this.sessionZusatz = SessionStorageComponent.getZusatz();
@@ -150,6 +172,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.sessionOrt = SessionStorageComponent.getOrt();
         this.sessionTelefon = SessionStorageComponent.getTelefon();
         this.sessionEmail = SessionStorageComponent.getEmail();
+
+
     }
 
     /**

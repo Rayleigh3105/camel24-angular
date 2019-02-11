@@ -5,10 +5,12 @@ import { SessionStorageComponent } from './components/session-storage/session-st
 import { ImpressumAgbComponent } from './components/impressum-agb/impressum-agb.component';
 import { AgbnationalComponent } from './components/agbnational/agbnational.component';
 import { AgbinternationalComponent } from './components/agbinternational/agbinternational.component';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+      DialogModule
   ],
   declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent]
 })
