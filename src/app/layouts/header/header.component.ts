@@ -83,17 +83,11 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
    * LOGOUT USER - REMOVES TOKEN IN DATABASE
    */
   logoutUser() {
-    this.$authService.logoutUser().subscribe(isDeleted => {
-      if (isDeleted) {
-        // Removes Session Storage
-        SessionStorageComponent.removeSessionStorage();
-        this.checkIfLoggedIn();
-        // Navigate to Home page
-        this.router.navigate(['']);
-      }
+      // Removes Session Storage
       SessionStorageComponent.removeSessionStorage();
-
-    });
+      this.checkIfLoggedIn();
+      this.$authService.logoutUser().subscribe();
+      this.router.navigate(['']);
   }
 
 
