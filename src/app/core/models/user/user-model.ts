@@ -13,5 +13,7 @@ export interface User {
     plz?: string;
     land?: string;
     telefon?: string;
+    zusatz?:string;
+    ansprechpartner?: string,
     tokens? : [Token],
 }

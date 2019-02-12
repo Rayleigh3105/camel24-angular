@@ -92,10 +92,8 @@
                                                #adresse="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && adresse.invalid }"
                                                maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && adresse.invalid" class="invalid-feedback">
-                                            <div *ngIf="adresse.errors.required">Adresse wird benötigt.</div>
-                                        </div>
+                                        >
+
                                     </div>
                                     <div class="form-group col-sm">
                                         <label for="ort">Ort</label>
@@ -105,13 +103,31 @@
                                                #ort="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && ort.invalid }"
                                                maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && ort.invalid" class="invalid-feedback">
-                                            <div *ngIf="ort.errors.required">Ort wird benötigt.
-                                            </div>
-                                        </div>
+                                        >
+
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="zusatz">Zusatz</label>
+                                        <input type="text" class="form-control" id="zusatz" name="zusatz"
+                                               [(ngModel)]="sessionZusatz"
+                                               #zusatz="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && adresse.invalid }"
+                                               maxlength="255">
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="ansprechpartner">Ansprechpartner</label>
+                                        <input type="text" class="form-control" id="ansprechpartner"
+                                               name="ansprechpartner"
+                                               [(ngModel)]="sessionAnsprechpartner"
+                                               #ansprechpartner="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && ansprechpartner.invalid }"
+                                               maxlength="255">
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <div class="form-group col-sm">
                                         <label for="plz">Plz</label>
@@ -121,9 +137,8 @@
                                                [ngClass]="{ 'is-invalid': f.submitted && plz.invalid }"
                                                minlength="5"
                                                maxlength="5"
-                                               pattern="[0-9]{5}" required>
+                                               pattern="[0-9]{5}">
                                         <div *ngIf="f.submitted && plz.invalid" class="invalid-feedback">
-                                            <div *ngIf="plz.errors.required">Postleihzahl wird benötigt.</div>
                                             <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten
                                             </div>
                                         </div>
@@ -136,7 +151,7 @@
                                                 name="land"
                                                 #land="ngModel"
                                                 [ngClass]="{ 'is-invalid': f.submitted && land.invalid }"
-                                                required>
+                                        >
                                             <option value="Deutschland" selected>Deutschland</option>
                                             <option value="Österreich">Österreich</option>
                                             <option value="Schweiz">Schweiz</option>
@@ -154,10 +169,7 @@
                                                #telefon="ngModel"
                                                [ngClass]="{ 'is-invalid': f.submitted && telefon.invalid }"
                                                maxlength="255"
-                                               required>
-                                        <div *ngIf="f.submitted && telefon.invalid" class="invalid-feedback">
-                                            <div *ngIf="telefon.errors.required">Telefonnummer wird benötigt</div>
-                                        </div>
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +264,8 @@
 </div>
 
 
-<p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="800">
+<p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+          width="800">
     <div class="container" *ngIf="order">
         <div class="row">
             <div class="col-sm">
@@ -362,13 +375,16 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.zustellTermin.termin === 'Standardzustellungstermin'">Standardtermin (zwischen 09:00 - 17:00
+                        <div *ngIf="order.zustellTermin.termin === 'Standardzustellungstermin'">Standardtermin (zwischen
+                            09:00 - 17:00
                             Uhr)
                         </div>
                         <div *ngIf="order.zustellTermin.termin === '9'">Termin um 09:00 Uhr</div>
                         <div *ngIf="order.zustellTermin.termin === '10'">Termin um 10:00 Uhr</div>
                         <div *ngIf="order.zustellTermin.termin === '12'">Termin um 12:00 Uhr</div>
-                        <div *ngIf="order.zustellTermin.termin === 'fixtermin'"> Fixtermin um {{ order.zustellTermin.zeit }} Uhr</div>
+                        <div *ngIf="order.zustellTermin.termin === 'fixtermin'"> Fixtermin um {{
+                            order.zustellTermin.zeit }} Uhr
+                        </div>
 
                     </div>
                 </div>
@@ -416,10 +432,12 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'absender'">Wie Absender ({{ order.absender.firma
+                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'absender'">Wie Absender ({{
+                            order.absender.firma
                             }})
                         </div>
-                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'empfeanger'">Wie Empfänger ({{ order.empfeanger.firma
+                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'empfeanger'">Wie Empfänger ({{
+                            order.empfeanger.firma
                             }})
                         </div>
 

@@ -37,6 +37,8 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     public sessionOrt: string;
     public sessionTelefon: string;
     public sessionEmail: string;
+    public sessionZusatz: string;
+    public sessionAnsprechpartner: string;
 
     constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService, private ndbModal: NgbModal) {
         super();
@@ -68,13 +70,15 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
                 firstName: form.value.vorname,
                 lastName: form.value.nachname,
                 firmenName: form.value.firmenname,
-                kundenNummer: parseInt(form.value.kundennummer),
                 email: form.value.email,
                 adresse: form.value.adresse,
                 ort: form.value.ort,
                 land: form.value.land,
                 telefon: form.value.telefon,
                 plz: form.value.plz,
+                zusatz : form.value.zusatz,
+                ansprechpartner: form.value.ansprechpartner
+
             };
 
             this.$dasboardService.updateUser( user ).subscribe( body => {
@@ -97,6 +101,10 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
                     sessionStorage.setItem('vorname', body.firstName);
                     // @ts-ignore
                     sessionStorage.setItem('nachname', body.lastName);
+                    // @ts-ignore
+                    sessionStorage.setItem('zusatz', body.zusatz);
+                    // @ts-ignore
+                    sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
 
                     this.updateNgModelVariablesWithSessionStorage();
 
@@ -147,6 +155,8 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
         this.sessionEmail = SessionStorageComponent.getEmail();
         this.sessionNachname = SessionStorageComponent.getNachname();
         this.sessionVorname = SessionStorageComponent.getVorname();
+        this.sessionAnsprechpartner = SessionStorageComponent.getAnsprechpartner();
+        this.sessionZusatz = SessionStorageComponent.getZusatz();
     }
 
     /**

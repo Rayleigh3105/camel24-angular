@@ -22,7 +22,7 @@ export class SessionStorageComponent implements OnInit {
     sessionStorage.removeItem('kundenNummer');
     sessionStorage.removeItem('x-auth');
     sessionStorage.removeItem('zusatz');
-    sessionStorage.removeItem('anprechpartner');
+    sessionStorage.removeItem('ansprechpartner');
     sessionStorage.removeItem('adresse');
     sessionStorage.removeItem('land');
     sessionStorage.removeItem('plz');
@@ -52,7 +52,7 @@ export class SessionStorageComponent implements OnInit {
   }
 
   public static getAnsprechpartner() {
-    return sessionStorage.getItem('anprechpartner');
+    return sessionStorage.getItem('ansprechpartner');
   }
 
   public static getAdresse() {
