@@ -46,6 +46,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
     ngOnInit() {
         this.updateNgModelVariablesWithSessionStorage();
+        // Get user Infos
         this.$authService.getCurrentUser().then(body => {
             this.setSessionStorage(body);
             this.updateNgModelVariablesWithSessionStorage();
@@ -97,7 +98,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
             }, error => {
                 this.showError();
             });
-
         }
     }
 

@@ -18,14 +18,13 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      * VARIABLEN
      */
     msgs: Message[] = [];
-    landSelected: string = 'Deutschland';
 
     constructor(private $authService: AuthService,
                 public activeModal: NgbActiveModal,
                 private $modalService: NgbModal,
                 public $httpLoader: LoaderService,
                 cdr: ChangeDetectorRef) {
-        super($modalService, cdr);
+        super($modalService, cdr, $authService);
     }
 
     ngOnInit() {}
@@ -52,18 +51,8 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
             this.$authService.createUser(user).subscribe(body => {
                 if (body !== null) {
                     window.scroll(0, 0);
-                    // @ts-ignore
-                    sessionStorage.setItem('x-auth', body.tokens[0].token);
-                    // @ts-ignore
-                    sessionStorage.setItem('kundenNummer', body.kundenNummer);
-                    // @ts-ignore
-                    sessionStorage.setItem('firmenName', body.firmenName);
-                    // @ts-ignore
-                    sessionStorage.setItem('email', body.email);
-                    // @ts-ignore
-                    sessionStorage.setItem('vorname', body.firstName);
-                    // @ts-ignore
-                    sessionStorage.setItem('nachname', body.lastName);
+
+                    this.setSessionStorage(body);
 
                     // Reset Form
                     form.resetForm();
@@ -107,6 +96,90 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      */
     onClose() {
         this.activeModal.close(true);
+    }
+
+    /**
+     * Set`s SessionStorage for available data
+     * @param body
+     */
+    setSessionStorage(body) {
+
+        if (body.firmenName) {
+            // @ts-ignore
+            sessionStorage.setItem('firmenName', body.firmenName);
+        } else {
+            sessionStorage.removeItem('firmenName');
+        }
+
+        if (body.email) {
+            // @ts-ignore
+            sessionStorage.setItem('email', body.email);
+        } else {
+            sessionStorage.removeItem('email');
+        }
+
+        if (body.adresse) {
+            // @ts-ignore
+            sessionStorage.setItem('adresse', body.adresse);
+        } else {
+            sessionStorage.removeItem('adresse');
+        }
+
+        if (body.ort) {
+            // @ts-ignore
+            sessionStorage.setItem('ort', body.ort);
+        } else {
+            sessionStorage.removeItem('ort');
+        }
+
+        if (body.land) {
+            // @ts-ignore
+            sessionStorage.setItem('land', body.land);
+        } else {
+            sessionStorage.removeItem('land');
+        }
+
+        if (body.telefon) {
+            // @ts-ignore
+            sessionStorage.setItem('telefon', body.telefon);
+        } else {
+            sessionStorage.removeItem('telefon');
+        }
+
+        if (body.plz) {
+            // @ts-ignore
+            sessionStorage.setItem('plz', body.plz);
+        } else {
+            sessionStorage.removeItem('plz');
+        }
+
+        if (body.firstName) {
+            // @ts-ignore
+            sessionStorage.setItem('vorname', body.firstName);
+        } else {
+            sessionStorage.removeItem('vorname');
+        }
+
+        if (body.lastName) {
+            // @ts-ignore
+            sessionStorage.setItem('nachname', body.lastName);
+        } else {
+            sessionStorage.removeItem('nachname');
+        }
+
+        if (body.zusatz) {
+            // @ts-ignore
+            sessionStorage.setItem('zusatz', body.zusatz);
+        } else {
+            sessionStorage.removeItem('zusatz');
+        }
+
+        if (body.ansprechpartner) {
+            // @ts-ignore
+            sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
+        } else {
+            sessionStorage.removeItem('ansprechpartner');
+        }
     }
 
 }
