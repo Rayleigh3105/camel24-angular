@@ -31,17 +31,19 @@ export class BestModalComponent implements OnInit {
      * Sends data to backend and waits for response and handle it
      * @param value - data from the form
      */
-    protected sendData(value){
-      if(this.email) {
-        value.auftragbestEmail = this.email;
-      }
+    protected sendData(value) {
+        if (this.email) {
+            value.auftragbestEmail = this.email;
+        }
         this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(isCsvCreated => {
-            if(isCsvCreated == "true") {
-                this.activeModal.close(true)
+            if (isCsvCreated == 'true') {
+                this.activeModal.close(true);
             } else {
-                this.activeModal.close(false)
+                this.activeModal.close(false);
             }
-        })
+        }, error => {
+            this.activeModal.close(false);
+        });
     }
 
     /**
@@ -55,7 +57,6 @@ export class BestModalComponent implements OnInit {
         this.requestError = false;
         this.requestSuccesully = false;
     }
-
 
 
 }

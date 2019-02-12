@@ -59,7 +59,9 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
             await this.$authService.getCurrentUser().then(response => {
                 userId = response._id;
                 console.log(userId);
-            } );
+            }, error => {
+                this.showError();
+            });
             // Create User object with updated values in it from the form
             let user: User = {
                 _id : userId,
@@ -77,9 +79,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
             this.$dasboardService.updateUser( user ).subscribe( body => {
                 if (body !== null) {
-
                     // @ts-ignore
-                    sessionStorage.setItem('x-auth', body.tokens[0].token);
                     sessionStorage.setItem('firmenName', body.firmenName);
                     // @ts-ignore
                     sessionStorage.setItem('email', body.email);
@@ -99,11 +99,11 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
                     sessionStorage.setItem('nachname', body.lastName);
 
                     this.updateNgModelVariablesWithSessionStorage();
+
                     this.showSuccess(body);
                 }
             }, error => {
                 this.showError();
-                console.log(error);
             });
 
         }
