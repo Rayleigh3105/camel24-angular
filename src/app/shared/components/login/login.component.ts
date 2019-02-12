@@ -48,16 +48,6 @@ export class LoginComponent implements OnInit {
                     // @ts-ignore
                     sessionStorage.setItem('email', body.email);
                     // @ts-ignore
-                    sessionStorage.setItem('adresse', body.adresse);
-                    // @ts-ignore
-                    sessionStorage.setItem('land', body.land);
-                    // @ts-ignore
-                    sessionStorage.setItem('plz', body.plz);
-                    // @ts-ignore
-                    sessionStorage.setItem('ort', body.ort);
-                    // @ts-ignore
-                    sessionStorage.setItem('telefon', body.telefon);
-                    // @ts-ignore
                     sessionStorage.setItem('vorname', body.firstName);
                     // @ts-ignore
                     sessionStorage.setItem('nachname', body.lastName);

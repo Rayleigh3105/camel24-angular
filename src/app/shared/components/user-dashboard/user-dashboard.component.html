@@ -74,6 +74,7 @@
                                            #email="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                                            maxlength="255"
+                                           disabled
                                            email
                                            required>
                                     <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">

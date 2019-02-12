@@ -37,7 +37,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public landSelected: string = 'Deutschland';
     public rechnungSelected: string = 'absender';
     public artSelected: string = 'Waffe';
-    public kiloSelected: string = '3,00 kg';
+    public kiloSelected: string = '3';
     public versicherungSelected: string = 'Nein';
     public zustellungsTerminSelected: string = 'Standardzustellungstermin';
     public sonderdienstSelected: string = 'Standardzustellung';
@@ -156,7 +156,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.landSelected = 'Deutschland';
         this.rechnungSelected = 'absender';
         this.artSelected = 'Waffe';
-        this.kiloSelected = '3,00 kg';
+        this.kiloSelected = '3';
         this.versicherungSelected = 'Nein';
         this.zustellungsTerminSelected = 'Standardzustellungstermin';
         this.sonderdienstSelected ='Standardzustellung';

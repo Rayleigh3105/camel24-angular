@@ -17,7 +17,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * VARIABLEN
      */
-    errorMessageSignup: string;
     msgs: Message[] = [];
     landSelected: string = 'Deutschland';
 
@@ -41,7 +40,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 firstName: form.value.vorname,
                 lastName: form.value.nachname,
                 firmenName: form.value.firmenname,
-                kundenNummer: parseInt(form.value.kundennummer),
                 email: form.value.email,
                 adresse: form.value.adresse,
                 ort: form.value.ort,
@@ -62,16 +60,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                     sessionStorage.setItem('firmenName', body.firmenName);
                     // @ts-ignore
                     sessionStorage.setItem('email', body.email);
-                    // @ts-ignore
-                    sessionStorage.setItem('adresse', body.adresse);
-                    // @ts-ignore
-                    sessionStorage.setItem('ort', body.ort);
-                    // @ts-ignore
-                    sessionStorage.setItem('land', body.land);
-                    // @ts-ignore
-                    sessionStorage.setItem('telefon', body.telefon);
-                    // @ts-ignore
-                    sessionStorage.setItem('plz', body.plz);
                     // @ts-ignore
                     sessionStorage.setItem('vorname', body.firstName);
                     // @ts-ignore

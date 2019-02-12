@@ -5,7 +5,7 @@ export interface User {
     firstName?: string;
     lastName?: string;
     firmenName?: string;
-    kundenNummer: number;
+    kundenNummer?: number;
     email?: string;
     password?: string;
     adresse?: string
