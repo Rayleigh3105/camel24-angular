@@ -67,7 +67,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
                 userId = response._id;
                 console.log(userId);
             }, error => {
-                this.showError();
+                this.showError(error);
             });
             // Create User object with updated values in it from the form
             let user: User = {
@@ -96,7 +96,7 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
                     this.showSuccess(body);
                 }
             }, error => {
-                this.showError();
+                this.showError(error);
             });
         }
     }
@@ -104,12 +104,12 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
     /**
      * Shows p-message component after error has been thrown
      */
-    showError() {
+    showError(error) {
         this.msgs = [];
         this.msgs.push({
             severity: 'error',
-            summary: 'Bearbeiten fehlgeschlagen',
-            detail: 'Bitte versuchen Sie erneut den Benutzer zu bearbeiten.'
+            summary: error.error.errorCode,
+            detail: error.error.message
         });
     }
 

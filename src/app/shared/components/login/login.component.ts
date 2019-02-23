@@ -35,19 +35,19 @@ export class LoginComponent implements OnInit {
                 password: form.value.passwort
             };
 
-            this.$authService.loginUser(user).subscribe(body => {
-                if (body !== null) {
+            this.$authService.loginUser(user).subscribe(response => {
+                if (response !== null) {
                     window.scroll(0, 0);
-
-                    this.setSessionStorage(body);
+                    sessionStorage.setItem('x-auth', response.headers.get('x-auth'));
+                    this.setSessionStorage(response.body);
 
                     form.resetForm();
 
-                    this.showSuccess(body);
+                    this.showSuccess(response.body);
                 }
             }, error => {
-                this.showError();
-                console.log(error);
+                this.showError(error);
+                console.debug(error);
             });
         }
     }
@@ -55,12 +55,12 @@ export class LoginComponent implements OnInit {
     /**
      * Shows p-message component after error has been thrown
      */
-    showError() {
+    showError(error) {
         this.msgs = [];
         this.msgs.push({
             severity: 'error',
-            summary: 'Registrierung Fehlgeschlagen',
-            detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'
+            summary: error.error.errorCode,
+            detail: error.error.message
         });
     }
 
@@ -88,6 +88,13 @@ export class LoginComponent implements OnInit {
      * @param body
      */
     setSessionStorage(body) {
+
+        if (body.kundenNummer) {
+            // @ts-ignore
+            sessionStorage.setItem('kundenNummer', body.kundenNummer);
+        } else {
+            sessionStorage.removeItem('kundenNummer');
+        }
 
         if (body.firmenName) {
             // @ts-ignore

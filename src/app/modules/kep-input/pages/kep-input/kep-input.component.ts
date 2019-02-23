@@ -4,6 +4,7 @@ import {BestModalComponent} from '../../../../shared/components/best-modal/best-
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
 import {AuthService} from '../../../../shared/services/auth.service';
+import {Message} from 'primeng/api';
 
 @Component({
     selector: 'camel-kep-input',
@@ -23,6 +24,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public showDialog: boolean = false;
     public requestSuccessfully: boolean = false;
     public requestError: boolean = false;
+    public msgs: Message[] = [];
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -145,10 +147,14 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
                     this.cdr.detectChanges();
                     this.updateNgModelVariablesWithSessionStorage();
                     this.requestSuccessfully = true;
+                    this.showSuccess()
+
                 } else {
+                    console.debug(result);
+                    this.showError(result);
                     this.requestError = true;
                 }
-            })
+            });
         }
     }
 
@@ -164,7 +170,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.kiloSelected = '3';
         this.versicherungSelected = 'Nein';
         this.zustellungsTerminSelected = 'Standardzustellungstermin';
-        this.sonderdienstSelected ='Standardzustellung';
+        this.sonderdienstSelected = 'Standardzustellung';
 
         //  SESSION VALUES
         this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
@@ -183,7 +189,31 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Opens info Modal - user is now able to view how the App is working
      */
     openInfoModal() {
-        this.showDialog = true
+        this.showDialog = true;
+    }
+
+    /**
+     * Shows p-message component after error has been thrown
+     */
+    showError(error) {
+        this.msgs = [];
+        this.msgs.push({
+            severity: 'error',
+            summary: error.error.errorCode,
+            detail: error.error.message
+        });
+    }
+
+    /**
+     * Shows p-message component after succes of registration
+     */
+    showSuccess() {
+        this.msgs = [];
+        this.msgs.push({
+            severity: 'success',
+            summary: 'Erfolgreich',
+            detail: `Sie haben einen Auftrag erstellt.`
+        });
     }
 
     /**

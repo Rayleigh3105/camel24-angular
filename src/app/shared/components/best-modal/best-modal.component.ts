@@ -31,11 +31,11 @@ export class BestModalComponent implements OnInit {
       if(this.email) {
         value.auftragbestEmail = this.email;
       }
-        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(isCsvCreated => {
-            if(isCsvCreated == "true") {
+        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(response => {
+            if(response == "true") {
                 this.activeModal.close(true)
             } else {
-                this.activeModal.close(false)
+                this.activeModal.close(response)
             }
         },error => {
             this.activeModal.close(false)

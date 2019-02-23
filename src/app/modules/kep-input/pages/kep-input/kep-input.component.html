@@ -725,7 +725,7 @@
                                 <div class="row pt-4">
                                     <div class="col-sm vertical-horizontal-center">
                                         <div class="alert alert-success" role="alert">
-                                            <strong>Erfolgreich:</strong> Sie haben einen Auftrag erstellt.
+                                            <p-messages [(value)]="msgs"></p-messages>
                                         </div>
                                     </div>
                                 </div>
@@ -801,7 +801,7 @@
                                 <div class="row pt-4">
                                     <div class="col-sm vertical-horizontal-center">
                                         <div class="alert alert-danger" role="alert">
-                                            <strong>Fehlgeschlagen:</strong> Der Auftrag wurde nicht erstellt.
+                                            <p-messages [(value)]="msgs"></p-messages>
                                         </div>
                                     </div>
                                 </div>

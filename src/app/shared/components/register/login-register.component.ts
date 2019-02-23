@@ -52,8 +52,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 if (body !== null) {
                     window.scroll(0, 0);
 
-                    this.setSessionStorage(body);
-
+                    this.setSessionStorage(body)
                     // Reset Form
                     form.resetForm();
                     this.updateNgModelVariablesWithSessionStorage();
