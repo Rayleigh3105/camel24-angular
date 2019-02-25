@@ -48,15 +48,15 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 password: form.value.passwort
             };
 
-            this.$authService.createUser(user).subscribe(body => {
-                if (body !== null) {
+            this.$authService.createUser(user).subscribe(response => {
+                if (response !== null) {
                     window.scroll(0, 0);
 
-                    this.setSessionStorage(body)
+                  this.setSessionStorage(response.body);
                     // Reset Form
                     form.resetForm();
                     this.updateNgModelVariablesWithSessionStorage();
-                    this.showSuccess(body);
+                    this.showSuccess(response.body);
                 }
             }, error => {
                 this.showError();
@@ -103,79 +103,94 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      */
     setSessionStorage(body) {
 
-        if (body.firmenName) {
+      if (body.token) {
+        // @ts-ignore
+        sessionStorage.setItem('x-auth', body.token);
+      } else {
+        sessionStorage.removeItem('x-auth');
+      }
+
+
+      if (body.user.kundenNummer) {
+        // @ts-ignore
+        sessionStorage.setItem('kundenNummer', body.user.kundenNummer);
+      } else {
+        sessionStorage.removeItem('kundenNummer');
+      }
+
+        if (body.user.firmenName) {
             // @ts-ignore
-            sessionStorage.setItem('firmenName', body.firmenName);
+            sessionStorage.setItem('firmenName', body.user.firmenName);
         } else {
             sessionStorage.removeItem('firmenName');
         }
 
-        if (body.email) {
+        if (body.user.email) {
             // @ts-ignore
-            sessionStorage.setItem('email', body.email);
+            sessionStorage.setItem('email', body.user.email);
         } else {
             sessionStorage.removeItem('email');
         }
 
-        if (body.adresse) {
+        if (body.user.adresse) {
             // @ts-ignore
-            sessionStorage.setItem('adresse', body.adresse);
+            sessionStorage.setItem('adresse', body.user.adresse);
         } else {
             sessionStorage.removeItem('adresse');
         }
 
-        if (body.ort) {
+        if (body.user.ort) {
             // @ts-ignore
-            sessionStorage.setItem('ort', body.ort);
+            sessionStorage.setItem('ort', body.user.ort);
         } else {
             sessionStorage.removeItem('ort');
         }
 
-        if (body.land) {
+        if (body.user.land) {
             // @ts-ignore
-            sessionStorage.setItem('land', body.land);
+            sessionStorage.setItem('land', body.user.land);
         } else {
             sessionStorage.removeItem('land');
         }
 
-        if (body.telefon) {
+        if (body.user.telefon) {
             // @ts-ignore
-            sessionStorage.setItem('telefon', body.telefon);
+            sessionStorage.setItem('telefon', body.user.telefon);
         } else {
             sessionStorage.removeItem('telefon');
         }
 
-        if (body.plz) {
+        if (body.user.plz) {
             // @ts-ignore
-            sessionStorage.setItem('plz', body.plz);
+            sessionStorage.setItem('plz', body.user.plz);
         } else {
             sessionStorage.removeItem('plz');
         }
 
-        if (body.firstName) {
+        if (body.user.firstName) {
             // @ts-ignore
-            sessionStorage.setItem('vorname', body.firstName);
+            sessionStorage.setItem('vorname', body.user.firstName);
         } else {
             sessionStorage.removeItem('vorname');
         }
 
-        if (body.lastName) {
+        if (body.user.lastName) {
             // @ts-ignore
-            sessionStorage.setItem('nachname', body.lastName);
+            sessionStorage.setItem('nachname', body.user.lastName);
         } else {
             sessionStorage.removeItem('nachname');
         }
 
-        if (body.zusatz) {
+        if (body.user.zusatz) {
             // @ts-ignore
-            sessionStorage.setItem('zusatz', body.zusatz);
+            sessionStorage.setItem('zusatz', body.user.zusatz);
         } else {
             sessionStorage.removeItem('zusatz');
         }
 
-        if (body.ansprechpartner) {
+        if (body.user.ansprechpartner) {
             // @ts-ignore
-            sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
+            sessionStorage.setItem('ansprechpartner', body.user.ansprechpartner);
         } else {
             sessionStorage.removeItem('ansprechpartner');
         }

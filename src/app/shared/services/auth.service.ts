@@ -19,7 +19,7 @@ export class AuthService {
     createUser(user: User) {
         return this.$http.post(environment.endpoint + 'user', user, {observe: 'response', responseType: 'json'})
             .pipe(
-                map(response => response.body)
+                map(response => response)
             );
     }
 

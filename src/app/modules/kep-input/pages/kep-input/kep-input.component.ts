@@ -24,7 +24,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public showDialog: boolean = false;
     public requestSuccessfully: boolean = false;
     public requestError: boolean = false;
-    public msgs: Message[] = [];
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -88,7 +87,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             dateFormat: 'dd.mm.yy'
         };
 
-        // TODO - IMPLEMENT LOGIC FOR CALCULATING THE DATE THE RIGHT WAY
         // Logic for calculating date
         this.minDate.setDate(this.minDate.getDate() + 1);
         if (this.minDate.getDay() === 5) {
@@ -147,11 +145,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
                     this.cdr.detectChanges();
                     this.updateNgModelVariablesWithSessionStorage();
                     this.requestSuccessfully = true;
-                    this.showSuccess()
 
                 } else {
                     console.debug(result);
-                    this.showError(result);
                     this.requestError = true;
                 }
             });
@@ -190,30 +186,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      */
     openInfoModal() {
         this.showDialog = true;
-    }
-
-    /**
-     * Shows p-message component after error has been thrown
-     */
-    showError(error) {
-        this.msgs = [];
-        this.msgs.push({
-            severity: 'error',
-            summary: error.error.errorCode,
-            detail: error.error.message
-        });
-    }
-
-    /**
-     * Shows p-message component after succes of registration
-     */
-    showSuccess() {
-        this.msgs = [];
-        this.msgs.push({
-            severity: 'success',
-            summary: 'Erfolgreich',
-            detail: `Sie haben einen Auftrag erstellt.`
-        });
     }
 
     /**

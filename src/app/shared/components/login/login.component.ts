@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
             this.$authService.loginUser(user).subscribe(response => {
                 if (response !== null) {
                     window.scroll(0, 0);
-                    sessionStorage.setItem('x-auth', response.headers.get('x-auth'));
                     this.setSessionStorage(response.body);
 
                     form.resetForm();
@@ -89,89 +88,97 @@ export class LoginComponent implements OnInit {
      */
     setSessionStorage(body) {
 
-        if (body.kundenNummer) {
-            // @ts-ignore
-            sessionStorage.setItem('kundenNummer', body.kundenNummer);
-        } else {
-            sessionStorage.removeItem('kundenNummer');
-        }
+      if (body.token) {
+        // @ts-ignore
+        sessionStorage.setItem('x-auth', body.token);
+      } else {
+        sessionStorage.removeItem('x-auth');
+      }
 
-        if (body.firmenName) {
-            // @ts-ignore
-            sessionStorage.setItem('firmenName', body.firmenName);
-        } else {
-            sessionStorage.removeItem('firmenName');
-        }
 
-        if (body.email) {
-            // @ts-ignore
-            sessionStorage.setItem('email', body.email);
-        } else {
-            sessionStorage.removeItem('email');
-        }
+      if (body.user.kundenNummer) {
+        // @ts-ignore
+        sessionStorage.setItem('kundenNummer', body.user.kundenNummer);
+      } else {
+        sessionStorage.removeItem('kundenNummer');
+      }
 
-        if (body.adresse) {
-            // @ts-ignore
-            sessionStorage.setItem('adresse', body.adresse);
-        } else {
-            sessionStorage.removeItem('adresse');
-        }
+      if (body.user.firmenName) {
+        // @ts-ignore
+        sessionStorage.setItem('firmenName', body.user.firmenName);
+      } else {
+        sessionStorage.removeItem('firmenName');
+      }
 
-        if (body.ort) {
-            // @ts-ignore
-            sessionStorage.setItem('ort', body.ort);
-        } else {
-            sessionStorage.removeItem('ort');
-        }
+      if (body.user.email) {
+        // @ts-ignore
+        sessionStorage.setItem('email', body.user.email);
+      } else {
+        sessionStorage.removeItem('email');
+      }
 
-        if (body.land) {
-            // @ts-ignore
-            sessionStorage.setItem('land', body.land);
-        } else {
-            sessionStorage.removeItem('land');
-        }
+      if (body.user.adresse) {
+        // @ts-ignore
+        sessionStorage.setItem('adresse', body.user.adresse);
+      } else {
+        sessionStorage.removeItem('adresse');
+      }
 
-        if (body.telefon) {
-            // @ts-ignore
-            sessionStorage.setItem('telefon', body.telefon);
-        } else {
-            sessionStorage.removeItem('telefon');
-        }
+      if (body.user.ort) {
+        // @ts-ignore
+        sessionStorage.setItem('ort', body.user.ort);
+      } else {
+        sessionStorage.removeItem('ort');
+      }
 
-        if (body.plz) {
-            // @ts-ignore
-            sessionStorage.setItem('plz', body.plz);
-        } else {
-            sessionStorage.removeItem('plz');
-        }
+      if (body.user.land) {
+        // @ts-ignore
+        sessionStorage.setItem('land', body.user.land);
+      } else {
+        sessionStorage.removeItem('land');
+      }
 
-        if (body.firstName) {
-            // @ts-ignore
-            sessionStorage.setItem('vorname', body.firstName);
-        } else {
-            sessionStorage.removeItem('vorname');
-        }
+      if (body.user.telefon) {
+        // @ts-ignore
+        sessionStorage.setItem('telefon', body.user.telefon);
+      } else {
+        sessionStorage.removeItem('telefon');
+      }
 
-        if (body.lastName) {
-            // @ts-ignore
-            sessionStorage.setItem('nachname', body.lastName);
-        } else {
-            sessionStorage.removeItem('nachname');
-        }
+      if (body.user.plz) {
+        // @ts-ignore
+        sessionStorage.setItem('plz', body.user.plz);
+      } else {
+        sessionStorage.removeItem('plz');
+      }
 
-        if (body.zusatz) {
-            // @ts-ignore
-            sessionStorage.setItem('zusatz', body.zusatz);
-        } else {
-            sessionStorage.removeItem('zusatz');
-        }
+      if (body.user.firstName) {
+        // @ts-ignore
+        sessionStorage.setItem('vorname', body.user.firstName);
+      } else {
+        sessionStorage.removeItem('vorname');
+      }
 
-        if (body.ansprechpartner) {
-            // @ts-ignore
-            sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
-        } else {
-            sessionStorage.removeItem('ansprechpartner');
-        }
+      if (body.user.lastName) {
+        // @ts-ignore
+        sessionStorage.setItem('nachname', body.user.lastName);
+      } else {
+        sessionStorage.removeItem('nachname');
+      }
+
+      if (body.user.zusatz) {
+        // @ts-ignore
+        sessionStorage.setItem('zusatz', body.user.zusatz);
+      } else {
+        sessionStorage.removeItem('zusatz');
+      }
+
+      if (body.user.ansprechpartner) {
+        // @ts-ignore
+        sessionStorage.setItem('ansprechpartner', body.user.ansprechpartner);
+      } else {
+        sessionStorage.removeItem('ansprechpartner');
+      }
     }
 
 }
