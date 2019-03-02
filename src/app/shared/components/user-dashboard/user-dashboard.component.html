@@ -245,7 +245,7 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-order>
                             <tr style="text-align: center;" [pSelectableRow]="order">
-                                <td>{{order.createdAt}}</td>
+                                <td>{{order.identificationNumber}}</td>
                                 <td>{{order.rechnungsDaten.email}}</td>
                                 <td>{{order.absender.firma}}</td>
                                 <td>{{order.empfaenger.firma}}</td>
@@ -364,29 +364,14 @@
                 <h6>Versandinformationen</h6>
                 <div class="row padding-left">
                     <div class="col-4">Abholdatum:</div>
-                    <div class="col-8">{{ order.abholTermin.datum}}</div>
+                    <div class="col-8">{{ order.abholTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{ order.abholTermin.von }} - {{ order.abholTermin.bis}} Uhr)</div>
                 </div>
 
                 <div class="row padding-left">
-                    <div class="col-4">
-                        Zustelltermin:
-                    </div>
-
-                    <div class="col-8">
-                        <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.zustellTermin.termin === 'Standardzustellungstermin'">Standardtermin (zwischen
-                            09:00 - 17:00
-                            Uhr)
-                        </div>
-                        <div *ngIf="order.zustellTermin.termin === '9'">Termin um 09:00 Uhr</div>
-                        <div *ngIf="order.zustellTermin.termin === '10'">Termin um 10:00 Uhr</div>
-                        <div *ngIf="order.zustellTermin.termin === '12'">Termin um 12:00 Uhr</div>
-                        <div *ngIf="order.zustellTermin.termin === 'fixtermin'"> Fixtermin um {{
-                            order.zustellTermin.zeit }} Uhr
-                        </div>
-
-                    </div>
+                    <div class="col-4">Zustelldatum:</div>
+                    <div class="col-8">{{ order.zustellTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{ order.zustellTermin.von }} - {{ order.zustellTermin.bis}} Uhr)</div>
                 </div>
+
 
                 <div class="row padding-left">
                     <div class="col-4">
@@ -395,9 +380,9 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.zustellTermin.art === 'Standardzustellung'">Standard</div>
-                        <div *ngIf="order.zustellTermin.art === 'persoenlich'">Persönlich</div>
-                        <div *ngIf="order.zustellTermin.art === 'persoenlichIdent'">Persönlich mit Identifikation</div>
+                        <div *ngIf="order.zustellTermin.art === 'Standardzustellung'">Standard Zustellung</div>
+                        <div *ngIf="order.zustellTermin.art === 'persoenlich'">Persönliche Zustellung</div>
+                        <div *ngIf="order.zustellTermin.art === 'persoenlichIdent'">Persönliche Zustellung mit Identifikation</div>
 
                     </div>
                 </div>

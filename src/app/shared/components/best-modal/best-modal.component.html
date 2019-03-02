@@ -101,6 +101,11 @@
                     <div class="col-8">{{ data.sendungsdatenArt }}</div>
                 </div>
 
+                <div class="row padding-left">
+                    <div class="col-4"><strong>Transportversicherung:</strong></div>
+                    <div class="col-8">{{ data.sendungsdatenVers }}</div>
+                </div>
+
             </div>
         </div>
 
@@ -111,28 +116,12 @@
                 <h6>Versandinformationen</h6>
                 <div class="row padding-left">
                     <div class="col-4"><strong>Abholdatum:</strong></div>
-                    <div class="col-8">{{ data.abholDatum | date:'dd.MM.yy' }}</div>
+                    <div class="col-8">{{ data.abholDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.abholZeitVon }} - {{ data.abholZeitBis}} Uhr)</div>
                 </div>
 
                 <div class="row padding-left">
-                    <div class="col-4">
-                        <strong>
-                            Zustelltermin:
-                        </strong>
-                    </div>
-
-                    <div class="col-8">
-                        <!--ZUSTELLTERMIN-->
-                        <div *ngIf="data.zustellTermin === 'Standardzustellungstermin'">Standardtermin (zwischen 09:00 -
-                            17:00
-                            Uhr)
-                        </div>
-                        <div *ngIf="data.zustellTermin === '9'">Termin um 09:00 Uhr</div>
-                        <div *ngIf="data.zustellTermin === '10'">Termin um 10:00 Uhr</div>
-                        <div *ngIf="data.zustellTermin === '12'">Termin um 12:00 Uhr</div>
-                        <div *ngIf="data.zustellTermin === 'fixtermin'"> Fixtermin um {{ data.fixtermin }} Uhr</div>
-
-                    </div>
+                    <div class="col-4"><strong>Zustelldatum:</strong></div>
+                    <div class="col-8">{{ data.zustellDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.zustellZeitVon }} - {{ data.zustellZeitBis}} Uhr)</div>
                 </div>
 
                 <div class="row padding-left">
@@ -144,9 +133,9 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="data.sonderdienst === 'Standardzustellung'">Standard</div>
-                        <div *ngIf="data.sonderdienst === 'persoenlich'">Persönlich</div>
-                        <div *ngIf="data.sonderdienst === 'persoenlichIdent'">Persönlich mit Identifikation</div>
+                        <div *ngIf="data.zustellArt === 'Standardzustellung'">Standard Zustellung</div>
+                        <div *ngIf="data.zustellArt === 'persoenlich'">Persönliche Zustellung</div>
+                        <div *ngIf="data.zustellArt === 'persoenlichIdent'">Persönliche Zustellung mit Identifikation</div>
 
                     </div>
                 </div>
@@ -210,7 +199,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Schließen</button>
+    <button type="button" class="btn btn-light" (click)="activeModal.dismiss('Cross click')">Schließen</button>
     <button type="button" class="btn btn-success" (click)="sendData(data)" autofocus>Auftrag abschließen
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
               *ngIf="$httpLoader.isLoading | async"></span>

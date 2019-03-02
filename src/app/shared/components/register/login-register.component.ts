@@ -59,7 +59,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                     this.showSuccess(response.body);
                 }
             }, error => {
-                this.showError();
+                this.showError(error);
                 console.log(error);
             });
         }
@@ -69,12 +69,12 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * Shows p-message component after error has been thrown
      */
-    showError() {
+    showError(error) {
         this.msgs = [];
         this.msgs.push({
             severity: 'error',
-            summary: 'Registrierung Fehlgeschlagen',
-            detail: 'Bitte versuchen Sie es erneut sich zu registrieren.'
+            summary: error.error.errorCode,
+            detail: error.error.message
         });
     }
 

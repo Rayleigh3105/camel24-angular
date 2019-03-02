@@ -486,11 +486,6 @@
                                         name="zustellDatum"
                                         dateFormat="dd.mm.yy"
                                 ></p-calendar>
-
-                                <div *ngIf="f.submitted && zustellDatum.invalid"
-                                     class="invalid-feedback-calender">
-                                    <div *ngIf="zustellDatum.errors.required">Zustell Datum wird benötigt</div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -554,15 +549,14 @@
 
                     <h4 class="mv_heading sendungsdaten_h pt-4">Zustellungsart</h4>
 
-                    <label for="sonderdienst">Sonderdienst</label>
 
                     <div class="form-group pb-3">
-                        <select id="sonderdienst"
+                        <select id="zustellArt"
                                 class="form-control"
                                 [(ngModel)]="sonderdienstSelected"
-                                name="sonderdienst"
-                                #sonderdienst="ngModel"
-                                [ngClass]="{ 'is-invalid': f.submitted && sonderdienst.invalid }"
+                                name="zustellArt"
+                                #zustellArt="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && zustellArt.invalid }"
                                 required>
                             <option>Standardzustellung</option>
                             <option value="persoenlich">Persönliche Zustellung</option>
@@ -570,9 +564,9 @@
                         </select>
 
 
-                        <div *ngIf="f.submitted && sonderdienst.invalid"
+                        <div *ngIf="f.submitted && zustellArt.invalid"
                              class="invalid-feedback">
-                            <div *ngIf="sonderdienst.errors.required">Sonderdienst wird benötigt</div>
+                            <div *ngIf="zustellArt.errors.required">Zustellungs art wird benötigt.</div>
                         </div>
                     </div>
 
