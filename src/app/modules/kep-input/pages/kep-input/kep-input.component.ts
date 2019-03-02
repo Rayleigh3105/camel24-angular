@@ -166,10 +166,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
                 sessionStorage.removeItem('kundenNummer');
                 sessionStorage.setItem('kundenNummer', form.value.kundenNummer);
             }
-            // Delete KundenNummer from request body because it going to be sent with headers
-            delete form.value.kundenNummer;
-            // Delete Check from request body because it isnt needed for the request
-            delete form.value.check;
+
+            form = this.prepareData(form);
+
             modalref.componentInstance.data = form.value;
             modalref.result.then(result => {
                 if (result) {
@@ -357,5 +356,32 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.myCalendar.inputFieldValue = ("0" + this.zustellDatum1.getDate()).slice(-2) + "." + ("0"+(this.zustellDatum1.getMonth()+1)).slice(-2) + "." +
             this.zustellDatum1.getFullYear();
         this.myCalendar.updateUI();
+    }
+
+    /**
+     * Prepares form data
+     *
+     * @param form - current form
+     */
+    private prepareData(form: NgForm): NgForm {
+
+
+        if (form.value.auftragsbestRechnungsadresse === 'absender') {
+            form.value.rechnungName = form.value.absFirma;
+            form.value.rechnungAdresse = form.value.absAdresse;
+            form.value.rechnungPlz = form.value.absPlz;
+            form.value.rechnungOrt = form.value.absOrt;
+        } else if (form.value.auftragsbestRechnungsadresse === 'empfeanger') {
+            form.value.rechnungName = form.value.empfFirma;
+            form.value.rechnungAdresse = form.value.empfAdresse;
+            form.value.rechnungPlz = form.value.empfPlz;
+            form.value.rechnungOrt = form.value.empfOrt;
+        }
+
+        // Delete Check and auftragsbestRechnungsadresse because it is not needed
+        delete form.value.check;
+        delete form.value.auftragsbestRechnungsadresse;
+
+        return form;
     }
 }

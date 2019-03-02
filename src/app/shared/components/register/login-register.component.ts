@@ -81,12 +81,12 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     /**
      * Shows p-message component after succes of registration
      */
-    showSuccess(value) {
+    showSuccess(response) {
         this.msgs = [];
         this.msgs.push({
             severity: 'success',
             summary: 'Erfolgreich',
-            detail: `Herzlich Wilkommen ${value.firmenName} - ${value.kundenNummer} bei dem Camel-24 Auftrags Online Service`
+            detail: `Herzlich Wilkommen ${response.user.firmenName} - ${response.user.kundenNummer} bei dem Camel-24 Auftrags Online Service`
         });
     }
 

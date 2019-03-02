@@ -346,7 +346,7 @@
 
                 <div class="row padding-left">
                     <div class="col-4">Gewicht der Sendung:</div>
-                    <div class="col-8">{{ order.sendungsdaten.gewicht }}</div>
+                    <div class="col-8">{{ order.sendungsdaten.gewicht }} kg</div>
                 </div>
 
                 <div class="row padding-left">
@@ -364,12 +364,16 @@
                 <h6>Versandinformationen</h6>
                 <div class="row padding-left">
                     <div class="col-4">Abholdatum:</div>
-                    <div class="col-8">{{ order.abholTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{ order.abholTermin.von }} - {{ order.abholTermin.bis}} Uhr)</div>
+                    <div class="col-8">{{ order.abholTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{
+                        order.abholTermin.von }} - {{ order.abholTermin.bis}} Uhr)
+                    </div>
                 </div>
 
                 <div class="row padding-left">
                     <div class="col-4">Zustelldatum:</div>
-                    <div class="col-8">{{ order.zustellTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{ order.zustellTermin.von }} - {{ order.zustellTermin.bis}} Uhr)</div>
+                    <div class="col-8">{{ order.zustellTermin.datum | date:'dd.MM.yyyy' }} (zwischen {{
+                        order.zustellTermin.von }} - {{ order.zustellTermin.bis}} Uhr)
+                    </div>
                 </div>
 
 
@@ -382,7 +386,9 @@
                         <!--ZUSTELLTERMIN-->
                         <div *ngIf="order.zustellTermin.art === 'Standardzustellung'">Standard Zustellung</div>
                         <div *ngIf="order.zustellTermin.art === 'persoenlich'">Persönliche Zustellung</div>
-                        <div *ngIf="order.zustellTermin.art === 'persoenlichIdent'">Persönliche Zustellung mit Identifikation</div>
+                        <div *ngIf="order.zustellTermin.art === 'persoenlichIdent'">Persönliche Zustellung mit
+                            Identifikation
+                        </div>
 
                     </div>
                 </div>
@@ -415,28 +421,13 @@
                     </div>
 
                     <div class="col-8">
-                        <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'absender'">Wie Absender ({{
-                            order.absender.firma
-                            }})
-                        </div>
-                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'empfeanger'">Wie Empfänger ({{
-                            order.empfeanger.firma
-                            }})
-                        </div>
+                        {{ order.rechnungsDaten.name }}
+                        <br>
+                        {{ order.rechnungsDaten.adresse }}
+                        <br>
+                        {{ order.rechnungsDaten.plz }} {{ order.rechnungsDaten.ort }}
 
-                        <div *ngIf="order.rechnungsDaten.rechnungsAdresse === 'manuell'">
-                            {{ order.rechnungsDaten.name }}
-                            <br>
-                            {{ order.rechnungsDaten.adresse }}
-                            <br>
-                            {{ order.rechnungsDaten.plz }}
-                            <br>
-                            {{ order.rechnungsDaten.ort }}
-                            <br>
-                            {{ order.rechnungsDaten.telefon }}
-                        </div>
-
+                        <br>
                     </div>
                 </div>
             </div>
