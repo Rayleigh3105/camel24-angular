@@ -210,12 +210,11 @@
                             selectionMode="single"
                             [(selection)]="selectedCar"
                             sortMode="multiple"
-                            [multiSortMeta]="multiSortMeta"
                             (onRowSelect)="onRowSelect($event)">
                         <ng-template pTemplate="header">
                             <tr style="text-align: center">
-                                <th [pSortableColumn]="'createdAt'">
-                                    Erstellungsdatum
+                                <th [pSortableColumn]="'identificationNumber'">
+                                    Versand Nummer
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
                                 <th [pSortableColumn]="'rechnungsDaten.email'">
