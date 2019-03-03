@@ -60,7 +60,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 }
             }, error => {
                 this.showError(error);
-                console.log(error);
             });
         }
     }

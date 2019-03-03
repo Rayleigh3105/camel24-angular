@@ -46,7 +46,9 @@ export class DashboardService {
         return this.$http.post(`${environment.endpoint}download`, {identificationNumber}, {
             responseType: 'blob',
             headers: new HttpHeaders().append('Content-Type', 'application/json'),
-        })
+        }).pipe(
+          tap((response)=> response)
+        );
     }
 
     /**
