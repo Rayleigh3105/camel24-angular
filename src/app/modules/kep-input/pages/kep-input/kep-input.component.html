@@ -547,10 +547,10 @@
                         {{ zustellErrorMessage }}
                     </div>
 
-                    <h4 class="mv_heading sendungsdaten_h pt-4">Zustellungsart</h4>
+                    <h4 class="mv_heading sendungsdaten_h pt-2">Zustellungsart</h4>
 
 
-                    <div class="form-group pb-3">
+                    <div class="form-group">
                         <select id="zustellArt"
                                 class="form-control"
                                 [(ngModel)]="sonderdienstSelected"
@@ -768,7 +768,7 @@
 
     <!--SUCCESS-->
     <p-dialog header="Auftrag abschließen" [(visible)]="requestSuccessfully" [responsive]="true" showEffect="fade"
-              [modal]="true" width="600" [draggable]="false">
+              [modal]="true" width="600" [draggable]="false" (onHide)="refreshPage()">
         <div class="container">
             <div class="row">
                 <div class="col-sm">
@@ -812,7 +812,7 @@
                                                      width="20" style="margin-left: 10px"><img>
                                             </div>
                                             <div class="col-sm-11">
-                                                <span style="color: darkgrey;" class="text-align">Sie werden in kürze ein E-Mail mit weiteren Informationen erhalten.</span>
+                                                <span style="color: darkgrey;" class="text-align">Sie werden in kürze ein E-Mail mit weiteren Informationen über Ihren Auftrag erhalten.</span>
                                             </div>
                                         </div>
                                     </div>

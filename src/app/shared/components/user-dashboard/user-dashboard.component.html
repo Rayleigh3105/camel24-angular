@@ -232,7 +232,7 @@
                                 <th [pSortableColumn]="'abholTermin.datum'">Abholdatum
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
-                                <th [pSortableColumn]="'sendungsdaten.art'">WaffenArt
+                                <th [pSortableColumn]="'sendungsdaten.art'">Art der Ware
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
                                 <th [pSortableColumn]="'sendungsdaten.wert'">Warenwert
@@ -245,14 +245,14 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-order>
                             <tr style="text-align: center;" [pSelectableRow]="order">
-                                <td>{{order.identificationNumber}}</td>
-                                <td>{{order.rechnungsDaten.email}}</td>
-                                <td>{{order.absender.firma}}</td>
-                                <td>{{order.empfaenger.firma}}</td>
-                                <td>{{order.abholTermin.datum}}</td>
-                                <td>{{order.sendungsdaten.art}}</td>
-                                <td>{{order.sendungsdaten.wert}}</td>
-                                <td>{{order.sendungsdaten.gewicht}}</td>
+                                <td>{{ order.identificationNumber }}</td>
+                                <td>{{ order.rechnungsDaten.email }}</td>
+                                <td>{{ order.absender.firma }}</td>
+                                <td>{{ order.empfaenger.firma }}</td>
+                                <td>{{ order.abholTermin.datum | date:'dd.MM.yyyy' }}</td>
+                                <td>{{ order.sendungsdaten.art }}</td>
+                                <td>{{ order.sendungsdaten.wert }}</td>
+                                <td>{{ order.sendungsdaten.gewicht }} kg</td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -436,7 +436,7 @@
 
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix vertical-horizontal-center">
-            <button type="button" pButton icon="fa fa-file" (click)="delete()" label="PDF herunterladen"></button>
+            <button type="button" pButton icon="fa fa-file" (click)="downloadPdf()" label="PDF herunterladen"></button>
         </div>
     </p-footer>
 </p-dialog>

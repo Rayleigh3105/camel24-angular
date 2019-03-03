@@ -173,9 +173,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             modalref.result.then(result => {
                 if (result) {
                     form.resetForm();
-                    this.cdr.detectChanges();
-                    this.updateNgModelVariablesWithSessionStorage();
                     this.requestSuccessfully = true;
+                    this.updateNgModelVariablesWithSessionStorage();
+                    this.cdr.detectChanges();
 
                 } else {
                     this.requestError = true;
@@ -197,6 +197,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.versicherungSelected = 'Nein';
         this.zustellungsTerminSelected = 'Standardzustellungstermin';
         this.sonderdienstSelected = 'Standardzustellung';
+
 
         //  SESSION VALUES
         this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
@@ -364,8 +365,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param form - current form
      */
     private prepareData(form: NgForm): NgForm {
-
-
         if (form.value.auftragsbestRechnungsadresse === 'absender') {
             form.value.rechnungName = form.value.absFirma;
             form.value.rechnungAdresse = form.value.absAdresse;
@@ -383,5 +382,12 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         delete form.value.auftragsbestRechnungsadresse;
 
         return form;
+    }
+
+    /**
+     *Reloads windows
+     */
+    public refreshPage() {
+        window.location.reload(true);
     }
 }

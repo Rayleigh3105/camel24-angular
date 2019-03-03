@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
+import {ResponseContentType} from '@angular/http';
 
 @Injectable({
     providedIn: 'root'
@@ -37,6 +38,18 @@ export class DashboardService {
     }
 
     /**
+     * Download Paketlabel
+     *
+     * @param identificationNumber
+     */
+    downloadPdf(identificationNumber){
+        return this.$http.post(`${environment.endpoint}download`, {identificationNumber}, {
+            responseType: 'blob',
+            headers: new HttpHeaders().append('Content-Type', 'application/json'),
+        })
+    }
+
+    /**
      * Set`s up Request hedaer for dashboard requests
      */
     updateXAuthfromSessionStorage() {
@@ -45,6 +58,21 @@ export class DashboardService {
         };
 
         return {
+            headers: new HttpHeaders(headers),
+        };
+
+    }
+    /**
+     * Set`s up Request hedaer for dashboard requests
+     */
+    prepareDownloadOptions() {
+        let headers = {
+            'x-auth': sessionStorage.getItem('x-auth'),
+            'Content-Type': 'application/json'
+        };
+
+        return {
+            responseType: 'blob',
             headers: new HttpHeaders(headers),
         };
 

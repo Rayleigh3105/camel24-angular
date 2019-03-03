@@ -7,6 +7,8 @@ import {User} from '../../../core/models/user/user-model';
 import {Message} from 'primeng/api';
 import {AuthService} from '../../services/auth.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {saveAs as importedSaveAs} from 'file-saver';
+
 
 @Component({
     selector: 'camel-user-dashboard',
@@ -248,5 +250,17 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
         } else {
             sessionStorage.removeItem('ansprechpartner');
         }
+    }
+
+    /**
+     * Download PDF
+     */
+    downloadPdf() {
+        this.$dasboardService.downloadPdf(this.order.identificationNumber).subscribe(blob => {
+            importedSaveAs(blob, "juju.pdf")
+            },
+            error => {
+                console.log(error);
+            });
     }
 }
