@@ -265,7 +265,12 @@
 
 <p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
           width="800">
-  <div class="container" *ngIf="order">
+  <div class="container vh-80" *ngIf="order">
+      <div class="row">
+          <div class="col-sm">
+              <p-messages [(value)]="msgsDialog" [closable]="true"></p-messages>
+          </div>
+      </div>
     <div class="row">
       <div class="col-sm">
         <h5 class="heading_modal">Absender</h5>
@@ -432,9 +437,6 @@
         </div>
       </div>
     </div>
-
-    <p-messages [(value)]="msgsDialog" [closable]="true"></p-messages>
-
   </div>
 
   <p-footer>

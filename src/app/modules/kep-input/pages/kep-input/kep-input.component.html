@@ -723,10 +723,17 @@
                             <div *ngIf="f.submitted && check.invalid" class="invalid-feedback">
                                 <div *ngIf="check.errors.required">Information wird benötigt</div>
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="row  ">
+
+                <div class="row" *ngIf="!f.valid" class="error-font">
+                    <div class="col-sm vertical-horizontal-center">
+                            Bitte füllen Sie die Eingabemaske richtig und valide aus.
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm vertical-horizontal-center">
                         <button type="submit" id="mv-submit-button">Weiter <i class="fa fa-file"></i></button>
                     </div>
@@ -830,7 +837,7 @@
               [modal]="true" width="600" [draggable]="false">
         <div class="container">
             <div class="row">
-                <div class="col-sm vh-80">
+                <div class="col-sm">
                     <div class="row">
                         <div class="col-sm no-p">
                             <div class="section1 vertical-horizontal-center">
@@ -872,14 +879,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row pt-3">
-                                    <div class="col-sm vertical-horizontal-center">
-                                        <button class="mv-submit-button" (click)="onSubmit(f)">
-                                            Nochmal versuchen
-                                        </button>
-                                    </div>
-                                </div>
-
                                 <div class="row pt-3">
                                     <div class="col-sm vertical-horizontal-center">
                                         <p class="pl-5">Falls sie fragen haben kontaktieren Sie <a
