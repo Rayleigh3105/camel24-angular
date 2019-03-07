@@ -18,11 +18,11 @@
                         <input type="text" class="form-control" id="absFirma" name="absFirma"
                                [(ngModel)]="sessionFirmenName"
                                #absFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absFirma.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
 
                         <div *ngIf="f.submitted && absFirma.invalid" class="invalid-feedback">
-                            <div *ngIf="absFirma.errors.required">Firma / Name wird benötigt</div>
+                            <div *ngIf="absFirma.errors.required">Firma / Name wird benötigt.</div>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                         <input type="text" class="form-control" name="absZusatz"
                                [(ngModel)]="sessionZusatz"
                                [ngClass]="{ 'is-invalid': f.submitted && absZusatz.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                #absZusatz="ngModel">
                     </div>
 
@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" id="absAnsprechpartner" name="absAnsprechpartner"
                                [(ngModel)]="sessionAnsprechpartner"
                                [ngClass]="{ 'is-invalid': f.submitted && absAnsprechpartner.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                #absAnsprechpartner="ngModel">
                     </div>
 
@@ -50,10 +50,10 @@
                         <input type="text" class="form-control" id="absAdresse" name="absAdresse"
                                [(ngModel)]="sessionAdresse"
                                #absAdresse="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absAdresse.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
                         <div *ngIf="f.submitted && absAdresse.invalid" class="invalid-feedback">
-                            <div *ngIf="absAdresse.errors.required">Adresse wird benötigt</div>
+                            <div *ngIf="absAdresse.errors.required">Adresse wird benötigt.</div>
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@
                                 <option>Schweiz</option>
                             </select>
                             <div *ngIf="f.submitted && absLand.invalid" class="invalid-feedback">
-                                <div *ngIf="absLand.errors.required">Land wird benötigt</div>
+                                <div *ngIf="absLand.errors.required">Land wird benötigt.</div>
                             </div>
 
                         </div>
@@ -85,8 +85,8 @@
                                    pattern="[0-9]{5}"
                                    required>
                             <div *ngIf="f.submitted && absPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="absPlz.errors.required">PLZ wird benötigt</div>
-                                <div *ngIf="absPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+                                <div *ngIf="absPlz.errors.required">PLZ wird benötigt.</div>
+                                <div *ngIf="absPlz.errors.pattern">PLZ muss aus 5 Ziffern bestehen.</div>
                             </div>
                         </div>
                     </div>
@@ -96,11 +96,11 @@
                         <input type="text" class="form-control" id="absOrt" name="absOrt"
                                [(ngModel)]="sessionOrt"
                                #absOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absOrt.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
 
                         <div *ngIf="f.submitted && absOrt.invalid" class="invalid-feedback">
-                            <div *ngIf="absOrt.errors.required">Ort wird benötigt</div>
+                            <div *ngIf="absOrt.errors.required">Ort wird benötigt.</div>
                         </div>
                     </div>
 
@@ -110,11 +110,13 @@
                         <input type="text" class="form-control" id="absTel" name="absTel"
                                [(ngModel)]="sessionTelefon"
                                #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
-                               maxlength="255"
+                               minlength="1"
+                               maxlength="20"
+                               pattern="[0-9]{1,20}"
                                required>
-
                         <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
-                            <div *ngIf="absTel.errors.required">Telefonnummer wird benötigt</div>
+                            <div *ngIf="absTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="absTel.errors.required">Telefonnummer wird benötigt.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -128,11 +130,11 @@
                         <input type="text" class="form-control" id="empfFirma" name="empfFirma"
                                ngModel
                                #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
 
                         <div *ngIf="f.submitted && empfFirma.invalid" class="invalid-feedback">
-                            <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt</div>
+                            <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt.</div>
                         </div>
 
                     </div>
@@ -143,14 +145,14 @@
                         <label for="empfZusatz">Zusatz</label>
                         <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
                                ngModel [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                #empfZusatz="ngModel">
                     </div>
                     <div class="form-group">
                         <label for="empfAnpsrechpartner">Ansprechpartner</label>
                         <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
                                ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                #empfAnpsrechpartner="ngModel">
                     </div>
 
@@ -159,10 +161,10 @@
                         <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
                                ngModel #empfAdresse="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
                         <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
-                            <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt</div>
+                            <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt.</div>
                         </div>
                     </div>
 
@@ -180,7 +182,7 @@
                                 <option>Schweiz</option>
                             </select>
                             <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
-                                <div *ngIf="empfLand.errors.required">Land wird benötigt</div>
+                                <div *ngIf="empfLand.errors.required">Land wird benötigt.</div>
                             </div>
                         </div>
                         <div class="form-group col-sm">
@@ -193,8 +195,8 @@
                                    pattern="[0-9]{5}"
                                    required>
                             <div *ngIf="f.submitted && empfPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="empfPlz.errors.required">PLZ wird benötigt</div>
-                                <div *ngIf="empfPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+                                <div *ngIf="empfPlz.errors.required">PLZ wird benötigt.</div>
+                                <div *ngIf="empfPlz.errors.pattern">PLZ muss aus 5 Ziffern bestehen.</div>
                             </div>
                         </div>
                     </div>
@@ -203,11 +205,11 @@
                         <label for="empfOrt">Ort</label>
                         <input type="text" class="form-control" id="empfOrt" name="empfOrt"
                                ngModel #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
-                               maxlength="255"
+                               maxlength="75"
                                required>
 
                         <div *ngIf="f.submitted && empfOrt.invalid" class="invalid-feedback">
-                            <div *ngIf="empfOrt.errors.required">Ort wird benötigt</div>
+                            <div *ngIf="empfOrt.errors.required">Ort wird benötigt.</div>
                         </div>
                     </div>
 
@@ -219,11 +221,13 @@
                                name="empfTel"
                                ngModel #empfTel="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
-                               maxlength="255"
+                               minlength="1"
+                               maxlength="20"
+                               pattern="[0-9]{1,20}"
                                required>
-
                         <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
-                            <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt</div>
+                            <div *ngIf="empfTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt.</div>
                         </div>
                     </div>
                 </fieldset>
@@ -268,7 +272,7 @@
 
                                         <div *ngIf="f.submitted && abholDatum.invalid"
                                              class="invalid-feedback-calender">
-                                            <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt</div>
+                                            <div *ngIf="abholDatum.errors.required">Abholdatum wird benötigt.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +299,7 @@
                                         <option value="18:00">18:00 Uhr</option>
                                     </select>
                                     <div *ngIf="f.submitted && abholZeitVon.invalid" class="invalid-feedback">
-                                        <div *ngIf="abholZeitVon.errors.required">Zeitfenster wird benötigt.</div>
+                                        <div *ngIf="abholZeitVon.errors.required">Zeitfenster wird benötigt..</div>
                                     </div>
 
                                 </div>
@@ -321,7 +325,7 @@
                                         <option value="18:00">18:00 Uhr</option>
                                     </select>
                                     <div *ngIf="f.submitted && abholZeitBis.invalid" class="invalid-feedback">
-                                        <div *ngIf="abholZeitBis.errors.required">Zeitfenster wird benötigt.</div>
+                                        <div *ngIf="abholZeitBis.errors.required">Zeitfenster wird benötigt..</div>
                                     </div>
 
                                 </div>
@@ -352,7 +356,7 @@
 
                                             <div *ngIf="f.submitted && sendungsdatenArt.invalid"
                                                  class="invalid-feedback">
-                                                <div *ngIf="sendungsdatenArt.errors.required">Art wird benötigt</div>
+                                                <div *ngIf="sendungsdatenArt.errors.required">Art wird benötigt.</div>
                                             </div>
                                         </div>
 
@@ -398,7 +402,7 @@
 
                                             <div *ngIf="f.submitted && sendungsdatenGewicht.invalid"
                                                  class="invalid-feedback">
-                                                <div *ngIf="sendungsdatenGewicht.errors.required">Gewicht wird benötigt
+                                                <div *ngIf="sendungsdatenGewicht.errors.required">Gewicht wird benötigt.
                                                 </div>
                                             </div>
                                         </div>
@@ -419,7 +423,7 @@
                                             <div *ngIf="f.submitted && sendungsdatenVers.invalid"
                                                  class="invalid-feedback">
                                                 <div *ngIf="sendungsdatenVers.errors.required">Transport Vers. wird
-                                                    benötigt
+                                                    benötigt.
                                                 </div>
                                             </div>
                                         </div>
@@ -440,7 +444,7 @@
 
                                         <div *ngIf="f.submitted && sendungsdatenWert.invalid"
                                              class="invalid-feedback">
-                                            <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt</div>
+                                            <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt.</div>
                                             <div *ngIf="sendungsdatenWert.errors.pattern">Wert darf nur aus Ziffern
                                                 bestehen
                                             </div>
@@ -512,7 +516,7 @@
                                 <option value="18:00">18:00 Uhr</option>
                             </select>
                             <div *ngIf="f.submitted && zustellZeitVon.invalid" class="invalid-feedback">
-                                <div *ngIf="zustellZeitVon.errors.required">Zeitfenster wird benötigt.</div>
+                                <div *ngIf="zustellZeitVon.errors.required">Zeitfenster wird benötigt..</div>
                             </div>
 
                         </div>
@@ -538,7 +542,7 @@
                                 <option value="18:00">18:00 Uhr</option>
                             </select>
                             <div *ngIf="f.submitted && zustellZeitBis.invalid" class="invalid-feedback">
-                                <div *ngIf="zustellZeitBis.errors.required">Zeitfenster wird benötigt.</div>
+                                <div *ngIf="zustellZeitBis.errors.required">Zeitfenster wird benötigt..</div>
                             </div>
                         </div>
                     </div>
@@ -566,7 +570,7 @@
 
                         <div *ngIf="f.submitted && zustellArt.invalid"
                              class="invalid-feedback">
-                            <div *ngIf="zustellArt.errors.required">Zustellungs art wird benötigt.</div>
+                            <div *ngIf="zustellArt.errors.required">Zustellungs art wird benötigt..</div>
                         </div>
                     </div>
 
@@ -594,7 +598,7 @@
 
                         <div *ngIf="f.submitted && auftragbestEmail.invalid"
                              class="invalid-feedback">
-                            <div *ngIf="auftragbestEmail.errors.required">E-Mail wird benötigt</div>
+                            <div *ngIf="auftragbestEmail.errors.required">E-Mail wird benötigt.</div>
                             <div *ngIf="auftragbestEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an
                             </div>
                         </div>
@@ -608,11 +612,13 @@
                                [(ngModel)]="sessionTelefon"
                                #auftragbestTelefon="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
+                               minlength="1"
+                               maxlength="20"
+                               pattern="[0-9]{1,20}"
                                required>
-
-                        <div *ngIf="f.submitted && auftragbestTelefon.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt</div>
+                        <div *ngIf="f.submitted && auftragbestTelefon.invalid" class="invalid-feedback">
+                            <div *ngIf="auftragbestTelefon.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt.</div>
                         </div>
                     </div>
 
@@ -635,7 +641,7 @@
 
                         <div *ngIf="f.submitted && auftragsbestRechnungsadresse.invalid"
                              class="invalid-feedback">
-                            <div *ngIf="auftragsbestRechnungsadresse.errors.required">Rechnungsadresse wird benötigt
+                            <div *ngIf="auftragsbestRechnungsadresse.errors.required">Rechnungsadresse wird benötigt.
                             </div>
                         </div>
                     </div>
@@ -647,11 +653,11 @@
                                    ngModel
                                    #rechnungName="ngModel"
                                    [ngClass]="{ 'is-invalid': f.submitted && rechnungName.invalid }"
-                                   maxlength="255"
+                                   maxlength="75"
                                    required>
 
                             <div *ngIf="f.submitted && rechnungName.invalid" class="invalid-feedback">
-                                <div *ngIf="rechnungName.errors.required">Firma / Name wird benötigt</div>
+                                <div *ngIf="rechnungName.errors.required">Firma / Name wird benötigt.</div>
                             </div>
 
                         </div>
@@ -661,16 +667,16 @@
                                    ngModel
                                    #rechnungAdresse="ngModel"
                                    [ngClass]="{ 'is-invalid': f.submitted && rechnungAdresse.invalid }"
-                                   maxlength="255"
+                                   maxlength="75"
                                    required>
                             <div *ngIf="f.submitted && rechnungAdresse.invalid" class="invalid-feedback">
-                                <div *ngIf="rechnungAdresse.errors.required">Adresse wird benötigt</div>
+                                <div *ngIf="rechnungAdresse.errors.required">Adresse wird benötigt.</div>
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="absPlz">PLZ</label>
+                            <label for="rechnungPlz">PLZ</label>
                             <input type="text" class="form-control" id="rechnungPlz" name="rechnungPlz"
                                    #rechnungPlz="ngModel"
                                    [ngClass]="{ 'is-invalid': f.submitted && rechnungPlz.invalid }"
@@ -680,8 +686,8 @@
                                    pattern="[0-9]{5}"
                                    required>
                             <div *ngIf="f.submitted && rechnungPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="rechnungPlz.errors.required">PLZ wird benötigt</div>
-                                <div *ngIf="rechnungPlz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten</div>
+                                <div *ngIf="rechnungPlz.errors.required">PLZ wird benötigt..</div>
+                                <div *ngIf="rechnungPlz.errors.pattern">PLZ muss aus 5 Ziffern bestehen.</div>
                             </div>
                         </div>
 
@@ -691,11 +697,11 @@
                                    #rechnungOrt="ngModel"
                                    [ngClass]="{ 'is-invalid': f.submitted && rechnungOrt.invalid }"
                                    ngModel
-                                   maxlength="255"
+                                   maxlength="75"
                                    required>
 
                             <div *ngIf="f.submitted && rechnungOrt.invalid" class="invalid-feedback">
-                                <div *ngIf="rechnungOrt.errors.required">Ort wird benötigt</div>
+                                <div *ngIf="rechnungOrt.errors.required">Ort wird benötigt.</div>
                             </div>
                         </div>
                     </div>
@@ -721,16 +727,16 @@
                             <label for="check" class="form-check-label"><a routerLink="/national">AGB´s</a> und<a
                                     routerLink="/impressum"> Datenschutz</a> gelesen ?</label>
                             <div *ngIf="f.submitted && check.invalid" class="invalid-feedback">
-                                <div *ngIf="check.errors.required">Information wird benötigt</div>
+                                <div *ngIf="check.errors.required">Information wird benötigt.</div>
                             </div>
 
                         </div>
                     </div>
                 </div>
 
-                <div class="row" *ngIf="!f.valid" class="error-font">
+                <div class="row" *ngIf="!f.valid && f.submitted" class="error-font">
                     <div class="col-sm vertical-horizontal-center">
-                            Bitte füllen Sie die Eingabemaske richtig und valide aus.
+                        Bitte füllen Sie die Eingabemaske richtig und valide aus.
                     </div>
                 </div>
                 <div class="row">

@@ -28,7 +28,7 @@
                                            ngModel
                                            #vorname="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && vorname.invalid }"
-                                           maxlength="255"
+                                           maxlength="50"
                                            autofocus
                                            required>
                                     <div *ngIf="f.submitted && vorname.invalid" class="invalid-feedback">
@@ -42,7 +42,7 @@
                                            ngModel
                                            #nachname="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && nachname.invalid }"
-                                           maxlength="255"
+                                           maxlength="50"
                                            required>
                                     <div *ngIf="f.submitted && nachname.invalid" class="invalid-feedback">
                                         <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
@@ -57,7 +57,7 @@
                                            ngModel
                                            #firmenname="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
-                                           maxlength="255"
+                                           maxlength="75"
                                            required>
                                     <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
                                         <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
@@ -71,7 +71,7 @@
                                        ngModel
                                        #email="ngModel"
                                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
-                                       maxlength="255"
+                                       maxlength="75"
                                        email
                                        required>
                                 <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
@@ -88,7 +88,7 @@
                                            #passwort="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
                                            minlength="6"
-                                           maxlength="255"
+                                           maxlength="20"
                                            required>
                                     <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
                                         <div *ngIf="passwort.errors.required">Passwort wird benötigt.</div>
@@ -106,7 +106,7 @@
                                            #passwortbest="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && passwortbest.invalid }"
                                            minlength="6"
-                                           maxlength="255"
+                                           maxlength="20"
                                            required>
                                     <div *ngIf="f.submitted && passwortbest.invalid" class="invalid-feedback">
                                         <div *ngIf="passwortbest.errors.required">Bestätigungs Passwort wird

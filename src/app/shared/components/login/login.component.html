@@ -44,7 +44,7 @@
                                        #passwort="ngModel"
                                        [ngClass]="{ 'is-invalid': f.submitted && passwort.invalid }"
                                        minlength="6"
-                                       maxlength="255"
+                                       maxlength="20"
                                        required>
                                 <div *ngIf="f.submitted && passwort.invalid" class="invalid-feedback">
                                     <div *ngIf="passwort.errors.required">Passwort wird benötigt.</div>

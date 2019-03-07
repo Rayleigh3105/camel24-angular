@@ -16,9 +16,9 @@
     </div>
 
     <div class="row text-align font" style="color: white">
-        <div class="col-sm no-p" id="section2overlay">
+        <div class="col-sm no-p" id="section2overlay" (click)="openInfo1()">
             <div id="section2underlay">
-                <h3 class="pl-5 padding-h">Wertversand</h3>
+                <h3 class="pl-5 padding-h">Waffenversand</h3>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm">
@@ -49,8 +49,8 @@
             </div>
         </div>
         <div class="col-sm no-p">
-            <div id="section2underlay2">
-                <h3 class=" padding-h">Waffenversand</h3>
+            <div id="section2underlay2" (click)="openInfo2()">
+                <h3 class=" padding-h">Wertversand</h3>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm">
@@ -75,16 +75,68 @@
         </div>
     </div>
 
-        <div class="row padding-top-bottom ">
+    <div class="row padding-top-bottom ">
+        <div class="col-sm-2"></div>
+        <div class="col-sm vertical-horizontal-center">
+            <h5>Jetzt einen Auftrag erstellen</h5>
+        </div>
+        <div class="col-sm vertical-horizontal-center">
+            <button type="button" routerLink="/auftrag" id="mv-submit-button">Auftrag <i class="fa fa-truck"></i>
+            </button>
+        </div>
+        <div class="col-sm-2"></div>
+
+    </div>
+</div>
+
+<!--INFO 1-->
+<p-dialog header="Informationen Waffenversand"
+          [(visible)]="showInfoModal1"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          width="650">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h5 class="heading_modal">Waffenversand – legal und sicher!</h5>
+                <p>Für den Versand von Waffen und Munition ist der legale und absolut sichere Transfer unabdingbar. Der
+                    Waffenversand
+                    im KEP-System unterliegt strengsten Kontrollen und wird lückenlos dokumentiert.</p>
+                <br>
+
+                <p>Wir zählen Jäger, Händler, Sportschützen und Waffensammler zu unseren Kunden.</p>
+                <br>
+
+                <p> Wunsch bieten wir den Versand auch mit Identprüfung und weiteren Serviceleistungen aus dem Portfolio der KEP-AG
+                    an. Für alle weiteren Informationen sowie eine Beratung über den Versand von Jagd- und Sportwaffen und Munition
+                    kontaktieren Sie unsere E-Mail an <a
+                            href="mailto:info@Camel-24.de">info@Camel-24.de</a>.</p>
+
+            </div>
+        </div>
+
+        <div class="row pt-4">
             <div class="col-sm-2"></div>
             <div class="col-sm vertical-horizontal-center">
-                <h5>Jetzt einen Auftrag erstellen</h5>
-            </div>
-            <div class="col-sm vertical-horizontal-center">
-                <button type="button" routerLink="/auftrag" id="mv-submit-button">Auftrag <i class="fa fa-truck"></i>
+                <button type="button" routerLink="/auftrag" id="mv-submit-button">Auftrag erstellen  <i class="fa fa-truck"></i>
                 </button>
             </div>
             <div class="col-sm-2"></div>
 
         </div>
     </div>
+
+
+
+</p-dialog>
+
+<!--INFO 2-->
+<p-dialog header="Informationen Wertversand"
+          [(visible)]="showInfoModal2"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          width="800">
+
+</p-dialog>
