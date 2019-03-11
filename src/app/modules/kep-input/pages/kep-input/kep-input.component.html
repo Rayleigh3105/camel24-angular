@@ -112,7 +112,7 @@
                                #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
                                minlength="1"
                                maxlength="20"
-                               pattern="[0-9]{1,20}"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
                             <div *ngIf="absTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
@@ -172,7 +172,11 @@
                         <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
                                ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
                                maxlength="75"
-                               #empfAnpsrechpartner="ngModel">
+                               #empfAnpsrechpartner="ngModel"
+                               [required]="checkEmpfAnsprechPartner(f)">
+                        <div *ngIf="f.submitted && empfAnpsrechpartner.invalid" class="invalid-feedback">
+                            Ansprechpartner muss bei Persönlicher Zustellung ausgefüllt sein.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -242,7 +246,7 @@
                                [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
                                minlength="1"
                                maxlength="20"
-                               pattern="[0-9]{1,20}"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
                             <div *ngIf="empfTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
@@ -333,8 +337,6 @@
                                         <option value="14:00">14:00 Uhr</option>
                                         <option value="15:00">15:00 Uhr</option>
                                         <option value="16:00">16:00 Uhr</option>
-                                        <option value="17:00">17:00 Uhr</option>
-                                        <option value="18:00">18:00 Uhr</option>
                                     </select>
                                     <div *ngIf="f.submitted && abholZeitVon.invalid" class="invalid-feedback">
                                         <div *ngIf="abholZeitVon.errors.required">Zeitfenster wird benötigt..</div>
@@ -359,8 +361,6 @@
                                         <option value="14:00">14:00 Uhr</option>
                                         <option value="15:00">15:00 Uhr</option>
                                         <option value="16:00">16:00 Uhr</option>
-                                        <option value="17:00">17:00 Uhr</option>
-                                        <option value="18:00">18:00 Uhr</option>
                                     </select>
                                     <div *ngIf="f.submitted && abholZeitBis.invalid" class="invalid-feedback">
                                         <div *ngIf="abholZeitBis.errors.required">Zeitfenster wird benötigt..</div>
@@ -593,20 +593,19 @@
                     <div class="form-group">
                         <select id="zustellArt"
                                 class="form-control"
+                                ngModel
                                 [(ngModel)]="sonderdienstSelected"
                                 name="zustellArt"
                                 #zustellArt="ngModel"
                                 [ngClass]="{ 'is-invalid': f.submitted && zustellArt.invalid }"
                                 required>
-                            <option>Standardzustellung</option>
+                            <option value="standard">Standardzustellung</option>
                             <option value="persoenlich">Persönliche Zustellung</option>
                             <option value="persoenlichIdent">Persönliche Zustellung mit Ident</option>
                         </select>
 
-
-                        <div *ngIf="f.submitted && zustellArt.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="zustellArt.errors.required">Zustellungs art wird benötigt..</div>
+                        <div *ngIf="f.submitted && checkZustellArtWithArtSendung(f)" class="error-font">
+                            Persönliche Zustellung ist erforderlich bei Waffen und Munitionsversand.
                         </div>
                     </div>
 
@@ -650,7 +649,7 @@
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                                minlength="1"
                                maxlength="20"
-                               pattern="[0-9]{1,20}"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && auftragbestTelefon.invalid" class="invalid-feedback">
                             <div *ngIf="auftragbestTelefon.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
@@ -770,7 +769,7 @@
                     </div>
                 </div>
 
-                <div class="row" *ngIf="!f.valid && f.submitted" class="error-font">
+                <div class="row" *ngIf="!f.valid && f.submitted || abholErrorMessage || zustellErrorMessage" class="error-font">
                     <div class="col-sm vertical-horizontal-center">
                         Bitte füllen Sie die Eingabemaske richtig und valide aus.
                     </div>

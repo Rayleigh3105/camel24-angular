@@ -48,8 +48,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public artSelected: string = 'Waffe';
     public kiloSelected: string = '3';
     public versicherungSelected: string = 'Nein';
-    public zustellungsTerminSelected: string = 'Standardzustellungstermin';
-    public sonderdienstSelected: string = 'Standardzustellung';
+    public sonderdienstSelected: string = 'persoenlichIdent';
     public abholZeitVon1: string = '08:00';
     public abholZeitBis1: string = '16:00';
     public zustellZeitVon1: string = '08:00';
@@ -153,8 +152,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param form - form which is submitted
      */
     onSubmit(form: NgForm) {
-
-        if (this.checkValidAbholZeitfenster(form) && this.checkValidZustellZeitFenster(form) && form.form.valid) {
+        if (this.checkValidAbholZeitfenster(form) && this.checkValidZustellZeitFenster(form) && form.form.valid && !this.checkZustellArtWithArtSendung(form)) {
             const modalref = this.modalService.open(BestModalComponent, {
                 size: 'lg',
                 backdrop: 'static',
@@ -190,15 +188,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Also updates Selected Values in form with default values
      */
     updateNgModelVariablesWithSessionStorage() {
-        // SELECTED VALUES
-        this.empfLandSelected = 'Deutschland';
-        this.rechnungSelected = 'absender';
-        this.artSelected = 'Waffe';
-        this.kiloSelected = '3';
-        this.versicherungSelected = 'Nein';
-        this.zustellungsTerminSelected = 'Standardzustellungstermin';
-        this.sonderdienstSelected = 'Standardzustellung';
-
 
         //  SESSION VALUES
         this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
@@ -345,6 +334,29 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     }
 
     /**
+     * Checks if Empfänger Ansprechpartner is required.
+     * Is required when:
+     * - persoenlich
+     * - persoenlich with ident
+     *
+     * @param form
+     */
+    public checkEmpfAnsprechPartner(form: NgForm): boolean {
+        return form.value.zustellArt != 'standard';
+    }
+
+    /**
+     * Checks if persoenliche abholung is required
+     * Is required when:
+     * - Waffe
+     * - Munition
+     * @param form
+     */
+    public checkZustellArtWithArtSendung(form: NgForm): boolean {
+        return form.value.sendungsdatenArt !== 'Sonstiges' && !this.checkEmpfAnsprechPartner(form);
+    }
+
+    /**
      * Resolves Zustell Datum after abholdatum has been changed
      */
     public onAbholDateChanged() {
@@ -355,7 +367,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             this.zustellDatum1.setDate(this.abholDatum1.getDate() + 1);
         }
         this.minDateZustell = this.zustellDatum1;
-        this.myCalendar.inputFieldValue = ("0" + this.zustellDatum1.getDate()).slice(-2) + "." + ("0"+(this.zustellDatum1.getMonth()+1)).slice(-2) + "." +
+        this.myCalendar.inputFieldValue = ('0' + this.zustellDatum1.getDate()).slice(-2) + '.' + ('0' + (this.zustellDatum1.getMonth() + 1)).slice(-2) + '.' +
             this.zustellDatum1.getFullYear();
         this.myCalendar.updateUI();
     }
