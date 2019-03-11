@@ -27,7 +27,8 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
         super($modalService, cdr, $authService);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     /**
      * Register User in Database
@@ -52,11 +53,13 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
                 if (response !== null) {
                     window.scroll(0, 0);
 
-                  this.setSessionStorage(response.body);
+                    this.setSessionStorage(response.body);
                     // Reset Form
                     form.resetForm();
                     this.updateNgModelVariablesWithSessionStorage();
-                    this.showSuccess(response.body);
+                    // @ts-ignore
+                    this.activeModal.close(`Herzlich Wilkommen ${response.body.user.kundenNummer} bei dem Camel-24 Auftrags Online Service`);
+
                 }
             }, error => {
                 this.showError(error);
@@ -78,18 +81,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
     }
 
     /**
-     * Shows p-message component after succes of registration
-     */
-    showSuccess(response) {
-        this.msgs = [];
-        this.msgs.push({
-            severity: 'success',
-            summary: 'Erfolgreich',
-            detail: `Herzlich Wilkommen ${response.user.firmenName} - ${response.user.kundenNummer} bei dem Camel-24 Auftrags Online Service`
-        });
-    }
-
-    /**
      * Dertermines what happens after Modal has been closed
      */
     onClose() {
@@ -102,20 +93,20 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      */
     setSessionStorage(body) {
 
-      if (body.token) {
-        // @ts-ignore
-        sessionStorage.setItem('x-auth', body.token);
-      } else {
-        sessionStorage.removeItem('x-auth');
-      }
+        if (body.token) {
+            // @ts-ignore
+            sessionStorage.setItem('x-auth', body.token);
+        } else {
+            sessionStorage.removeItem('x-auth');
+        }
 
 
-      if (body.user.kundenNummer) {
-        // @ts-ignore
-        sessionStorage.setItem('kundenNummer', body.user.kundenNummer);
-      } else {
-        sessionStorage.removeItem('kundenNummer');
-      }
+        if (body.user.kundenNummer) {
+            // @ts-ignore
+            sessionStorage.setItem('kundenNummer', body.user.kundenNummer);
+        } else {
+            sessionStorage.removeItem('kundenNummer');
+        }
 
         if (body.user.firmenName) {
             // @ts-ignore

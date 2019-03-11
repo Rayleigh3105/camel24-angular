@@ -42,7 +42,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public sessionOrt: string;
     public sessionTelefon: string;
     public sessionEmail: string;
-    public landSelected: string = 'Deutschland';
+    public empfLandSelected: string = 'Deutschland';
+    public absLandSelected: string = 'Deutschland';
     public rechnungSelected: string = 'absender';
     public artSelected: string = 'Waffe';
     public kiloSelected: string = '3';
@@ -190,7 +191,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      */
     updateNgModelVariablesWithSessionStorage() {
         // SELECTED VALUES
-        this.landSelected = 'Deutschland';
+        this.empfLandSelected = 'Deutschland';
         this.rechnungSelected = 'absender';
         this.artSelected = 'Waffe';
         this.kiloSelected = '3';

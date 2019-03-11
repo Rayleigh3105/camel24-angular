@@ -63,10 +63,10 @@
                             <select id="absLand" class="form-control" name="absLand"
                                     ngModel
                                     #absLand="ngModel"
-                                    [(ngModel)]="sessionLand || landSelected"
+                                    [(ngModel)]="sessionLand || absLandSelected"
                                     [ngClass]="{ 'is-invalid': f.submitted && absLand.invalid }"
                                     required>
-                                <option selected>Deutschland</option>
+                                <option>Deutschland</option>
                                 <option>Österreich</option>
                                 <option>Schweiz</option>
                             </select>
@@ -174,7 +174,7 @@
                             <select id="empfLand" class="form-control" name="empfLand"
                                     ngModel
                                     #empfLand="ngModel"
-                                    [(ngModel)]="landSelected"
+                                    [(ngModel)]="empfLandSelected"
                                     [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
                                     required>
                                 <option>Deutschland</option>
@@ -439,12 +439,10 @@
                                                placeholder="0,00"
                                                pattern="[0-9]{1,12}"
                                                ngModel #sendungsdatenWert="ngModel"
-                                               [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }"
-                                               required>
+                                               [ngClass]="{ 'is-invalid': f.submitted && sendungsdatenWert.invalid }">
 
                                         <div *ngIf="f.submitted && sendungsdatenWert.invalid"
                                              class="invalid-feedback">
-                                            <div *ngIf="sendungsdatenWert.errors.required">Wert wird benötigt.</div>
                                             <div *ngIf="sendungsdatenWert.errors.pattern">Wert darf nur aus Ziffern
                                                 bestehen
                                             </div>
@@ -759,7 +757,7 @@
     <!--INFO-->
     <p-dialog header="Wie erstelle ich einen Online Auftrag?" [(visible)]="showDialog" [responsive]="true"
               showEffect="fade"
-              [modal]="true" width="800">
+              [modal]="true" >
         <ol>
             <li>Form ohne Fehler ausfüllen</li>
             <li> Auf <strong>Weiter</strong> drücken ... eine Zusammenfassung über Ihre eingegebenen Daten wird erstellt
@@ -769,7 +767,7 @@
             <img src="../../../../../assets/images/camel_zusammenfassung.png" height="400" width="400"/>
         </div>
         <br>
-        Nachdem Sie auf <strong>Auftrag schließen</strong> klicken wird Ihr Auftrag generiert.
+        Nachdem Sie auf <strong>Auftrag abschließen</strong> klicken wird Ihr Auftrag generiert.
         Sobald die Daten verarbeitet worden sind, werden Sie in kürze eine E-Mail (in Form angegeben) mit Ihrem
         Paketlabel
         erhalten.

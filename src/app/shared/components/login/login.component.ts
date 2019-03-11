@@ -41,12 +41,11 @@ export class LoginComponent implements OnInit {
                     this.setSessionStorage(response.body);
 
                     form.resetForm();
-
-                    this.showSuccess(response.body);
+                    // @ts-ignore
+                    this.activeModal.close(`Herzlich Wilkommen ${response.body.user.kundenNummer} bei dem Camel-24 Auftrags Online Service`);
                 }
             }, error => {
                 this.showError(error);
-                console.debug(error);
             });
         }
     }
@@ -60,18 +59,6 @@ export class LoginComponent implements OnInit {
             severity: 'error',
             summary: error.error.errorCode,
             detail: error.error.message
-        });
-    }
-
-    /**
-     * Shows p-message component after succes of registration
-     */
-    showSuccess(response) {
-        this.msgs = [];
-        this.msgs.push({
-            severity: 'success',
-            summary: 'Erfolgreich',
-            detail: `Herzlich Wilkommen ${response.user.firmenName} - ${response.user.kundenNummer} bei dem Camel-24 Auftrags Online Service`
         });
     }
 
