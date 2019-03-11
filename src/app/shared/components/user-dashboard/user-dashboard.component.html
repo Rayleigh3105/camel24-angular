@@ -267,8 +267,8 @@
 
 
 <p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          width="800">
-    <div class="container vh-80" *ngIf="order">
+          width="800" [draggable]="false">
+    <div class="container" *ngIf="order">
         <div class="row">
             <div class="col-sm">
                 <p-messages [(value)]="msgsDialog" [closable]="true"></p-messages>
@@ -306,6 +306,11 @@
                     <div class="col-5"><strong>Telefon:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ order.absender.telefon }}</span></div>
                 </div>
+
+                <div class="row">
+                    <div class="col-5"><strong>E-Mail:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.absender.email }}</span></div>
+                </div>
             </div>
             <div class="col-sm">
                 <h5 class="heading_modal">Empfänger</h5>
@@ -340,6 +345,10 @@
                     <div class="col-7"><span class="padding-left">{{ order.empfaenger.telefon }}</span></div>
                 </div>
 
+                <div class="row">
+                    <div class="col-5"><strong>E-Mail:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.empfaenger.email }}</span></div>
+                </div>
             </div>
         </div>
         <hr>
