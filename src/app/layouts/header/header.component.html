@@ -1,20 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light header-color">
+    <a class="navbar-brand" href="#">Camel-24</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="">Startseite <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/auftrag"><i class="fa fa-file" ></i> Online - Auftrag</a>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false">Dienste</a>
+                   aria-expanded="false"><i class="fa fa-truck"></i> Dienste</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/auftrag">Standard Auftrag</a>
-                    <a class="dropdown-item" href="http://kep-ag.kep-it.de/xtras/track.php">Sendungsverfolgung <i class="fa fa-truck"></i></a>
+                    <a class="dropdown-item" href="http://kep-ag.kep-it.de/xtras/track.php" target="_blank">Sendungsverfolgung - KEP</a>
+                    <a class="dropdown-item" href="http://www.derkurier.de/onlineservices/sendung-verfolgen/" target="_blank">Sendungsverfolgung - Der Kurier</a>
+
                 </div>
             </li>
 

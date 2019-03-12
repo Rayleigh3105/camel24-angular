@@ -23,7 +23,7 @@ export class DashboardService {
     updateUser(user: User) {
         return this.$http.patch(`${environment.endpoint}user/${user._id}`, user, this.updateXAuthfromSessionStorage())
             .pipe(
-                tap((response: Response )=> response.body)
+                tap((response: Response) => response.body)
             );
     }
 
@@ -42,12 +42,14 @@ export class DashboardService {
      *
      * @param identificationNumber
      */
-    downloadPdf(identificationNumber){
+    downloadPdf(identificationNumber) {
         return this.$http.post(`${environment.endpoint}download`, {identificationNumber}, {
             responseType: 'blob',
-            headers: new HttpHeaders().append('Content-Type', 'application/json'),
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+                .append('x-auth', sessionStorage.getItem('x-auth')),
         }).pipe(
-          tap((response)=> response)
+            tap((response) => response)
         );
     }
 
@@ -60,21 +62,6 @@ export class DashboardService {
         };
 
         return {
-            headers: new HttpHeaders(headers),
-        };
-
-    }
-    /**
-     * Set`s up Request hedaer for dashboard requests
-     */
-    prepareDownloadOptions() {
-        let headers = {
-            'x-auth': sessionStorage.getItem('x-auth'),
-            'Content-Type': 'application/json'
-        };
-
-        return {
-            responseType: 'blob',
             headers: new HttpHeaders(headers),
         };
 

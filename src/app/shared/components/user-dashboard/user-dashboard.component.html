@@ -267,7 +267,7 @@
 
 
 <p-dialog [header]="header" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          width="800" [draggable]="false">
+          width="800" [draggable]="false" [blockScroll]="false">
     <div class="container" *ngIf="order">
         <div class="row">
             <div class="col-sm">
@@ -453,7 +453,7 @@
 
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix vertical-horizontal-center">
-            <button type="button" pButton icon="fa fa-file" (click)="downloadPdf()"
+            <button type="button" pButton icon="fa fa-download" (click)="downloadPdf()"
                     label="Pakelabel herunterladen"></button>
         </div>
     </p-footer>
