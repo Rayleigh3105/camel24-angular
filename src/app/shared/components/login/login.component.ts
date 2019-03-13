@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
      * Dertermines what happens after Modal has been closed
      */
     onClose() {
-        this.activeModal.close(true);
+        this.activeModal.close();
     }
 
     /**

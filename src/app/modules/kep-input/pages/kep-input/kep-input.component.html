@@ -168,13 +168,13 @@
                                #empfZusatz="ngModel">
                     </div>
                     <div class="form-group">
-                        <label for="empfAnpsrechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="empfAnpsrechpartner" name="empfAnpsrechpartner"
-                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnpsrechpartner.invalid }"
+                        <label for="empfAnsprechpartner">Ansprechpartner</label>
+                        <input type="text" class="form-control" id="empfAnsprechpartner" name="empfAnsprechpartner"
+                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnsprechpartner.invalid }"
                                maxlength="75"
-                               #empfAnpsrechpartner="ngModel"
+                               #empfAnsprechpartner="ngModel"
                                [required]="checkEmpfAnsprechPartner(f)">
-                        <div *ngIf="f.submitted && empfAnpsrechpartner.invalid" class="invalid-feedback">
+                        <div *ngIf="f.submitted && empfAnsprechpartner.invalid" class="invalid-feedback">
                             Ansprechpartner muss bei Persönlicher Zustellung ausgefüllt sein.
                         </div>
                     </div>

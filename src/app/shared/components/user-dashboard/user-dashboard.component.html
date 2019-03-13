@@ -282,6 +282,17 @@
                     <div class="col-7"><span class="padding-left">{{ order.absender.firma }}</span></div>
                 </div>
 
+                <div class="row" *ngIf="order.absender.zusatz">
+                    <div class="col-5"><strong>Zusatz:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.absender.zusatz }}</span></div>
+                </div>
+
+
+                <div class="row" *ngIf="order.absender.ansprechpartner">
+                    <div class="col-5"><strong>Ansprechpartner:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.absender.ansprechpartner }}</span></div>
+                </div>
+
                 <div class="row">
                     <div class="col-5"><strong>Adresse:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ order.absender.adresse }}</span></div>
@@ -318,6 +329,18 @@
                 <div class="row">
                     <div class="col-5"><strong>Firma / Name:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ order.empfaenger.firma }}</span></div>
+                </div>
+
+
+                <div class="row" *ngIf="order.empfaenger.zusatz">
+                    <div class="col-5"><strong>Zusatz:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.empfaenger.zusatz }}</span></div>
+                </div>
+
+
+                <div class="row" *ngIf="order.empfaenger.ansprechpartner">
+                    <div class="col-5"><strong>Ansprechpartner:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ order.empfaenger.ansprechpartner }}</span></div>
                 </div>
 
                 <div class="row">
@@ -401,7 +424,7 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="order.zustellTermin.art === 'Standardzustellung'">Standard Zustellung</div>
+                        <div *ngIf="order.zustellTermin.art === 'standard'">Standard Zustellung</div>
                         <div *ngIf="order.zustellTermin.art === 'persoenlich'">Persönliche Zustellung</div>
                         <div *ngIf="order.zustellTermin.art === 'persoenlichIdent'">Persönliche Zustellung mit
                             Identifikation

@@ -21,6 +21,17 @@
                     <div class="col-7"><span class="padding-left">{{ data.absFirma }}</span></div>
                 </div>
 
+                <div class="row" *ngIf="data.absZusatz">
+                    <div class="col-5"><strong>Zusatz:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ data.absZusatz }}</span></div>
+                </div>
+
+
+                <div class="row" *ngIf="data.absAnsprechpartner">
+                    <div class="col-5"><strong>Ansprechpartner:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ data.absAnsprechpartner }}</span></div>
+                </div>
+
                 <div class="row">
                     <div class="col-5"><strong>Adresse:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.absAdresse }}</span></div>
@@ -57,6 +68,17 @@
                     <div class="col-5"><strong>Firma / Name:</strong></div>
                     <div class="col-7"><span class="padding-left">{{ data.empfFirma }}</span></div>
                 </div>
+                <div class="row" *ngIf="data.empfZusatz">
+                    <div class="col-5"><strong>Zusatz:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ data.empfZusatz }}</span></div>
+                </div>
+
+
+                <div class="row" *ngIf="data.empfAnsprechpartner">
+                    <div class="col-5"><strong>Ansprechpartner:</strong></div>
+                    <div class="col-7"><span class="padding-left">{{ data.empfAnsprechpartner }}</span></div>
+                </div>
+
 
                 <div class="row">
                     <div class="col-5"><strong>Adresse:</strong></div>
@@ -147,7 +169,7 @@
 
                     <div class="col-8">
                         <!--ZUSTELLTERMIN-->
-                        <div *ngIf="data.zustellArt === 'Standardzustellung'">Standard Zustellung</div>
+                        <div *ngIf="data.zustellArt === 'standard'">Standard Zustellung</div>
                         <div *ngIf="data.zustellArt === 'persoenlich'">Persönliche Zustellung</div>
                         <div *ngIf="data.zustellArt === 'persoenlichIdent'">Persönliche Zustellung mit Identifikation
                         </div>
@@ -192,9 +214,7 @@
                         <br>
                         {{ data.rechnungAdresse}}
                         <br>
-                        {{ data.rechnungPlz}}
-                        <br>
-                        {{ data.rechnungOrt}}
+                        {{ data.rechnungPlz}} - {{ data.rechnungOrt}}
                         <br>
                         {{ data.rechnungTel}}
                     </div>
