@@ -111,11 +111,11 @@
                                [(ngModel)]="sessionTelefon"
                                #absTel="ngModel" [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
                                minlength="1"
-                               maxlength="20"
-                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
+                               maxlength="15"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
-                            <div *ngIf="absTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="absTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
                             <div *ngIf="absTel.errors.required">Telefonnummer wird benötigt.</div>
                         </div>
                     </div>
@@ -128,6 +128,8 @@
                                name="absEmail"
                                [(ngModel)]="sessionEmail"
                                #absEmail="ngModel"
+                               minlength="1"
+                               maxlength="50"
                                [ngClass]="{ 'is-invalid': f.submitted && absEmail.invalid }"
                                required email>
 
@@ -245,11 +247,11 @@
                                ngModel #empfTel="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
                                minlength="1"
-                               maxlength="20"
-                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
+                               maxlength="15"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
-                            <div *ngIf="empfTel.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="empfTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
                             <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt.</div>
                         </div>
                     </div>
@@ -261,6 +263,8 @@
                                id="empfEmail"
                                name="empfEmail"
                                ngModel
+                               minlength="1"
+                               maxlength="50"
                                #empfEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && empfEmail.invalid }"
                                email>
@@ -474,6 +478,8 @@
                                                class="form-control"
                                                name="sendungsdatenWert"
                                                id="sendungsdatenWert"
+                                               minlength="1"
+                                               maxlength="12"
                                                placeholder="0,00"
                                                pattern="[0-9]{1,12}"
                                                ngModel #sendungsdatenWert="ngModel"
@@ -627,6 +633,8 @@
                                id="auftragbestEmail"
                                name="auftragbestEmail"
                                ngModel
+                               minlength="1"
+                               maxlength="50"
                                #auftragbestEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                                required email>
@@ -648,11 +656,11 @@
                                #auftragbestTelefon="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                                minlength="1"
-                               maxlength="20"
-                               pattern="(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .-–\/]?)([\d]+))"
+                               maxlength="15"
+                               pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                                required>
                         <div *ngIf="f.submitted && auftragbestTelefon.invalid" class="invalid-feedback">
-                            <div *ngIf="auftragbestTelefon.errors.pattern">Telefonnummer darf nur aus Ziffern bestehen.</div>
+                            <div *ngIf="auftragbestTelefon.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
                             <div *ngIf="auftragbestTelefon.errors.required">Telefon wird benötigt.</div>
                         </div>
                     </div>
@@ -810,7 +818,7 @@
         erhalten.
 
         <h4 class="pt-3">Mit Benutzerkonto bei Camel-24</h4>
-        Falls Sie sich entscheiden, sich bei uns Anzumeldung, können Sie erstellte Aufträge einsehen und die generierten
+        Falls Sie sich entscheiden, sich bei uns anzumelden, können Sie erstellte Aufträge einsehen und die generierten
         Paketlabel jederzeit einsehen.
     </p-dialog>
 

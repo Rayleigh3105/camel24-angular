@@ -3,7 +3,7 @@
         <h5 class="modal-title">Auftrag abschließen für Kundennummer: <strong>{{ kundenNummer }}</strong></h5>
     </div>
     <ng-template #email>
-        <h5 class="modal-title">Auftrag abschließen mit E-Mail: <strong>{{ data.absEmail }}</strong></h5>
+        <h5 class="modal-title">Auftrag abschließen mit E-Mail: <strong>{{ data.auftragbestEmail }}</strong></h5>
     </ng-template>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
@@ -18,47 +18,47 @@
                 <h5 class="heading_modal">Absender</h5>
                 <div class="row">
                     <div class="col-5"><strong>Firma / Name:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absFirma }}</span></div>
+                    <div class="col-7">{{ data.absFirma }}</div>
                 </div>
 
                 <div class="row" *ngIf="data.absZusatz">
                     <div class="col-5"><strong>Zusatz:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absZusatz }}</span></div>
+                    <div class="col-7">{{ data.absZusatz }}</div>
                 </div>
 
 
                 <div class="row" *ngIf="data.absAnsprechpartner">
                     <div class="col-5"><strong>Ansprechpartner:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absAnsprechpartner }}</span></div>
+                    <div class="col-7">{{ data.absAnsprechpartner }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Adresse:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absAdresse }}</span></div>
+                    <div class="col-7">{{ data.absAdresse }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Land:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absLand }}</span></div>
+                    <div class="col-7">{{ data.absLand }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Postleizahl:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absPlz }}</span></div>
+                    <div class="col-7">{{ data.absPlz }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Ort:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absOrt }}</span></div>
+                    <div class="col-7">{{ data.absOrt }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Telefon:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absTel }}</span></div>
+                    <div class="col-7">{{ data.absTel }}</div>
                 </div>
                 <div class="row">
                     <div class="col-5"><strong>E-Mail:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.absEmail }}</span></div>
+                    <div class="col-7">{{ data.absEmail }}</div>
                 </div>
             </div>
             <div class="col-sm">
@@ -66,49 +66,49 @@
 
                 <div class="row">
                     <div class="col-5"><strong>Firma / Name:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfFirma }}</span></div>
+                    <div class="col-7">{{ data.empfFirma }}</div>
                 </div>
                 <div class="row" *ngIf="data.empfZusatz">
                     <div class="col-5"><strong>Zusatz:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfZusatz }}</span></div>
+                    <div class="col-7">{{ data.empfZusatz }}</div>
                 </div>
 
 
                 <div class="row" *ngIf="data.empfAnsprechpartner">
                     <div class="col-5"><strong>Ansprechpartner:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfAnsprechpartner }}</span></div>
+                    <div class="col-7">{{ data.empfAnsprechpartner }}</div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-5"><strong>Adresse:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfAdresse }}</span></div>
+                    <div class="col-7">{{ data.empfAdresse }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Land:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfLand }}</span></div>
+                    <div class="col-7">{{ data.empfLand }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Postleizahl:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfPlz }}</span></div>
+                    <div class="col-7">{{ data.empfPlz }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Ort:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfOrt }}</span></div>
+                    <div class="col-7">{{ data.empfOrt }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-5"><strong>Telefon:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfTel }}</span></div>
+                    <div class="col-7">{{ data.empfTel }}</div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-5"><strong>E-Mail:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ data.empfEmail }}</span></div>
+                    <div class="col-7">{{ data.empfEmail }}</div>
                 </div>
 
             </div>
