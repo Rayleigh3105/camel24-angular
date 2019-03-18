@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {ResponseContentType} from '@angular/http';
+import {e} from '@angular/core/src/render3';
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +43,7 @@ export class DashboardService {
      *
      * @param identificationNumber
      */
-    downloadPdf(identificationNumber) {
+    downloadPdf(identificationNumber: string) {
         return this.$http.post(`${environment.endpoint}download`, {identificationNumber}, {
             responseType: 'blob',
             headers: new HttpHeaders()
@@ -54,12 +55,32 @@ export class DashboardService {
     }
 
     /**
+     * Finds order by filter
+     * @param filter - string to search with
+     */
+    findOrdersByIdent(filter: string) {
+        return this.$http.get<any[]>(`${environment.endpoint}orders`, this.updateXAuthfromSessionStorage(filter))
+            .pipe(
+                tap(val => this.orders$.next(val))
+            );
+    }
+
+    /**
      * Set`s up Request hedaer for dashboard requests
      */
-    updateXAuthfromSessionStorage() {
-        let headers = {
-            'x-auth': sessionStorage.getItem('x-auth')
-        };
+    updateXAuthfromSessionStorage(filter?: string) {
+        let headers;
+        if (filter) {
+            headers = {
+                'x-auth': sessionStorage.getItem('x-auth'),
+                'search': filter
+            };
+        } else {
+            headers = {
+                'x-auth': sessionStorage.getItem('x-auth')
+            };
+
+        }
 
         return {
             headers: new HttpHeaders(headers),

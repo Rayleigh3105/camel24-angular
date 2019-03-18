@@ -206,59 +206,86 @@
                     <strong>Erstellte Aufträge</strong>
                 </div>
                 <div class="card-body">
-                    <p-table
-                            [value]="$dasboardService.orders$ | async"
-                            [paginator]="true"
-                            [rows]="15"
-                            selectionMode="single"
-                            [(selection)]="selectedCar"
-                            sortMode="multiple"
-                            (onRowSelect)="onRowSelect($event)">
-                        <ng-template pTemplate="header">
-                            <tr style="text-align: center">
-                                <th [pSortableColumn]="'identificationNumber'">
-                                    Versand Nummer
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'rechnungsDaten.email'">
-                                    Rechnungs Empfänger
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'absender.firma'">
-                                    Absender
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'empfaenger.firma'">
-                                    Empfänger
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'abholTermin.datum'">Abholdatum
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'sendungsdaten.art'">Art der Ware
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'sendungsdaten.wert'">Warenwert
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                                <th [pSortableColumn]="'sendungsdaten.gewicht'">Warengewicht
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-order>
-                            <tr style="text-align: center;" [pSelectableRow]="order">
-                                <td>{{ order.identificationNumber }}</td>
-                                <td>{{ order.rechnungsDaten.email }}</td>
-                                <td>{{ order.absender.firma }}</td>
-                                <td>{{ order.empfaenger.firma }}</td>
-                                <td>{{ order.abholTermin.datum | date:'dd.MM.yyyy' }}</td>
-                                <td>{{ order.sendungsdaten.art }}</td>
-                                <td>{{ order.sendungsdaten.wert }} €</td>
-                                <td>{{ order.sendungsdaten.gewicht }} kg</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text"
+                                           class="form-control" id="identificationFilter"
+                                           style="width: 100%"
+                                           [(ngModel)]="filterIdent"
+                                           (change)="filterOrders()"
+                                           minlength="1"
+                                           maxlength="30"
+                                           placeholder="Versandnummer">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <button type="submit" class="btn btn-success searchButton">Suchen
+                            <span class="spinner-border spinner-border-sm"
+                                  *ngIf="$httpLoader.isLoading | async"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <p-table
+                                    [value]="$dasboardService.orders$ | async"
+                                    [paginator]="true"
+                                    [rows]="20"
+                                    selectionMode="single"
+                                    sortMode="multiple"
+                                    (onRowSelect)="onRowSelect($event)">
+                                <ng-template pTemplate="header">
+                                    <tr style="text-align: center">
+                                        <th [pSortableColumn]="'identificationNumber'">
+                                            Versandnummer
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'rechnungsDaten.email'">
+                                            Rechnungs Empfänger
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'absender.firma'">
+                                            Absender
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'empfaenger.firma'">
+                                            Empfänger
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'abholTermin.datum'">Abholdatum
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'sendungsdaten.art'">Art der Ware
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'sendungsdaten.wert'">Warenwert
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                        <th [pSortableColumn]="'sendungsdaten.gewicht'">Warengewicht
+                                            <p-sortIcon [field]=""></p-sortIcon>
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-order>
+                                    <tr style="text-align: center;" [pSelectableRow]="order">
+                                        <td>{{ order.identificationNumber }}</td>
+                                        <td>{{ order.rechnungsDaten.email }}</td>
+                                        <td>{{ order.absender.firma }}</td>
+                                        <td>{{ order.empfaenger.firma }}</td>
+                                        <td>{{ order.abholTermin.datum | date:'dd.MM.yyyy' }}</td>
+                                        <td>{{ order.sendungsdaten.art }}</td>
+                                        <td>{{ order.sendungsdaten.wert }} €</td>
+                                        <td>{{ order.sendungsdaten.gewicht }} kg</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
