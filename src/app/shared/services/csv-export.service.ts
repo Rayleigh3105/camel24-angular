@@ -24,7 +24,7 @@ export class CsvExportService {
                 'x-auth': sessionStorage.getItem('x-auth')
             };
         }
-        return this.$http.post(environment.endpoint + 'csv', order, {
+        return this.$http.post(environment.endpoint + 'order', order, {
             observe: 'response',
             responseType: 'text',
             headers: new HttpHeaders(headers)
