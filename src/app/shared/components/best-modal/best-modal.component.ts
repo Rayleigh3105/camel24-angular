@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
 import {LoaderService} from '../../services/loader-service.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'camel-best-modal',
@@ -15,11 +16,13 @@ export class BestModalComponent implements OnInit {
     public kundenNummer: string;
     public email: string;
 
-    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService, public $httpLoader: LoaderService) {
+    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService, public $httpLoader: LoaderService, private $authService: AuthService) {
     }
 
     ngOnInit() {
-        this.kundenNummer = sessionStorage.getItem('kundenNummer');
+        this.$authService.getCurrentUser().then(user => {
+            this.kundenNummer = user.kundenNummer.toString();
+        })
     }
 
 

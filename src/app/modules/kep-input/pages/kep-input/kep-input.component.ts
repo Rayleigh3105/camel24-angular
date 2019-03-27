@@ -54,14 +54,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public zustellZeitVon1: string = '08:00';
     public zustellZeitBis1: string = '16:00';
 
-    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef, $authService: AuthService) {
+    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef, protected $authService: AuthService) {
         super();
-        // Get user Infos
-        $authService.getCurrentUser().then(body => {
-            this.setSessionStorage(body);
-            // Update NgModel Variables
-            this.updateNgModelVariablesWithSessionStorage();
-        });
+        this.updateNgModelVariablesWithSessionStorage();
     }
 
     ngOnInit() {
@@ -188,18 +183,19 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Also updates Selected Values in form with default values
      */
     updateNgModelVariablesWithSessionStorage() {
+        this.$authService.getCurrentUser().then(user => {
+            this.sessionKundenNummer = user.kundenNummer.toString();
+            this.sessionFirmenName = user.firmenName;
+            this.sessionZusatz = user.zusatz;
+            this.sessionAnsprechpartner = user.ansprechpartner;
+            this.sessionAdresse = user.adresse;
+            this.sessionLand = user.land;
+            this.sessionPlz = user.plz;
+            this.sessionOrt = user.ort;
+            this.sessionTelefon = user.telefon;
+            this.sessionEmail = user.email;
+        });
 
-        //  SESSION VALUES
-        this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
-        this.sessionFirmenName = SessionStorageComponent.getFirmenname();
-        this.sessionZusatz = SessionStorageComponent.getZusatz();
-        this.sessionAnsprechpartner = SessionStorageComponent.getAnsprechpartner();
-        this.sessionAdresse = SessionStorageComponent.getAdresse();
-        this.sessionLand = SessionStorageComponent.getLand();
-        this.sessionPlz = SessionStorageComponent.getPlz();
-        this.sessionOrt = SessionStorageComponent.getOrt();
-        this.sessionTelefon = SessionStorageComponent.getTelefon();
-        this.sessionEmail = SessionStorageComponent.getEmail();
     }
 
     /**
@@ -209,89 +205,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         this.showDialog = true;
     }
 
-    /**
-     * Set`s SessionStorage for available data
-     * @param body
-     */
-    setSessionStorage(body) {
-
-        if (body.firmenName) {
-            // @ts-ignore
-            sessionStorage.setItem('firmenName', body.firmenName);
-        } else {
-            sessionStorage.removeItem('firmenName');
-        }
-
-        if (body.email) {
-            // @ts-ignore
-            sessionStorage.setItem('email', body.email);
-        } else {
-            sessionStorage.removeItem('email');
-        }
-
-        if (body.adresse) {
-            // @ts-ignore
-            sessionStorage.setItem('adresse', body.adresse);
-        } else {
-            sessionStorage.removeItem('adresse');
-        }
-
-        if (body.ort) {
-            // @ts-ignore
-            sessionStorage.setItem('ort', body.ort);
-        } else {
-            sessionStorage.removeItem('ort');
-        }
-
-        if (body.land) {
-            // @ts-ignore
-            sessionStorage.setItem('land', body.land);
-        } else {
-            sessionStorage.removeItem('land');
-        }
-
-        if (body.telefon) {
-            // @ts-ignore
-            sessionStorage.setItem('telefon', body.telefon);
-        } else {
-            sessionStorage.removeItem('telefon');
-        }
-
-        if (body.plz) {
-            // @ts-ignore
-            sessionStorage.setItem('plz', body.plz);
-        } else {
-            sessionStorage.removeItem('plz');
-        }
-
-        if (body.firstName) {
-            // @ts-ignore
-            sessionStorage.setItem('vorname', body.firstName);
-        } else {
-            sessionStorage.removeItem('vorname');
-        }
-
-        if (body.lastName) {
-            // @ts-ignore
-            sessionStorage.setItem('nachname', body.lastName);
-        } else {
-            sessionStorage.removeItem('nachname');
-        }
-
-        if (body.zusatz) {
-            // @ts-ignore
-            sessionStorage.setItem('zusatz', body.zusatz);
-        } else {
-            sessionStorage.removeItem('zusatz');
-        }
-
-        if (body.ansprechpartner) {
-            // @ts-ignore
-            sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
-        } else {
-            sessionStorage.removeItem('ansprechpartner');
-        }
-    }
 
     /**
      * Checks if AbholZeit is valid

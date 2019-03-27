@@ -36,8 +36,11 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
      */
     public checkIfLoggedIn() {
         if (SessionStorageComponent.getXAuth() !== null) {
-            this.firmenName = SessionStorageComponent.getFirmenname();
-            this.kundenNummer = SessionStorageComponent.getKundennummer();
+            this.$authService.getCurrentUser().then(user => {
+                    this.firmenName = user.firmenName;
+                    this.kundenNummer = user.kundenNummer.toString();
+                }
+            );
             this.boolCheckIfLoggedIn = true;
         } else {
             this.boolCheckIfLoggedIn = false;
@@ -58,7 +61,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
         modalRef.result.then(detailsText => {
             if (detailsText) {
                 this.checkIfLoggedIn();
-                this.showSuccess(detailsText)
+                this.showSuccess(detailsText);
 
             }
         });
@@ -80,7 +83,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
         modalRef.result.then(detailsText => {
             if (detailsText) {
                 this.checkIfLoggedIn();
-                this.showSuccess(detailsText)
+                this.showSuccess(detailsText);
             }
         });
     }

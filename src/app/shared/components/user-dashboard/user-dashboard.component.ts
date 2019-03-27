@@ -49,11 +49,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
     ngOnInit() {
         this.updateNgModelVariablesWithSessionStorage();
-        // Get user Infos
-        this.$authService.getCurrentUser().then(body => {
-            this.setSessionStorage(body);
-            this.updateNgModelVariablesWithSessionStorage();
-        });
         this.$dasboardService.getOrdersForUser().subscribe();
     }
 
@@ -88,8 +83,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
             this.$dasboardService.updateUser(user).subscribe(body => {
                 if (body !== null) {
-                    // Set´s SessionStorage variables right
-                    this.setSessionStorage(body);
                     // Updates SessionStorage with ngModel variables
                     this.updateNgModelVariablesWithSessionStorage();
                     // Shows P-Message
@@ -141,18 +134,20 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      */
     updateNgModelVariablesWithSessionStorage() {
-        this.sessionKundenNummer = SessionStorageComponent.getKundennummer();
-        this.sessionFirmenName = SessionStorageComponent.getFirmenname();
-        this.sessionAdresse = SessionStorageComponent.getAdresse();
-        this.sessionLand = SessionStorageComponent.getLand();
-        this.sessionPlz = SessionStorageComponent.getPlz();
-        this.sessionOrt = SessionStorageComponent.getOrt();
-        this.sessionTelefon = SessionStorageComponent.getTelefon();
-        this.sessionEmail = SessionStorageComponent.getEmail();
-        this.sessionNachname = SessionStorageComponent.getNachname();
-        this.sessionVorname = SessionStorageComponent.getVorname();
-        this.sessionAnsprechpartner = SessionStorageComponent.getAnsprechpartner();
-        this.sessionZusatz = SessionStorageComponent.getZusatz();
+        this.$authService.getCurrentUser().then(user => {
+            this.sessionKundenNummer = user.kundenNummer.toString();
+            this.sessionFirmenName = user.firmenName;
+            this.sessionZusatz = user.zusatz;
+            this.sessionAnsprechpartner = user.ansprechpartner;
+            this.sessionAdresse = user.adresse;
+            this.sessionLand = user.land;
+            this.sessionPlz = user.plz;
+            this.sessionOrt = user.ort;
+            this.sessionTelefon = user.telefon;
+            this.sessionEmail = user.email;
+            this.sessionNachname = user.lastName;
+            this.sessionVorname = user.firstName;
+        });
     }
 
     /**
@@ -177,90 +172,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
             order[prop] = cloneOrder[prop];
         }
         return order;
-    }
-
-    /**
-     * Set`s SessionStorage for available data
-     * @param body
-     */
-    setSessionStorage(body) {
-
-        if (body.firmenName) {
-            // @ts-ignore
-            sessionStorage.setItem('firmenName', body.firmenName);
-        } else {
-            sessionStorage.removeItem('firmenName');
-        }
-
-        if (body.email) {
-            // @ts-ignore
-            sessionStorage.setItem('email', body.email);
-        } else {
-            sessionStorage.removeItem('email');
-        }
-
-        if (body.adresse) {
-            // @ts-ignore
-            sessionStorage.setItem('adresse', body.adresse);
-        } else {
-            sessionStorage.removeItem('adresse');
-        }
-
-        if (body.ort) {
-            // @ts-ignore
-            sessionStorage.setItem('ort', body.ort);
-        } else {
-            sessionStorage.removeItem('ort');
-        }
-
-        if (body.land) {
-            // @ts-ignore
-            sessionStorage.setItem('land', body.land);
-        } else {
-            sessionStorage.removeItem('land');
-        }
-
-        if (body.telefon) {
-            // @ts-ignore
-            sessionStorage.setItem('telefon', body.telefon);
-        } else {
-            sessionStorage.removeItem('telefon');
-        }
-
-        if (body.plz) {
-            // @ts-ignore
-            sessionStorage.setItem('plz', body.plz);
-        } else {
-            sessionStorage.removeItem('plz');
-        }
-
-        if (body.firstName) {
-            // @ts-ignore
-            sessionStorage.setItem('vorname', body.firstName);
-        } else {
-            sessionStorage.removeItem('vorname');
-        }
-
-        if (body.lastName) {
-            // @ts-ignore
-            sessionStorage.setItem('nachname', body.lastName);
-        } else {
-            sessionStorage.removeItem('nachname');
-        }
-
-        if (body.zusatz) {
-            // @ts-ignore
-            sessionStorage.setItem('zusatz', body.zusatz);
-        } else {
-            sessionStorage.removeItem('zusatz');
-        }
-
-        if (body.ansprechpartner) {
-            // @ts-ignore
-            sessionStorage.setItem('ansprechpartner', body.ansprechpartner);
-        } else {
-            sessionStorage.removeItem('ansprechpartner');
-        }
     }
 
     /**

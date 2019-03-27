@@ -3,13 +3,22 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
+    public currentUserSubject: BehaviorSubject<any>;
+
+
     constructor(private $http: HttpClient) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    }
+
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
     }
 
     /**
@@ -19,8 +28,20 @@ export class AuthService {
     createUser(user: User) {
         return this.$http.post(environment.endpoint + 'user', user, {observe: 'response', responseType: 'json'})
             .pipe(
-                map(response => response)
-            );
+                map((response => {
+                        // login successful if there's a jwt token in the response
+                        // @ts-ignore
+                        if (response.body.user) {
+                            // store user details and jwt token in local storage to keep user logged in between page refreshes
+                            // @ts-ignore
+                            sessionStorage.setItem('currentUser', JSON.stringify(response.body.user));
+                            // @ts-ignore
+                            this.currentUserSubject.next(response.body.user);
+                        }
+
+                        return response;
+                    })
+                ));
     }
 
     /**
@@ -30,8 +51,20 @@ export class AuthService {
     loginUser(user: User) {
         return this.$http.post<User>(environment.endpoint + 'user/login', user, {observe: 'response', responseType: 'json'})
             .pipe(
-                map(response => response)
-            );
+                map((response => {
+                        // login successful if there's a jwt token in the response
+                        // @ts-ignore
+                        if (response.body.user) {
+                            // store user details and jwt token in local storage to keep user logged in between page refreshes
+                            // @ts-ignore
+                            sessionStorage.setItem('currentUser', JSON.stringify(response.body.user));
+                            // @ts-ignore
+                            this.currentUserSubject.next(response.body.user);
+                        }
+
+                        return response;
+                    })
+                ));
     }
 
     /**
@@ -45,7 +78,13 @@ export class AuthService {
      * Logs out User and removes token on Server
      */
     logoutUser() {
-        return this.$http.delete(environment.endpoint + 'user/me/token', this.updatexAuthHeader());
+        return this.$http.delete(environment.endpoint + 'user/token', this.updatexAuthHeader()).pipe(
+            map(() => {
+                // remove user from local storage to log user out
+                sessionStorage.removeItem('currentUser');
+                this.currentUserSubject.next(null);
+            })
+        );
     }
 
     /**

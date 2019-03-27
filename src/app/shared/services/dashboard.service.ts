@@ -3,9 +3,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
-import {ResponseContentType} from '@angular/http';
-import {e} from '@angular/core/src/render3';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -32,7 +30,7 @@ export class DashboardService {
      * Get´s all orders for specific user
      */
     getOrdersForUser(): Observable<any[]> {
-        return this.$http.get<any[]>(`${environment.endpoint}orders`, this.updateXAuthfromSessionStorage())
+        return this.$http.get<any[]>(`${environment.endpoint}order`, this.updateXAuthfromSessionStorage())
             .pipe(
                 tap(val => this.orders$.next(val))
             );
@@ -44,7 +42,7 @@ export class DashboardService {
      * @param identificationNumber
      */
     downloadPdf(identificationNumber: string) {
-        return this.$http.post(`${environment.endpoint}download`, {identificationNumber}, {
+        return this.$http.post(`${environment.endpoint}order/download`, {identificationNumber}, {
             responseType: 'blob',
             headers: new HttpHeaders()
                 .append('Content-Type', 'application/json')
@@ -59,7 +57,7 @@ export class DashboardService {
      * @param filter - string to search with
      */
     findOrdersByIdent(filter: string) {
-        return this.$http.get<any[]>(`${environment.endpoint}orders`, this.updateXAuthfromSessionStorage(filter))
+        return this.$http.get<any[]>(`${environment.endpoint}order`, this.updateXAuthfromSessionStorage(filter))
             .pipe(
                 tap(val => this.orders$.next(val))
             );

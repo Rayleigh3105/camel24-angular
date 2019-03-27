@@ -30,6 +30,7 @@ export class SessionStorageComponent implements OnInit {
     sessionStorage.removeItem('telefon');
     sessionStorage.removeItem('vorname');
     sessionStorage.removeItem('nachname');
+    sessionStorage.removeItem('currentUser');
   }
 
   /**
