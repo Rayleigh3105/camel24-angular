@@ -92,7 +92,6 @@ export class LoginRegisterComponent extends KepInputComponent implements OnInit 
      * @param body
      */
     setSessionStorage(body) {
-
         if (body.token) {
             // @ts-ignore
             sessionStorage.setItem('x-auth', body.token);

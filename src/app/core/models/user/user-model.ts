@@ -8,7 +8,8 @@ export interface User {
     kundenNummer?: number;
     email?: string;
     password?: string;
-    adresse?: string
+    adresse?: string;
+    role?: string
     ort?: string
     plz?: string;
     land?: string;

@@ -20,6 +20,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
     public boolCheckIfLoggedIn: boolean = false;
     public firmenName: String;
     public kundenNummer: String;
+    public role: any;
     msgs: Message[] = [];
 
 
@@ -39,6 +40,8 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
             this.$authService.getCurrentUser().then(user => {
                     this.firmenName = user.firmenName;
                     this.kundenNummer = user.kundenNummer.toString();
+                    this.role = user.role;
+
                 }
             );
             this.boolCheckIfLoggedIn = true;

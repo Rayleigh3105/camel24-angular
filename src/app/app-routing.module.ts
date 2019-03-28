@@ -7,38 +7,45 @@ import {AgbnationalComponent} from './shared/components/agbnational/agbnational.
 import {AgbinternationalComponent} from './shared/components/agbinternational/agbinternational.component';
 import {UserDashboardComponent} from './shared/components/user-dashboard/user-dashboard.component';
 import {AuthGuard} from './shared/guard/auth.guard';
+import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
+import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'auftrag',
-    component: KepInputComponent,
-  },
-  {
-    path: 'impressum',
-    component: ImpressumAgbComponent,
-  },
-  {
-    path: 'national',
-    component: AgbnationalComponent,
-  },
-  {
-    path: 'international',
-    component: AgbinternationalComponent,
-  },
-  {
-    path: 'userdashboard',
-    component: UserDashboardComponent,
-    canActivate: [AuthGuard]
-  }
+    {
+        path: '',
+        component: HomeComponent,
+    },
+    {
+        path: 'auftrag',
+        component: KepInputComponent,
+    },
+    {
+        path: 'impressum',
+        component: ImpressumAgbComponent,
+    },
+    {
+        path: 'national',
+        component: AgbnationalComponent,
+    },
+    {
+        path: 'international',
+        component: AgbinternationalComponent,
+    },
+    {
+        path: 'userdashboard',
+        component: UserDashboardComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'admindashboard',
+        component: AdminDashboardComponent,
+        canActivate: [AuthAdminGuard]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

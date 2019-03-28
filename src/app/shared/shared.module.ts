@@ -6,12 +6,13 @@ import { ImpressumAgbComponent } from './components/impressum-agb/impressum-agb.
 import { AgbnationalComponent } from './components/agbnational/agbnational.component';
 import { AgbinternationalComponent } from './components/agbinternational/agbinternational.component';
 import {DialogModule} from 'primeng/dialog';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   imports: [
     CommonModule,
       DialogModule
   ],
-  declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent]
+  declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent, AdminDashboardComponent]
 })
 export class SharedModule { }

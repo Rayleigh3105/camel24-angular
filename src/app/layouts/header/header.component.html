@@ -37,7 +37,8 @@
                    aria-expanded="false"><strong> <i class="fa fa-user"></i> {{ firmenName }} - {{ kundenNummer}}
                 </strong></a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/userdashboard">Auftragsprofil</a>
+                    <a *ngIf="role == 'User'" class="dropdown-item" routerLink="/userdashboard">Auftragsprofil</a>
+                    <a *ngIf="role == 'Admin'" class="dropdown-item" routerLink="/admindashboard">Admin - Dashboard</a>
                     <div role="separator" class="dropdown-divider"></div>
                     <a class="dropdown-item" (click)="logoutUser()">Ausloggen</a>
                 </div>

@@ -29,6 +29,7 @@ import {AuthGuard} from './shared/guard/auth.guard';
 import {UserDashboardComponent} from './shared/components/user-dashboard/user-dashboard.component';
 import {DashboardService} from './shared/services/dashboard.service';
 import {TableModule} from 'primeng/table';
+import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 
 @NgModule({
     declarations: [
@@ -72,6 +73,7 @@ import {TableModule} from 'primeng/table';
             multi: true
         },
         AuthGuard,
+        AuthAdminGuard,
         DashboardService,
     ],
     bootstrap: [AppComponent]
