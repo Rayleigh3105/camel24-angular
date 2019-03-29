@@ -11,6 +11,7 @@ import {tap} from 'rxjs/operators';
 export class DashboardService {
 
     orders$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    users$ : BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
     constructor(private $http: HttpClient) {
     }
@@ -37,6 +38,17 @@ export class DashboardService {
     }
 
     /**
+     * Get´s all orders for specific user
+     */
+    getOrdersForKundenNummer(kundenNummer: String): Observable<any[]> {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/users/${kundenNummer}`, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap(val => this.orders$.next(val))
+            );
+    }
+
+
+    /**
      * Download Paketlabel
      *
      * @param identificationNumber
@@ -60,6 +72,16 @@ export class DashboardService {
         return this.$http.get<any[]>(`${environment.endpoint}order`, this.updateXAuthfromSessionStorage(filter))
             .pipe(
                 tap(val => this.orders$.next(val))
+            );
+    }
+
+    /**
+     * ADMIN ROUTE - Get´s all Users with count of its orders
+     */
+    getAllUser(): Observable<any> {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/users`, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap(val => this.users$.next(val))
             );
     }
 

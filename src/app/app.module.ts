@@ -30,6 +30,7 @@ import {UserDashboardComponent} from './shared/components/user-dashboard/user-da
 import {DashboardService} from './shared/services/dashboard.service';
 import {TableModule} from 'primeng/table';
 import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
+import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
         LoginRegisterComponent,
         MustMatchDirective,
         LoginComponent,
-        UserDashboardComponent
+        UserDashboardComponent,
+        AdminDashboardComponent
     ],
     imports: [
         BrowserModule,

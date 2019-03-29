@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DashboardService} from '../../services/dashboard.service';
 
 @Component({
   selector: 'camel-admin-dashboard',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public $dashboard: DashboardService) { }
 
   ngOnInit() {
+      this.$dashboard.getAllUser().subscribe();
   }
+
+    openDialogOrders(kundenNummer: string) {
+      this.$dashboard.getOrdersForUser()
+    }
 
 }
