@@ -68,8 +68,8 @@ export class DashboardService {
      * Finds order by filter
      * @param filter - string to search with
      */
-    findOrdersByIdentAdmin(filter: string) {
-        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/order`, this.updateXAuthfromSessionStorage(filter))
+    findOrdersByIdentAdmin(filter: string, kundenNummer: string) {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/orders/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
             .pipe(
                 tap(val => this.orders$.next(val))
             );

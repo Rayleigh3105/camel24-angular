@@ -27,6 +27,7 @@ export class OrderModalComponent implements OnInit {
     header: string;
     countData: number;
     filterIdent: string;
+    currentKundenNummer: string;
 
 
     constructor(public $dashboard: DashboardService, private route: ActivatedRoute,public $httpLoader: LoaderService) { }
@@ -37,6 +38,9 @@ export class OrderModalComponent implements OnInit {
       });
       this.$dashboard.getOrdersForKundenNummer(this.kundenNummer).subscribe(data => {
           this.countData = data.length;
+          if (data.length != 0) {
+              this.currentKundenNummer = data[0].kundenNummer;
+          }
       });
   }
     /**
@@ -92,6 +96,6 @@ export class OrderModalComponent implements OnInit {
      * Filter order with search from input
      */
     public filterOrders() {
-        this.$dashboard.findOrdersByIdentAdmin(this.filterIdent).subscribe();
+        this.$dashboard.findOrdersByIdentAdmin(this.filterIdent, this.currentKundenNummer).subscribe();
     }
 }

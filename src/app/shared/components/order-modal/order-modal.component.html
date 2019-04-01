@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm pt-3">
             <div class="progress" data-percentage="100">
@@ -35,7 +35,7 @@
                                        (change)="filterOrders()"
                                        minlength="1"
                                        maxlength="30"
-                                       placeholder="Kundennummer">
+                                       placeholder="Versandnummer">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -44,8 +44,8 @@
                                       *ngIf="$httpLoader.isLoading | async"></span>
                             </button>
                         </div>
-                        <div class="offset-5 col-sm-3">
-                            <button class="btn btn-info" routerLink="/admindashboard">Zurück zum Dashboard</button>
+                        <div class="offset-6 col-sm-2">
+                            <button class="btn btn-info" routerLink="/admindashboard">Dashboard</button>
                         </div>
                     </div>
 
@@ -57,10 +57,15 @@
                             sortMode="multiple"
                             (onRowSelect)="onRowSelect($event)"
                     >
+
                         <ng-template pTemplate="header">
                             <tr style="text-align: center">
                                 <th [pSortableColumn]="'identificationNumber'">
                                     Versandnummer
+                                    <p-sortIcon [field]=""></p-sortIcon>
+                                </th>
+                                <th [pSortableColumn]="'createdAt'">
+                                    Erstellungsdatum
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
                                 <th [pSortableColumn]="'rechnungsDaten.email'">
@@ -92,6 +97,7 @@
                         <ng-template pTemplate="body" let-order>
                             <tr style="text-align: center;" [pSelectableRow]="order">
                                 <td>{{ order.identificationNumber }}</td>
+                                <td>{{ order.createdAt | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                                 <td>{{ order.rechnungsDaten.email }}</td>
                                 <td>{{ order.absender.firma }}</td>
                                 <td>{{ order.empfaenger.firma }}</td>
