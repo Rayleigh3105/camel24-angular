@@ -9,6 +9,7 @@ import {UserDashboardComponent} from './shared/components/user-dashboard/user-da
 import {AuthGuard} from './shared/guard/auth.guard';
 import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
 import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
+import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
 
 const routes: Routes = [
     {
@@ -39,6 +40,11 @@ const routes: Routes = [
     {
         path: 'admindashboard',
         component: AdminDashboardComponent,
+        canActivate: [AuthAdminGuard]
+    },
+    {
+        path: 'order/:kundenNummer',
+        component: OrderModalComponent,
         canActivate: [AuthAdminGuard]
     }
 ];

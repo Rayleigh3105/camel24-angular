@@ -31,6 +31,7 @@ import {DashboardService} from './shared/services/dashboard.service';
 import {TableModule} from 'primeng/table';
 import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
+import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin
         MustMatchDirective,
         LoginComponent,
         UserDashboardComponent,
-        AdminDashboardComponent
+        AdminDashboardComponent,
+        OrderModalComponent
     ],
     imports: [
         BrowserModule,
@@ -65,6 +67,7 @@ import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin
         BestModalComponent,
         LoginRegisterComponent,
         LoginComponent,
+        OrderModalComponent
     ],
     providers: [
         AuthService,

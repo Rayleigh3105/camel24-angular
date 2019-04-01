@@ -38,17 +38,6 @@ export class DashboardService {
     }
 
     /**
-     * Get´s all orders for specific user
-     */
-    getOrdersForKundenNummer(kundenNummer: String): Observable<any[]> {
-        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/users/${kundenNummer}`, this.updateXAuthfromSessionStorage())
-            .pipe(
-                tap(val => this.orders$.next(val))
-            );
-    }
-
-
-    /**
      * Download Paketlabel
      *
      * @param identificationNumber
@@ -84,6 +73,18 @@ export class DashboardService {
                 tap(val => this.users$.next(val))
             );
     }
+
+    /**
+     * ADMIN ROUTE - Get´s all orders for specific user
+     */
+    getOrdersForKundenNummer(kundenNummer: String): Observable<any[]> {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/orders/${kundenNummer}`, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap(val => this.orders$.next(val))
+            );
+    }
+
+
 
     /**
      * Set`s up Request hedaer for dashboard requests
