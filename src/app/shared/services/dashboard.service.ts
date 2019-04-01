@@ -65,6 +65,17 @@ export class DashboardService {
     }
 
     /**
+     * Finds order by filter
+     * @param filter - string to search with
+     */
+    findOrdersByIdentAdmin(filter: string) {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/order`, this.updateXAuthfromSessionStorage(filter))
+            .pipe(
+                tap(val => this.orders$.next(val))
+            );
+    }
+
+    /**
      * ADMIN ROUTE - Get´s all Users with count of its orders
      */
     getAllUser(): Observable<any> {
@@ -81,6 +92,17 @@ export class DashboardService {
         return this.$http.get<any[]>(`${environment.endpoint}admindashboard/orders/${kundenNummer}`, this.updateXAuthfromSessionStorage())
             .pipe(
                 tap(val => this.orders$.next(val))
+            );
+    }
+
+    /**
+     * ADMIN ROUTE - Finds user by filter
+     * @param filter - string to search with
+     */
+    findUserByIKundenNummer(filter: string) {
+        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/users`, this.updateXAuthfromSessionStorage(filter))
+            .pipe(
+                tap(val => this.users$.next(val))
             );
     }
 

@@ -221,7 +221,7 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <button type="submit" class="btn btn-success searchButton">Suchen
+                                <button type="button" (click)="filterOrders()" class="btn btn-success searchButton">Suchen
                             <span class="spinner-border spinner-border-sm"
                                   *ngIf="$httpLoader.isLoading | async"></span>
                                 </button>

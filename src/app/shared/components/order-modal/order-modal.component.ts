@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Message} from 'primeng/api';
 
 import {saveAs as importedSaveAs} from 'file-saver';
+import {LoaderService} from '../../services/loader-service.service';
 
 
 @Component({
@@ -18,22 +19,25 @@ export class OrderModalComponent implements OnInit {
     /**
      * VARIABLES
      */
-    msgs: Message[] = [];
     msgsDialog: Message[] = [];
 
 
     displayDialog: boolean;
-    filterIdent: string;
     order: any;
     header: string;
+    countData: number;
+    filterIdent: string;
 
-  constructor(public $dashboard: DashboardService, private route: ActivatedRoute) { }
+
+    constructor(public $dashboard: DashboardService, private route: ActivatedRoute,public $httpLoader: LoaderService) { }
 
   ngOnInit() {
       this.route.params.subscribe(params => {
         this.kundenNummer = params.kundenNummer
       });
-      this.$dashboard.getOrdersForKundenNummer(this.kundenNummer).subscribe();
+      this.$dashboard.getOrdersForKundenNummer(this.kundenNummer).subscribe(data => {
+          this.countData = data.length;
+      });
   }
     /**
      * Get´s fired when row is selected
@@ -84,4 +88,10 @@ export class OrderModalComponent implements OnInit {
         });
     }
 
+    /**
+     * Filter order with search from input
+     */
+    public filterOrders() {
+        this.$dashboard.findOrdersByIdentAdmin(this.filterIdent).subscribe();
+    }
 }
