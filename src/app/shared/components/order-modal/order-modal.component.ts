@@ -1,48 +1,62 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
 import {ActivatedRoute} from '@angular/router';
 import {Message} from 'primeng/api';
 
 import {saveAs as importedSaveAs} from 'file-saver';
 import {LoaderService} from '../../services/loader-service.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
-  selector: 'camel-order-modal',
-  templateUrl: './order-modal.component.html',
-  styleUrls: ['./order-modal.component.scss']
+    selector: 'camel-order-modal',
+    templateUrl: './order-modal.component.html',
+    styleUrls: ['./order-modal.component.scss']
 })
 export class OrderModalComponent implements OnInit {
+    @Input('kundenNummer') kundenNummerInput: string;
 
-    kundenNummer: string;
 
     /**
      * VARIABLES
      */
     msgsDialog: Message[] = [];
-
-
+    role: string;
     displayDialog: boolean;
     order: any;
     header: string;
     countData: number;
     filterIdent: string;
     currentKundenNummer: string;
+    kundenNummer: string;
 
+    constructor(public $dashboard: DashboardService, private route: ActivatedRoute, public $httpLoader: LoaderService, private $auth: AuthService) {
+    }
 
-    constructor(public $dashboard: DashboardService, private route: ActivatedRoute,public $httpLoader: LoaderService) { }
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.kundenNummer = params.kundenNummer;
+        });
 
-  ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.kundenNummer = params.kundenNummer
-      });
-      this.$dashboard.getOrdersForKundenNummer(this.kundenNummer).subscribe(data => {
-          this.countData = data.length;
-          if (data.length != 0) {
-              this.currentKundenNummer = data[0].kundenNummer;
-          }
-      });
-  }
+        this.$auth.getCurrentUser().then(user => {
+            this.role = user.role;
+        });
+        let kundenNummertoSearchWith: string;
+        if (this.kundenNummer) {
+            kundenNummertoSearchWith = this.kundenNummer;
+        } else {
+            kundenNummertoSearchWith = this.kundenNummerInput;
+        }
+
+        this.$dashboard.getOrdersForKundenNummer(kundenNummertoSearchWith, null).subscribe(data => {
+            this.countData = data.length;
+            if (data.length != 0) {
+                this.currentKundenNummer = data[0].kundenNummer;
+            }
+        });
+    }
+
     /**
      * Get´s fired when row is selected
      * - clones order
@@ -96,6 +110,8 @@ export class OrderModalComponent implements OnInit {
      * Filter order with search from input
      */
     public filterOrders() {
-        this.$dashboard.findOrdersByIdentAdmin(this.filterIdent, this.currentKundenNummer).subscribe();
+        this.$dashboard.getOrdersForKundenNummer( this.currentKundenNummer,this.filterIdent).subscribe(data => {
+            this.countData = data.length;
+        });
     }
 }

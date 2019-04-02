@@ -28,16 +28,6 @@ export class DashboardService {
     }
 
     /**
-     * Get´s all orders for specific user
-     */
-    getOrdersForUser(): Observable<any[]> {
-        return this.$http.get<any[]>(`${environment.endpoint}order`, this.updateXAuthfromSessionStorage())
-            .pipe(
-                tap(val => this.orders$.next(val))
-            );
-    }
-
-    /**
      * Download Paketlabel
      *
      * @param identificationNumber
@@ -53,27 +43,17 @@ export class DashboardService {
         );
     }
 
-    /**
-     * Finds order by filter
-     * @param filter - string to search with
-     */
-    findOrdersByIdent(filter: string) {
-        return this.$http.get<any[]>(`${environment.endpoint}order`, this.updateXAuthfromSessionStorage(filter))
-            .pipe(
-                tap(val => this.orders$.next(val))
-            );
-    }
-
-    /**
-     * Finds order by filter
-     * @param filter - string to search with
-     */
-    findOrdersByIdentAdmin(filter: string, kundenNummer: string) {
-        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/orders/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
-            .pipe(
-                tap(val => this.orders$.next(val))
-            );
-    }
+    // /**
+    //  * ADMIN/PRIVATE ROUTEFinds order by filter
+    //  * @param filter - string to search with
+    //  * @param kundenNummer
+    //  */
+    // findOrdersByIdentAndKundenNummer(filter: string, kundenNummer: string) {
+    //     return this.$http.get<any[]>(`${environment.endpoint}order/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
+    //         .pipe(
+    //             tap(val => this.orders$.next(val))
+    //         );
+    // }
 
     /**
      * ADMIN ROUTE - Get´s all Users with count of its orders
@@ -86,10 +66,10 @@ export class DashboardService {
     }
 
     /**
-     * ADMIN ROUTE - Get´s all orders for specific user
+     * ADMIN/PRIVATE ROUTE - Get´s all orders for specific user
      */
-    getOrdersForKundenNummer(kundenNummer: String): Observable<any[]> {
-        return this.$http.get<any[]>(`${environment.endpoint}admindashboard/orders/${kundenNummer}`, this.updateXAuthfromSessionStorage())
+    getOrdersForKundenNummer(kundenNummer: String, filter:string): Observable<any[]> {
+        return this.$http.get<any[]>(`${environment.endpoint}order/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
             .pipe(
                 tap(val => this.orders$.next(val))
             );

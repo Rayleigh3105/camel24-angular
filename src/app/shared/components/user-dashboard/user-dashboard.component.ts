@@ -49,7 +49,6 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
 
     ngOnInit() {
         this.updateNgModelVariablesWithSessionStorage();
-        this.$dasboardService.getOrdersForUser().subscribe();
     }
 
     /**
@@ -150,44 +149,4 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
         });
     }
 
-    /**
-     * Get´s fired when row is selected
-     * - clones order
-     * - opens up info modal with values from row
-     * @param event
-     */
-    onRowSelect(event) {
-        this.order = this.cloneOrder(event.data);
-        this.header = `Auftragsdetails für Paket: ${this.order.identificationNumber}`;
-        this.displayDialog = true;
-    }
-
-    /**
-     * Clones currently selected order
-     * @param cloneOrder - order to clone
-     */
-    cloneOrder(cloneOrder): any {
-        let order = {};
-        for (let prop in cloneOrder) {
-            order[prop] = cloneOrder[prop];
-        }
-        return order;
-    }
-
-    /**
-     * Download PDF
-     */
-    downloadPdf() {
-        this.$dasboardService.downloadPdf(this.order.identificationNumber).subscribe(blob => {
-            if (blob) {
-                importedSaveAs(blob, `Paketlabel - ${this.order.identificationNumber}.pdf`);
-            }
-        }, error => {
-            this.showErrorDialog(error);
-        });
-    }
-
-    public filterOrders() {
-        this.$dasboardService.findOrdersByIdent(this.filterIdent).subscribe();
-    }
 }

@@ -45,7 +45,7 @@
                             </button>
                         </div>
                         <div class="offset-6 col-sm-2">
-                            <button class="btn btn-info" routerLink="/admindashboard">Dashboard</button>
+                            <button *ngIf="role === 'Admin'" class="btn btn-info" routerLink="/admindashboard">Dashboard</button>
                         </div>
                     </div>
 
@@ -86,9 +86,6 @@
                                 <th [pSortableColumn]="'sendungsdaten.art'">Art der Ware
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
-                                <th [pSortableColumn]="'sendungsdaten.wert'">Warenwert
-                                    <p-sortIcon [field]=""></p-sortIcon>
-                                </th>
                                 <th [pSortableColumn]="'sendungsdaten.gewicht'">Warengewicht
                                     <p-sortIcon [field]=""></p-sortIcon>
                                 </th>
@@ -103,7 +100,6 @@
                                 <td>{{ order.empfaenger.firma }}</td>
                                 <td>{{ order.abholTermin.datum | date:'dd.MM.yyyy' }}</td>
                                 <td>{{ order.sendungsdaten.art }}</td>
-                                <td>{{ order.sendungsdaten.wert }} €</td>
                                 <td>{{ order.sendungsdaten.gewicht }} kg</td>
                             </tr>
                         </ng-template>
