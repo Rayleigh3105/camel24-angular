@@ -12,7 +12,7 @@ export class AuthAdminGuard implements CanActivate {
     }
 
     /**
-     * Checks if the session variable x-auth is available, if so the guard let´s pass the user
+     * Get´s current User from Service and checks if he is Admin
      *
      * @param next
      * @param state
@@ -27,16 +27,15 @@ export class AuthAdminGuard implements CanActivate {
                 if (user.role === 'Admin') {
                     result = true;
                 } else {
-                    alert('Sie sind momentan nicht eingeloggt. Bitte loggen Sie sich bevor besuch dieser Seite ein!');
+                    alert('Ups... nur Administratoren dürfen diese Seite aufrufen.!');
                     this.router.navigate(['']);
                     result = false;
                 }
             }).catch(() => {
-                alert('Sie sind momentan nicht eingeloggt. Bitte loggen Sie sich bevor besuch dieser Seite ein!');
+                alert('Ups... nur Administratoren dürfen diese Seite aufrufen.!');
                 this.router.navigate(['']);
                 result = false;
             });
         return result;
-
     }
 }
