@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
 import {LoaderService} from '../../services/loader-service.service';
@@ -10,6 +10,8 @@ import {AuthService} from '../../services/auth.service';
     styleUrls: ['./best-modal.component.scss']
 })
 export class BestModalComponent implements OnInit {
+
+    @Input("data") data:any;
     /**
      * VARIABLEN
      */
@@ -30,7 +32,7 @@ export class BestModalComponent implements OnInit {
      * Sends data to backend and waits for response and handle it
      * @param value - data from the form
      */
-    protected sendData(value){
+    public sendData(value){
       if(this.email) {
         value.auftragbestEmail = this.email;
       }

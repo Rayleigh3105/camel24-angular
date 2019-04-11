@@ -32,6 +32,7 @@ import {TableModule} from 'primeng/table';
 import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
 import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
+import {NotFoundComponent} from './shared/components/not-found/not-found.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import {OrderModalComponent} from './shared/components/order-modal/order-modal.c
         LoginComponent,
         UserDashboardComponent,
         AdminDashboardComponent,
-        OrderModalComponent
+        OrderModalComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,
