@@ -19,6 +19,8 @@ RUN npm install
 # Get all the code needed to run the application
 COPY . .
 
+RUN npm run build
+
 # BUILD Angular app for production
 EXPOSE 4200
 
