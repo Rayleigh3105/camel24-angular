@@ -19,7 +19,7 @@ RUN npm install
 # Get all the code needed to run the application
 COPY . .
 
-RUN npm run build --prod -base-href http://modev.de:4200
+RUN npm run build
 
 # BUILD Angular app for production
 EXPOSE 4200
