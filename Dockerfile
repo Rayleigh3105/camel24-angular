@@ -28,6 +28,6 @@ EXPOSE 4200
 FROM nginx:1.13.12-alpine
 
 #copy dist content to html nginx folder, config nginx to point in index.html
-COPY --from=node /usr/src/app/dist/camel-frontend /usr/share/nginx/html
+COPY --from=node /usr/src/app/dist/camel24-frontend /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
