@@ -21,9 +21,6 @@ COPY . .
 
 RUN npm run build
 
-# BUILD Angular app for production
-EXPOSE 4200
-
 # Stage 2 - Webserver
 FROM nginx:1.13.12-alpine
 
