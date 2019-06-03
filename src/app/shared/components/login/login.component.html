@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 login-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <img src="./../../../../assets/images/delivery-truck.svg" class="animated bounceInLeft" alt="truck"/>
                 <h3>Herzlich Willkommen</h3>
                 <p>Nach dem Einloggen können Sie unseren vollen Service nutzen</p>
             </div>
@@ -30,7 +30,7 @@
                                        autofocus
                                        required>
                                 <div *ngIf="f.submitted && kundennummer.invalid" class="invalid-feedback">
-                                    <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
+                                    <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt.</div>
                                     <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
                                         Kundennummer ein.
                                     </div>

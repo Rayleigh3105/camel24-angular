@@ -631,6 +631,7 @@
                                ngModel
                                minlength="1"
                                maxlength="50"
+                               [(ngModel)]="sessionEmail"
                                #auftragbestEmail="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestEmail.invalid }"
                                required email>
@@ -649,6 +650,7 @@
                                id="auftragbestTelefon"
                                name="auftragbestTelefon"
                                ngModel
+                               [(ngModel)]="sessionTelefon"
                                #auftragbestTelefon="ngModel"
                                [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                                minlength="1"
