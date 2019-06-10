@@ -4,6 +4,7 @@ import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {SmtpConfig} from '../../core/models/user/smtp-config';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import {tap} from 'rxjs/operators';
 export class DashboardService {
 
     orders$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-    users$ : BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    users$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
     constructor(private $http: HttpClient) {
     }
@@ -43,18 +44,6 @@ export class DashboardService {
         );
     }
 
-    // /**
-    //  * ADMIN/PRIVATE ROUTEFinds order by filter
-    //  * @param filter - string to search with
-    //  * @param kundenNummer
-    //  */
-    // findOrdersByIdentAndKundenNummer(filter: string, kundenNummer: string) {
-    //     return this.$http.get<any[]>(`${environment.endpoint}order/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
-    //         .pipe(
-    //             tap(val => this.orders$.next(val))
-    //         );
-    // }
-
     /**
      * ADMIN ROUTE - Get´s all Users with count of its orders
      */
@@ -68,7 +57,7 @@ export class DashboardService {
     /**
      * ADMIN/PRIVATE ROUTE - Get´s all orders for specific user
      */
-    getOrdersForKundenNummer(kundenNummer: String, filter:string): Observable<any[]> {
+    getOrdersForKundenNummer(kundenNummer: String, filter: string): Observable<any[]> {
         return this.$http.get<any[]>(`${environment.endpoint}order/${kundenNummer}`, this.updateXAuthfromSessionStorage(filter))
             .pipe(
                 tap(val => this.orders$.next(val))
@@ -86,6 +75,20 @@ export class DashboardService {
             );
     }
 
+    /**
+     * ADMIN ROUTE - Get Smtp options.
+     */
+    getSmtpConfig(): Promise<SmtpConfig> {
+        return this.$http.get<SmtpConfig>(`${environment.endpoint}admindashboard/configSmtp`, this.updateXAuthfromSessionStorage()).toPromise();
+    }
+
+    /**
+     * ADMIN ROUTE - Update SmtpOptions
+     * @param config
+     */
+    updateSmtpConfiguration(config: SmtpConfig) {
+        return this.$http.patch<SmtpConfig>(`${environment.endpoint}admindashboard/configSmtp`, config, this.updateXAuthfromSessionStorage());
+    }
 
 
     /**
@@ -110,4 +113,6 @@ export class DashboardService {
         };
 
     }
+
+
 }

@@ -11,6 +11,7 @@ import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin
 import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
 import {NotFoundComponent} from './shared/components/not-found/not-found.component';
+import {ConfigurationComponent} from './shared/components/configuration/configuration.component';
 
 const routes: Routes = [
     {
@@ -41,6 +42,11 @@ const routes: Routes = [
     {
         path: 'admindashboard',
         component: AdminDashboardComponent,
+        canActivate: [AuthAdminGuard]
+    },
+    {
+        path: 'config',
+        component: ConfigurationComponent,
         canActivate: [AuthAdminGuard]
     },
     {

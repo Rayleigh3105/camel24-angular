@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header">
+                    Preis Konfigurations
+                </div>
+
+                <div class="card-body">
+                    test
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-5 pb-5">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header">
+                    SMTP Konfiguation
+                </div>
+
+                <div class="card-body">
+                    <form #f="ngForm" name="form" (ngSubmit)="onSave(f)" novalidate>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="smtpHost">SMTP Host</label>
+                                        <input type="text" class="form-control" id="smtpHost" name="smtpHost"
+                                               [(ngModel)]="config.smtpHost"
+                                               #smtpHost="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpHost.invalid }"
+                                               maxlength="60"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpHost.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpHost.errors.required">SMTP Host wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="smtpPort">SMTP Port</label>
+                                        <input type="number" class="form-control" id="smtpPort" name="smtpPort"
+                                               [(ngModel)]="config.smtpPort"
+                                               #smtpPort="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpPort.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpPort.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpPort.errors.required">SMTP Port wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="smtpSecure">SMTP Secure</label>
+                                        <input type="checkbox" class="form-control" id="smtpSecure" name="smtpSecure"
+                                               [(ngModel)]="config.smtpSecure"
+                                               #smtpSecure="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpSecure.invalid }">
+                                        <div *ngIf="f.submitted && smtpSecure.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpSecure.errors.required">SMTP Secure wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="smtpUser">SMTP Benutzer</label>
+                                        <input type="text" class="form-control" id="smtpUser" name="smtpUser"
+                                               [(ngModel)]="config.smtpUser"
+                                               #smtpUser="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpUser.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpUser.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpUser.errors.required">SMTP User wird benötigt.</div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm">
+                                        <label for="smtpSecure">SMTP Benutzer Passwort</label>
+                                        <input type="text" class="form-control" id="smtpPassword" name="smtpPassword"
+                                               [(ngModel)]="config.smtpPassword"
+                                               #smtpPassword="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpPassword.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpPassword.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpPassword.errors.required">SMTP Benuter Passwort wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm vertical-horizontal-center">
+                                <p-messages [(value)]="msgs" [closable]="true"></p-messages>
+                            </div>
+                        </div>
+                        <div class="row pt-2 pb-2">
+                            <div class="col-sm vertical-horizontal-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!f.dirty">Speichern
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                          aria-hidden="true"
+                                          *ngIf="$httpLoader.isLoading | async"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

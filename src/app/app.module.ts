@@ -33,6 +33,7 @@ import {AuthAdminGuard} from './shared/guard/auth-admin.guard';
 import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin-dashboard.component';
 import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
 import {NotFoundComponent} from './shared/components/not-found/not-found.component';
+import {ConfigurationComponent} from './shared/components/configuration/configuration.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {NotFoundComponent} from './shared/components/not-found/not-found.compone
         UserDashboardComponent,
         AdminDashboardComponent,
         OrderModalComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ConfigurationComponent
     ],
     imports: [
         BrowserModule,
