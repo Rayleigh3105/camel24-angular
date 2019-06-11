@@ -4,6 +4,7 @@ import {BestModalComponent} from '../../../../shared/components/best-modal/best-
 import {NgForm} from '@angular/forms';
 import {SessionStorageComponent} from '../../../../shared/components/session-storage/session-storage.component';
 import {AuthService} from '../../../../shared/services/auth.service';
+import {element} from 'protractor';
 
 @Component({
     selector: 'camel-kep-input',
@@ -30,6 +31,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public requestError: boolean = false;
     public abholErrorMessage: string;
     public zustellErrorMessage: string;
+    public zustellNachnahmeErrorMessage: string;
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -53,6 +55,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public abholZeitBis1: string = '16:00';
     public zustellZeitVon1: string = '08:00';
     public zustellZeitBis1: string = '16:00';
+    public isZustellNachnahme: boolean = false;
+    public zustellNachnahmeWertModel: string;
 
     constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef, protected $authService: AuthService) {
         super();
@@ -147,7 +151,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param form - form which is submitted
      */
     onSubmit(form: NgForm) {
-        if (this.checkValidAbholZeitfenster(form) && this.checkValidZustellZeitFenster(form) && form.form.valid && !this.checkZustellArtWithArtSendung(form)) {
+        if (this.checkValidAbholZeitfenster(form) && this.checkValidZustellZeitFenster(form) && form.form.valid && !this.checkZustellArtWithArtSendung(form) && this.checkNachnahmeWert(form)) {
             const modalref = this.modalService.open(BestModalComponent, {
                 size: 'lg',
                 backdrop: 'static',
@@ -316,4 +320,20 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public refreshPage() {
         window.location.reload(true);
     }
+
+  onZustellNachnahmeChange() {
+      if (!this.isZustellNachnahme) {
+        this.zustellNachnahmeWertModel = '';
+      }
+  }
+
+  private checkNachnahmeWert(form: NgForm) {
+      if (form.value.zustellNachnahmeWert > 2500) {
+        this.zustellNachnahmeErrorMessage = "Der Wert darf nicht mehr als 2500 EUR betragen."
+        return false
+      } else{
+        this.zustellNachnahmeErrorMessage = ''
+      }
+      return true
+  }
 }
