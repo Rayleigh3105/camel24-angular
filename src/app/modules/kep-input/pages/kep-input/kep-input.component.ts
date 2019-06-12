@@ -43,6 +43,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public sessionPlz: string;
     public sessionOrt: string;
     public sessionTelefon: string;
+    public sessionRechnungTelefon: string;
     public sessionEmail: string;
     public empfLandSelected: string = 'Deutschland';
     public absLandSelected: string = 'Deutschland';
@@ -198,6 +199,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             this.sessionOrt = user.ort;
             this.sessionTelefon = user.telefon;
             this.sessionEmail = user.email;
+            this.sessionRechnungTelefon = user.telefon;
         });
 
     }

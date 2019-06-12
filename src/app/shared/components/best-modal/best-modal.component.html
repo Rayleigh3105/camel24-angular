@@ -160,6 +160,11 @@
                     </div>
                 </div>
 
+                <div class="row padding-left" *ngIf="data.zustellNachnahmeWert">
+                    <div class="col-4"><strong>Nachnahme</strong></div>
+                    <div class="col-8">{{ data.zustellNachnahmeWert }} €</div>
+                </div>
+
                 <div class="row padding-left">
                     <div class="col-4">
                         <strong>

@@ -263,6 +263,11 @@
                 </div>
 
 
+                <div class="row padding-left" *ngIf="order.zustellNachnahme">
+                    <div class="col-4"><strong>Nachnahme:</strong></div>
+                    <div class="col-8">{{ order.zustellNachnahme }} €</div>
+                </div>
+
                 <div class="row padding-left">
                     <div class="col-4">
                         <strong>Zustellungsart:</strong>
