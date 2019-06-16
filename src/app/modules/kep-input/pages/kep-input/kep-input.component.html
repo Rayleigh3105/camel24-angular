@@ -116,7 +116,6 @@
                    [ngClass]="{ 'is-invalid': f.submitted && absTel.invalid }"
                    minlength="1"
                    maxlength="15"
-                   pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                    required>
             <div *ngIf="f.submitted && absTel.invalid" class="invalid-feedback">
               <div *ngIf="absTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
@@ -252,7 +251,6 @@
                    [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
                    minlength="1"
                    maxlength="15"
-                   pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                    required>
             <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
               <div *ngIf="empfTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
@@ -653,7 +651,6 @@
                    [ngClass]="{ 'is-invalid': f.submitted && auftragbestTelefon.invalid }"
                    minlength="1"
                    maxlength="15"
-                   pattern="(\(?([\d \-\)\–\+\/\(]+){5,}\)?([ .-–\/]?)([\d]+))"
                    required>
             <div *ngIf="f.submitted && auftragbestTelefon.invalid" class="invalid-feedback">
               <div *ngIf="auftragbestTelefon.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
