@@ -148,15 +148,15 @@
                 <h6>Versandinformationen</h6>
                 <div class="row padding-left">
                     <div class="col-4"><strong>Abholdatum:</strong></div>
-                    <div class="col-8">{{ data.abholDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.abholZeitVon }} - {{
-                        data.abholZeitBis}} Uhr)
+                    <div class="col-8">{{ data.abholDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.abholZeitVon }}:00 - {{
+                        data.abholZeitBis}}:00 Uhr)
                     </div>
                 </div>
 
                 <div class="row padding-left">
                     <div class="col-4"><strong>Zustelldatum:</strong></div>
-                    <div class="col-8">{{ data.zustellDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.zustellZeitVon }} -
-                        {{ data.zustellZeitBis}} Uhr)
+                    <div class="col-8">{{ data.zustellDatum | date:'dd.MM.yyyy' }} (zwischen {{ data.zustellZeitVon }}:00 -
+                        {{ data.zustellZeitBis}}:00 Uhr)
                     </div>
                 </div>
 
