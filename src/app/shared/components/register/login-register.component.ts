@@ -7,6 +7,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {KepInputComponent} from '../../../modules/kep-input/pages/kep-input/kep-input.component';
 import {LoaderService} from '../../services/loader-service.service';
 import {Subscription} from "rxjs";
+import {DashboardService} from '../../services/dashboard.service';
 
 @Component({
   selector: 'camel-login-register',
@@ -25,8 +26,9 @@ export class LoginRegisterComponent extends KepInputComponent implements OnDestr
               public activeModal: NgbActiveModal,
               private $modalService: NgbModal,
               public $httpLoader: LoaderService,
+              $dashboardService: DashboardService,
               cdr: ChangeDetectorRef) {
-    super($modalService, cdr, $authService);
+    super($modalService, cdr, $authService, $dashboardService);
   }
 
   ngOnDestroy(): void {

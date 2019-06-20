@@ -26,7 +26,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public maxDate: Date = new Date();
     public abholDatum1: Date = new Date();
     public zustellDatum1: Date = new Date();
-    private subs: Subscription[] = [];
+    subs: Subscription[] = [];
     public shouldManuellDisplayed: boolean = false;
     public deAbholZeit: any;
     public showDialog: boolean = false;
