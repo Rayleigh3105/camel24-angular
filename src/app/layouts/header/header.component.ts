@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginRegisterComponent} from '../../shared/components/register/login-register.component';
 import {LoginComponent} from '../../shared/components/login/login.component';
@@ -6,13 +6,14 @@ import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {SessionStorageComponent} from '../../shared/components/session-storage/session-storage.component';
 import {Message} from 'primeng/api';
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'camel-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent extends SessionStorageComponent implements OnInit {
+export class HeaderComponent extends SessionStorageComponent implements OnInit, OnDestroy {
 
     /**
      * VARIABLEN
@@ -21,6 +22,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
     public firmenName: String;
     public kundenNummer: String;
     public role: any;
+    private subs : Subscription[];
     msgs: Message[] = [];
 
 
@@ -31,6 +33,11 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
     ngOnInit() {
         this.checkIfLoggedIn();
     }
+
+  ngOnDestroy(): void {
+      this.subs.forEach( sub => sub.unsubscribe());
+  }
+
 
     /**
      * Checks if User is logged in based on the values in the session storage
@@ -98,7 +105,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit {
         // Removes Session Storage
         SessionStorageComponent.removeSessionStorage();
         this.checkIfLoggedIn();
-        this.$authService.logoutUser().subscribe();
+        this.subs.push(this.$authService.logoutUser().subscribe());
         this.router.navigate(['']);
     }
 

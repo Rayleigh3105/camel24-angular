@@ -1,49 +1,55 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CsvExportService} from '../../services/csv-export.service';
 import {LoaderService} from '../../services/loader-service.service';
 import {AuthService} from '../../services/auth.service';
+import {Subscription} from "rxjs";
 
 @Component({
-    selector: 'camel-best-modal',
-    templateUrl: './best-modal.component.html',
-    styleUrls: ['./best-modal.component.scss']
+  selector: 'camel-best-modal',
+  templateUrl: './best-modal.component.html',
+  styleUrls: ['./best-modal.component.scss']
 })
-export class BestModalComponent implements OnInit {
+export class BestModalComponent implements OnInit, OnDestroy {
 
-    @Input("data") data:any;
-    /**
-     * VARIABLEN
-     */
-    public kundenNummer: string;
-    public email: string;
+  @Input("data") data: any;
+  /**
+   * VARIABLEN
+   */
+  public kundenNummer: string;
+  public email: string;
+  subs: Subscription[] = [];
 
-    constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService, public $httpLoader: LoaderService, private $authService: AuthService) {
+  constructor(public activeModal: NgbActiveModal, private csvService: CsvExportService, public $httpLoader: LoaderService, private $authService: AuthService) {
+  }
+
+  ngOnInit() {
+    this.$authService.getCurrentUser().then(user => {
+      this.kundenNummer = user.kundenNummer.toString();
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe())
+  }
+
+
+  /**
+   * Sends data to backend and waits for response and handle it
+   * @param value - data from the form
+   */
+  public sendData(value) {
+    if (this.email) {
+      value.auftragbestEmail = this.email;
     }
-
-    ngOnInit() {
-        this.$authService.getCurrentUser().then(user => {
-            this.kundenNummer = user.kundenNummer.toString();
-        })
-    }
-
-
-    /**
-     * Sends data to backend and waits for response and handle it
-     * @param value - data from the form
-     */
-    public sendData(value){
-      if(this.email) {
-        value.auftragbestEmail = this.email;
+    this.subs.push(this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(response => {
+      if (response == "true") {
+        this.activeModal.close(true)
+      } else {
+        this.activeModal.close(response)
       }
-        this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(response => {
-            if(response == "true") {
-                this.activeModal.close(true)
-            } else {
-                this.activeModal.close(response)
-            }
-        },error => {
-            this.activeModal.close(false)
-        });
-    }
+    }, error => {
+      this.activeModal.close(false)
+    }));
+  }
 }

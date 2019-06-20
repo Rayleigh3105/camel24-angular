@@ -149,7 +149,7 @@
 
 
 <p-dialog [header]="'Preis bearbeiten'" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          width="800" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false">
+          width="800" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="onCloseModal()">
     <div class="container" *ngIf="priceConfig">
         <div class="row">
             <div class="col-sm">
