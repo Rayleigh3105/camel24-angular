@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {SmtpConfig} from '../../core/models/user/smtp-config';
+import {PriceConfig} from '../../core/models/user/price-config';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,7 @@ export class DashboardService {
 
     orders$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
     users$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    priceConfig$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
     constructor(private $http: HttpClient) {
     }
@@ -88,6 +90,33 @@ export class DashboardService {
      */
     updateSmtpConfiguration(config: SmtpConfig) {
         return this.$http.patch<SmtpConfig>(`${environment.endpoint}admindashboard/configSmtp`, config, this.updateXAuthfromSessionStorage());
+    }
+
+    /**
+     * ADMIN / PRIVATE ROUTE - Get current Price configs
+     */
+    getPriceConfig(): Observable<any> {
+        return this.$http.get<any>(`${environment.endpoint}admindashboard/priceConfig`, this.updateXAuthfromSessionStorage()).pipe(
+            tap(val => this.priceConfig$.next(val))
+        );
+    }
+
+    /**
+     * ADMIN ROUTE - updates one price config
+     * @param priceConfig
+     */
+    updatePriceConfig(priceConfig: PriceConfig): Observable<PriceConfig> {
+        return this.$http.patch<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, priceConfig, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap((priceConfigDb) => {
+                    const priceList = [... this.priceConfig$.getValue()];
+                    let index = priceList.indexOf(priceConfig);
+                    if (index !== -1) {
+                        priceList[index] = priceConfigDb;
+                    }
+                    this.priceConfig$.next(priceList);
+                })
+            );
     }
 
 
