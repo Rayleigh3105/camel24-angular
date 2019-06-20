@@ -96,7 +96,7 @@ export class DashboardService {
      * ADMIN / PRIVATE ROUTE - Get current Price configs
      */
     getPriceConfig(): Observable<any> {
-        return this.$http.get<any>(`${environment.endpoint}admindashboard/priceConfig`, this.updateXAuthfromSessionStorage()).pipe(
+        return this.$http.get<any>(`${environment.endpoint}admindashboard/priceConfig`).pipe(
             tap(val => this.priceConfig$.next(val))
         );
     }
