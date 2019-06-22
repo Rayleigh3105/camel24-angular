@@ -144,4 +144,25 @@ export class DashboardService {
     }
 
 
+    /**
+     * Creates Price config on the backend.
+     * @param price
+     */
+    createPriceConfig(price: PriceConfig) {
+        return this.$http.post<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, price, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap((priceConfigDb) => {
+                    const priceList = [... this.priceConfig$.getValue()];
+                    priceList.push(priceConfigDb)
+                    this.priceConfig$.next(priceList);
+                })
+            );
+    }
+
+    /**
+     * Deletes price config on the backend.
+     */
+    deletePriceConfig(priceId: string) {
+        return this.$http.delete(`${environment.endpoint}admindashboard/priceConfig/${priceId}`, this.updateXAuthfromSessionStorage())
+    }
 }

@@ -2,5 +2,5 @@ export interface PriceConfig {
     type: String,
     time: String,
     price: String,
-    _id: any
+    _id?: any
 }

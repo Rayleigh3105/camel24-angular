@@ -23,9 +23,11 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     public priceConfig: PriceConfig;
     private subs: Subscription[] = [] = [];
     displayDialog: boolean;
+    displayDialogCreate: boolean;
     msgs: Message[] = [];
     msgsModal: Message[] = [];
     msgsUser: Message[] = [];
+    disableInput: boolean = false;
 
     public sessionVorname: string;
     public sessionNachname: string;
@@ -42,7 +44,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.$dasboardService.getSmtpConfig().then(configs => this.config = configs);
         this.subs.push(this.$dasboardService.getPriceConfig().subscribe());
-        this.updateNgModelVariablesWithSessionStorage()
+        this.updateNgModelVariablesWithSessionStorage();
     }
 
     ngOnDestroy(): void {
@@ -118,6 +120,31 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     /**
      * Shows p-message component after error has been thrown
      */
+    showErrorModalDelete(error) {
+        this.msgsModal = [];
+        this.msgsModal.push({
+            severity: 'error',
+            summary: error.error.errorCode,
+            detail: error.error.message
+        });
+    }
+
+    /**
+     * Shows p-message component after succes of registration
+     */
+    showSuccessModalDelete() {
+        this.msgsModal = [];
+        this.msgsModal.push({
+            severity: 'success',
+            summary: 'Erfolgreich',
+            detail: `Preis wurde erfolgreich gelöscht   .`
+        });
+    }
+
+
+    /**
+     * Shows p-message component after error has been thrown
+     */
     showErrorUser(error) {
         this.msgsUser = [];
         this.msgsUser.push({
@@ -162,20 +189,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         return order;
     }
 
-    /**
-     * Updates given Config
-     *
-     * @param priceConfig - config to update
-     */
-    updateConfig(priceConfig: PriceConfig) {
-        this.subs.push(this.$dasboardService.updatePriceConfig(priceConfig).subscribe(data => {
-            if (data) {
-                this.showSuccessModal();
-            }
-        }, error => {
-            this.showErrorModal(error);
-        }));
-    }
+
 
     /**
      * Reloads Page
@@ -240,5 +254,61 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
             this.sessionNachname = user.lastName;
             this.sessionVorname = user.firstName;
         });
+    }
+
+    openCreateModal() {
+        this.displayDialogCreate = true;
+    }
+
+    /**
+     * Save Price to database
+     * @param form
+     */
+    onPriceSave(form: NgForm) {
+        if (form.valid) {
+            let price : PriceConfig = {
+                type: form.value.type,
+                price: form.value.price,
+                time: form.value.time
+            };
+
+            this.subs.push(this.$dasboardService.createPriceConfig(price).subscribe(data => {
+                if (data) {
+                    this.showSuccessModal();
+                }
+            }, error => {
+                this.showErrorModal(error);
+            }));
+        }
+    }
+
+    /**
+     * Deletes Price config on backend
+     */
+    deletePriceConfig() {
+        this.subs.push(this.$dasboardService.deletePriceConfig(this.priceConfig._id).subscribe(data => {
+            if (data) {
+                this.showSuccessModalDelete();
+                this.disableInput = true;
+            }
+        }, error => {
+            this.showErrorModalDelete(error);
+        }));
+    }
+
+    /**
+     * Updates given priceConfig
+     *
+     * @param priceConfig - config to update
+     */
+    updateConfig(priceConfig: PriceConfig) {
+        this.subs.push(this.$dasboardService.updatePriceConfig(priceConfig).subscribe(data => {
+            if (data) {
+                this.showSuccessModal();
+                this.disableInput = true
+            }
+        }, error => {
+            this.showErrorModal(error);
+        }));
     }
 }

@@ -184,6 +184,8 @@
                     Preis Konfiguration
                 </div>
 
+                <button (click)="openCreateModal()" class="btn- btn-success">Preis erstellen</button>
+
                 <div class="card-body">
                     <p-table
                             [value]="$dasboardService.priceConfig$ | async"
@@ -351,7 +353,11 @@
                 <div class="row">
                     <div class="col-5"><strong>Preis:</strong></div>
                     <div class="col-7">
-                        <input type="text" class="form-control" [(ngModel)]="priceConfig.price"
+                        <input type="text"
+                               class="form-control"
+                               [(ngModel)]="priceConfig.price"
+                               [disabled]="disableInput"
+
                         >
                     </div>
                 </div>
@@ -362,9 +368,115 @@
     </div>
 
     <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix vertical-horizontal-center">
-            <button type="button" pButton icon="fa fa-savemsgsModal" (click)="updateConfig(priceConfig)"
-                    label="Preis bearbeiten"></button>
-        </div>
+
+        <button type="button" class="btn btn-success" (click)="updateConfig(priceConfig)"> Bearbeiten
+            <span class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"
+                  *ngIf="$httpLoader.isLoading | async"
+            ></span>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deletePriceConfig()">Löschen
+            <span class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"
+                  *ngIf="$httpLoader.isLoading | async"
+            ></span>
+        </button>
+
     </p-footer>
+</p-dialog>
+
+
+<p-dialog [header]="'Preis erstellen'" [(visible)]="displayDialogCreate" [responsive]="true" showEffect="fade"
+          [modal]="true"
+          width="800" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="onCloseModal()">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <p-messages [(value)]="msgsModal" [closable]="true"></p-messages>
+            </div>
+        </div>
+        <form #fprice="ngForm" name="form" (ngSubmit)="onPriceSave(fprice)" novalidate>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-5"><strong>Typ (abhol, zustell):</strong></div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="type" name="type"
+                                   ngModel
+                                   #type="ngModel"
+                                   [ngClass]="{ 'is-invalid': fprice.submitted && type.invalid }"
+                                   [disabled]="disableInput"
+                                   required>
+                            <div *ngIf="fprice.submitted && type.invalid" class="invalid-feedback">
+                                <div *ngIf="type.errors.required">Typ wird
+                                    benötigt (zustell, abhol).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-1">
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-5"><strong>Zeit:</strong></div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="time" name="time"
+                                   ngModel
+                                   #time="ngModel"
+                                   [ngClass]="{ 'is-invalid': fprice.submitted && time.invalid }"
+                                   pattern="[0-9]{2}-[0-9]{2}"
+                                   [disabled]="disableInput"
+                                   required>
+                            <div *ngIf="fprice.submitted && time.invalid" class="invalid-feedback">
+                                <div *ngIf="time.errors.required">Zeit wird
+                                    benötigt. Bsp 08-17
+                                </div>
+
+                                <div *ngIf="time.errors.pattern">Zeit muss Pattern entsprechen. Bsp. 08-17
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-1">
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-5"><strong>Preis:</strong></div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="price" name="price"
+                                   ngModel
+                                   #price="ngModel"
+                                   [ngClass]="{ 'is-invalid': fprice.submitted && price.invalid }"
+                                   [disabled]="disableInput"
+                                   required>
+                            <div *ngIf="fprice.submitted && price.invalid" class="invalid-feedback">
+                                <div *ngIf="price.errors.required">Preis wird
+                                    benötigt.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2">
+                <div class="col-sm vertical-horizontal-center">
+                    <button type="submit" class="btn btn-primary">Speichern
+                        <span class="spinner-border spinner-border-sm" role="status"
+                              aria-hidden="true"
+                              *ngIf="$httpLoader.isLoading | async"></span>
+                    </button>
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
 </p-dialog>
