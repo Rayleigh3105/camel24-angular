@@ -36,6 +36,4 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
   public filterUsers() {
     this.subs.push(this.$dashboard.findUserByIKundenNummer(this.filterKundenNummer).subscribe());
   }
-
-
 }

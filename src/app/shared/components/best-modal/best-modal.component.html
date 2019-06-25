@@ -229,11 +229,12 @@
 
         <div class="row">
             <div class="col-sm">
-                <h6>Versandinformationen</h6>
-                <div class="row padding-left">
-                    <div class="col-4">Abholtermin:</div>
-                    <div class="col-8"></div>
+                <h6>Preisberechnung</h6>
+                <div *ngFor="let calc of calculation.calculatedFields" class="row padding-left">
+                    <div class="col-4">{{ calc.description }}</div>
+                    <div class="col-8"> {{ calc.price }}</div>
                 </div>
+              <strong>{{ calculation.sum }}</strong>
             </div>
         </div>
     </div>

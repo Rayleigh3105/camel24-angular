@@ -3,9 +3,9 @@ import {LoaderService} from '../../services/loader-service.service';
 import {DashboardService} from '../../services/dashboard.service';
 import {AuthService} from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
-import {SmtpConfig} from '../../../core/models/user/smtp-config';
+import {SmtpConfig} from '../../../core/models/config/smtp-config';
 import {Message} from 'primeng/api';
-import {PriceConfig} from '../../../core/models/user/price-config';
+import {PriceConfig} from '../../../core/models/config/price-config';
 import {Subscription} from 'rxjs';
 import {User} from '../../../core/models/user/user-model';
 

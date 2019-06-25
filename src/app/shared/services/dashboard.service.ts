@@ -4,8 +4,8 @@ import {User} from '../../core/models/user/user-model';
 import {environment} from '../../../environments/environment.prod';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {SmtpConfig} from '../../core/models/user/smtp-config';
-import {PriceConfig} from '../../core/models/user/price-config';
+import {SmtpConfig} from '../../core/models/config/smtp-config';
+import {PriceConfig} from '../../core/models/config/price-config';
 
 @Injectable({
     providedIn: 'root'

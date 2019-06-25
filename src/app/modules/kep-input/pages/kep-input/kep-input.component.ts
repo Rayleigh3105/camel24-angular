@@ -6,7 +6,7 @@ import {SessionStorageComponent} from '../../../../shared/components/session-sto
 import {AuthService} from '../../../../shared/services/auth.service';
 import {DashboardService} from '../../../../shared/services/dashboard.service';
 import {Subscription} from 'rxjs';
-import {PriceConfig} from '../../../../core/models/user/price-config';
+import {PriceConfig} from '../../../../core/models/config/price-config';
 
 @Component({
     selector: 'camel-kep-input',
