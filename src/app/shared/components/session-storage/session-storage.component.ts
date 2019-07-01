@@ -17,7 +17,7 @@ export class SessionStorageComponent implements OnInit {
    * Removes all existing Session Storage
    */
   public static removeSessionStorage() {
-    sessionStorage.removeItem('firmenName');
+    sessionStorage.removeItem('displayName');
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('kundenNummer');
     sessionStorage.removeItem('x-auth');
@@ -45,7 +45,7 @@ export class SessionStorageComponent implements OnInit {
   }
 
   public static getFirmenname() {
-    return sessionStorage.getItem('firmenName');
+    return sessionStorage.getItem('displayName');
   }
 
   public static getZusatz() {

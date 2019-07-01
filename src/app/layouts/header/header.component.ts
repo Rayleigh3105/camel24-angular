@@ -19,7 +19,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
      * VARIABLEN
      */
     public boolCheckIfLoggedIn: boolean = false;
-    public firmenName: String;
+    public displayName: String;
     public kundenNummer: String;
     public role: any;
     private subs : Subscription[];
@@ -45,7 +45,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     public checkIfLoggedIn() {
         if (SessionStorageComponent.getXAuth() !== null) {
             this.$authService.getCurrentUser().then(user => {
-                    this.firmenName = user.firmenName;
+                    this.displayName = user.firstName + " " + user.lastName;
                     this.kundenNummer = user.kundenNummer.toString();
                     this.role = user.role;
 

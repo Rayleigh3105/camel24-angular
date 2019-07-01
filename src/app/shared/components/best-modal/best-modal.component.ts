@@ -104,6 +104,7 @@ export class BestModalComponent implements OnInit, OnDestroy {
             this.calculateZustell();
             // Calculate Abhol
             this.calculateAbhol();
+            this.calculation.sum = +this.calculation.sum.toFixed(2);
 
         });
 
@@ -166,10 +167,10 @@ export class BestModalComponent implements OnInit, OnDestroy {
         // Calculate Versicherung
         let priceVersicherung = 0;
         if (this.data.sendungsdatenVers && this.data.sendungsdatenWert) {
-            let price = +this.getPriceForTypeAndTime('versicherung', '');
+            priceVersicherung = +this.getPriceForTypeAndTime('versicherung', '');
 
             priceVersicherung += ((Math.round(this.data.sendungsdatenWert / 1000) * 1000) / 1000) * price;
-            let calculationField: CalculationModel = new CalculationModel('Nachnahme', priceVersicherung.toFixed(2));
+            let calculationField: CalculationModel = new CalculationModel('Transportversicherung', priceVersicherung.toFixed(2));
             this.calculation.calculatedFields.push(calculationField);
 
         }

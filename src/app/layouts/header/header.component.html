@@ -34,7 +34,7 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown" *ngIf="boolCheckIfLoggedIn">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false"><strong> <i class="fa fa-user"></i> {{ firmenName }} - {{ kundenNummer}}
+                   aria-expanded="false"><strong> <i class="fa fa-user"></i> {{ displayName }} - {{ kundenNummer}}
                 </strong></a>
                 <div class="dropdown-menu">
                     <a *ngIf="role == 'User'" class="dropdown-item" routerLink="/userdashboard">Auftragsprofil</a>
