@@ -57,8 +57,7 @@
                                            ngModel
                                            #firmenname="ngModel"
                                            [ngClass]="{ 'is-invalid': f.submitted && firmenname.invalid }"
-                                           maxlength="75"
-                                           required>
+                                           maxlength="75">
                                     <div *ngIf="f.submitted && firmenname.invalid" class="invalid-feedback">
                                         <div *ngIf="firmenname.errors.required">Firmenname wird benötigt.</div>
                                     </div>

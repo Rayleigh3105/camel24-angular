@@ -227,14 +227,31 @@
             </div>
         </div>
 
+        <hr>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <img class="img" src="../../../../../assets/images/info.png" alt="Info" height="25"
+                     width="25"><img>
+                <span class="mv-info-color">     Die Preiskalkulation kann abweichen.</span>
+
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm">
                 <h6>Preisberechnung</h6>
                 <div *ngFor="let calc of calculation.calculatedFields" class="row padding-left">
-                    <div class="col-4">{{ calc.description }}</div>
-                    <div class="col-8"> {{ calc.price }}</div>
+                    <div class="col-10"> <strong>+ {{ calc.description }}</strong></div>
+                    <div class="col-2"> {{ calc.price }} €</div>
                 </div>
-              <strong>{{ calculation.sum }}</strong>
+
+                <hr>
+
+                <div class="row pb-2">
+                    <div class="col-10"><strong>Gesamt:</strong></div>
+                    <div class="col-2"> {{ calculation.sum}} € </div>
+                </div>
             </div>
         </div>
     </div>
