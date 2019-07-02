@@ -22,8 +22,8 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     public config: SmtpConfig;
     public priceConfig: PriceConfig;
     private subs: Subscription[] = [] = [];
-    displayDialog: boolean;
-    displayDialogCreate: boolean;
+    displayDialog: boolean = false;
+    displayDialogCreate: boolean = false;
     msgs: Message[] = [];
     msgsModal: Message[] = [];
     msgsUser: Message[] = [];
@@ -275,6 +275,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
             this.subs.push(this.$dasboardService.createPriceConfig(price).subscribe(data => {
                 if (data) {
                     this.showSuccessModal();
+                    this.disableInput = true
                 }
             }, error => {
                 this.showErrorModal(error);
