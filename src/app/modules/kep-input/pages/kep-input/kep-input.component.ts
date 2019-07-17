@@ -15,7 +15,7 @@ import {PriceConfig} from '../../../../core/models/config/price-config';
 })
 export class KepInputComponent extends SessionStorageComponent implements OnInit, OnDestroy {
 
-    @ViewChild('myCalendar')
+    @ViewChild('myCalendar', {static: true})
     public myCalendar: any;
 
     /**

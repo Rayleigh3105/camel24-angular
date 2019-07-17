@@ -8,6 +8,7 @@ import {KepInputComponent} from '../../../modules/kep-input/pages/kep-input/kep-
 import {LoaderService} from '../../services/loader-service.service';
 import {Subscription} from "rxjs";
 import {DashboardService} from '../../services/dashboard.service';
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'camel-login-register',
@@ -99,10 +100,14 @@ export class LoginRegisterComponent extends KepInputComponent implements OnDestr
    */
   setSessionStorage(body) {
     if (body.token) {
-      // @ts-ignore
-      sessionStorage.setItem('x-auth', body.token);
+      if (isPlatformBrowser(this.platformId)) {
+        // @ts-ignore
+        window.sessionStorage.setItem('x-auth', body.token);
+      }
     } else {
-      sessionStorage.removeItem('x-auth');
+      if (isPlatformBrowser(this.platformId)) {
+        window.sessionStorage.removeItem('x-auth');
+      }
     }
   }
 

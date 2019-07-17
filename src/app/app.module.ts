@@ -51,7 +51,7 @@ import {ConfigurationComponent} from './shared/components/configuration/configur
         ConfigurationComponent
     ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         CoreModule,
         SharedModule,
         AppRoutingModule,

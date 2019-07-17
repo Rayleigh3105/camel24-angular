@@ -24,7 +24,7 @@ export class BestModalComponent implements OnInit, OnDestroy {
     public email: string;
     protected priceConfig: PriceConfig[];
     subs: Subscription[] = [];
-    protected calculation: SumCalculationModel = new SumCalculationModel(0);
+    public calculation: SumCalculationModel = new SumCalculationModel(0);
 
 
     constructor(public activeModal: NgbActiveModal,

@@ -18,10 +18,10 @@ export class CsvExportService {
      */
     public createCSVOnServer(order: any, kundenNummer?: string) {
         let headers;
-        if (kundenNummer && sessionStorage.getItem('x-auth')) {
+        if (kundenNummer && window.sessionStorage.getItem('x-auth')) {
             headers = {
                 'x-kundenNummer': kundenNummer,
-                'x-auth': sessionStorage.getItem('x-auth')
+                'x-auth': window.sessionStorage.getItem('x-auth')
             };
         }
         return this.$http.post(environment.endpoint + 'order', order, {

@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'camel-session-storage',
@@ -7,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SessionStorageComponent implements OnInit {
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object) {
   }
 
   ngOnInit() {
@@ -16,75 +17,33 @@ export class SessionStorageComponent implements OnInit {
   /**
    * Removes all existing Session Storage
    */
-  public static removeSessionStorage() {
-    sessionStorage.removeItem('displayName');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('kundenNummer');
-    sessionStorage.removeItem('x-auth');
-    sessionStorage.removeItem('zusatz');
-    sessionStorage.removeItem('ansprechpartner');
-    sessionStorage.removeItem('adresse');
-    sessionStorage.removeItem('land');
-    sessionStorage.removeItem('plz');
-    sessionStorage.removeItem('ort');
-    sessionStorage.removeItem('telefon');
-    sessionStorage.removeItem('vorname');
-    sessionStorage.removeItem('nachname');
-    sessionStorage.removeItem('currentUser');
+  public removeSessionStorage() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.sessionStorage.removeItem('displayName');
+      window.sessionStorage.removeItem('email');
+      window.sessionStorage.removeItem('kundenNummer');
+      window.sessionStorage.removeItem('x-auth');
+      window.sessionStorage.removeItem('zusatz');
+      window.sessionStorage.removeItem('ansprechpartner');
+      window.sessionStorage.removeItem('adresse');
+      window.sessionStorage.removeItem('land');
+      window.sessionStorage.removeItem('plz');
+      window.sessionStorage.removeItem('ort');
+      window.sessionStorage.removeItem('telefon');
+      window.sessionStorage.removeItem('vorname');
+      window.sessionStorage.removeItem('nachname');
+      window.sessionStorage.removeItem('currentUser');
+    }
+
   }
 
   /**
    * GETTER SESSION STORAGE
    */
-  public static getXAuth() {
-    return sessionStorage.getItem('x-auth');
+  public getXAuth() {
+    if (isPlatformBrowser(this.platformId)) {
+      return window.sessionStorage.getItem('x-auth');
+    }
   }
-
-  public static getKundennummer() {
-    return sessionStorage.getItem('kundenNummer');
-  }
-
-  public static getFirmenname() {
-    return sessionStorage.getItem('displayName');
-  }
-
-  public static getZusatz() {
-    return sessionStorage.getItem('zusatz');
-  }
-
-  public static getAnsprechpartner() {
-    return sessionStorage.getItem('ansprechpartner');
-  }
-
-  public static getAdresse() {
-    return sessionStorage.getItem('adresse');
-  }
-
-  public static getLand() {
-    return sessionStorage.getItem('land');
-  }
-
-  public static getPlz() {
-    return sessionStorage.getItem('plz');
-  }
-
-  public static getOrt() {
-    return sessionStorage.getItem('ort');
-  }
-
-  public static getTelefon() {
-    return sessionStorage.getItem('telefon');
-  }
-
-  public static getEmail() {
-    return sessionStorage.getItem('email');
-  }
-  public static getVorname() {
-      return sessionStorage.getItem('vorname');
-  }
-  public static getNachname() {
-    return sessionStorage.getItem('nachname');
-  }
-
 
 }

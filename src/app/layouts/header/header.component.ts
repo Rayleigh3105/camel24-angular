@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginRegisterComponent} from '../../shared/components/register/login-register.component';
 import {LoginComponent} from '../../shared/components/login/login.component';
@@ -26,8 +26,8 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     msgs: Message[] = [];
 
 
-    constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router) {
-        super();
+    constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router,@Inject(PLATFORM_ID) protected platformId: Object) {
+        super(platformId);
     }
 
     ngOnInit() {
@@ -43,7 +43,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
      * Checks if User is logged in based on the values in the session storage
      */
     public checkIfLoggedIn() {
-        if (SessionStorageComponent.getXAuth() !== null) {
+        if (this.getXAuth() !== null) {
             this.$authService.getCurrentUser().then(user => {
                     this.displayName = user.firstName + " " + user.lastName;
                     this.kundenNummer = user.kundenNummer.toString();
@@ -103,7 +103,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
      */
     logoutUser() {
         // Removes Session Storage
-        SessionStorageComponent.removeSessionStorage();
+        this.removeSessionStorage();
         this.checkIfLoggedIn();
         this.subs.push(this.$authService.logoutUser().subscribe());
         this.router.navigate(['']);

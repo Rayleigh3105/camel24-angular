@@ -40,7 +40,7 @@ export class DashboardService {
             responseType: 'blob',
             headers: new HttpHeaders()
                 .append('Content-Type', 'application/json')
-                .append('x-auth', sessionStorage.getItem('x-auth')),
+                .append('x-auth', window.sessionStorage.getItem('x-auth')),
         }).pipe(
             tap((response) => response)
         );
@@ -127,12 +127,12 @@ export class DashboardService {
         let headers;
         if (filter) {
             headers = {
-                'x-auth': sessionStorage.getItem('x-auth'),
+                'x-auth': window.sessionStorage.getItem('x-auth'),
                 'search': filter
             };
         } else {
             headers = {
-                'x-auth': sessionStorage.getItem('x-auth')
+                'x-auth': window.sessionStorage.getItem('x-auth')
             };
 
         }

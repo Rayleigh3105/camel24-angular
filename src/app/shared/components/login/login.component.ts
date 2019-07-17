@@ -6,6 +6,7 @@ import {User} from '../../../core/models/user/user-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoaderService} from '../../services/loader-service.service';
 import {Subscription} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'camel-login',
@@ -81,7 +82,7 @@ export class LoginComponent implements OnDestroy {
   setSessionStorage(body) {
 
     if (body.token) {
-      // @ts-ignore
+        // @ts-ignore
       sessionStorage.setItem('x-auth', body.token);
     } else {
       sessionStorage.removeItem('x-auth');
