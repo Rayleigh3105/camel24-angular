@@ -105,6 +105,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
         // Removes Session Storage
         SessionStorageComponent.removeSessionStorage();
         this.checkIfLoggedIn();
+        this.subs = [];
         this.subs.push(this.$authService.logoutUser().subscribe());
         this.router.navigate(['']);
     }
