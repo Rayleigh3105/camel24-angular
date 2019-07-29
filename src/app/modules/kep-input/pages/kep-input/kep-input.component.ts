@@ -7,6 +7,7 @@ import {AuthService} from '../../../../shared/services/auth.service';
 import {DashboardService} from '../../../../shared/services/dashboard.service';
 import {Subscription} from 'rxjs';
 import {PriceConfig} from '../../../../core/models/config/price-config';
+import {any} from "codelyzer/util/function";
 
 @Component({
     selector: 'camel-kep-input',
@@ -15,7 +16,7 @@ import {PriceConfig} from '../../../../core/models/config/price-config';
 })
 export class KepInputComponent extends SessionStorageComponent implements OnInit, OnDestroy {
 
-    @ViewChild('myCalendar', {static: true}) myCalendar: any;
+    @ViewChild('myCalendar', {read: any}) myCalendar: any;
 
     /**
      * VARIABLES
