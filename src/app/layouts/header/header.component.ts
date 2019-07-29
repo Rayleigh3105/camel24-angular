@@ -45,10 +45,9 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     public checkIfLoggedIn() {
         if (SessionStorageComponent.getXAuth() !== null) {
             this.$authService.getCurrentUser().then(user => {
-                    this.displayName = user.firstName + " " + user.lastName;
+                    this.displayName = user.firmenName;
                     this.kundenNummer = user.kundenNummer.toString();
                     this.role = user.role;
-
                 }
             );
             this.boolCheckIfLoggedIn = true;
@@ -104,10 +103,10 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     logoutUser() {
         // Removes Session Storage
         SessionStorageComponent.removeSessionStorage();
-        this.checkIfLoggedIn();
-        this.subs = [];
-        this.subs.push(this.$authService.logoutUser().subscribe());
-        this.router.navigate(['']);
+      this.router.navigate(['']);
+      this.checkIfLoggedIn();
+      this.subs = [];
+      this.subs.push(this.$authService.logoutUser().subscribe());
     }
 
     /**

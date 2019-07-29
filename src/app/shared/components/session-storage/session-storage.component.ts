@@ -40,51 +40,5 @@ export class SessionStorageComponent implements OnInit {
     return sessionStorage.getItem('x-auth');
   }
 
-  public static getKundennummer() {
-    return sessionStorage.getItem('kundenNummer');
-  }
-
-  public static getFirmenname() {
-    return sessionStorage.getItem('displayName');
-  }
-
-  public static getZusatz() {
-    return sessionStorage.getItem('zusatz');
-  }
-
-  public static getAnsprechpartner() {
-    return sessionStorage.getItem('ansprechpartner');
-  }
-
-  public static getAdresse() {
-    return sessionStorage.getItem('adresse');
-  }
-
-  public static getLand() {
-    return sessionStorage.getItem('land');
-  }
-
-  public static getPlz() {
-    return sessionStorage.getItem('plz');
-  }
-
-  public static getOrt() {
-    return sessionStorage.getItem('ort');
-  }
-
-  public static getTelefon() {
-    return sessionStorage.getItem('telefon');
-  }
-
-  public static getEmail() {
-    return sessionStorage.getItem('email');
-  }
-  public static getVorname() {
-      return sessionStorage.getItem('vorname');
-  }
-  public static getNachname() {
-    return sessionStorage.getItem('nachname');
-  }
-
 
 }
