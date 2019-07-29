@@ -22,7 +22,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     public displayName: String;
     public kundenNummer: String;
     public role: any;
-    private subs : Subscription[];
+    private subs : Subscription[] = [];
     msgs: Message[] = [];
 
 
