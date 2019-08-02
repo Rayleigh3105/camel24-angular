@@ -57,6 +57,7 @@ export class BestModalComponent implements OnInit, OnDestroy {
         }
 
         value.price = this.calculation.sum;
+        value.zustellArtInt = this.getIntFromZustellArt(value.zustellArt);
 
         this.subs.push(this.csvService.createCSVOnServer(value, this.kundenNummer).subscribe(response => {
             if (response == 'true') {
@@ -67,6 +68,22 @@ export class BestModalComponent implements OnInit, OnDestroy {
         }, error => {
             this.activeModal.close(false);
         }));
+    }
+
+    /**
+     * <p>Checks what zustellArt is given and return number value for it</P>
+     * <i>This must be done becuase KEP does only take Int not String</i>
+     *
+     * @param zustellArt current zustellArt to chekc against
+     */
+    private getIntFromZustellArt(zustellArt: string): number {
+        if (zustellArt == 'standard') {
+            return 0;
+        } else if (zustellArt === 'persoenlich') {
+            return 1;
+        } else if (zustellArt === 'persoenlichIdent') {
+            return 2;
+        }
     }
 
     /**

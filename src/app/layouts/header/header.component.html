@@ -38,8 +38,8 @@
                 </strong></a>
                 <div class="dropdown-menu">
                     <a *ngIf="role == 'User'" class="dropdown-item" routerLink="/userdashboard">Auftragsprofil</a>
-                    <a *ngIf="role == 'Admin'" class="dropdown-item" routerLink="/admindashboard">Admin - Dashboard</a>
-                    <a *ngIf="role == 'Admin'" class="dropdown-item" routerLink="/config">Admin - Konfiguration</a>
+                    <a *ngIf="role == 'Admin'" class="dropdown-item" routerLink="/admindashboard">Auftragsübersicht</a>
+                    <a *ngIf="role == 'Admin'" class="dropdown-item" routerLink="/config">Konfiguration</a>
                     <div role="separator" class="dropdown-divider"></div>
                     <a class="dropdown-item" (click)="logoutUser()">Ausloggen</a>
                 </div>
