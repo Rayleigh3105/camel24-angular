@@ -16,8 +16,13 @@ import {User} from '../../../core/models/user/user-model';
 })
 export class ConfigurationComponent implements OnInit, OnDestroy {
 
-    constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService) {
+    constructor(public $httpLoader: LoaderService, public $dasboardService: DashboardService, private $authService: AuthService, private cdr: ChangeDetectorRef) {
     }
+
+    //////////////////////////////////////////////////
+    // ATTRIBUTE
+    /////////////////////////////////////////////////
+
 
     public config: SmtpConfig;
     public priceConfig: PriceConfig;
@@ -28,28 +33,32 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     msgsModal: Message[] = [];
     msgsUser: Message[] = [];
     disableInput: boolean = false;
+    priceType: any[];
 
-    public sessionVorname: string;
-    public sessionNachname: string;
-    public sessionFirmenName: string;
-    public sessionKundenNummer: string;
-    public sessionAdresse: string;
-    public sessionLand: string;
-    public sessionPlz: string;
-    public sessionOrt: string;
-    public sessionTelefon: string;
-    public sessionEmail: string;
+    public user: User;
+
+    public sessionPriceType;
+
+    //////////////////////////////////////////////////
+    // LIFECYCLEHOOKS
+    /////////////////////////////////////////////////
 
 
     ngOnInit() {
         this.$dasboardService.getSmtpConfig().then(configs => this.config = configs);
         this.subs.push(this.$dasboardService.getPriceConfig().subscribe());
-        this.updateNgModelVariablesWithSessionStorage();
+        this.getUser();
+        this.fillPriceType();
     }
 
     ngOnDestroy(): void {
         this.subs.forEach(sub => sub.unsubscribe());
     }
+
+    //////////////////////////////////////////////////
+    // SAVE
+    /////////////////////////////////////////////////
+
 
     /**
      * Saves configuration to Backend.
@@ -68,6 +77,87 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
             }));
         }
     }
+
+    /**
+     * Save Price to database
+     * @param form
+     */
+    onPriceSave(form: NgForm) {
+        if (form.valid) {
+            let price: PriceConfig = {
+                type: form.value.type,
+                price: form.value.price,
+                time: form.value.time
+            };
+
+            this.subs.push(this.$dasboardService.createPriceConfig(price).subscribe(data => {
+                if (data) {
+                    this.showSuccessModal();
+                    this.disableInput = true;
+                }
+            }, error => {
+                this.showErrorModal(error);
+            }));
+        }
+    }
+
+    /**
+     * Updates the user based on the inoputs
+     * @param form - form from the frontend
+     */
+    protected async onUpdate(form: NgForm) {
+        if (form.valid) {
+            this.subs.push(this.$dasboardService.updateUser(this.user).subscribe(body => {
+                if (body !== null) {
+                    // Updates SessionStorage with ngModel variables
+                    this.getUser();
+                    // Shows P-Message
+                    this.showSuccessUser();
+                }
+            }, error => {
+                this.showErrorUser(error);
+            }));
+        }
+    }
+
+    /**
+     * Updates given priceConfig
+     *
+     * @param priceConfig - config to update
+     */
+    updateConfig(priceConfig: PriceConfig) {
+        this.subs.push(this.$dasboardService.updatePriceConfig(priceConfig).subscribe(data => {
+            if (data) {
+                this.showSuccessModal();
+                this.disableInput = true;
+            }
+        }, error => {
+            this.showErrorModal(error);
+        }));
+    }
+
+    //////////////////////////////////////////////////
+    // DELETE
+    /////////////////////////////////////////////////
+
+
+    /**
+     * Deletes Price config on backend
+     */
+    deletePriceConfig() {
+        this.subs.push(this.$dasboardService.deletePriceConfig(this.priceConfig._id).subscribe(data => {
+            if (data) {
+                this.showSuccessModalDelete();
+                this.disableInput = true;
+            }
+        }, error => {
+            this.showErrorModalDelete(error);
+        }));
+    }
+
+    //////////////////////////////////////////////////
+    // MODAL
+    /////////////////////////////////////////////////
 
     /**
      * Shows p-message component after error has been thrown
@@ -167,6 +257,22 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Opens Modal
+     */
+    openCreateModal() {
+        this.displayDialogCreate = true;
+    }
+
+
+    /**
+     * Reloads Page
+     */
+    onCloseModal() {
+        this.cdr.detectChanges();
+    }
+
+
+    /**
      * Get´s fired when row is selected
      * - clones order
      * - opens up info modal with values from row
@@ -181,7 +287,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * Clones currently selected order
      * @param cloneOrder - order to clone
      */
-    static clonePriceConfig(cloneOrder): any {
+    static clonePriceConfig(cloneOrder: any): any {
         let order = {};
         for (let prop in cloneOrder) {
             order[prop] = cloneOrder[prop];
@@ -189,127 +295,70 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         return order;
     }
 
-
-
-    /**
-     * Reloads Page
-     */
-    onCloseModal() {
-        window.location.reload(true);
-    }
-
-    /**
-     * Updates the user based on the inoputs
-     * @param form - form from the frontend
-     */
-    protected async onUpdate(form: NgForm) {
-        if (form.valid) {
-            let userId: string = '';
-            await this.$authService.getCurrentUser().then(response => {
-                userId = response._id;
-            }, error => {
-                this.showError(error);
-            });
-            // Create User object with updated values in it from the form
-            let user: User = {
-                _id: userId,
-                firstName: form.value.vorname,
-                lastName: form.value.nachname,
-                firmenName: form.value.firmenname,
-                email: form.value.email,
-                adresse: form.value.adresse,
-                ort: form.value.ort,
-                land: form.value.land,
-                telefon: form.value.telefon,
-                plz: form.value.plz,
-
-            };
-
-            this.subs.push(this.$dasboardService.updateUser(user).subscribe(body => {
-                if (body !== null) {
-                    // Updates SessionStorage with ngModel variables
-                    this.updateNgModelVariablesWithSessionStorage();
-                    // Shows P-Message
-                    this.showSuccessUser();
-                }
-            }, error => {
-                this.showErrorUser(error);
-            }));
-        }
-    }
-
     /**
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      */
-    updateNgModelVariablesWithSessionStorage() {
-        this.$authService.getCurrentUser().then(user => {
-            this.sessionKundenNummer = user.kundenNummer.toString();
-            this.sessionFirmenName = user.firmenName;
-            this.sessionAdresse = user.adresse;
-            this.sessionLand = user.land;
-            this.sessionPlz = user.plz;
-            this.sessionOrt = user.ort;
-            this.sessionTelefon = user.telefon;
-            this.sessionEmail = user.email;
-            this.sessionNachname = user.lastName;
-            this.sessionVorname = user.firstName;
-        });
-    }
-
-    openCreateModal() {
-        this.displayDialogCreate = true;
+    getUser() {
+        this.$authService.getCurrentUser().then(user => this.user = user);
     }
 
     /**
-     * Save Price to database
-     * @param form
+     * Fills information for priceType.
      */
-    onPriceSave(form: NgForm) {
-        if (form.valid) {
-            let price : PriceConfig = {
-                type: form.value.type,
-                price: form.value.price,
-                time: form.value.time
-            };
-
-            this.subs.push(this.$dasboardService.createPriceConfig(price).subscribe(data => {
-                if (data) {
-                    this.showSuccessModal();
-                    this.disableInput = true
-                }
-            }, error => {
-                this.showErrorModal(error);
-            }));
-        }
+    fillPriceType(): void {
+        this.priceType = [
+            {
+                name: 'Abholpreis',
+                value: 'abhol'
+            },
+            {
+                name: 'Zustellpreis',
+                value: 'zustell'
+            },
+            {
+                name: 'Identpreis',
+                value: 'ident'
+            },
+            {
+                name: 'Versicherungspreis',
+                value: 'versicherung'
+            },
+            {
+                name: 'Nachnahmepreis',
+                value: 'nachnahme'
+            },
+        ];
     }
 
-    /**
-     * Deletes Price config on backend
-     */
-    deletePriceConfig() {
-        this.subs.push(this.$dasboardService.deletePriceConfig(this.priceConfig._id).subscribe(data => {
-            if (data) {
-                this.showSuccessModalDelete();
-                this.disableInput = true;
-            }
-        }, error => {
-            this.showErrorModalDelete(error);
-        }));
-    }
+    //////////////////////////////////////////////////
+    // DISPLAY
+    /////////////////////////////////////////////////
 
     /**
-     * Updates given priceConfig
+     * Checks if Transaltion should contain UHR or not.
      *
-     * @param priceConfig - config to update
+     * @param priceConfig
      */
-    updateConfig(priceConfig: PriceConfig) {
-        this.subs.push(this.$dasboardService.updatePriceConfig(priceConfig).subscribe(data => {
-            if (data) {
-                this.showSuccessModal();
-                this.disableInput = true
-            }
-        }, error => {
-            this.showErrorModal(error);
-        }));
+    displayUhrQuery(priceConfig: PriceConfig): boolean {
+        return priceConfig.time !== 'samstag' && priceConfig.time !== null && priceConfig.time !== '';
+    }
+
+    /**
+     * Checks if UHR should not display UHR.
+     *
+     * @param priceConfig
+     */
+    dontDisplayUhrQuery(priceConfig: PriceConfig): boolean {
+        return priceConfig.time == 'samstag' || priceConfig.time == null || priceConfig.time == '';
+    }
+
+
+    /**
+     * Translates value based on key.
+     *
+     * @param key
+     */
+    translatePrice(key: string): string {
+        return this.priceType.find(value => value.value == key).name;
     }
 }

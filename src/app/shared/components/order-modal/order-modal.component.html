@@ -229,7 +229,7 @@
             <div class="col-sm">
                 <h5 class="heading_modal">Zusammenfassung</h5>
                 <h6>Sendungsinformationen</h6>
-                <div class="row padding-left">
+                <div class="row padding-left" *ngIf="order.sendungsdaten.wert">
                     <div class="col-4"><strong>Wert der Sendung:</strong></div>
                     <div class="col-8 ">{{ order.sendungsdaten.wert }} €</div>
                 </div>
