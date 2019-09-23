@@ -151,7 +151,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     deletePriceConfig() {
         this.subs.push(this.$dasboardService.deletePriceConfig(this.priceConfig._id).subscribe(data => {
             if (data) {
-                this.showSuccessModal();
+                this.showSuccessModalDelete();
                 this.disableInput = true;
                 this.displayDialog = false;
                 this.priceConfig = null

@@ -139,9 +139,9 @@ export class DashboardService {
         return this.$http.delete(`${environment.endpoint}admindashboard/priceConfig/${priceId}`, this.updateXAuthfromSessionStorage()).pipe(
             tap(() => {
                 let priceList = [... this.priceConfig$.getValue()];
-                let index = priceList.findIndex(price => price._id == priceId);
-                if (index != -1) {
-                    priceList.splice(priceList[index], 1);
+                let priceToDelete = priceList.find(price => price._id == priceId);
+                if (priceToDelete) {
+                   priceList = priceList.filter(price => price._id != priceToDelete._id);
                 }
 
                 this.priceConfig$.next(priceList)
