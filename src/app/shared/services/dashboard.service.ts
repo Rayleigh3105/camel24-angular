@@ -109,14 +109,46 @@ export class DashboardService {
         return this.$http.patch<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, priceConfig, this.updateXAuthfromSessionStorage())
             .pipe(
                 tap((priceConfigDb) => {
-                    const priceList = [... this.priceConfig$.getValue()];
-                    let index = priceList.indexOf(priceConfig);
+                    let priceList = [... this.priceConfig$.getValue()];
+                    let index = priceList.findIndex(price => price._id == priceConfigDb._id);
                     if (index !== -1) {
                         priceList[index] = priceConfigDb;
                     }
                     this.priceConfig$.next(priceList);
                 })
             );
+    }
+
+    /**
+     * Creates Price config on the backend.
+     * @param price
+     */
+    createPriceConfig(price: PriceConfig) {
+        return this.$http.post<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, price, this.updateXAuthfromSessionStorage())
+            .pipe(
+                tap((priceConfigDb) =>
+                    this.priceConfig$.next([... this.priceConfig$.getValue(), priceConfigDb])
+                )
+            );
+    }
+
+    /**
+     * Deletes price config on the backend.
+     */
+    deletePriceConfig(priceId: string) {
+        return this.$http.delete(`${environment.endpoint}admindashboard/priceConfig/${priceId}`, this.updateXAuthfromSessionStorage()).pipe(
+            tap(() => {
+                let priceList = [... this.priceConfig$.getValue()];
+                let index = priceList.findIndex(price => price._id == priceId);
+                if (index != -1) {
+                    priceList.splice(priceList[index], 1);
+                }
+
+                this.priceConfig$.next(priceList)
+
+
+            })
+        )
     }
 
 
@@ -141,28 +173,5 @@ export class DashboardService {
             headers: new HttpHeaders(headers),
         };
 
-    }
-
-
-    /**
-     * Creates Price config on the backend.
-     * @param price
-     */
-    createPriceConfig(price: PriceConfig) {
-        return this.$http.post<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, price, this.updateXAuthfromSessionStorage())
-            .pipe(
-                tap((priceConfigDb) => {
-                    const priceList = [... this.priceConfig$.getValue()];
-                    priceList.push(priceConfigDb)
-                    this.priceConfig$.next(priceList);
-                })
-            );
-    }
-
-    /**
-     * Deletes price config on the backend.
-     */
-    deletePriceConfig(priceId: string) {
-        return this.$http.delete(`${environment.endpoint}admindashboard/priceConfig/${priceId}`, this.updateXAuthfromSessionStorage())
     }
 }

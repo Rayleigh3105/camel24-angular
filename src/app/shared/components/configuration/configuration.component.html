@@ -3,323 +3,333 @@
         <div class="col-12">
             <p-accordion [multiple]="true" activeIndex="0">
                 <p-accordionTab header="Benutzer">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="../../../../assets/images/user.png" height="24" width="24"/>
-                            <strong>Benutzer</strong>
+                    <form #fuser="ngForm" name="form1" (ngSubmit)="onUpdate(fuser)" novalidate class="pt-2">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="vorname">Vorname</label>
+                                        <input type="text" class="form-control" id="vorname" name="vorname"
+                                               [(ngModel)]="user.firstName"
+                                               #vorname="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && vorname.invalid }"
+                                               maxlength="50"
+                                               required>
+                                        <div *ngIf="fuser.submitted && vorname.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="nachname">Nachname</label>
+                                        <input type="text" class="form-control" id="nachname" name="nachname"
+                                               [(ngModel)]="user.lastName"
+                                               #nachname="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && nachname.invalid }"
+                                               maxlength="50"
+                                               required>
+                                        <div *ngIf="fuser.submitted && nachname.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="firmenname">Firmenname</label>
+                                        <input type="text" class="form-control" id="firmenname"
+                                               name="firmenname"
+                                               [(ngModel)]="user.firmenName"
+                                               #firmenname="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && firmenname.invalid }"
+                                               maxlength="75"
+                                               required>
+                                        <div *ngIf="fuser.submitted && firmenname.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="firmenname.errors.required">Firmenname wird benötigt
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="kundennummer">Kundennummer</label>
+                                        <input type="text" class="form-control" id="kundennummer"
+                                               name="kundennummer"
+                                               [(ngModel)]="user.kundenNummer"
+                                               #kundennummer="ngModel"
+                                               disabled
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && kundennummer.invalid }"
+                                               pattern="[0-9]{5}"
+                                               maxlength="5"
+                                               required>
+                                        <div *ngIf="fuser.submitted && kundennummer.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="kundennummer.errors.required">Kundennummer wird
+                                                benötigt
+                                            </div>
+                                            <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
+                                                Kundennummer ein.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vorname">E-Mail</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                           [(ngModel)]="user.email"
+                                           #email="ngModel"
+                                           [ngClass]="{ 'is-invalid': fuser.submitted && email.invalid }"
+                                           maxlength="75"
+                                           disabled
+                                           email
+                                           required>
+                                    <div *ngIf="fuser.submitted && email.invalid" class="invalid-feedback">
+                                        <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
+                                        <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail
+                                            ein
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h5>Standardauftragsdaten</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="adresse">Adresse</label>
+                                        <input type="text" class="form-control" id="adresse" name="adresse"
+                                               [(ngModel)]="user.adresse"
+                                               #adresse="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && adresse.invalid }"
+                                               maxlength="75"
+                                        >
+
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="ort">Ort</label>
+                                        <input type="text" class="form-control" id="ort"
+                                               name="ort"
+                                               [(ngModel)]="user.ort"
+                                               #ort="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && ort.invalid }"
+                                               maxlength="75"
+                                        >
+
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="plz">Plz</label>
+                                        <input type="text" class="form-control" id="plz" name="plz"
+                                               [(ngModel)]="user.plz"
+                                               #plz="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && plz.invalid }"
+                                               minlength="5"
+                                               maxlength="5"
+                                               pattern="[0-9]{5}">
+                                        <div *ngIf="fuser.submitted && plz.invalid" class="invalid-feedback">
+                                            <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen
+                                                enthalten
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="land">Land</label>
+                                        <select id="land"
+                                                class="form-control"
+                                                [(ngModel)]="user.land"
+                                                name="land"
+                                                #land="ngModel"
+                                                [ngClass]="{ 'is-invalid': fuser.submitted && land.invalid }"
+                                        >
+                                            <option value="Deutschland" selected>Deutschland</option>
+                                            <option value="Österreich">Österreich</option>
+                                            <option value="Schweiz">Schweiz</option>
+                                        </select>
+                                        <div *ngIf="fuser.submitted && land.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="land.errors.required">Land wird benötigt</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="telefon">Telefon</label>
+                                        <input type="text" class="form-control" id="telefon" name="telefon"
+                                               [(ngModel)]="user.telefon"
+                                               #telefon="ngModel"
+                                               [ngClass]="{ 'is-invalid': fuser.submitted && telefon.invalid }"
+                                               minlength="1"
+                                               maxlength="20">
+                                        <div *ngIf="fuser.submitted && telefon.invalid"
+                                             class="invalid-feedback">
+                                            Telefonnummer darf nur aus Nummern bestehen.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form #fuser="ngForm" name="form1" (ngSubmit)="onUpdate(fuser)" novalidate>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="vorname">Vorname</label>
-                                                <input type="text" class="form-control" id="vorname" name="vorname"
-                                                       [(ngModel)]="user.firstName"
-                                                       #vorname="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && vorname.invalid }"
-                                                       maxlength="50"
-                                                       required>
-                                                <div *ngIf="fuser.submitted && vorname.invalid" class="invalid-feedback">
-                                                    <div *ngIf="vorname.errors.required">Vorname wird benötigt</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="nachname">Nachname</label>
-                                                <input type="text" class="form-control" id="nachname" name="nachname"
-                                                       [(ngModel)]="user.lastName"
-                                                       #nachname="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && nachname.invalid }"
-                                                       maxlength="50"
-                                                       required>
-                                                <div *ngIf="fuser.submitted && nachname.invalid" class="invalid-feedback">
-                                                    <div *ngIf="nachname.errors.required">Nachname wird benötigt</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="firmenname">Firmenname</label>
-                                                <input type="text" class="form-control" id="firmenname" name="firmenname"
-                                                       [(ngModel)]="user.firmenName"
-                                                       #firmenname="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && firmenname.invalid }"
-                                                       maxlength="75"
-                                                       required>
-                                                <div *ngIf="fuser.submitted && firmenname.invalid" class="invalid-feedback">
-                                                    <div *ngIf="firmenname.errors.required">Firmenname wird benötigt</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="kundennummer">Kundennummer</label>
-                                                <input type="text" class="form-control" id="kundennummer" name="kundennummer"
-                                                       [(ngModel)]="user.kundenNummer"
-                                                       #kundennummer="ngModel"
-                                                       disabled
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && kundennummer.invalid }"
-                                                       pattern="[0-9]{5}"
-                                                       maxlength="5"
-                                                       required>
-                                                <div *ngIf="fuser.submitted && kundennummer.invalid" class="invalid-feedback">
-                                                    <div *ngIf="kundennummer.errors.required">Kundennummer wird benötigt</div>
-                                                    <div *ngIf="kundennummer.errors.pattern">Bitte sie Ihre 5 stellige
-                                                        Kundennummer ein.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="vorname">E-Mail</label>
-                                            <input type="text" class="form-control" id="email" name="email"
-                                                   [(ngModel)]="user.email"
-                                                   #email="ngModel"
-                                                   [ngClass]="{ 'is-invalid': fuser.submitted && email.invalid }"
-                                                   maxlength="75"
-                                                   disabled
-                                                   email
-                                                   required>
-                                            <div *ngIf="fuser.submitted && email.invalid" class="invalid-feedback">
-                                                <div *ngIf="email.errors.required">E-Mail wird benötigt</div>
-                                                <div *ngIf="email.errors.email">Bitte geben Sie eine gültige E-Mail ein</div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h5>Standardauftragsdaten</h5>
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="adresse">Adresse</label>
-                                                <input type="text" class="form-control" id="adresse" name="adresse"
-                                                       [(ngModel)]="user.adresse"
-                                                       #adresse="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && adresse.invalid }"
-                                                       maxlength="75"
-                                                >
-
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="ort">Ort</label>
-                                                <input type="text" class="form-control" id="ort"
-                                                       name="ort"
-                                                       [(ngModel)]="user.ort"
-                                                       #ort="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && ort.invalid }"
-                                                       maxlength="75"
-                                                >
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="plz">Plz</label>
-                                                <input type="text" class="form-control" id="plz" name="plz"
-                                                       [(ngModel)]="user.plz"
-                                                       #plz="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && plz.invalid }"
-                                                       minlength="5"
-                                                       maxlength="5"
-                                                       pattern="[0-9]{5}">
-                                                <div *ngIf="fuser.submitted && plz.invalid" class="invalid-feedback">
-                                                    <div *ngIf="plz.errors.pattern">PLZ muss mindestens 5 Zeichen enthalten
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="land">Land</label>
-                                                <select id="land"
-                                                        class="form-control"
-                                                        [(ngModel)]="user.land"
-                                                        name="land"
-                                                        #land="ngModel"
-                                                        [ngClass]="{ 'is-invalid': fuser.submitted && land.invalid }"
-                                                >
-                                                    <option value="Deutschland" selected>Deutschland</option>
-                                                    <option value="Österreich">Österreich</option>
-                                                    <option value="Schweiz">Schweiz</option>
-                                                </select>
-                                                <div *ngIf="fuser.submitted && land.invalid"
-                                                     class="invalid-feedback">
-                                                    <div *ngIf="land.errors.required">Land wird benötigt</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="telefon">Telefon</label>
-                                                <input type="text" class="form-control" id="telefon" name="telefon"
-                                                       [(ngModel)]="user.telefon"
-                                                       #telefon="ngModel"
-                                                       [ngClass]="{ 'is-invalid': fuser.submitted && telefon.invalid }"
-                                                       minlength="1"
-                                                       maxlength="20">
-                                                <div *ngIf="fuser.submitted && telefon.invalid" class="invalid-feedback">
-                                                    Telefonnummer darf nur aus Nummern bestehen.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm vertical-horizontal-center">
-                                        <p-messages [(value)]="msgsUser" [closable]="true"></p-messages>
-                                    </div>
-                                </div>
-                                <div class="row pt-2 pb-2">
-                                    <div class="col-sm vertical-horizontal-center">
-                                        <button type="submit" class="btn btn-primary" [disabled]="!fuser.dirty">Speichern
-                                            <span class="spinner-border spinner-border-sm" role="status"
-                                                  aria-hidden="true"
-                                                  *ngIf="$httpLoader.isLoading | async"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="row">
+                            <div class="col-sm vertical-horizontal-center">
+                                <p-messages [(value)]="msgsUser" [closable]="true"></p-messages>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row pt-2 pb-2">
+                            <div class="col-sm vertical-horizontal-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!fuser.dirty">
+                                    Speichern
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                          aria-hidden="true"
+                                          *ngIf="$httpLoader.isLoading | async"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                 </p-accordionTab>
+                <br>
                 <p-accordionTab header="Preis Konfiguration">
-                    <div class="card">
-                        <div class="card-header">
-                            Preise erstellen und bearbeiten
+
+                    <div class="row pt-2 pb-2">
+                        <div class="col-sm vertical-horizontal-center">
+                            <button (click)="openCreateModal()" class="btn btn-success" type="button">Preis erstellen
+                            </button>
                         </div>
-
-                        <button (click)="openCreateModal()" class="btn- btn-success">Preis erstellen</button>
-
-                        <div class="card-body">
-                            <p-table
-                                    [value]="$dasboardService.priceConfig$ | async"
-                                    [paginator]="true"
-                                    [rows]="20"
-                                    selectionMode="single"
-                                    sortMode="multiple"
-                                    (onRowSelect)="onRowSelect($event)"
-                            >
-
-                                <ng-template pTemplate="header">
-                                    <tr style="text-align: center">
-                                        <th [pSortableColumn]="'type'">
-                                            Art
-                                            <p-sortIcon [field]=""></p-sortIcon>
-                                        </th>
-                                        <th [pSortableColumn]="'time'">
-                                            Zeit
-                                            <p-sortIcon [field]=""></p-sortIcon>
-                                        </th>
-                                        <th [pSortableColumn]="'price'">
-                                            Preis
-                                            <p-sortIcon [field]=""></p-sortIcon>
-                                        </th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-priceConfig>
-                                    <tr style="text-align: center;" [pSelectableRow]="priceConfig">
-                                        <td>{{ translatePrice(priceConfig.type) }}</td>
-                                        <td *ngIf="displayUhrQuery(priceConfig)">{{ priceConfig.time }} Uhr</td>
-                                        <td *ngIf="dontDisplayUhrQuery(priceConfig)">{{ priceConfig.time }}</td>
-                                        <td>{{ priceConfig.price }} €</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm"></div>
+                        <div class="col-sm-8">
+                            <p-messages [(value)]="msgsModal" [closable]="true"></p-messages>
                         </div>
+                        <div class="col-sm"></div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <p-table
+                                [value]="$dasboardService.priceConfig$ | async"
+                                [paginator]="true"
+                                [rows]="20"
+                                selectionMode="single"
+                                sortMode="multiple"
+                                (onRowSelect)="onRowSelect($event)"
+                        >
+
+                            <ng-template pTemplate="header">
+                                <tr style="text-align: center">
+                                    <th [pSortableColumn]="'type'">
+                                        Art
+                                        <p-sortIcon [field]=""></p-sortIcon>
+                                    </th>
+                                    <th [pSortableColumn]="'time'">
+                                        Zeit
+                                        <p-sortIcon [field]=""></p-sortIcon>
+                                    </th>
+                                    <th [pSortableColumn]="'price'">
+                                        Preis
+                                        <p-sortIcon [field]=""></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-priceConfig>
+                                <tr style="text-align: center;" [pSelectableRow]="priceConfig">
+                                    <td>{{ translatePrice(priceConfig?.type) }}</td>
+                                    <td *ngIf="displayUhrQuery(priceConfig)">{{ priceConfig?.time }} Uhr</td>
+                                    <td *ngIf="dontDisplayUhrQuery(priceConfig)">{{ priceConfig?.time }}</td>
+                                    <td>{{ priceConfig?.price }} €</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
                     </div>
 
                 </p-accordionTab>
+                <br>
                 <p-accordionTab header="SMTP Konfiguratin">
-                    <div class="card">
-                        <div class="card-header">
-                            SMTP
-                        </div>
-
-                        <div class="card-body">
-                            <form #f="ngForm" name="form" (ngSubmit)="onSave(f)" novalidate>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="smtpHost">SMTP Host</label>
-                                                <input type="text" class="form-control" id="smtpHost" name="smtpHost"
-                                                       [(ngModel)]="config.smtpHost"
-                                                       #smtpHost="ngModel"
-                                                       [ngClass]="{ 'is-invalid': f.submitted && smtpHost.invalid }"
-                                                       maxlength="60"
-                                                       required>
-                                                <div *ngIf="f.submitted && smtpHost.invalid" class="invalid-feedback">
-                                                    <div *ngIf="smtpHost.errors.required">SMTP Host wird benötigt.</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="smtpPort">SMTP Port</label>
-                                                <input type="number" class="form-control" id="smtpPort" name="smtpPort"
-                                                       [(ngModel)]="config.smtpPort"
-                                                       #smtpPort="ngModel"
-                                                       [ngClass]="{ 'is-invalid': f.submitted && smtpPort.invalid }"
-                                                       required>
-                                                <div *ngIf="f.submitted && smtpPort.invalid" class="invalid-feedback">
-                                                    <div *ngIf="smtpPort.errors.required">SMTP Port wird benötigt.</div>
-                                                </div>
+                    <form #f="ngForm" name="form" (ngSubmit)="onSave(f)" novalidate class="pt-2">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="smtpHost">SMTP Host</label>
+                                        <input type="text" class="form-control" id="smtpHost" name="smtpHost"
+                                               [(ngModel)]="config.smtpHost"
+                                               #smtpHost="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpHost.invalid }"
+                                               maxlength="60"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpHost.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpHost.errors.required">SMTP Host wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="smtpPort">SMTP Port</label>
+                                        <input type="number" class="form-control" id="smtpPort" name="smtpPort"
+                                               [(ngModel)]="config.smtpPort"
+                                               #smtpPort="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpPort.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpPort.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpPort.errors.required">SMTP Port wird benötigt.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm">
+                                        <label for="smtpSecure">SMTP Secure</label>
+                                        <input type="checkbox" class="form-control" id="smtpSecure"
+                                               name="smtpSecure"
+                                               [(ngModel)]="config.smtpSecure"
+                                               #smtpSecure="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpSecure.invalid }">
+                                        <div *ngIf="f.submitted && smtpSecure.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpSecure.errors.required">SMTP Secure wird benötigt.
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <label for="smtpSecure">SMTP Secure</label>
-                                                <input type="checkbox" class="form-control" id="smtpSecure" name="smtpSecure"
-                                                       [(ngModel)]="config.smtpSecure"
-                                                       #smtpSecure="ngModel"
-                                                       [ngClass]="{ 'is-invalid': f.submitted && smtpSecure.invalid }">
-                                                <div *ngIf="f.submitted && smtpSecure.invalid" class="invalid-feedback">
-                                                    <div *ngIf="smtpSecure.errors.required">SMTP Secure wird benötigt.</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <label for="smtpUser">SMTP Benutzer</label>
-                                                <input type="text" class="form-control" id="smtpUser" name="smtpUser"
-                                                       [(ngModel)]="config.smtpUser"
-                                                       #smtpUser="ngModel"
-                                                       [ngClass]="{ 'is-invalid': f.submitted && smtpUser.invalid }"
-                                                       required>
-                                                <div *ngIf="f.submitted && smtpUser.invalid" class="invalid-feedback">
-                                                    <div *ngIf="smtpUser.errors.required">SMTP User wird benötigt.</div>
+                                    </div>
+                                    <div class="form-group col-sm">
+                                        <label for="smtpUser">SMTP Benutzer</label>
+                                        <input type="text" class="form-control" id="smtpUser" name="smtpUser"
+                                               [(ngModel)]="config.smtpUser"
+                                               #smtpUser="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpUser.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpUser.invalid" class="invalid-feedback">
+                                            <div *ngIf="smtpUser.errors.required">SMTP User wird benötigt.</div>
 
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group col-sm">
-                                                <label for="smtpSecure">SMTP Benutzer Passwort</label>
-                                                <input type="text" class="form-control" id="smtpPassword" name="smtpPassword"
-                                                       [(ngModel)]="config.smtpPassword"
-                                                       #smtpPassword="ngModel"
-                                                       [ngClass]="{ 'is-invalid': f.submitted && smtpPassword.invalid }"
-                                                       required>
-                                                <div *ngIf="f.submitted && smtpPassword.invalid" class="invalid-feedback">
-                                                    <div *ngIf="smtpPassword.errors.required">SMTP Benuter Passwort wird
-                                                        benötigt.
-                                                    </div>
-                                                </div>
+                                    <div class="form-group col-sm">
+                                        <label for="smtpSecure">SMTP Benutzer Passwort</label>
+                                        <input type="text" class="form-control" id="smtpPassword"
+                                               name="smtpPassword"
+                                               [(ngModel)]="config.smtpPassword"
+                                               #smtpPassword="ngModel"
+                                               [ngClass]="{ 'is-invalid': f.submitted && smtpPassword.invalid }"
+                                               required>
+                                        <div *ngIf="f.submitted && smtpPassword.invalid"
+                                             class="invalid-feedback">
+                                            <div *ngIf="smtpPassword.errors.required">SMTP Benuter Passwort wird
+                                                benötigt.
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm vertical-horizontal-center">
-                                        <p-messages [(value)]="msgs" [closable]="true"></p-messages>
-                                    </div>
-                                </div>
-                                <div class="row pt-2 pb-2">
-                                    <div class="col-sm vertical-horizontal-center">
-                                        <button type="submit" class="btn btn-primary" [disabled]="!f.dirty">Speichern
-                                            <span class="spinner-border spinner-border-sm" role="status"
-                                                  aria-hidden="true"
-                                                  *ngIf="$httpLoader.isLoading | async"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
 
+
+                            </div>
                         </div>
-                    </div>
-
+                        <div class="row">
+                            <div class="col-sm vertical-horizontal-center">
+                                <p-messages [(value)]="msgs" [closable]="true"></p-messages>
+                            </div>
+                        </div>
+                        <div class="row pt-2 pb-2">
+                            <div class="col-sm vertical-horizontal-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!f.dirty">Speichern
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                          aria-hidden="true"
+                                          *ngIf="$httpLoader.isLoading | async"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </p-accordionTab>
             </p-accordion>
 
@@ -328,19 +338,14 @@
 </div>
 
 
-<p-dialog [header]="'Preis bearbeiten'" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          width="800" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="onCloseModal()">
+<p-dialog [header]="'Preis bearbeiten'" [(visible)]="displayDialog" [responsive]="true" [modal]="true"
+          width="500" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="disableInput = false">
     <div class="container" *ngIf="priceConfig">
-        <div class="row">
-            <div class="col-sm">
-                <p-messages [(value)]="msgsModal" [closable]="true"></p-messages>
-            </div>
-        </div>
         <div class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col-5"><strong>Typ:</strong></div>
-                    <div class="col-7"><span class="padding-left">{{ priceConfig.type}}</span></div>
+                    <div class="col-7"><span class="padding-left">{{ translatePrice(priceConfig.type) }}</span></div>
                 </div>
 
                 <div class="row">
@@ -370,7 +375,7 @@
 
     <p-footer>
 
-        <button type="button" class="btn btn-success" (click)="updateConfig(priceConfig)">Speichern
+        <button type="button" class="btn btn-primary" (click)="updateConfig(priceConfig)">Speichern
             <span class="spinner-border spinner-border-sm" role="status"
                   aria-hidden="true"
                   *ngIf="$httpLoader.isLoading | async"
@@ -389,14 +394,9 @@
 
 <p-dialog [header]="'Preis erstellen'" [(visible)]="displayDialogCreate" [responsive]="true" showEffect="fade"
           [modal]="true"
-          width="800" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="onCloseModal()">
+          width="500" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="disableInput = false">
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <p-messages [(value)]="msgsModal" [closable]="true"></p-messages>
-            </div>
-        </div>
         <form #fprice="ngForm" name="form" (ngSubmit)="onPriceSave(fprice)" novalidate>
 
             <div class="row">
@@ -459,7 +459,7 @@
                 </div>
             </div>
 
-            <div class="row pt-2 pb-2">
+            <div class="row pt-3 pb-2">
                 <div class="col-sm vertical-horizontal-center">
                     <button type="submit" class="btn btn-primary">Speichern
                         <span class="spinner-border spinner-border-sm" role="status"

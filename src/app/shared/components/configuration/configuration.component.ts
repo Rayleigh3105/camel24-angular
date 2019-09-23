@@ -94,6 +94,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
                 if (data) {
                     this.showSuccessModal();
                     this.disableInput = true;
+                    this.displayDialogCreate = false;
                 }
             }, error => {
                 this.showErrorModal(error);
@@ -113,6 +114,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
                     this.getUser();
                     // Shows P-Message
                     this.showSuccessUser();
+
                 }
             }, error => {
                 this.showErrorUser(error);
@@ -130,6 +132,8 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
             if (data) {
                 this.showSuccessModal();
                 this.disableInput = true;
+                this.displayDialog = false;
+
             }
         }, error => {
             this.showErrorModal(error);
@@ -147,8 +151,10 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     deletePriceConfig() {
         this.subs.push(this.$dasboardService.deletePriceConfig(this.priceConfig._id).subscribe(data => {
             if (data) {
-                this.showSuccessModalDelete();
+                this.showSuccessModal();
                 this.disableInput = true;
+                this.displayDialog = false;
+                this.priceConfig = null
             }
         }, error => {
             this.showErrorModalDelete(error);
@@ -227,7 +233,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         this.msgsModal.push({
             severity: 'success',
             summary: 'Erfolgreich',
-            detail: `Preis wurde erfolgreich gelöscht   .`
+            detail: `Preis wurde erfolgreich gelöscht.`
         });
     }
 
@@ -261,14 +267,6 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      */
     openCreateModal() {
         this.displayDialogCreate = true;
-    }
-
-
-    /**
-     * Reloads Page
-     */
-    onCloseModal() {
-        this.cdr.detectChanges();
     }
 
 
@@ -340,7 +338,9 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * @param priceConfig
      */
     displayUhrQuery(priceConfig: PriceConfig): boolean {
-        return priceConfig.time !== 'samstag' && priceConfig.time !== null && priceConfig.time !== '';
+        if (priceConfig != null) {
+            return priceConfig.time !== 'samstag' && priceConfig.time !== null && priceConfig.time !== '';
+        }
     }
 
     /**
@@ -349,7 +349,9 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * @param priceConfig
      */
     dontDisplayUhrQuery(priceConfig: PriceConfig): boolean {
-        return priceConfig.time == 'samstag' || priceConfig.time == null || priceConfig.time == '';
+        if (priceConfig != null) {
+            return priceConfig.time == 'samstag' || priceConfig.time == null || priceConfig.time == '';
+        }
     }
 
 
@@ -359,6 +361,9 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * @param key
      */
     translatePrice(key: string): string {
-        return this.priceType.find(value => value.value == key).name;
+        if (key != null) {
+            return this.priceType.find(value => value.value == key).name;
+
+        }
     }
 }
