@@ -8,6 +8,8 @@ import {DashboardService} from '../../../../shared/services/dashboard.service';
 import {Subscription} from 'rxjs';
 import {PriceConfig} from '../../../../core/models/config/price-config';
 import {any} from "codelyzer/util/function";
+import {TemplateModalComponent} from '../../../../shared/components/template-modal/template-modal.component';
+import {User} from '../../../../core/models/user/user-model';
 
 @Component({
     selector: 'camel-kep-input',
@@ -191,6 +193,19 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         }
     }
 
+    onTemplateSave(form: NgForm) {
+        const modalRef = this.modalService.open(TemplateModalComponent, {
+            size: 'lg',
+            backdrop: 'static',
+            centered: true,
+            keyboard: false
+        });
+
+        modalRef.componentInstance.empfaenger = KepInputComponent.prepareTemplateData(form);
+    }
+
+
+
     /**
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      * Also updates Selected Values in form with default values
@@ -198,7 +213,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     updateNgModelVariablesWithSessionStorage() {
         this.$authService.getCurrentUser().then(user => {
             this.sessionKundenNummer = user.kundenNummer.toString();
-            this.sessionFirmenName = user.firmenName;
+            this.sessionFirmenName = user.firma;
             this.sessionZusatz = user.zusatz;
             this.sessionAnsprechpartner = user.ansprechpartner;
             this.sessionAdresse = user.adresse;
@@ -323,5 +338,28 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             this.priceList = this.$dashboardService.priceConfig$.getValue()
             console.log(this.priceList);
         }));
+    }
+
+    /**
+     * Mapps the data
+     *
+     * @param form
+     */
+    private static prepareTemplateData(form: NgForm): User {
+        let empfaenger : User = {};
+
+
+        empfaenger.firma = form.value.empfFirma;
+        empfaenger.zusatz = form.value.empfZusatz;
+        empfaenger.ansprechpartner = form.value.empfAnsprechpartner;
+        empfaenger.adresse = form.value.empfAdresse;
+        empfaenger.land = form.value.empfLand;
+        empfaenger.plz = form.value.empfPlz;
+        empfaenger.ort = form.value.empfOrt;
+        empfaenger.telefon = form.value.empfTel;
+        empfaenger.email = form.value.empfEmail;
+
+        return empfaenger
+
     }
 }

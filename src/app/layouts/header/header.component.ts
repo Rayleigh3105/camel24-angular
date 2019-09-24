@@ -45,7 +45,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     public checkIfLoggedIn() {
         if (SessionStorageComponent.getXAuth() !== null) {
             this.$authService.getCurrentUser().then(user => {
-                    this.displayName = user.firmenName;
+                    this.displayName = user.firma;
                     this.kundenNummer = user.kundenNummer.toString();
                     this.role = user.role;
                 }

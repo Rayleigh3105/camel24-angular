@@ -4,7 +4,7 @@ export interface User {
     _id? : any,
     firstName?: string;
     lastName?: string;
-    firmenName?: string;
+    firma?: string;
     kundenNummer?: number;
     email?: string;
     password?: string;

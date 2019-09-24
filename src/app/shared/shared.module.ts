@@ -6,13 +6,16 @@ import {ImpressumAgbComponent} from './components/impressum-agb/impressum-agb.co
 import {AgbnationalComponent} from './components/agbnational/agbnational.component';
 import {AgbinternationalComponent} from './components/agbinternational/agbinternational.component';
 import {DialogModule} from 'primeng/dialog';
+import { TemplateModalComponent } from './components/template-modal/template-modal.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         DialogModule,
+        FormsModule
     ],
-    declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent]
+    declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent, TemplateModalComponent]
 })
 export class SharedModule {
 }

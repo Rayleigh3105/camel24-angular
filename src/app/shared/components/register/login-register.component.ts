@@ -45,7 +45,7 @@ export class LoginRegisterComponent extends KepInputComponent implements OnDestr
       let user: User = {
         firstName: form.value.vorname,
         lastName: form.value.nachname,
-        firmenName: form.value.firmenname,
+        firma: form.value.firmenname,
         email: form.value.email,
         adresse: form.value.adresse,
         ort: form.value.ort,
