@@ -8,6 +8,7 @@ import {KepInputComponent} from '../../../modules/kep-input/pages/kep-input/kep-
 import {LoaderService} from '../../services/loader-service.service';
 import {Subscription} from "rxjs";
 import {DashboardService} from '../../services/dashboard.service';
+import {CsvExportService} from '../../services/csv-export.service';
 
 @Component({
   selector: 'camel-login-register',
@@ -27,8 +28,9 @@ export class LoginRegisterComponent extends KepInputComponent implements OnDestr
               private $modalService: NgbModal,
               public $httpLoader: LoaderService,
               $dashboardService: DashboardService,
+              $orderService: CsvExportService,
               cdr: ChangeDetectorRef) {
-    super($modalService, cdr, $authService, $dashboardService);
+    super($modalService, cdr, $authService, $dashboardService, $orderService, $httpLoader);
   }
 
   ngOnDestroy(): void {

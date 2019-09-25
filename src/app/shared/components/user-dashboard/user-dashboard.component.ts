@@ -130,7 +130,8 @@ export class UserDashboardComponent extends SessionStorageComponent implements O
   updateNgModelVariablesWithSessionStorage() {
     this.$authService.getCurrentUser().then(user => {
       this.sessionKundenNummer = user.kundenNummer.toString();
-      this.sessionFirmenName = user.firma;
+      // @ts-ignore
+      this.sessionFirmenName = user.firmenName;
       this.sessionZusatz = user.zusatz;
       this.sessionAnsprechpartner = user.ansprechpartner;
       this.sessionAdresse = user.adresse;

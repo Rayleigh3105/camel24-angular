@@ -13,7 +13,8 @@ import {FormsModule} from '@angular/forms';
     imports: [
         CommonModule,
         DialogModule,
-        FormsModule
+        FormsModule,
+        DialogModule
     ],
     declarations: [BestModalComponent, SessionStorageComponent, ImpressumAgbComponent, AgbnationalComponent, AgbinternationalComponent, TemplateModalComponent]
 })

@@ -148,8 +148,14 @@
             </div>
             <div class="col-md-4 col-sm">
                 <fieldset>
-                    <h4 class="mv_heading">Empfänger</h4>
-                    <button (click)="onTemplateSave(f)"></button>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4 class="mv_heading">Empfänger</h4>
+                        </div>
+                        <div *ngIf="checkIfLoggedIn" class="col-sm-2 text-center">
+                            <i class="fa fa-star" (click)="openTemplateDialog(f)" style="cursor: pointer"></i>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="empfFirma">Firma / Name</label>
                         <input type="text" class="form-control" id="empfFirma" name="empfFirma"
@@ -338,7 +344,8 @@
                                         <ng-container *ngFor="let time of priceList">
                                             <option [ngValue]="time.time"
                                                     *ngIf="time.type == 'abhol'"
-                                            >zwischen {{time.time.substring(0,2)}}:00 - {{ time.time.substring(3,5) }}:00 Uhr (+ {{time.price}}€)
+                                            >zwischen {{time.time.substring(0,2)}}:00 - {{ time.time.substring(3,5)
+                                                }}:00 Uhr (+ {{time.price}}€)
                                             </option>
                                         </ng-container>
                                     </select>
@@ -524,7 +531,8 @@
                                 <ng-container *ngFor="let time of priceList">
                                     <option [ngValue]="time.time"
                                             *ngIf="time.type == 'zustell' && time.time !== 'samstag'"
-                                    >zwischen {{time.time.substring(0,2)}}:00 - {{ time.time.substring(3,5) }}:00 Uhr (+ {{time.price}}€)
+                                    >zwischen {{time.time.substring(0,2)}}:00 - {{ time.time.substring(3,5) }}:00 Uhr (+
+                                        {{time.price}}€)
                                     </option>
                                 </ng-container>
                             </select>
@@ -943,3 +951,90 @@
 
     </p-dialog>
 </form>
+
+
+<p-dialog [header]="'Vorlage erstellen'" [(visible)]="disableTemplateDialog" [responsive]="true" showEffect="fade"
+          [modal]="true"
+          width="500" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false"
+          (onHide)="disableTemplateDialog = false">
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-sm text-center">
+                <div class="form-group">
+                    <label for="templateName">Vorlagenname</label>
+                    <input type="text" class="form-control" id="templateName" name="templateName"
+                           [(ngModel)]="template.name"
+                           #templateName="ngModel" [ngClass]="{ 'is-invalid': templateName.invalid }"
+                           maxlength="70"
+                           required>
+
+                    <div *ngIf="templateName.invalid" class="invalid-feedback">
+                        <div *ngIf="templateName.errors.required">Vorlagenname wird benötigt.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-5"><strong>Firma / Name:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.firma }}</div>
+                </div>
+                <div class="row" *ngIf="template.empfaenger?.zusatz">
+                    <div class="col-5"><strong>Zusatz:</strong></div>
+                    <div class="col-7">{{ template.empfaenger?.zusatz }}</div>
+                </div>
+
+
+                <div class="row" *ngIf="template.empfaenger.ansprechpartner">
+                    <div class="col-5"><strong>Ansprechpartner:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.ansprechpartner }}</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-5"><strong>Adresse:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.adresse }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5"><strong>Land:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.land }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5"><strong>Postleizahl:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.plz }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5"><strong>Ort:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.ort }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5"><strong>Telefon:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.telefon }}</div>
+                </div>
+
+
+                <div class="row pb-3">
+                    <div class="col-5"><strong>E-Mail:</strong></div>
+                    <div class="col-7">{{ template.empfaenger.email }}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col-sm text-center pb-2">
+                <button type="button" class="btn btn-success" [disabled]="template.name == null || template.name == ''"
+                        (click)="createTemplate()">Speichern <span class="spinner-border spinner-border-sm"
+                                                                   *ngIf="$httpLoader.isLoading | async"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>

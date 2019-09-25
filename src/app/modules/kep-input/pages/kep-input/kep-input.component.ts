@@ -7,9 +7,11 @@ import {AuthService} from '../../../../shared/services/auth.service';
 import {DashboardService} from '../../../../shared/services/dashboard.service';
 import {Subscription} from 'rxjs';
 import {PriceConfig} from '../../../../core/models/config/price-config';
-import {any} from "codelyzer/util/function";
-import {TemplateModalComponent} from '../../../../shared/components/template-modal/template-modal.component';
+import {any} from 'codelyzer/util/function';
 import {User} from '../../../../core/models/user/user-model';
+import {Template} from '../../../../core/models/user/template-model';
+import {CsvExportService} from '../../../../shared/services/csv-export.service';
+import {LoaderService} from '../../../../shared/services/loader-service.service';
 
 @Component({
     selector: 'camel-kep-input',
@@ -38,6 +40,9 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public zustellErrorMessage: string;
     public zustellNachnahmeErrorMessage: string;
     public priceList: PriceConfig[];
+    public disableTemplateDialog: boolean = false;
+    template: Template = new Template();
+
 
     // NGMODEL
     public sessionFirmenName: string;
@@ -63,8 +68,15 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public zustellZeitFensterModel: string = '09-17';
     public isZustellNachnahme: boolean = false;
     public zustellNachnahmeWertModel: string;
+    public checkIfLoggedIn: boolean = false;
 
-    constructor(private modalService: NgbModal, private cdr: ChangeDetectorRef, protected $authService: AuthService, private $dashboardService: DashboardService) {
+    constructor(private modalService: NgbModal,
+                private cdr: ChangeDetectorRef,
+                protected $authService: AuthService,
+                private $dashboardService: DashboardService,
+                private $orderService: CsvExportService,
+                public $httpLoader: LoaderService
+                ) {
         super();
         this.updateNgModelVariablesWithSessionStorage();
     }
@@ -78,6 +90,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
         let interval = setInterval(() => {
             if (SessionStorageComponent.getXAuth() !== null) {
+                this.checkIfLoggedIn = true;
                 this.updateNgModelVariablesWithSessionStorage();
                 if (this.sessionFirmenName !== null) {
                     clearInterval(interval);
@@ -88,7 +101,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     }
 
     ngOnDestroy() {
-        this.subs.forEach(sub => sub.unsubscribe())
+        this.subs.forEach(sub => sub.unsubscribe());
     }
 
     /**
@@ -193,18 +206,24 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         }
     }
 
-    onTemplateSave(form: NgForm) {
-        const modalRef = this.modalService.open(TemplateModalComponent, {
-            size: 'lg',
-            backdrop: 'static',
-            centered: true,
-            keyboard: false
-        });
-
-        modalRef.componentInstance.empfaenger = KepInputComponent.prepareTemplateData(form);
+    /**
+     * Maps data and open primeng dialog
+     *
+     * @param form
+     */
+    openTemplateDialog(form: NgForm) {
+        this.template.empfaenger = KepInputComponent.prepareTemplateData(form);
+        this.disableTemplateDialog = true;
     }
 
-
+    /**
+     * Saves the template in the database
+     */
+    createTemplate() {
+        this.subs.push(this.$orderService.createTemplate(this.template).subscribe(() => {
+            this.disableTemplateDialog = false
+        }));
+    }
 
     /**
      * Updated ngModel Attributes in Template with data given in Sessionstorage
@@ -213,7 +232,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     updateNgModelVariablesWithSessionStorage() {
         this.$authService.getCurrentUser().then(user => {
             this.sessionKundenNummer = user.kundenNummer.toString();
-            this.sessionFirmenName = user.firma;
+            // @ts-ignore
+            this.sessionFirmenName = user.firmenName;
             this.sessionZusatz = user.zusatz;
             this.sessionAnsprechpartner = user.ansprechpartner;
             this.sessionAdresse = user.adresse;
@@ -335,7 +355,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
 
     private setupPriceList() {
         this.subs.push(this.$dashboardService.getPriceConfig().subscribe(() => {
-            this.priceList = this.$dashboardService.priceConfig$.getValue()
+            this.priceList = this.$dashboardService.priceConfig$.getValue();
             console.log(this.priceList);
         }));
     }
@@ -346,7 +366,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * @param form
      */
     private static prepareTemplateData(form: NgForm): User {
-        let empfaenger : User = {};
+        let empfaenger: User = {};
 
 
         empfaenger.firma = form.value.empfFirma;
@@ -359,7 +379,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
         empfaenger.telefon = form.value.empfTel;
         empfaenger.email = form.value.empfEmail;
 
-        return empfaenger
+
+        return empfaenger;
 
     }
 }
