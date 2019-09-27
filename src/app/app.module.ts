@@ -34,7 +34,6 @@ import {AdminDashboardComponent} from './shared/components/admin-dashboard/admin
 import {OrderModalComponent} from './shared/components/order-modal/order-modal.component';
 import {NotFoundComponent} from './shared/components/not-found/not-found.component';
 import {ConfigurationComponent} from './shared/components/configuration/configuration.component';
-import {TemplateModalComponent} from './shared/components/template-modal/template-modal.component';
 
 @NgModule({
     declarations: [
@@ -71,7 +70,6 @@ import {TemplateModalComponent} from './shared/components/template-modal/templat
     ],
     entryComponents: [
         BestModalComponent,
-        TemplateModalComponent,
         LoginRegisterComponent,
         LoginComponent,
         OrderModalComponent

@@ -1,14 +1,36 @@
 <div class="container">
     <div class="row pt-5">
         <div class="col-sm">
-            <div class="card">
-                <div class="card-header">
-                    <img src="../../../../assets/images/user.png" height="24" width="24"/>
-                    <strong>Benutzer</strong>
-                </div>
-                <div class="card-body">
+            <p-accordion [multiple]="true" activeIndex="1">
+                <p-accordionTab header="Vorlagen" >
+                    <p-table
+                            [value]="$orderService.templates$ | async"
+                            [paginator]="true"
+                            [rows]="20"
+                            selectionMode="single"
+                            sortMode="multiple"
+                            (onRowSelect)="onRowSelect($event)"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr style="text-align: center">
+                                <th [pSortableColumn]="'name'">
+                                    Vorlagenname
+                                    <p-sortIcon [field]=""></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-template>
+                            <tr style="text-align: center;" [pSelectableRow]="template">
+                                <td>{{ template.name }}</td>
+                            </tr>
+
+                        </ng-template>
+                    </p-table>
+                </p-accordionTab>
+                <br>
+                <p-accordionTab header="Benutzer konfiguration">
                     <form #f="ngForm" name="form" (ngSubmit)="onUpdate(f)" novalidate>
-                        <div class="row">
+                        <div class="row pt-2">
                             <div class="col-sm">
                                 <div class="form-row">
                                     <div class="form-group col-sm">
@@ -192,10 +214,121 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                </p-accordionTab>
+
+            </p-accordion>
         </div>
     </div>
 </div>
 
+<br>
+
 <camel-order-modal *ngIf="sessionKundenNummer" [kundenNummer]="sessionKundenNummer"></camel-order-modal>
+
+
+
+<p-dialog [header]="'Vorlage bearbeiten'" [(visible)]="displayDialog" [responsive]="true" [modal]="true" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="disableInput = false">
+    <div class="container" *ngIf="template">
+        <div class="row">
+            <div class="col-sm ">
+                <div class="form-group">
+                    <label for="firma">Vorlagenname</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                           [(ngModel)]="template.name"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="firma">Firma / Name</label>
+                    <input type="text" class="form-control" id="firma" name="absFirma"
+                           [(ngModel)]="template.empfaenger.firma"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Zusatz</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.zusatz"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ansprechpartner</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.ansprechpartner"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Adresse</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.adresse"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Land</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.land"
+                           maxlength="30"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>PLZ</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.plz"
+                           maxlength="5"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ort</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.ort"
+                           maxlength="75"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.telefon"
+                           maxlength="15"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>E-Mail</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="template.empfaenger.email"
+                           maxlength="75"
+                           required>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <p-footer class="text-center">
+
+        <button type="button" class="btn btn-primary" (click)="updateTemplate()">Speichern
+            <span class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"
+                  *ngIf="$httpLoader.isLoading | async"
+            ></span>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteTemplate()">Löschen
+            <span class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"
+                  *ngIf="$httpLoader.isLoading | async"
+            ></span>
+        </button>
+
+    </p-footer>
+</p-dialog>

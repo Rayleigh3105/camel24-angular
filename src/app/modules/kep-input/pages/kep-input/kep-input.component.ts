@@ -42,6 +42,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public priceList: PriceConfig[];
     public disableTemplateDialog: boolean = false;
     template: Template = new Template();
+    kundenNummer: string;
 
 
     // NGMODEL
@@ -98,6 +99,11 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             }
 
         }, 1000);
+
+        this.updateNgModelVariablesWithSessionStorage();
+        this.$authService.getCurrentUser().then(user => {
+            this.kundenNummer = user.kundenNummer.toString();
+        });
     }
 
     ngOnDestroy() {
@@ -220,7 +226,7 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Saves the template in the database
      */
     createTemplate() {
-        this.subs.push(this.$orderService.createTemplate(this.template).subscribe(() => {
+        this.subs.push(this.$orderService.createTemplate(this.template, this.kundenNummer).subscribe(() => {
             this.disableTemplateDialog = false
         }));
     }
