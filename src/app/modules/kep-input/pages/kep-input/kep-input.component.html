@@ -152,139 +152,162 @@
                         <div class="col-sm">
                             <h4 class="mv_heading">Empfänger</h4>
                         </div>
-                        <div *ngIf="checkIfLoggedIn" class="col-sm-2 text-center">
+
+                        <div class="col-sm" *ngIf="checkIfLoggedIn">
+                            <p-dropdown [options]="templates" [(ngModel)]="selectedTemplate"
+                                        placeholder="Vorlage auswählen"
+                                        name="template"
+                            *ngIf="templates.length > 0"></p-dropdown>
+                        </div>
+                        <div class="col-sm vertical-horizontal-center" *ngIf="checkIfLoggedIn">
                             <i class="fa fa-star" (click)="openTemplateDialog(f)" style="cursor: pointer"></i>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="empfFirma">Firma / Name</label>
-                        <input type="text" class="form-control" id="empfFirma" name="empfFirma"
-                               ngModel
-                               #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
-                               maxlength="75"
-                               required>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="empfFirma">Firma / Name</label>
+                                <input type="text" class="form-control" id="empfFirma" name="empfFirma"
+                                       ngModel
+                                       [(ngModel)]="selectedTemplate.empfaenger.firma"
+                                       #empfFirma="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfFirma.invalid }"
+                                       maxlength="75"
+                                       required>
 
-                        <div *ngIf="f.submitted && empfFirma.invalid" class="invalid-feedback">
-                            <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt.</div>
-                        </div>
+                                <div *ngIf="f.submitted && empfFirma.invalid" class="invalid-feedback">
+                                    <div *ngIf="empfFirma.errors.required">Firma / Name wird benötigt.</div>
+                                </div>
 
-                    </div>
+                            </div>
 
 
-                    <div class="form-group">
+                            <div class="form-group">
 
-                        <label for="empfZusatz">Zusatz</label>
-                        <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
-                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
-                               maxlength="75"
-                               #empfZusatz="ngModel">
-                    </div>
-                    <div class="form-group">
-                        <label for="empfAnsprechpartner">Ansprechpartner</label>
-                        <input type="text" class="form-control" id="empfAnsprechpartner" name="empfAnsprechpartner"
-                               ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnsprechpartner.invalid }"
-                               maxlength="75"
-                               #empfAnsprechpartner="ngModel"
-                               [required]="checkEmpfAnsprechPartner(f)">
-                        <div *ngIf="f.submitted && empfAnsprechpartner.invalid" class="invalid-feedback">
-                            Ansprechpartner muss bei Persönlicher Zustellung ausgefüllt sein.
-                        </div>
-                    </div>
+                                <label for="empfZusatz">Zusatz</label>
+                                <input type="text" class="form-control" id="empfZusatz" name="empfZusatz"
+                                       ngModel [ngClass]="{ 'is-invalid': f.submitted && empfZusatz.invalid }"
+                                       [(ngModel)]="selectedTemplate.empfaenger.zusatz"
 
-                    <div class="form-group">
-                        <label for="empfAdresse">Adresse</label>
-                        <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
-                               ngModel #empfAdresse="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
-                               maxlength="75"
-                               required>
-                        <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
-                            <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt.</div>
-                        </div>
-                    </div>
+                                       maxlength="75"
+                                       #empfZusatz="ngModel">
+                            </div>
+                            <div class="form-group">
+                                <label for="empfAnsprechpartner">Ansprechpartner</label>
+                                <input type="text" class="form-control" id="empfAnsprechpartner" name="empfAnsprechpartner"
+                                       ngModel [ngClass]="{ 'is-invalid': f.submitted && empfAnsprechpartner.invalid }"
+                                       maxlength="75"
+                                       [(ngModel)]="selectedTemplate.empfaenger.ansprechpartner"
 
-                    <div class="form-row">
-                        <div class="form-group col-sm">
-                            <label for="empfLand">Land</label>
-                            <select id="empfLand" class="form-control" name="empfLand"
-                                    ngModel
-                                    #empfLand="ngModel"
-                                    [(ngModel)]="empfLandSelected"
-                                    [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
-                                    required>
-                                <option>Deutschland</option>
-                                <option>Österreich</option>
-                                <option>Schweiz</option>
-                            </select>
-                            <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
-                                <div *ngIf="empfLand.errors.required">Land wird benötigt.</div>
+                                       #empfAnsprechpartner="ngModel"
+                                       [required]="checkEmpfAnsprechPartner(f)">
+                                <div *ngIf="f.submitted && empfAnsprechpartner.invalid" class="invalid-feedback">
+                                    Ansprechpartner muss bei Persönlicher Zustellung ausgefüllt sein.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="empfAdresse">Adresse</label>
+                                <input type="text" class="form-control" id="empfAdresse" name="empfAdresse"
+                                       ngModel #empfAdresse="ngModel"
+                                       [(ngModel)]="selectedTemplate.empfaenger.adresse"
+                                       [ngClass]="{ 'is-invalid': f.submitted && empfAdresse.invalid }"
+                                       maxlength="75"
+                                       required>
+                                <div *ngIf="f.submitted && empfAdresse.invalid" class="invalid-feedback">
+                                    <div *ngIf="empfAdresse.errors.required">Adresse wird benötigt.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm">
+                                    <label for="empfLand">Land</label>
+                                    <select id="empfLand" class="form-control" name="empfLand"
+                                            ngModel
+                                            #empfLand="ngModel"
+                                            [(ngModel)]="selectedTemplate.empfaenger.land || empfLandSelected"
+                                            [ngClass]="{ 'is-invalid': f.submitted && empfLand.invalid }"
+                                            required>
+                                        <option>Deutschland</option>
+                                        <option>Österreich</option>
+                                        <option>Schweiz</option>
+                                    </select>
+                                    <div *ngIf="f.submitted && empfLand.invalid" class="invalid-feedback">
+                                        <div *ngIf="empfLand.errors.required">Land wird benötigt.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <label for="empfPlz">PLZ</label>
+                                    <input type="text" class="form-control" id="empfPlz" name="empfPlz"
+                                           ngModel #empfPlz="ngModel"
+                                           [(ngModel)]="selectedTemplate.empfaenger.plz"
+                                           [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
+                                           minlength="5"
+                                           maxlength="5"
+                                           pattern="[0-9]{5}"
+                                           required>
+                                    <div *ngIf="f.submitted && empfPlz.invalid" class="invalid-feedback">
+                                        <div *ngIf="empfPlz.errors.required">PLZ wird benötigt.</div>
+                                        <div *ngIf="empfPlz.errors.pattern">PLZ muss aus 5 Ziffern bestehen.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="empfOrt">Ort</label>
+                                <input type="text" class="form-control" id="empfOrt" name="empfOrt"
+                                       ngModel #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
+                                       [(ngModel)]="selectedTemplate.empfaenger.ort"
+                                       maxlength="75"
+                                       required>
+
+                                <div *ngIf="f.submitted && empfOrt.invalid" class="invalid-feedback">
+                                    <div *ngIf="empfOrt.errors.required">Ort wird benötigt.</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="empfTel">Telefon</label>
+                                <input type="text" class="form-control"
+                                       id="empfTel"
+                                       name="empfTel"
+                                       ngModel #empfTel="ngModel"
+                                       [(ngModel)]="selectedTemplate.empfaenger.telefon"
+                                       [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
+                                       minlength="1"
+                                       maxlength="15"
+                                       required>
+                                <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
+                                    <div *ngIf="empfTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
+                                    <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="empfEmail">E-Mail Adresse</label>
+                                <input type="email"
+                                       class="form-control"
+                                       id="empfEmail"
+                                       name="empfEmail"
+                                       ngModel
+                                       [(ngModel)]="selectedTemplate.empfaenger.email"
+
+                                       minlength="1"
+                                       maxlength="50"
+                                       #empfEmail="ngModel"
+                                       [ngClass]="{ 'is-invalid': f.submitted && empfEmail.invalid }"
+                                       email>
+
+                                <div *ngIf="f.submitted && empfEmail.invalid"
+                                     class="invalid-feedback">
+                                    <div *ngIf="empfEmail.errors.required">E-Mail wird benötigt.</div>
+                                    <div *ngIf="empfEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an.
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group col-sm">
-                            <label for="empfPlz">PLZ</label>
-                            <input type="text" class="form-control" id="empfPlz" name="empfPlz"
-                                   ngModel #empfPlz="ngModel"
-                                   [ngClass]="{ 'is-invalid': f.submitted && empfPlz.invalid }"
-                                   minlength="5"
-                                   maxlength="5"
-                                   pattern="[0-9]{5}"
-                                   required>
-                            <div *ngIf="f.submitted && empfPlz.invalid" class="invalid-feedback">
-                                <div *ngIf="empfPlz.errors.required">PLZ wird benötigt.</div>
-                                <div *ngIf="empfPlz.errors.pattern">PLZ muss aus 5 Ziffern bestehen.</div>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="empfOrt">Ort</label>
-                        <input type="text" class="form-control" id="empfOrt" name="empfOrt"
-                               ngModel #empfOrt="ngModel" [ngClass]="{ 'is-invalid': f.submitted && empfOrt.invalid }"
-                               maxlength="75"
-                               required>
-
-                        <div *ngIf="f.submitted && empfOrt.invalid" class="invalid-feedback">
-                            <div *ngIf="empfOrt.errors.required">Ort wird benötigt.</div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="empfTel">Telefon</label>
-                        <input type="text" class="form-control"
-                               id="empfTel"
-                               name="empfTel"
-                               ngModel #empfTel="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfTel.invalid }"
-                               minlength="1"
-                               maxlength="15"
-                               required>
-                        <div *ngIf="f.submitted && empfTel.invalid" class="invalid-feedback">
-                            <div *ngIf="empfTel.errors.pattern">Bitte geben Sie eine gültige Telefonnummer an.</div>
-                            <div *ngIf="empfTel.errors.required">Telefonnummer wird benötigt.</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="empfEmail">E-Mail Adresse</label>
-                        <input type="email"
-                               class="form-control"
-                               id="empfEmail"
-                               name="empfEmail"
-                               ngModel
-                               minlength="1"
-                               maxlength="50"
-                               #empfEmail="ngModel"
-                               [ngClass]="{ 'is-invalid': f.submitted && empfEmail.invalid }"
-                               email>
-
-                        <div *ngIf="f.submitted && empfEmail.invalid"
-                             class="invalid-feedback">
-                            <div *ngIf="empfEmail.errors.required">E-Mail wird benötigt.</div>
-                            <div *ngIf="empfEmail.errors.email">Bitte geben Sie eine gültige E-Mail Adresse an.
-                            </div>
-                        </div>
-                    </div>
                 </fieldset>
             </div>
             <div class="col-md-2"></div>

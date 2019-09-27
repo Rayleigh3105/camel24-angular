@@ -225,8 +225,6 @@
 
 <camel-order-modal *ngIf="sessionKundenNummer" [kundenNummer]="sessionKundenNummer"></camel-order-modal>
 
-
-
 <p-dialog [header]="'Vorlage bearbeiten'" [(visible)]="displayDialog" [responsive]="true" [modal]="true" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="disableInput = false">
     <div class="container" *ngIf="template">
         <div class="row">
@@ -273,10 +271,14 @@
 
                 <div class="form-group">
                     <label>Land</label>
-                    <input type="text" class="form-control"
-                           [(ngModel)]="template.empfaenger.land"
-                           maxlength="30"
-                           required>
+                    <select id="empfLand" class="form-control" name="empfLand"
+                            #empfLand="ngModel"
+                            [(ngModel)]="template.empfaenger.land"
+                            required>
+                        <option>Deutschland</option>
+                        <option>Österreich</option>
+                        <option>Schweiz</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

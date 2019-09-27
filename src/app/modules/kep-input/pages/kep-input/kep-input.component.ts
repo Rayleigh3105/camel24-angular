@@ -12,6 +12,7 @@ import {User} from '../../../../core/models/user/user-model';
 import {Template} from '../../../../core/models/user/template-model';
 import {CsvExportService} from '../../../../shared/services/csv-export.service';
 import {LoaderService} from '../../../../shared/services/loader-service.service';
+import {SelectItem} from 'primeng/api';
 
 @Component({
     selector: 'camel-kep-input',
@@ -43,6 +44,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     public disableTemplateDialog: boolean = false;
     template: Template = new Template();
     kundenNummer: string;
+    selectedTemplate: Template = new Template();
+    templates: SelectItem[] = [];
 
 
     // NGMODEL
@@ -75,11 +78,13 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
                 private cdr: ChangeDetectorRef,
                 protected $authService: AuthService,
                 private $dashboardService: DashboardService,
-                private $orderService: CsvExportService,
+                public $orderService: CsvExportService,
                 public $httpLoader: LoaderService
-                ) {
+    ) {
+
         super();
         this.updateNgModelVariablesWithSessionStorage();
+
     }
 
     ngOnInit() {
@@ -227,7 +232,15 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      */
     createTemplate() {
         this.subs.push(this.$orderService.createTemplate(this.template, this.kundenNummer).subscribe(() => {
-            this.disableTemplateDialog = false
+            this.disableTemplateDialog = false;
+
+            this.$orderService.getTemplates(this.sessionKundenNummer).subscribe();
+            this.$orderService.templates$.value.forEach(templateBehavior => {
+                this.templates.push({
+                    label: templateBehavior.name,
+                    value: templateBehavior
+                })
+            });
         }));
     }
 
@@ -235,8 +248,8 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
      * Updated ngModel Attributes in Template with data given in Sessionstorage
      * Also updates Selected Values in form with default values
      */
-    updateNgModelVariablesWithSessionStorage() {
-        this.$authService.getCurrentUser().then(user => {
+    async updateNgModelVariablesWithSessionStorage() {
+        await this.$authService.getCurrentUser().then(user => {
             this.sessionKundenNummer = user.kundenNummer.toString();
             // @ts-ignore
             this.sessionFirmenName = user.firmenName;
@@ -250,6 +263,16 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
             this.sessionEmail = user.email;
             this.sessionRechnungTelefon = user.telefon;
             this.sessionRechnungEmail = user.email;
+        });
+        this.templates = [];
+        this.selectedTemplate = new Template();
+
+        await this.$orderService.getTemplates(this.sessionKundenNummer).subscribe();
+        this.$orderService.templates$.value.forEach(templateBehavior => {
+            this.templates.push({
+                label: templateBehavior.name,
+                value: templateBehavior
+            })
         });
 
     }
@@ -362,7 +385,6 @@ export class KepInputComponent extends SessionStorageComponent implements OnInit
     private setupPriceList() {
         this.subs.push(this.$dashboardService.getPriceConfig().subscribe(() => {
             this.priceList = this.$dashboardService.priceConfig$.getValue();
-            console.log(this.priceList);
         }));
     }
 
