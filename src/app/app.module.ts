@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from './shared/services/auth.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AccordionModule, CalendarModule, DialogModule} from 'primeng/primeng';
+import {AccordionModule, CalendarModule, DialogModule, SidebarModule} from 'primeng/primeng';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BestModalComponent} from './shared/components/best-modal/best-modal.component';
@@ -66,7 +66,8 @@ import {ConfigurationComponent} from './shared/components/configuration/configur
         MessagesModule,
         TableModule,
         DialogModule,
-        AccordionModule
+        AccordionModule,
+        SidebarModule
     ],
     entryComponents: [
         BestModalComponent,

@@ -24,6 +24,7 @@ html body {
   display: flex;
   align-items: center;
 }
+
 .register {
   background: -webkit-linear-gradient(left, darkorange, #ffc107);
 }
@@ -161,6 +162,11 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 .vertical-horizontal-center {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.horizontal-center {
+  display: flex;
   justify-content: center;
 }
 

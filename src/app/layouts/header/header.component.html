@@ -7,14 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/auftrag"><i class="fa fa-file" ></i> Online - Auftrag</a>
+                <a class="nav-link" routerLink="/auftrag"><i class="fa fa-file"></i> Online - Auftrag</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false"><i class="fa fa-truck"></i> Dienste</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://kep-ag.kep-it.de/xtras/track.php" target="_blank">Sendungsverfolgung - KEP</a>
-                    <a class="dropdown-item" href="http://www.derkurier.de/onlineservices/sendung-verfolgen/" target="_blank">Sendungsverfolgung - Der Kurier</a>
+                    <a class="dropdown-item" href="http://kep-ag.kep-it.de/xtras/track.php" target="_blank">Sendungsverfolgung
+                        - KEP</a>
+                    <a class="dropdown-item" href="http://www.derkurier.de/onlineservices/sendung-verfolgen/"
+                       target="_blank">Sendungsverfolgung - Der Kurier</a>
 
                 </div>
             </li>
@@ -50,6 +52,10 @@
             <li class="nav-item" *ngIf="boolCheckIfLoggedIn === false">
                 <a class="nav-link" (click)="onLogin()">Einloggen</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" (click)="display = true"><i class="fa fa-phone"></i></a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -62,3 +68,29 @@
     </div>
 </div>
 
+<p-sidebar [(visible)]="display" position="right" [style]="{'background': '#d8dfe9'}">
+    <div class="container vertical-horizontal-center">
+        <div class="row">
+            <div class="col-sm">
+                <br>
+                <br>
+                <img src="./../../../assets/images/camel_logo.png" alt="Camel Logo" style="height: 170px;width: 180px">
+                <br>
+                <br>
+                <br>
+                <div class="nav-item text-center"><i class="fa fa-phone"> <a href="tel:+49 9114008727" class="link-no-decoration">    +49 9114008727</a></i></div>
+                <br>
+                <div class="nav-item text-center"><i class="fa fa-fax"> <a href="fax:+49 911 400 87 17" class="link-no-decoration">  +49 9114008717</a></i></div>
+                <br>
+                <div class="nav-item text-center"><i class="fa fa-envelope"> <a href="mailto:info@camel-24.de" class="link-no-decoration">   info@camel-24.de</a></i></div>
+                <br>
+                <br>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2535.578516480253!2d11.158299815664884!3d49.41568567934607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479f59751d389567%3A0x362785d763fa6761!2sCamel24!5e1!3m2!1sde!2sde!4v1572894788293!5m2!1sde!2sde"
+                        width="200" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                <br>
+            </div>
+        </div>
+
+    </div>
+</p-sidebar>
