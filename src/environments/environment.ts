@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    endpoint: "https://185.160.0.35:3000/",
+    endpoint: "http://185.160.0.35:3000/",
     local: 'http://localhost:3000/',
 
     prod: "http://185.160.0.35:3000/",
