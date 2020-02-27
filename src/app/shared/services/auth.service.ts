@@ -26,7 +26,7 @@ export class AuthService {
      * @param user - user to create
      */
     createUser(user: User) {
-        return this.$http.post(environment.endpoint + 'user', user, {observe: 'response', responseType: 'json'})
+        return this.$http.post(environment.endpoint + 'user/register', user, {observe: 'response', responseType: 'json'})
             .pipe(
                 map((response => {
                         // login successful if there's a jwt token in the response

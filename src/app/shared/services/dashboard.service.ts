@@ -15,6 +15,9 @@ export class DashboardService {
     orders$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
     users$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
     priceConfig$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    private rootUrl: String = "admindashboard/";
+    private configMailUrl: String = this.rootUrl + "configMail";
+    private priceOptionUrl: String = this.rootUrl + "priceOption";
 
     constructor(private $http: HttpClient) {
     }
@@ -81,7 +84,7 @@ export class DashboardService {
      * ADMIN ROUTE - Get Smtp options.
      */
     getSmtpConfig(): Promise<SmtpConfig> {
-        return this.$http.get<SmtpConfig>(`${environment.endpoint}admindashboard/configSmtp`, this.updateXAuthfromSessionStorage()).toPromise();
+        return this.$http.get<SmtpConfig>(`${environment.endpoint}${this.configMailUrl}`, this.updateXAuthfromSessionStorage()).toPromise();
     }
 
     /**
@@ -89,14 +92,14 @@ export class DashboardService {
      * @param config
      */
     updateSmtpConfiguration(config: SmtpConfig) {
-        return this.$http.patch<SmtpConfig>(`${environment.endpoint}admindashboard/configSmtp`, config, this.updateXAuthfromSessionStorage());
+        return this.$http.patch<SmtpConfig>(`${environment.endpoint}${this.configMailUrl}`, config, this.updateXAuthfromSessionStorage());
     }
 
     /**
      * ADMIN / PRIVATE ROUTE - Get current Price configs
      */
     getPriceConfig(): Observable<any> {
-        return this.$http.get<any>(`${environment.endpoint}admindashboard/priceConfig`).pipe(
+        return this.$http.get<any>(`${environment.endpoint}${this.priceOptionUrl}`).pipe(
             tap(val => this.priceConfig$.next(val))
         );
     }
@@ -106,7 +109,7 @@ export class DashboardService {
      * @param priceConfig
      */
     updatePriceConfig(priceConfig: PriceConfig): Observable<PriceConfig> {
-        return this.$http.patch<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, priceConfig, this.updateXAuthfromSessionStorage())
+        return this.$http.patch<PriceConfig>(`${environment.endpoint}${this.priceOptionUrl}`, priceConfig, this.updateXAuthfromSessionStorage())
             .pipe(
                 tap((priceConfigDb) => {
                     let priceList = [... this.priceConfig$.getValue()];
@@ -124,7 +127,7 @@ export class DashboardService {
      * @param price
      */
     createPriceConfig(price: PriceConfig) {
-        return this.$http.post<PriceConfig>(`${environment.endpoint}admindashboard/priceConfig`, price, this.updateXAuthfromSessionStorage())
+        return this.$http.post<PriceConfig>(`${environment.endpoint}${this.priceOptionUrl}`, price, this.updateXAuthfromSessionStorage())
             .pipe(
                 tap((priceConfigDb) =>
                     this.priceConfig$.next([... this.priceConfig$.getValue(), priceConfigDb])
@@ -136,7 +139,7 @@ export class DashboardService {
      * Deletes price config on the backend.
      */
     deletePriceConfig(priceId: string) {
-        return this.$http.delete(`${environment.endpoint}admindashboard/priceConfig/${priceId}`, this.updateXAuthfromSessionStorage()).pipe(
+        return this.$http.delete(`${environment.endpoint}${this.priceOptionUrl}/${priceId}`, this.updateXAuthfromSessionStorage()).pipe(
             tap(() => {
                 let priceList = [... this.priceConfig$.getValue()];
                 let priceToDelete = priceList.find(price => price._id == priceId);
