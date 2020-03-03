@@ -24,7 +24,7 @@ export class HeaderComponent extends SessionStorageComponent implements OnInit, 
     public role: any;
     private subs : Subscription[] = [];
     msgs: Message[] = [];
-    protected display: boolean = false;
+    public display: boolean = false;
 
 
     constructor(private modalService: NgbModal, private $authService: AuthService, private router: Router) {

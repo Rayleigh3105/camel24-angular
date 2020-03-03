@@ -1,30 +1,34 @@
-# Stage 1 - Building Angualar App
-# Stage 2 - Setting up the Webserver
+### STAGE 1: Build ###
 
-# Create image based on the official Node 8 image from dockerhub
-FROM node:8.11.2-alpine as node
+# We label our stage as ‘builder’
+FROM node:10-alpine as builder
 
-# Create a directory where our app will be placed
-RUN mkdir -p /usr/src/app
+COPY package.json package-lock.json ./
 
-# Change directory so that our commands run inside this new directory
-WORKDIR /usr/src/app
+## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 
-# Copy dependency definitions
-COPY package*.json ./
+RUN npm ci && mkdir /camel-frontend && mv ./node_modules ./camel-frontend
 
-# Install dependecies
-RUN npm install
+WORKDIR /camel-frontend
 
-# Get all the code needed to run the application
 COPY . .
 
-RUN npm run build
+## Build the angular app in production mode and store the artifacts in dist folder
 
-# Stage 2 - Webserver
-FROM nginx:1.13.12-alpine
+RUN npm run ng build -- --prod --output-path=dist
 
-#copy dist content to html nginx folder, config nginx to point in index.html
-COPY --from=node /usr/src/app/dist/camel24-frontend /usr/share/nginx/html
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+### STAGE 2: Setup ###
+
+FROM nginx:1.14.1-alpine
+
+## Copy our default nginx config
+COPY nginx.conf /etc/nginx/conf.d/
+
+## Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
+COPY --from=builder /camel-frontend/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

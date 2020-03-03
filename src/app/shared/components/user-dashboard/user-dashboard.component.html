@@ -225,7 +225,7 @@
 
 <camel-order-modal *ngIf="sessionKundenNummer" [kundenNummer]="sessionKundenNummer"></camel-order-modal>
 
-<p-dialog [header]="'Vorlage bearbeiten'" [(visible)]="displayDialog" [responsive]="true" [modal]="true" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" (onHide)="disableInput = false">
+<p-dialog [header]="'Vorlage bearbeiten'" [(visible)]="displayDialog" [responsive]="true" [modal]="true" [draggable]="false" [blockScroll]="false" [closeOnEscape]="false" >
     <div class="container" *ngIf="template">
         <div class="row">
             <div class="col-sm ">

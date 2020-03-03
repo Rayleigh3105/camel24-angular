@@ -32,7 +32,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     msgs: Message[] = [];
     msgsModal: Message[] = [];
     msgsUser: Message[] = [];
-    disableInput: boolean = false;
+    public disableInput: boolean = false;
     priceType: any[];
 
     public user: User;
@@ -64,7 +64,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * Saves configuration to Backend.
      * @param form
      */
-    protected onSave(form: NgForm) {
+    public onSave(form: NgForm) {
         if (form.valid) {
             form.value._id = this.config._id;
             this.subs.push(this.$dasboardService.updateSmtpConfiguration(form.value).subscribe(body => {
@@ -106,7 +106,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
      * Updates the user based on the inoputs
      * @param form - form from the frontend
      */
-    protected async onUpdate(form: NgForm) {
+    public async onUpdate(form: NgForm) {
         if (form.valid) {
             this.subs.push(this.$dasboardService.updateUser(this.user).subscribe(body => {
                 if (body !== null) {
