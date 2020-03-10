@@ -4,10 +4,7 @@
 
 export const environment = {
     production: false,
-    endpoint: "https://srv-1037770-1.camel-24.info/",
-    local: 'http://localhost:3000/',
-
-    prod: "https://srv-1037770-1.camel-24.info/admindashboard/priceconfig",
+    endpoint: "http://localhost:3000",
 
 };
 

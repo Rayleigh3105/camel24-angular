@@ -4,5 +4,5 @@
  */
 export const environment = {
     production: true,
-    endpoint: "http://localhost:8082/",
+    endpoint: "http://167.86.68.153:3000/",
 };
